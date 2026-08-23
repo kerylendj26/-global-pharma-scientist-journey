@@ -2213,26 +2213,440 @@ function startPharmacologyLesson3(){
   title.textContent = 'Lesson 3 — Receptors, Potency and Efficacy';
 
   text.innerHTML = `
-    <h3>Potency and efficacy</h3>
+    <h2>Lesson 3 — Receptors, Potency and Efficacy</h2>
+
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson, you should be able to:</p>
+
+    <ul>
+      <li>Explain receptor binding and receptor activation.</li>
+      <li>Differentiate affinity from intrinsic activity.</li>
+      <li>Compare full agonists, partial agonists, inverse agonists and antagonists.</li>
+      <li>Differentiate competitive and noncompetitive antagonism.</li>
+      <li>Explain potency, efficacy, EC50 and Emax.</li>
+      <li>Interpret basic dose-response relationships.</li>
+      <li>Explain receptor desensitization, tolerance and regulation.</li>
+    </ul>
+
+    <hr>
+
+    <h3>1. Receptors</h3>
 
     <p>
-      <strong>Potency</strong> describes how much drug is needed
-      to produce a given effect.
+      A <strong>receptor</strong> is a molecular structure, usually a protein,
+      that recognizes a ligand such as a neurotransmitter, hormone or drug.
     </p>
 
     <p>
-      <strong>Efficacy</strong> describes the maximum effect
-      a drug can produce.
+      Drug binding can change receptor activity and trigger intracellular signaling.
     </p>
 
+    <p><strong>Basic pathway:</strong></p>
+
     <p>
-      A more potent drug can produce the same effect at a lower dose,
-      but greater potency does not automatically mean greater efficacy.
+      Drug → Receptor binding → Signal transduction →
+      Cellular response → Physiological effect
     </p>
 
     <hr>
 
-    <h3>Quick Check</h3>
+    <h3>2. Affinity</h3>
+
+    <p>
+      <strong>Affinity</strong> describes how strongly a drug binds to a receptor.
+    </p>
+
+    <p>
+      A drug can have high affinity for a receptor without strongly activating it.
+    </p>
+
+    <p>
+      Therefore, affinity describes <strong>binding</strong>, not necessarily
+      the magnitude of the response.
+    </p>
+
+    <hr>
+
+    <h3>3. Intrinsic activity</h3>
+
+    <p>
+      <strong>Intrinsic activity</strong> refers to the ability of a receptor-bound
+      drug to activate the receptor and produce a biological response.
+    </p>
+
+    <p>
+      Two drugs may bind the same receptor but produce very different responses
+      because their intrinsic activities differ.
+    </p>
+
+    <hr>
+
+    <h3>4. Full agonists</h3>
+
+    <p>
+      A <strong>full agonist</strong> binds to a receptor and can produce
+      the maximal response of that receptor system.
+    </p>
+
+    <p>
+      Example: morphine acts as a mu-opioid receptor agonist.
+    </p>
+
+    <p><strong>Mechanism:</strong></p>
+
+    <p>
+      Morphine → mu-opioid receptor activation →
+      reduced neurotransmitter release →
+      decreased pain transmission → analgesia
+    </p>
+
+    <hr>
+
+    <h3>5. Partial agonists</h3>
+
+    <p>
+      A <strong>partial agonist</strong> activates a receptor but produces
+      a lower maximum response than a full agonist.
+    </p>
+
+    <p>
+      Even when many receptors are occupied, the response remains below
+      the maximum produced by a full agonist.
+    </p>
+
+    <p>
+      Example: buprenorphine is a partial agonist at mu-opioid receptors.
+    </p>
+
+    <p>
+      In the presence of a full agonist, a partial agonist can reduce
+      the total response by competing for receptor occupancy.
+    </p>
+
+    <hr>
+
+    <h3>6. Inverse agonists</h3>
+
+    <p>
+      Some receptors show baseline activity even when no agonist is present.
+    </p>
+
+    <p>
+      An <strong>inverse agonist</strong> binds to the receptor and reduces
+      this constitutive activity below its baseline level.
+    </p>
+
+    <p>
+      This differs from a neutral antagonist, which mainly blocks other ligands
+      without necessarily reducing basal receptor activity.
+    </p>
+
+    <hr>
+
+    <h3>7. Antagonists</h3>
+
+    <p>
+      An <strong>antagonist</strong> binds to a receptor but does not activate it.
+    </p>
+
+    <p>
+      Instead, it prevents or reduces activation by an agonist.
+    </p>
+
+    <p>
+      Example: naloxone blocks opioid receptors and reverses opioid effects.
+    </p>
+
+    <hr>
+
+    <h3>8. Competitive antagonists</h3>
+
+    <p>
+      A <strong>competitive antagonist</strong> competes with an agonist
+      for the same receptor binding site.
+    </p>
+
+    <p>
+      Increasing the concentration of agonist can often overcome
+      competitive antagonism.
+    </p>
+
+    <p>
+      On a dose-response curve, competitive antagonism generally causes:
+    </p>
+
+    <ul>
+      <li>A shift to the right</li>
+      <li>An increase in the apparent EC50</li>
+      <li>No necessary reduction in Emax</li>
+    </ul>
+
+    <hr>
+
+    <h3>9. Noncompetitive antagonists</h3>
+
+    <p>
+      A <strong>noncompetitive antagonist</strong> reduces receptor response
+      in a manner that cannot be fully overcome simply by increasing agonist concentration.
+    </p>
+
+    <p>
+      Noncompetitive antagonism commonly lowers the maximum achievable response,
+      or <strong>Emax</strong>.
+    </p>
+
+    <hr>
+
+    <h3>10. Potency</h3>
+
+    <p>
+      <strong>Potency</strong> describes how much drug is required to produce
+      a specified effect.
+    </p>
+
+    <p>
+      A more potent drug produces a given response at a lower concentration or dose.
+    </p>
+
+    <p>
+      Potency is commonly related to <strong>EC50</strong>.
+    </p>
+
+    <p>
+      <strong>EC50</strong> is the concentration required to produce
+      50% of the drug's maximum effect.
+    </p>
+
+    <p>
+      Lower EC50 → greater potency
+    </p>
+
+    <hr>
+
+    <h3>11. Efficacy</h3>
+
+    <p>
+      <strong>Efficacy</strong> refers to the maximum effect a drug can produce.
+    </p>
+
+    <p>
+      The maximum response is often represented as <strong>Emax</strong>.
+    </p>
+
+    <p>
+      A drug with greater efficacy can produce a larger maximum response,
+      regardless of whether it requires a higher or lower dose.
+    </p>
+
+    <hr>
+
+    <h3>12. Potency versus efficacy</h3>
+
+    <p>
+      Potency and efficacy are not the same concept.
+    </p>
+
+    <p>
+      Drug A may require only 5 mg to produce an effect while Drug B requires 20 mg.
+      Drug A is more potent.
+    </p>
+
+    <p>
+      However, Drug B may still be capable of producing a greater maximum effect.
+      In that case, Drug B has greater efficacy.
+    </p>
+
+    <p><strong>Remember:</strong></p>
+
+    <p>
+      Potency = how much drug?
+    </p>
+
+    <p>
+      Efficacy = how large an effect?
+    </p>
+
+    <hr>
+
+    <h3>13. Dose-response curves</h3>
+
+    <p>
+      A dose-response curve relates drug concentration or dose
+      to the magnitude of biological response.
+    </p>
+
+    <p>
+      Two important measurements are:
+    </p>
+
+    <ul>
+      <li><strong>EC50:</strong> concentration producing 50% of maximal effect</li>
+      <li><strong>Emax:</strong> maximum effect achievable</li>
+    </ul>
+
+    <p>
+      A curve located farther to the left generally represents a more potent drug.
+    </p>
+
+    <p>
+      A curve reaching a higher maximum represents a drug with greater efficacy.
+    </p>
+
+    <hr>
+
+    <h3>14. Receptor occupancy</h3>
+
+    <p>
+      Drug response often increases as more receptors become occupied.
+    </p>
+
+    <p>
+      However, the relationship between receptor occupancy and effect
+      is not always one-to-one.
+    </p>
+
+    <p>
+      Some tissues contain <strong>spare receptors</strong>, meaning maximal effect
+      can occur before every receptor is occupied.
+    </p>
+
+    <hr>
+
+    <h3>15. Receptor desensitization</h3>
+
+    <p>
+      Continuous or repeated agonist stimulation can decrease receptor responsiveness.
+    </p>
+
+    <p>
+      This process is called <strong>desensitization</strong>.
+    </p>
+
+    <p>
+      Possible mechanisms include:
+    </p>
+
+    <ul>
+      <li>Receptor phosphorylation</li>
+      <li>Receptor internalization</li>
+      <li>Reduced signaling efficiency</li>
+      <li>Reduced receptor expression</li>
+    </ul>
+
+    <hr>
+
+    <h3>16. Down-regulation</h3>
+
+    <p>
+      Prolonged receptor stimulation may cause
+      <strong>down-regulation</strong>.
+    </p>
+
+    <p>
+      This means receptor number or responsiveness decreases,
+      which can reduce drug effect over time.
+    </p>
+
+    <hr>
+
+    <h3>17. Up-regulation</h3>
+
+    <p>
+      Long-term receptor blockade may sometimes lead to
+      <strong>up-regulation</strong>.
+    </p>
+
+    <p>
+      The cell may increase receptor number or responsiveness
+      in response to chronic inhibition.
+    </p>
+
+    <p>
+      Sudden withdrawal of some antagonist drugs can therefore produce
+      exaggerated physiological responses.
+    </p>
+
+    <hr>
+
+    <h3>18. Tolerance</h3>
+
+    <p>
+      <strong>Tolerance</strong> occurs when repeated drug exposure produces
+      a smaller effect, requiring a higher dose to obtain the previous response.
+    </p>
+
+    <p>
+      Tolerance may result from:
+    </p>
+
+    <ul>
+      <li>Receptor desensitization</li>
+      <li>Receptor down-regulation</li>
+      <li>Altered intracellular signaling</li>
+      <li>Increased metabolic clearance</li>
+      <li>Physiological adaptation</li>
+    </ul>
+
+    <hr>
+
+    <h3>19. Clinical comparison</h3>
+
+    <p><strong>Morphine:</strong> opioid receptor agonist</p>
+
+    <p><strong>Buprenorphine:</strong> partial mu-opioid receptor agonist</p>
+
+    <p><strong>Naloxone:</strong> opioid receptor antagonist</p>
+
+    <p>
+      These three drugs interact with overlapping receptor systems
+      but produce different pharmacological effects because their
+      receptor activities differ.
+    </p>
+
+    <hr>
+
+    <h3>20. Integrated mechanism</h3>
+
+    <p>
+      Consider naloxone in opioid overdose:
+    </p>
+
+    <p>
+      Naloxone → high-affinity opioid receptor binding →
+      competitive displacement of opioid agonists →
+      reduced opioid receptor activation →
+      restoration of respiratory drive
+    </p>
+
+    <hr>
+
+    <h3>High-yield summary</h3>
+
+    <p><strong>Affinity:</strong> strength of receptor binding.</p>
+
+    <p><strong>Intrinsic activity:</strong> ability to activate a receptor.</p>
+
+    <p><strong>Full agonist:</strong> can produce maximal response.</p>
+
+    <p><strong>Partial agonist:</strong> activates receptor but has lower Emax.</p>
+
+    <p><strong>Antagonist:</strong> binds without activating.</p>
+
+    <p><strong>Competitive antagonist:</strong> shifts dose-response curve right.</p>
+
+    <p><strong>Noncompetitive antagonist:</strong> commonly reduces Emax.</p>
+
+    <p><strong>Potency:</strong> amount required for an effect.</p>
+
+    <p><strong>EC50:</strong> concentration producing 50% of Emax.</p>
+
+    <p><strong>Efficacy:</strong> maximum effect.</p>
+
+    <p><strong>Emax:</strong> maximum achievable response.</p>
+
+    <hr>
+
+    <h3>Knowledge Check 1</h3>
 
     <p>
       Which term describes the maximum effect a drug can produce?
@@ -2248,6 +2662,65 @@ function startPharmacologyLesson3(){
 
     <p id="pharmPEAnswer"></p>
 
+    <hr>
+
+    <h3>Knowledge Check 2</h3>
+
+    <p>
+      Drug A produces the same response as Drug B at a lower dose.
+      Which statement is correct?
+    </p>
+
+    <button class="btn" onclick="checkPEPotency('A')">
+      A. Drug A is more potent
+    </button>
+
+    <button class="btn" onclick="checkPEPotency('B')">
+      B. Drug A necessarily has greater efficacy
+    </button>
+
+    <p id="pePotencyAnswer"></p>
+
+    <hr>
+
+    <h3>Knowledge Check 3</h3>
+
+    <p>
+      A competitive antagonist is added to an agonist.
+      What commonly happens to the agonist dose-response curve?
+    </p>
+
+    <button class="btn" onclick="checkPECompetitive('A')">
+      A. It shifts to the right
+    </button>
+
+    <button class="btn" onclick="checkPECompetitive('B')">
+      B. Emax must fall to zero
+    </button>
+
+    <p id="peCompetitiveAnswer"></p>
+
+    <hr>
+
+    <h3>Knowledge Check 4</h3>
+
+    <p>
+      Which drug type activates a receptor but produces a lower
+      maximum response than a full agonist?
+    </p>
+
+    <button class="btn" onclick="checkPEPartial('A')">
+      A. Partial agonist
+    </button>
+
+    <button class="btn" onclick="checkPEPartial('B')">
+      B. Competitive antagonist
+    </button>
+
+    <p id="pePartialAnswer"></p>
+
+    <br>
+
     <button class="btn primary" onclick="openPharmModule1Menu()">
       Back to Module 1
     </button>
@@ -2259,10 +2732,46 @@ function checkPharmPEAnswer(answer){
 
   if(answer === 'B'){
     result.innerHTML =
-      '<strong>Correct ✓</strong> Efficacy refers to the maximum effect a drug can produce.';
+      '<strong>Correct ✓</strong> Efficacy describes the maximum effect a drug can produce.';
   } else {
     result.innerHTML =
-      '<strong>Not quite.</strong> Potency refers to the dose required for an effect; efficacy refers to the maximum effect.';
+      '<strong>Not quite.</strong> Potency refers to the amount needed for an effect. Efficacy refers to maximum effect.';
+  }
+}
+
+function checkPEPotency(answer){
+  const result = document.getElementById('pePotencyAnswer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Producing the same response at a lower dose indicates greater potency.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Greater potency does not automatically mean greater efficacy.';
+  }
+}
+
+function checkPECompetitive(answer){
+  const result = document.getElementById('peCompetitiveAnswer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Competitive antagonism generally shifts the agonist dose-response curve to the right while Emax can remain achievable.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Competitive antagonism does not necessarily eliminate the maximum response.';
+  }
+}
+
+function checkPEPartial(answer){
+  const result = document.getElementById('pePartialAnswer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> A partial agonist activates the receptor but produces a lower maximum response than a full agonist.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> A competitive antagonist blocks agonist activity rather than producing a partial receptor response.';
   }
 }
 
