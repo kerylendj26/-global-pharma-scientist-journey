@@ -1124,7 +1124,20 @@ function startLesson(topic){
 function startPharmacologyLesson(lessonNumber){
   const title = document.getElementById('lessonTitle');
   const text = document.getElementById('lessonText');
+if(lessonNumber === 2){
+  startPharmacologyLesson2();
+  return;
+}
 
+if(lessonNumber === 3){
+  startPharmacologyLesson3();
+  return;
+}
+
+if(lessonNumber === 4){
+  startPharmacologyLesson4();
+  return;
+}
   if(lessonNumber === 1){
     title.textContent = 'Lesson 1 — Pharmacodynamics';
 
@@ -1199,7 +1212,221 @@ function checkPharmAnswer(answer){
       '<strong>Not quite.</strong> An antagonist binds without activating the receptor and blocks agonist activity.';
   }
 }
+function openPharmModule1Menu(){
+  const title = document.getElementById('lessonTitle');
+  const text = document.getElementById('lessonText');
 
+  title.textContent = 'Module 1 — Foundations of Pharmacology';
+
+  text.innerHTML = `
+    <h3>Module 1 Lessons</h3>
+
+    <p><strong>Lesson 1:</strong> Pharmacodynamics</p>
+    <button class="btn primary" onclick="startPharmacologyLesson(1)">
+      Open Lesson 1
+    </button>
+
+    <p><strong>Lesson 2:</strong> Pharmacokinetics</p>
+    <button class="btn primary" onclick="startPharmacologyLesson(2)">
+      Open Lesson 2
+    </button>
+
+    <p><strong>Lesson 3:</strong> Receptors, potency and efficacy</p>
+    <button class="btn primary" onclick="startPharmacologyLesson(3)">
+      Open Lesson 3
+    </button>
+
+    <p><strong>Lesson 4:</strong> Therapeutic index and drug safety</p>
+    <button class="btn primary" onclick="startPharmacologyLesson(4)">
+      Open Lesson 4
+    </button>
+  `;
+}
+
+function startPharmacologyLesson2(){
+  const title = document.getElementById('lessonTitle');
+  const text = document.getElementById('lessonText');
+
+  title.textContent = 'Lesson 2 — Pharmacokinetics';
+
+  text.innerHTML = `
+    <h3>What does the body do to a drug?</h3>
+
+    <p>
+      <strong>Pharmacokinetics</strong> describes how the body
+      absorbs, distributes, metabolizes and eliminates a drug.
+    </p>
+
+    <h3>ADME</h3>
+
+    <p><strong>Absorption:</strong> movement of a drug into the bloodstream.</p>
+
+    <p><strong>Distribution:</strong> movement of drug from blood into tissues.</p>
+
+    <p><strong>Metabolism:</strong> chemical modification of drugs, commonly in the liver.</p>
+
+    <p><strong>Excretion:</strong> removal of drug or metabolites, commonly through the kidneys.</p>
+
+    <p><strong>Core pathway:</strong></p>
+
+    <p>
+      Administration → Absorption → Distribution →
+      Metabolism → Excretion
+    </p>
+
+    <hr>
+
+    <h3>Quick Check</h3>
+
+    <p>
+      Which organ is a major site of drug metabolism?
+    </p>
+
+    <button class="btn" onclick="checkPharmPKAnswer('A')">
+      A. Liver
+    </button>
+
+    <button class="btn" onclick="checkPharmPKAnswer('B')">
+      B. Skin
+    </button>
+
+    <p id="pharmPKAnswer"></p>
+
+    <button class="btn primary" onclick="openPharmModule1Menu()">
+      Back to Module 1
+    </button>
+  `;
+}
+
+function checkPharmPKAnswer(answer){
+  const result = document.getElementById('pharmPKAnswer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> The liver is a major site of drug metabolism.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> The liver is the major organ involved in metabolism of many drugs.';
+  }
+}
+
+function startPharmacologyLesson3(){
+  const title = document.getElementById('lessonTitle');
+  const text = document.getElementById('lessonText');
+
+  title.textContent = 'Lesson 3 — Receptors, Potency and Efficacy';
+
+  text.innerHTML = `
+    <h3>Potency and efficacy</h3>
+
+    <p>
+      <strong>Potency</strong> describes how much drug is needed
+      to produce a given effect.
+    </p>
+
+    <p>
+      <strong>Efficacy</strong> describes the maximum effect
+      a drug can produce.
+    </p>
+
+    <p>
+      A more potent drug can produce the same effect at a lower dose,
+      but greater potency does not automatically mean greater efficacy.
+    </p>
+
+    <hr>
+
+    <h3>Quick Check</h3>
+
+    <p>
+      Which term describes the maximum effect a drug can produce?
+    </p>
+
+    <button class="btn" onclick="checkPharmPEAnswer('A')">
+      A. Potency
+    </button>
+
+    <button class="btn" onclick="checkPharmPEAnswer('B')">
+      B. Efficacy
+    </button>
+
+    <p id="pharmPEAnswer"></p>
+
+    <button class="btn primary" onclick="openPharmModule1Menu()">
+      Back to Module 1
+    </button>
+  `;
+}
+
+function checkPharmPEAnswer(answer){
+  const result = document.getElementById('pharmPEAnswer');
+
+  if(answer === 'B'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Efficacy refers to the maximum effect a drug can produce.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Potency refers to the dose required for an effect; efficacy refers to the maximum effect.';
+  }
+}
+
+function startPharmacologyLesson4(){
+  const title = document.getElementById('lessonTitle');
+  const text = document.getElementById('lessonText');
+
+  title.textContent = 'Lesson 4 — Therapeutic Index and Safety';
+
+  text.innerHTML = `
+    <h3>Therapeutic index</h3>
+
+    <p>
+      The <strong>therapeutic index</strong> compares doses that
+      produce therapeutic effects with doses that produce toxicity.
+    </p>
+
+    <p>
+      Drugs with a <strong>narrow therapeutic index</strong>
+      require closer monitoring because small dose changes may
+      significantly increase toxicity risk.
+    </p>
+
+    <p><strong>Examples:</strong> warfarin, digoxin and lithium.</p>
+
+    <hr>
+
+    <h3>Quick Check</h3>
+
+    <p>
+      Which situation generally requires closer drug monitoring?
+    </p>
+
+    <button class="btn" onclick="checkPharmTIAnswer('A')">
+      A. Narrow therapeutic index
+    </button>
+
+    <button class="btn" onclick="checkPharmTIAnswer('B')">
+      B. Wide therapeutic index
+    </button>
+
+    <p id="pharmTIAnswer"></p>
+
+    <button class="btn primary" onclick="openPharmModule1Menu()">
+      Back to Module 1
+    </button>
+  `;
+}
+
+function checkPharmTIAnswer(answer){
+  const result = document.getElementById('pharmTIAnswer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Narrow therapeutic index drugs generally require closer monitoring.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Narrow therapeutic index drugs have less separation between effective and toxic doses.';
+  }
+}
 document.getElementById('referralButton').addEventListener('click',()=>{
 
   const code=
