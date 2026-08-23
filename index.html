@@ -10522,6 +10522,1847 @@ function checkCardioARR10(answer){
       '<strong>Not quite.</strong> Class IA agents generally prolong rather than shorten ventricular repolarization.';
   }
 }
+  /* =========================================================
+   MODULE 3 — ANTICOAGULANTS & ANTIPLATELETS
+   LESSON 1 — HEMOSTASIS AND THE COAGULATION CASCADE
+   ========================================================= */
+
+function startAnticoagLesson1(){
+
+  const title = document.getElementById('lessonTitle');
+  const text = document.getElementById('lessonText');
+
+  title.textContent =
+    'Lesson 1 — Hemostasis and the Coagulation Cascade';
+
+  text.innerHTML = `
+
+  <h2>Lesson 1 — Hemostasis and the Coagulation Cascade</h2>
+
+  <h3>Learning objectives</h3>
+
+  <p>By the end of this lesson, you should be able to:</p>
+
+  <ul>
+    <li>Define hemostasis and explain why clot formation must be tightly regulated.</li>
+    <li>Differentiate primary hemostasis from secondary hemostasis.</li>
+    <li>Explain platelet adhesion, activation and aggregation.</li>
+    <li>Describe the roles of von Willebrand factor, glycoprotein Ib and glycoprotein IIb/IIIa.</li>
+    <li>Identify the intrinsic, extrinsic and common coagulation pathways.</li>
+    <li>Explain the central roles of factors Xa and IIa.</li>
+    <li>Connect thrombin formation to fibrin production and clot stabilization.</li>
+    <li>Explain the role of vitamin K in coagulation-factor synthesis.</li>
+    <li>Differentiate PT, INR, aPTT and platelet testing conceptually.</li>
+    <li>Identify major physiologic anticoagulant systems.</li>
+    <li>Explain fibrinolysis and the conversion of plasminogen to plasmin.</li>
+    <li>Apply coagulation physiology to anticoagulant pharmacology.</li>
+  </ul>
+
+  <hr>
+
+  <h3>1. What is hemostasis?</h3>
+
+  <p>
+    <strong>Hemostasis</strong> is the physiologic process that limits blood loss
+    after vascular injury while maintaining blood flow in intact vessels.
+  </p>
+
+  <div class="callout">
+    <strong>THE HEMOSTASIS BALANCE</strong><br><br>
+
+    Too little clotting<br>
+    ↓<br>
+    <strong>Bleeding</strong><br><br>
+
+    Appropriate clotting<br>
+    ↓<br>
+    <strong>Hemostasis</strong><br><br>
+
+    Excessive clotting<br>
+    ↓<br>
+    <strong>Thrombosis</strong>
+  </div>
+
+  <p>
+    The body therefore requires both procoagulant and anticoagulant mechanisms.
+  </p>
+
+  <hr>
+
+  <h3>2. The three major stages of hemostasis</h3>
+
+  <div class="callout">
+    <strong>HEMOSTASIS MASTER MAP</strong><br><br>
+
+    Vascular injury<br>
+    ↓<br>
+    <strong>1. Vascular response</strong><br>
+    vasoconstriction<br>
+    ↓<br>
+
+    <strong>2. Primary hemostasis</strong><br>
+    platelet plug formation<br>
+    ↓<br>
+
+    <strong>3. Secondary hemostasis</strong><br>
+    coagulation cascade<br>
+    ↓<br>
+
+    fibrin formation<br>
+    ↓<br>
+
+    <strong>Stable clot</strong>
+  </div>
+
+  <hr>
+
+  <h3>3. Vascular injury</h3>
+
+  <p>
+    An intact endothelium normally resists thrombosis.
+    Damage exposes subendothelial structures and activates coagulation.
+  </p>
+
+  <div class="callout">
+    Endothelial injury<br>
+    ↓<br>
+    Exposure of collagen and tissue factor<br>
+    ↓<br>
+    Platelet activation + coagulation activation<br>
+    ↓<br>
+    <strong>Hemostatic response begins</strong>
+  </div>
+
+  <hr>
+
+  <h3>4. Primary hemostasis</h3>
+
+  <p>
+    Primary hemostasis is dominated by platelet activity.
+  </p>
+
+  <div class="callout">
+    <strong>PRIMARY HEMOSTASIS</strong><br><br>
+
+    Platelet adhesion<br>
+    ↓<br>
+    Platelet activation<br>
+    ↓<br>
+    Platelet aggregation<br>
+    ↓<br>
+    <strong>Temporary platelet plug</strong>
+  </div>
+
+  <hr>
+
+  <h3>5. Platelet adhesion</h3>
+
+  <p>
+    Vascular injury exposes subendothelial collagen.
+    Von Willebrand factor helps platelets attach to the injured surface.
+  </p>
+
+  <div class="callout">
+    Exposed collagen<br>
+    ↓<br>
+    von Willebrand factor binds collagen<br>
+    ↓<br>
+    platelet glycoprotein Ib binds von Willebrand factor<br>
+    ↓<br>
+    <strong>Platelet adhesion</strong>
+  </div>
+
+  <hr>
+
+  <h3>6. Platelet receptor board</h3>
+
+  <table style="width:100%;border-collapse:collapse;">
+
+    <tr>
+      <th style="border:1px solid #ccc;padding:8px;">
+        Structure
+      </th>
+
+      <th style="border:1px solid #ccc;padding:8px;">
+        Main role
+      </th>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">
+        von Willebrand factor
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Bridges exposed vascular collagen to platelets
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">
+        Glycoprotein Ib
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Platelet receptor that binds von Willebrand factor
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">
+        Glycoprotein IIb/IIIa
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Binds fibrinogen and links activated platelets together
+      </td>
+    </tr>
+
+  </table>
+
+  <hr>
+
+  <h3>7. Platelet activation</h3>
+
+  <p>
+    After adhesion, platelets change shape and release mediators that recruit
+    and activate additional platelets.
+  </p>
+
+  <div class="callout">
+    Platelet adhesion<br>
+    ↓<br>
+    Intracellular activation<br>
+    ↓<br>
+    ADP release<br>
+    thromboxane A2 generation<br>
+    calcium signaling<br>
+    ↓<br>
+    recruitment of additional platelets<br>
+    ↓<br>
+    activation of glycoprotein IIb/IIIa
+  </div>
+
+  <hr>
+
+  <h3>8. ADP and the P2Y12 receptor</h3>
+
+  <div class="callout">
+    ADP<br>
+    ↓<br>
+    platelet P2Y12 receptor<br>
+    ↓<br>
+    increased platelet activation<br>
+    ↓<br>
+    glycoprotein IIb/IIIa activation<br>
+    ↓<br>
+    <strong>Platelet aggregation</strong>
+  </div>
+
+  <p>
+    This pathway is the pharmacologic target of antiplatelet agents such as
+    clopidogrel, prasugrel and ticagrelor.
+  </p>
+
+  <hr>
+
+  <h3>9. Thromboxane A2</h3>
+
+  <div class="callout">
+    Arachidonic acid<br>
+    ↓<br>
+    cyclooxygenase-1<br>
+    ↓<br>
+    thromboxane A2<br>
+    ↓<br>
+    platelet activation<br>
+    +<br>
+    vasoconstriction
+  </div>
+
+  <p>
+    Aspirin inhibits platelet cyclooxygenase-1,
+    reducing thromboxane A2 production.
+  </p>
+
+  <hr>
+
+  <h3>10. Platelet aggregation</h3>
+
+  <div class="callout">
+    Activated platelet<br>
+    ↓<br>
+    GP IIb/IIIa receptor activation<br>
+    ↓<br>
+    fibrinogen binds GP IIb/IIIa on adjacent platelets<br>
+    ↓<br>
+    platelet-to-platelet bridging<br>
+    ↓<br>
+    <strong>Platelet aggregation</strong>
+  </div>
+
+  <p>
+    Glycoprotein IIb/IIIa represents a final common pathway of platelet aggregation.
+  </p>
+
+  <hr>
+
+  <h3>11. Primary versus secondary hemostasis</h3>
+
+  <table style="width:100%;border-collapse:collapse;">
+
+    <tr>
+      <th style="border:1px solid #ccc;padding:8px;">
+        Primary hemostasis
+      </th>
+
+      <th style="border:1px solid #ccc;padding:8px;">
+        Secondary hemostasis
+      </th>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">
+        Platelets dominate
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Coagulation proteins dominate
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">
+        Forms platelet plug
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Forms fibrin
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">
+        Aspirin / P2Y12 inhibitors act here
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Warfarin / heparins / direct oral anticoagulants act here
+      </td>
+    </tr>
+
+  </table>
+
+  <hr>
+
+  <h3>12. Secondary hemostasis</h3>
+
+  <p>
+    Secondary hemostasis strengthens the platelet plug with fibrin.
+  </p>
+
+  <div class="callout">
+    Coagulation-factor activation<br>
+    ↓<br>
+    Factor Xa formation<br>
+    ↓<br>
+    Thrombin generation<br>
+    ↓<br>
+    Fibrinogen → fibrin<br>
+    ↓<br>
+    <strong>Stable fibrin clot</strong>
+  </div>
+
+  <hr>
+
+  <h3>13. Coagulation factors</h3>
+
+  <p>
+    Most coagulation factors circulate as inactive precursors.
+    Once activated, they participate in sequential enzymatic reactions.
+  </p>
+
+  <div class="callout">
+    Inactive factor<br>
+    ↓ activation<br>
+    Active factor<br>
+    ↓<br>
+    activates next factor<br>
+    ↓<br>
+    signal amplification<br>
+    ↓<br>
+    <strong>Large thrombin burst</strong>
+  </div>
+
+  <hr>
+
+  <h3>14. Coagulation cascade overview</h3>
+
+  <div class="callout">
+    <strong>CLASSIC COAGULATION CASCADE</strong><br><br>
+
+    INTRINSIC PATHWAY<br>
+    XII → XI → IX + VIII<br>
+    ↓<br>
+    X<br><br>
+
+    EXTRINSIC PATHWAY<br>
+    Tissue Factor + VII<br>
+    ↓<br>
+    X<br><br>
+
+    COMMON PATHWAY<br>
+    X → Xa<br>
+    ↓<br>
+    II → IIa<br>
+    ↓<br>
+    I → Ia<br>
+    ↓<br>
+    <strong>FIBRIN CLOT</strong>
+  </div>
+
+  <hr>
+
+  <h3>15. Extrinsic pathway</h3>
+
+  <p>
+    Tissue factor becomes exposed after vascular injury and interacts
+    with factor VII.
+  </p>
+
+  <div class="callout">
+    Vascular injury<br>
+    ↓<br>
+    Tissue Factor<br>
+    +<br>
+    Factor VII → VIIa<br>
+    ↓<br>
+    Factor X → Xa<br>
+    ↓<br>
+    <strong>Common pathway</strong>
+  </div>
+
+  <hr>
+
+  <h3>16. Intrinsic pathway</h3>
+
+  <div class="callout">
+    Factor XII<br>
+    ↓<br>
+    XI<br>
+    ↓<br>
+    IX<br>
+    +<br>
+    VIIIa<br>
+    ↓<br>
+    X → Xa
+  </div>
+
+  <p>
+    The intrinsic and extrinsic pathway model remains extremely useful for
+    understanding laboratory testing and pharmacology.
+  </p>
+
+  <hr>
+
+  <h3>17. The common pathway</h3>
+
+  <div class="callout">
+    <strong>COMMON PATHWAY MASTER MAP</strong><br><br>
+
+    Factor X<br>
+    ↓ activation<br>
+    <strong>Factor Xa</strong><br>
+    ↓<br>
+    Prothrombin — Factor II<br>
+    ↓<br>
+    <strong>Thrombin — Factor IIa</strong><br>
+    ↓<br>
+    Fibrinogen — Factor I<br>
+    ↓<br>
+    <strong>Fibrin</strong>
+  </div>
+
+  <hr>
+
+  <h3>18. Factor Xa</h3>
+
+  <p>
+    Factor Xa occupies a crucial position because both major initiation pathways
+    converge on factor X activation.
+  </p>
+
+  <div class="callout">
+    Intrinsic pathway<br>
+    ↘<br>
+    <strong>FACTOR Xa</strong><br>
+    ↗<br>
+    Extrinsic pathway<br><br>
+
+    Factor Xa<br>
+    ↓<br>
+    converts prothrombin to thrombin
+  </div>
+
+  <p>
+    This makes factor Xa an important pharmacologic target.
+  </p>
+
+  <hr>
+
+  <h3>19. Direct factor Xa inhibitors</h3>
+
+  <div class="callout">
+    <strong>FACTOR Xa INHIBITORS</strong><br><br>
+
+    Apixaban — Eliquis<br>
+    Rivaroxaban — Xarelto<br>
+    Edoxaban — Savaysa
+  </div>
+
+  <div class="callout">
+    Factor Xa inhibition<br>
+    ↓<br>
+    thrombin generation<br>
+    ↓<br>
+    fibrin formation<br>
+    ↓<br>
+    <strong>Reduced clot formation</strong>
+  </div>
+
+  <hr>
+
+  <h3>20. Prothrombin and thrombin</h3>
+
+  <p>
+    Factor II is called <strong>prothrombin</strong>.
+    Activated factor II is <strong>factor IIa, or thrombin</strong>.
+  </p>
+
+  <div class="callout">
+    Factor II<br>
+    = prothrombin<br><br>
+
+    Factor IIa<br>
+    = thrombin
+  </div>
+
+  <hr>
+
+  <h3>21. Thrombin is a central amplifier</h3>
+
+  <p>
+    Thrombin does much more than simply generate fibrin.
+  </p>
+
+  <div class="callout">
+    <strong>THROMBIN ACTION BOARD</strong><br><br>
+
+    Fibrinogen → fibrin<br><br>
+
+    Activates factor XIII<br>
+    → fibrin cross-linking<br><br>
+
+    Activates platelets<br><br>
+
+    Amplifies factors V, VIII and XI<br><br>
+
+    ↓<br>
+    <strong>Powerful clot amplification</strong>
+  </div>
+
+  <hr>
+
+  <h3>22. Direct thrombin inhibition</h3>
+
+  <div class="callout">
+    <strong>DABIGATRAN — PRADAXA</strong><br><br>
+
+    Directly inhibits thrombin<br>
+    ↓<br>
+    reduced fibrinogen → fibrin conversion<br>
+    ↓<br>
+    <strong>Reduced clot formation</strong>
+  </div>
+
+  <hr>
+
+  <h3>23. Fibrinogen and fibrin</h3>
+
+  <div class="callout">
+    Fibrinogen<br>
+    soluble plasma protein<br>
+    ↓ thrombin<br>
+    Fibrin<br>
+    insoluble strands<br>
+    ↓<br>
+    fibrin mesh<br>
+    ↓<br>
+    <strong>Clot stabilization</strong>
+  </div>
+
+  <hr>
+
+  <h3>24. Factor XIII</h3>
+
+  <p>
+    Factor XIII stabilizes fibrin by cross-linking fibrin strands.
+  </p>
+
+  <div class="callout">
+    Fibrin strands<br>
+    ↓ factor XIIIa<br>
+    cross-linked fibrin<br>
+    ↓<br>
+    <strong>More stable clot</strong>
+  </div>
+
+  <hr>
+
+  <h3>25. Vitamin K-dependent factors</h3>
+
+  <div class="callout">
+    <strong>VITAMIN K-DEPENDENT COAGULATION FACTORS</strong><br><br>
+
+    II<br>
+    VII<br>
+    IX<br>
+    X<br><br>
+
+    plus regulatory proteins<br>
+    Protein C<br>
+    Protein S
+  </div>
+
+  <p>
+    A useful memory sequence is:
+  </p>
+
+  <div class="callout">
+    <strong>1972</strong><br><br>
+
+    X<br>
+    IX<br>
+    VII<br>
+    II
+  </div>
+
+  <hr>
+
+  <h3>26. Why vitamin K matters</h3>
+
+  <p>
+    Vitamin K is required for gamma-carboxylation of several coagulation proteins.
+    This modification allows the proteins to bind calcium and phospholipid surfaces
+    effectively during coagulation.
+  </p>
+
+  <div class="callout">
+    Vitamin K<br>
+    ↓<br>
+    gamma-carboxylation<br>
+    ↓<br>
+    functional factors II, VII, IX, X<br>
+    ↓<br>
+    efficient coagulation
+  </div>
+
+  <hr>
+
+  <h3>27. Warfarin target</h3>
+
+  <div class="callout">
+    <strong>WARFARIN — COUMADIN / JANTOVEN</strong><br><br>
+
+    inhibits<br>
+    ↓<br>
+    vitamin K epoxide reductase complex<br>
+    ↓<br>
+    reduced regeneration of active vitamin K<br>
+    ↓<br>
+    reduced synthesis of functional<br>
+    II, VII, IX and X<br>
+    ↓<br>
+    <strong>Anticoagulation</strong>
+  </div>
+
+  <hr>
+
+  <h3>28. Warfarin does not destroy existing factors immediately</h3>
+
+  <p>
+    Warfarin reduces production of newly functional vitamin K-dependent factors.
+    Previously synthesized factors remain active until they are naturally cleared.
+  </p>
+
+  <div class="callout">
+    Warfarin started<br>
+    ↓<br>
+    new functional factors decrease<br>
+    BUT<br>
+    existing factors remain temporarily<br>
+    ↓<br>
+    <strong>Delayed full anticoagulant effect</strong>
+  </div>
+
+  <hr>
+
+  <h3>29. Protein C and Protein S</h3>
+
+  <p>
+    Protein C and Protein S are natural anticoagulant proteins
+    and are also vitamin K dependent.
+  </p>
+
+  <div class="callout">
+    Activated Protein C<br>
+    +<br>
+    Protein S<br>
+    ↓<br>
+    inactivation of factors Va and VIIIa<br>
+    ↓<br>
+    <strong>Reduced coagulation amplification</strong>
+  </div>
+
+  <hr>
+
+  <h3>30. Why warfarin can initially be prothrombotic</h3>
+
+  <p>
+    Protein C has a relatively short half-life.
+    Its activity can decline before some procoagulant factors decline sufficiently.
+  </p>
+
+  <div class="callout">
+    Warfarin initiation<br>
+    ↓<br>
+    Protein C falls quickly<br>
+    ↓<br>
+    transient imbalance toward coagulation<br>
+    ↓<br>
+    <strong>Temporary hypercoagulable state</strong>
+  </div>
+
+  <p>
+    This physiology explains why bridging with a rapidly acting anticoagulant
+    may be required in selected high-risk clinical situations.
+  </p>
+
+  <hr>
+
+  <h3>31. Antithrombin</h3>
+
+  <p>
+    Antithrombin is another major physiologic anticoagulant protein.
+  </p>
+
+  <div class="callout">
+    <strong>ANTITHROMBIN</strong><br><br>
+
+    inhibits primarily<br>
+    thrombin — IIa<br>
+    and<br>
+    factor Xa<br><br>
+
+    also affects other activated coagulation factors
+  </div>
+
+  <hr>
+
+  <h3>32. Heparin mechanism preview</h3>
+
+  <div class="callout">
+    Unfractionated heparin<br>
+    ↓<br>
+    binds antithrombin<br>
+    ↓<br>
+    greatly accelerates antithrombin activity<br>
+    ↓<br>
+    inhibition of factor IIa<br>
+    +<br>
+    factor Xa<br>
+    ↓<br>
+    <strong>Rapid anticoagulation</strong>
+  </div>
+
+  <hr>
+
+  <h3>33. Low-molecular-weight heparin preview</h3>
+
+  <div class="callout">
+    Enoxaparin — Lovenox<br>
+    ↓<br>
+    potentiates antithrombin<br>
+    ↓<br>
+    preferential inhibition of factor Xa<br>
+    relative to IIa
+  </div>
+
+  <hr>
+
+  <h3>34. Laboratory testing overview</h3>
+
+  <table style="width:100%;border-collapse:collapse;">
+
+    <tr>
+      <th style="border:1px solid #ccc;padding:8px;">
+        Test
+      </th>
+
+      <th style="border:1px solid #ccc;padding:8px;">
+        Major pathway relationship
+      </th>
+
+      <th style="border:1px solid #ccc;padding:8px;">
+        Common drug association
+      </th>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">
+        PT
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Extrinsic + common
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Warfarin
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">
+        INR
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Standardized PT
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Warfarin
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">
+        aPTT
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Intrinsic + common
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Unfractionated heparin
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">
+        Platelet count
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Platelet quantity
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Important in thrombocytopenia / HIT assessment
+      </td>
+    </tr>
+
+  </table>
+
+  <hr>
+
+  <h3>35. PT — Prothrombin Time</h3>
+
+  <p>
+    Prothrombin Time is abbreviated <strong>PT</strong>.
+  </p>
+
+  <div class="callout">
+    <strong>PT</strong><br><br>
+
+    Extrinsic pathway<br>
+    +<br>
+    Common pathway<br><br>
+
+    particularly sensitive to factor VII changes
+  </div>
+
+  <hr>
+
+  <h3>36. INR — International Normalized Ratio</h3>
+
+  <p>
+    The International Normalized Ratio standardizes PT results between laboratories.
+  </p>
+
+  <div class="callout">
+    PT<br>
+    ↓ standardized<br>
+    <strong>INR</strong><br>
+    ↓<br>
+    primary routine laboratory measure for monitoring warfarin
+  </div>
+
+  <hr>
+
+  <h3>37. aPTT</h3>
+
+  <p>
+    Activated Partial Thromboplastin Time is abbreviated <strong>aPTT</strong>.
+  </p>
+
+  <div class="callout">
+    <strong>aPTT</strong><br><br>
+
+    Intrinsic pathway<br>
+    +<br>
+    Common pathway<br><br>
+
+    commonly associated with monitoring<br>
+    <strong>unfractionated heparin</strong>
+  </div>
+
+  <hr>
+
+  <h3>38. Laboratory memory board</h3>
+
+  <div class="callout">
+    <strong>WARFARIN</strong><br>
+    → PT / INR<br><br>
+
+    <strong>UNFRACTIONATED HEPARIN</strong><br>
+    → aPTT or anti-Xa according to institutional protocol<br><br>
+
+    <strong>PLATELETS</strong><br>
+    → platelet count
+  </div>
+
+  <hr>
+
+  <h3>39. Direct oral anticoagulants and routine INR</h3>
+
+  <p>
+    Direct oral anticoagulants do not generally require routine INR-guided dose adjustment
+    like warfarin.
+  </p>
+
+  <div class="callout">
+    Apixaban / rivaroxaban / dabigatran<br>
+    ↓<br>
+    predictable pharmacokinetics in appropriate patients<br>
+    ↓<br>
+    <strong>No routine INR titration</strong>
+  </div>
+
+  <p>
+    Renal function, hepatic function, dosing criteria,
+    drug interactions and adherence remain very important.
+  </p>
+
+  <hr>
+
+  <h3>40. Fibrinolysis</h3>
+
+  <p>
+    Once a clot has served its purpose, the body must eventually remove it.
+    This process is called fibrinolysis.
+  </p>
+
+  <div class="callout">
+    <strong>FIBRINOLYSIS MAP</strong><br><br>
+
+    Plasminogen<br>
+    ↓ activation<br>
+    Plasmin<br>
+    ↓<br>
+    fibrin degradation<br>
+    ↓<br>
+    <strong>Clot breakdown</strong>
+  </div>
+
+  <hr>
+
+  <h3>41. Tissue plasminogen activator</h3>
+
+  <div class="callout">
+    Tissue plasminogen activator<br>
+    ↓<br>
+    plasminogen → plasmin<br>
+    ↓<br>
+    fibrin degradation
+  </div>
+
+  <p>
+    Pharmacologic thrombolytic agents exploit this pathway.
+  </p>
+
+  <hr>
+
+  <h3>42. Thrombolytic drug preview</h3>
+
+  <div class="callout">
+    <strong>ALTEPLASE — ACTIVASE</strong><br>
+    <strong>TENECTEPLASE — TNKASE</strong><br><br>
+
+    increase plasmin generation<br>
+    ↓<br>
+    fibrin degradation<br>
+    ↓<br>
+    <strong>Clot dissolution</strong>
+  </div>
+
+  <p>
+    Because they actively promote clot breakdown,
+    serious bleeding is a major risk.
+  </p>
+
+  <hr>
+
+  <h3>43. Anticoagulants versus antiplatelets versus thrombolytics</h3>
+
+  <table style="width:100%;border-collapse:collapse;">
+
+    <tr>
+      <th style="border:1px solid #ccc;padding:8px;">
+        Drug group
+      </th>
+
+      <th style="border:1px solid #ccc;padding:8px;">
+        Main target
+      </th>
+
+      <th style="border:1px solid #ccc;padding:8px;">
+        Main action
+      </th>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">
+        Antiplatelets
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Platelet activation / aggregation
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Reduce platelet plug formation
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">
+        Anticoagulants
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Coagulation cascade
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Reduce fibrin generation
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">
+        Thrombolytics
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Fibrin clot
+      </td>
+
+      <td style="border:1px solid #ccc;padding:8px;">
+        Promote clot breakdown
+      </td>
+    </tr>
+
+  </table>
+
+  <hr>
+
+  <h3>44. Arterial versus venous thrombosis concept</h3>
+
+  <div class="callout">
+    <strong>ARTERIAL THROMBI</strong><br><br>
+
+    High-shear environment<br>
+    Platelet-rich clot formation is particularly important<br><br>
+
+    → antiplatelet therapy often central
+  </div>
+
+  <br>
+
+  <div class="callout">
+    <strong>VENOUS THROMBI</strong><br><br>
+
+    Stasis and coagulation-factor activation are especially important<br>
+    fibrin-rich thrombi<br><br>
+
+    → anticoagulant therapy often central
+  </div>
+
+  <p>
+    This distinction is simplified but extremely useful pharmacologically.
+  </p>
+
+  <hr>
+
+  <h3>45. Virchow's triad</h3>
+
+  <p>
+    Venous thrombosis is classically associated with three major mechanisms.
+  </p>
+
+  <div class="callout">
+    <strong>VIRCHOW'S TRIAD</strong><br><br>
+
+    1. Venous stasis<br><br>
+
+    2. Endothelial injury<br><br>
+
+    3. Hypercoagulability
+  </div>
+
+  <hr>
+
+  <h3>46. Examples of venous stasis</h3>
+
+  <div class="callout">
+    Immobility<br>
+    Long hospitalization<br>
+    Major surgery<br>
+    Paralysis<br>
+    Long-distance travel in susceptible patients<br>
+    Heart failure
+  </div>
+
+  <hr>
+
+  <h3>47. Hypercoagulability</h3>
+
+  <p>
+    Hypercoagulability may be inherited or acquired.
+  </p>
+
+  <div class="callout">
+    <strong>EXAMPLES</strong><br><br>
+
+    Cancer<br>
+    Pregnancy / postpartum state<br>
+    Estrogen exposure<br>
+    Certain inherited thrombophilias<br>
+    Major inflammatory states
+  </div>
+
+  <hr>
+
+  <h3>48. The central pharmacology map</h3>
+
+  <div class="callout">
+    <strong>WHERE THE DRUGS ACT</strong><br><br>
+
+    ASPIRIN<br>
+    ↓ cyclooxygenase-1<br>
+    ↓ thromboxane A2<br>
+    ↓ platelet activation<br><br>
+
+    CLOPIDOGREL / PRASUGREL / TICAGRELOR<br>
+    ↓ P2Y12 signaling<br>
+    ↓ platelet activation<br><br>
+
+    GP IIb/IIIa INHIBITORS<br>
+    ↓ fibrinogen bridging<br>
+    ↓ platelet aggregation<br><br>
+
+    HEPARIN<br>
+    ↑ antithrombin<br>
+    ↓ Xa + IIa<br><br>
+
+    APIXABAN / RIVAROXABAN / EDOXABAN<br>
+    ↓ Xa<br><br>
+
+    DABIGATRAN<br>
+    ↓ IIa<br><br>
+
+    WARFARIN<br>
+    ↓ vitamin K recycling<br>
+    ↓ II, VII, IX, X<br><br>
+
+    THROMBOLYTICS<br>
+    ↑ plasmin<br>
+    ↓ fibrin clot
+  </div>
+
+  <hr>
+
+  <h3>49. Bleeding is the shared major toxicity</h3>
+
+  <div class="callout">
+    Platelet inhibition<br>
+    OR<br>
+    coagulation inhibition<br>
+    OR<br>
+    fibrinolysis enhancement<br>
+    ↓<br>
+    impaired hemostasis<br>
+    ↓<br>
+    <strong>BLEEDING</strong>
+  </div>
+
+  <p>
+    The location and severity of bleeding determine clinical urgency.
+  </p>
+
+  <hr>
+
+  <h3>50. Clinical bleeding warning signs</h3>
+
+  <div class="callout">
+    Unexplained bruising<br>
+    Persistent nose bleeding<br>
+    Hematuria<br>
+    Gastrointestinal bleeding<br>
+    Black stools<br>
+    Hematemesis<br>
+    Heavy menstrual bleeding<br>
+    Sudden severe headache<br>
+    Neurologic deficits<br>
+    Unexplained hypotension or hemoglobin decline
+  </div>
+
+  <hr>
+
+  <h3>51. Clotting versus bleeding reasoning board</h3>
+
+  <div class="callout">
+    <strong>ASK THREE QUESTIONS</strong><br><br>
+
+    1. Is the problem platelet formation?<br><br>
+
+    2. Is the problem fibrin/coagulation?<br><br>
+
+    3. Is the problem excessive clot breakdown?<br><br>
+
+    Then identify the drug target.
+  </div>
+
+  <hr>
+
+  <h3>52. Master factor board</h3>
+
+  <div class="callout">
+    <strong>REMEMBER THESE FIRST</strong><br><br>
+
+    Factor I = fibrinogen<br><br>
+
+    Factor II = prothrombin<br><br>
+
+    Factor IIa = thrombin<br><br>
+
+    Factor VII = extrinsic pathway<br><br>
+
+    Factor VIII = intrinsic pathway cofactor<br><br>
+
+    Factor IX = intrinsic pathway<br><br>
+
+    Factor X → Xa = gateway to common pathway<br><br>
+
+    Factor XIII = fibrin cross-linking
+  </div>
+
+  <hr>
+
+  <h3>53. High-yield medication target board</h3>
+
+  <div class="callout">
+    <strong>Xa</strong><br>
+    apixaban<br>
+    rivaroxaban<br>
+    edoxaban<br><br>
+
+    <strong>IIa</strong><br>
+    dabigatran<br><br>
+
+    <strong>IIa + Xa through antithrombin</strong><br>
+    unfractionated heparin<br><br>
+
+    <strong>Vitamin K</strong><br>
+    warfarin<br><br>
+
+    <strong>COX-1 / thromboxane</strong><br>
+    aspirin<br><br>
+
+    <strong>P2Y12</strong><br>
+    clopidogrel<br>
+    prasugrel<br>
+    ticagrelor
+  </div>
+
+  <hr>
+
+  <h3>54. Laboratory master board</h3>
+
+  <div class="callout">
+    <strong>PT / INR</strong><br>
+    think WARFARIN<br><br>
+
+    <strong>aPTT</strong><br>
+    think UNFRACTIONATED HEPARIN<br><br>
+
+    <strong>PLATELET COUNT</strong><br>
+    think platelet quantity / HIT surveillance<br><br>
+
+    <strong>RENAL FUNCTION</strong><br>
+    crucial for several anticoagulants
+  </div>
+
+  <hr>
+
+  <h3>55. Clinical case — warfarin</h3>
+
+  <p>
+    A patient receiving warfarin has a markedly elevated INR
+    and develops gastrointestinal bleeding.
+  </p>
+
+  <div class="callout">
+    Excessive vitamin K pathway inhibition<br>
+    ↓<br>
+    reduced functional II, VII, IX and X<br>
+    ↓<br>
+    excessive anticoagulation<br>
+    ↓<br>
+    <strong>Bleeding</strong>
+  </div>
+
+  <hr>
+
+  <h3>56. Clinical case — apixaban</h3>
+
+  <p>
+    A patient receives apixaban for prevention of thromboembolism.
+    Which step of coagulation is directly inhibited?
+  </p>
+
+  <div class="callout">
+    Apixaban<br>
+    ↓<br>
+    <strong>Factor Xa</strong><br>
+    ↓<br>
+    thrombin generation<br>
+    ↓<br>
+    fibrin formation
+  </div>
+
+  <hr>
+
+  <h3>57. Clinical case — dabigatran</h3>
+
+  <div class="callout">
+    Dabigatran<br>
+    ↓<br>
+    <strong>Direct thrombin inhibition</strong><br>
+    ↓<br>
+    fibrinogen cannot be converted as effectively to fibrin<br>
+    ↓<br>
+    anticoagulation
+  </div>
+
+  <hr>
+
+  <h3>58. Clinical case — aspirin</h3>
+
+  <div class="callout">
+    Aspirin<br>
+    ↓<br>
+    irreversible platelet COX-1 inhibition<br>
+    ↓<br>
+    thromboxane A2<br>
+    ↓<br>
+    platelet activation<br>
+    ↓<br>
+    <strong>Reduced platelet aggregation</strong>
+  </div>
+
+  <hr>
+
+  <h3>59. Clinical case — clopidogrel</h3>
+
+  <div class="callout">
+    Clopidogrel<br>
+    ↓<br>
+    P2Y12 receptor inhibition<br>
+    ↓<br>
+    ADP-mediated platelet activation<br>
+    ↓<br>
+    GP IIb/IIIa activation<br>
+    ↓<br>
+    <strong>Reduced platelet aggregation</strong>
+  </div>
+
+  <hr>
+
+  <h3>60. Final master pathway</h3>
+
+  <div class="callout">
+    <strong>INJURY → PLATELET → FIBRIN → STABLE CLOT</strong><br><br>
+
+    Vessel injury<br>
+    ↓<br>
+    vWF + GP Ib<br>
+    ↓<br>
+    platelet adhesion<br>
+    ↓<br>
+    ADP + thromboxane A2<br>
+    ↓<br>
+    platelet activation<br>
+    ↓<br>
+    GP IIb/IIIa + fibrinogen<br>
+    ↓<br>
+    platelet aggregation<br>
+    ↓<br>
+    Xa<br>
+    ↓<br>
+    II → IIa<br>
+    ↓<br>
+    fibrinogen → fibrin<br>
+    ↓<br>
+    XIIIa cross-linking<br>
+    ↓<br>
+    <strong>STABLE CLOT</strong>
+  </div>
+
+  <hr>
+
+  <h3>Knowledge Check 1</h3>
+
+  <p>
+    Which structure primarily allows platelets to adhere
+    to von Willebrand factor?
+  </p>
+
+  <button class="btn" onclick="checkAnticoag1('A')">
+    A. Glycoprotein Ib
+  </button>
+
+  <button class="btn" onclick="checkAnticoag1('B')">
+    B. Factor Xa
+  </button>
+
+  <p id="anticoag1Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 2</h3>
+
+  <p>
+    Which platelet receptor binds fibrinogen and promotes
+    platelet-to-platelet aggregation?
+  </p>
+
+  <button class="btn" onclick="checkAnticoag2('A')">
+    A. Glycoprotein IIb/IIIa
+  </button>
+
+  <button class="btn" onclick="checkAnticoag2('B')">
+    B. AT1 receptor
+  </button>
+
+  <p id="anticoag2Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 3</h3>
+
+  <p>
+    Which activated coagulation factor converts prothrombin
+    toward thrombin generation?
+  </p>
+
+  <button class="btn" onclick="checkAnticoag3('A')">
+    A. Factor Xa
+  </button>
+
+  <button class="btn" onclick="checkAnticoag3('B')">
+    B. Factor XIII only
+  </button>
+
+  <p id="anticoag3Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 4</h3>
+
+  <p>
+    What is factor IIa?
+  </p>
+
+  <button class="btn" onclick="checkAnticoag4('A')">
+    A. Thrombin
+  </button>
+
+  <button class="btn" onclick="checkAnticoag4('B')">
+    B. Fibrinogen
+  </button>
+
+  <p id="anticoag4Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 5</h3>
+
+  <p>
+    Which factors are classically vitamin K dependent?
+  </p>
+
+  <button class="btn" onclick="checkAnticoag5('A')">
+    A. II, VII, IX and X
+  </button>
+
+  <button class="btn" onclick="checkAnticoag5('B')">
+    B. I, V, VIII and XIII
+  </button>
+
+  <p id="anticoag5Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 6</h3>
+
+  <p>
+    Which laboratory test is routinely used to monitor warfarin?
+  </p>
+
+  <button class="btn" onclick="checkAnticoag6('A')">
+    A. INR
+  </button>
+
+  <button class="btn" onclick="checkAnticoag6('B')">
+    B. Serum amylase
+  </button>
+
+  <p id="anticoag6Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 7</h3>
+
+  <p>
+    Which laboratory test is classically associated with
+    unfractionated heparin monitoring?
+  </p>
+
+  <button class="btn" onclick="checkAnticoag7('A')">
+    A. aPTT
+  </button>
+
+  <button class="btn" onclick="checkAnticoag7('B')">
+    B. INR only
+  </button>
+
+  <p id="anticoag7Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 8</h3>
+
+  <p>
+    Which drug directly inhibits factor Xa?
+  </p>
+
+  <button class="btn" onclick="checkAnticoag8('A')">
+    A. Apixaban
+  </button>
+
+  <button class="btn" onclick="checkAnticoag8('B')">
+    B. Dabigatran
+  </button>
+
+  <p id="anticoag8Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 9</h3>
+
+  <p>
+    Which drug directly inhibits thrombin?
+  </p>
+
+  <button class="btn" onclick="checkAnticoag9('A')">
+    A. Dabigatran
+  </button>
+
+  <button class="btn" onclick="checkAnticoag9('B')">
+    B. Aspirin
+  </button>
+
+  <p id="anticoag9Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 10</h3>
+
+  <p>
+    What converts fibrinogen into fibrin?
+  </p>
+
+  <button class="btn" onclick="checkAnticoag10('A')">
+    A. Thrombin
+  </button>
+
+  <button class="btn" onclick="checkAnticoag10('B')">
+    B. P2Y12
+  </button>
+
+  <p id="anticoag10Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 11</h3>
+
+  <p>
+    Which medication primarily reduces thromboxane A2 production
+    in platelets?
+  </p>
+
+  <button class="btn" onclick="checkAnticoag11('A')">
+    A. Aspirin
+  </button>
+
+  <button class="btn" onclick="checkAnticoag11('B')">
+    B. Warfarin
+  </button>
+
+  <p id="anticoag11Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 12</h3>
+
+  <p>
+    What is the major shared clinical toxicity of anticoagulant
+    and antiplatelet therapy?
+  </p>
+
+  <button class="btn" onclick="checkAnticoag12('A')">
+    A. Bleeding
+  </button>
+
+  <button class="btn" onclick="checkAnticoag12('B')">
+    B. Universal hyperglycemia
+  </button>
+
+  <p id="anticoag12Answer"></p>
+
+  <br>
+
+  <button class="btn primary" onclick="startPharmacologyModule(3)">
+    Back to Module 3
+  </button>
+
+  `;
+
+  const lessonBox = document.getElementById('lessonBox');
+
+  window.scrollTo({
+    top: lessonBox.offsetTop - 170,
+    behavior: 'smooth'
+  });
+}
+
+
+/* =========================================================
+   MODULE 3 LESSON 1 KNOWLEDGE-CHECK FUNCTIONS
+   ========================================================= */
+
+function checkAnticoag1(answer){
+
+  const result =
+    document.getElementById('anticoag1Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Platelet glycoprotein Ib binds von Willebrand factor, allowing platelet adhesion to the injured vessel wall.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Factor Xa belongs to the coagulation cascade. Platelet adhesion to von Willebrand factor depends primarily on glycoprotein Ib.';
+  }
+}
+
+
+function checkAnticoag2(answer){
+
+  const result =
+    document.getElementById('anticoag2Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Activated glycoprotein IIb/IIIa receptors bind fibrinogen, which bridges adjacent platelets together.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> The AT1 receptor belongs to the renin–angiotensin system. Platelet aggregation uses glycoprotein IIb/IIIa.';
+  }
+}
+
+
+function checkAnticoag3(answer){
+
+  const result =
+    document.getElementById('anticoag3Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Factor Xa is the major common-pathway enzyme responsible for converting prothrombin toward thrombin generation.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Factor XIII primarily cross-links fibrin after fibrin has already formed.';
+  }
+}
+
+
+function checkAnticoag4(answer){
+
+  const result =
+    document.getElementById('anticoag4Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Factor II is prothrombin and activated factor IIa is thrombin.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Fibrinogen is factor I. Factor IIa is thrombin.';
+  }
+}
+
+
+function checkAnticoag5(answer){
+
+  const result =
+    document.getElementById('anticoag5Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Factors II, VII, IX and X are the classic vitamin K-dependent procoagulant factors.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> The vitamin K-dependent factors are II, VII, IX and X. Protein C and Protein S are also vitamin K dependent.';
+  }
+}
+
+
+function checkAnticoag6(answer){
+
+  const result =
+    document.getElementById('anticoag6Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Warfarin therapy is routinely monitored using the International Normalized Ratio, or INR.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Serum amylase evaluates pancreatic processes. INR is used for warfarin.';
+  }
+}
+
+
+function checkAnticoag7(answer){
+
+  const result =
+    document.getElementById('anticoag7Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Activated partial thromboplastin time, or aPTT, is classically used to monitor unfractionated heparin, although anti-Xa monitoring may also be used according to clinical protocol.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> INR is primarily associated with warfarin rather than routine unfractionated-heparin monitoring.';
+  }
+}
+
+
+function checkAnticoag8(answer){
+
+  const result =
+    document.getElementById('anticoag8Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Apixaban directly inhibits factor Xa, reducing thrombin generation and fibrin formation.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Dabigatran directly inhibits thrombin, or factor IIa.';
+  }
+}
+
+
+function checkAnticoag9(answer){
+
+  const result =
+    document.getElementById('anticoag9Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Dabigatran is a direct thrombin inhibitor.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Aspirin is an antiplatelet drug that irreversibly inhibits platelet cyclooxygenase-1.';
+  }
+}
+
+
+function checkAnticoag10(answer){
+
+  const result =
+    document.getElementById('anticoag10Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Thrombin cleaves soluble fibrinogen to generate fibrin strands.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> P2Y12 is a platelet ADP receptor. Thrombin converts fibrinogen into fibrin.';
+  }
+}
+
+
+function checkAnticoag11(answer){
+
+  const result =
+    document.getElementById('anticoag11Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Aspirin irreversibly inhibits platelet cyclooxygenase-1, reducing thromboxane A2 production.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Warfarin inhibits vitamin K recycling and affects coagulation factors rather than platelet thromboxane production.';
+  }
+}
+
+
+function checkAnticoag12(answer){
+
+  const result =
+    document.getElementById('anticoag12Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Bleeding is the major shared toxicity when platelet function or coagulation is excessively inhibited.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Hyperglycemia is not the common toxicity. The major concern is bleeding.';
+  }
+}
   // Keep this below all pharmacology lessons
 document.getElementById('referralButton').addEventListener('click',()=>{
 
