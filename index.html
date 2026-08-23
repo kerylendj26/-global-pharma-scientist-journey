@@ -1042,22 +1042,163 @@ updateWelcome();
 
 
 function startLesson(topic){
+  const box = document.getElementById('lessonBox');
+  const title = document.getElementById('lessonTitle');
+  const text = document.getElementById('lessonText');
 
-  const box=document.getElementById('lessonBox');
+  title.textContent = topic;
 
-  document.getElementById('lessonTitle').textContent=topic;
+  if(topic === 'Pharmacology'){
+    text.innerHTML = `
+      <h3>Pharmacology Learning Path</h3>
+      <p><strong>Module 1:</strong> Foundations of Pharmacology</p>
+      <p><strong>Module 2:</strong> Cardiovascular Pharmacology</p>
+      <p><strong>Module 3:</strong> Anticoagulants & Antiplatelets</p>
+      <p><strong>Module 4:</strong> Endocrine & Diabetes</p>
+      <p><strong>Module 5:</strong> Neurology & Psychiatry</p>
+      <p><strong>Module 6:</strong> Anti-infective Pharmacology</p>
+      <p><strong>Module 7:</strong> Pain & Opioid Pharmacology</p>
+      <p><strong>Module 8:</strong> Drug Interactions & Safety</p>
 
-  document.getElementById('lessonText').textContent=
-    `${topic} has been selected. This prototype demonstrates how a personalized lesson could open inside the platform.`;
+      <button class="btn primary" onclick="startPharmacologyModule(1)">
+        Begin Module 1
+      </button>
+    `;
+  } else {
+    text.textContent =
+      topic + ' has been selected. Detailed learning modules are being developed.';
+  }
 
-  box.style.display='block';
+  box.style.display = 'block';
 
   box.scrollIntoView({
-    behavior:'smooth',
-    block:'center'
+    behavior: 'smooth',
+    block: 'center'
+  });
+}
+  function startPharmacologyModule(moduleNumber){
+  const title = document.getElementById('lessonTitle');
+  const text = document.getElementById('lessonText');
+
+  if(moduleNumber === 1){
+    title.textContent = 'Module 1 — Foundations of Pharmacology';
+
+    text.innerHTML = `
+      <h3>Foundations of Pharmacology</h3>
+
+      <p><strong>Learning objectives</strong></p>
+      <p>• Understand pharmacodynamics and pharmacokinetics.</p>
+      <p>• Understand receptors, agonists and antagonists.</p>
+      <p>• Understand absorption, distribution, metabolism and excretion.</p>
+      <p>• Understand therapeutic index and drug safety.</p>
+
+      <hr>
+
+      <h3>Lesson 1 — Pharmacodynamics</h3>
+
+      <p>
+        Pharmacodynamics describes what a drug does to the body.
+        It connects a drug's molecular target to its physiological
+        and therapeutic effects.
+      </p>
+
+      <p><strong>Core pathway:</strong></p>
+
+      <p>
+        Drug → Target/Receptor → Cellular response →
+        Physiological effect → Therapeutic effect
+      </p>
+
+      <button class="btn primary"
+        onclick="startPharmacologyLesson(1)">
+        Start Lesson 1
+      </button>
+    `;
+  }
+
+  window.scrollTo({
+    top: document.getElementById('lessonBox').offsetTop,
+    behavior: 'smooth'
+  });
+}
+function startPharmacologyLesson(lessonNumber){
+  const title = document.getElementById('lessonTitle');
+  const text = document.getElementById('lessonText');
+
+  if(lessonNumber === 1){
+    title.textContent = 'Lesson 1 — Pharmacodynamics';
+
+    text.innerHTML = `
+      <h3>What does a drug do to the body?</h3>
+
+      <p>
+        <strong>Pharmacodynamics</strong> is the study of the
+        biochemical and physiological effects of drugs and
+        how those effects are produced.
+      </p>
+
+      <h3>1. Drug targets</h3>
+      <p>
+        Drugs interact with molecular targets such as receptors,
+        enzymes, ion channels and transporters.
+      </p>
+
+      <h3>2. Agonists</h3>
+      <p>
+        An agonist binds to a receptor and activates it,
+        producing a biological response.
+      </p>
+
+      <h3>3. Antagonists</h3>
+      <p>
+        An antagonist binds to a receptor but does not activate it.
+        Instead, it blocks or reduces the effect of an agonist.
+      </p>
+
+      <h3>4. Core mechanism</h3>
+      <p>
+        Drug → Molecular target → Cellular response →
+        Physiological effect → Therapeutic effect
+      </p>
+
+      <hr>
+
+      <h3>Quick Check</h3>
+
+      <p>
+        A drug binds to a receptor and activates it.
+        What type of drug is it?
+      </p>
+
+      <button class="btn" onclick="checkPharmAnswer('A')">
+        A. Agonist
+      </button>
+
+      <button class="btn" onclick="checkPharmAnswer('B')">
+        B. Antagonist
+      </button>
+
+      <p id="pharmAnswer"></p>
+    `;
+  }
+
+  document.getElementById('lessonBox').scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
   });
 }
 
+function checkPharmAnswer(answer){
+  const result = document.getElementById('pharmAnswer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> An agonist binds to and activates a receptor.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> An antagonist binds without activating the receptor and blocks agonist activity.';
+  }
+}
 
 document.getElementById('referralButton').addEventListener('click',()=>{
 
