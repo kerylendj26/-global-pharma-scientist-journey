@@ -8985,6 +8985,1543 @@ function checkCardioHF8(answer){
       '<strong>Not quite.</strong> Their cardiovascular role is not limited to severe hyperglycemia.';
   }
 }
+  /* =========================================================
+   MODULE 2 — CARDIOVASCULAR PHARMACOLOGY
+   LESSON 8 — ANTIARRHYTHMIC PHARMACOLOGY
+   ========================================================= */
+
+function startCardioLesson8(){
+
+  const title = document.getElementById('lessonTitle');
+  const text = document.getElementById('lessonText');
+
+  title.textContent = 'Lesson 8 — Antiarrhythmic Pharmacology';
+
+  text.innerHTML = `
+
+  <h2>Lesson 8 — Antiarrhythmic Pharmacology</h2>
+
+  <h3>Learning objectives</h3>
+
+  <p>By the end of this lesson, you should be able to:</p>
+
+  <ul>
+    <li>Explain the basic cardiac conduction pathway.</li>
+    <li>Differentiate fast-response cardiac action potentials from nodal action potentials.</li>
+    <li>Identify the major ions involved in phases 0 through 4 of the ventricular action potential.</li>
+    <li>Explain the Vaughan–Williams antiarrhythmic classification.</li>
+    <li>Differentiate Class IA, IB and IC sodium-channel blockers.</li>
+    <li>Explain how beta blockers, potassium-channel blockers and calcium-channel blockers alter cardiac conduction.</li>
+    <li>Recognize important non-Vaughan–Williams agents such as adenosine, digoxin and magnesium.</li>
+    <li>Connect electrophysiologic effects with PR, QRS and QT interval changes.</li>
+    <li>Recognize torsades de pointes and important QT-prolonging drug risks.</li>
+    <li>Identify major antiarrhythmic toxicities, contraindications, interactions and monitoring parameters.</li>
+    <li>Apply antiarrhythmic pharmacology to clinical cases.</li>
+  </ul>
+
+  <hr>
+
+  <h3>1. Cardiac conduction system</h3>
+
+  <p>
+    The normal heartbeat begins in the sinoatrial node and travels through a specialized
+    conduction network to coordinate atrial and ventricular contraction.
+  </p>
+
+  <div class="callout">
+    <strong>CARDIAC CONDUCTION MAP</strong><br><br>
+
+    Sinoatrial node<br>
+    ↓<br>
+    Atrial myocardium<br>
+    ↓<br>
+    Atrioventricular node<br>
+    ↓<br>
+    Bundle of His<br>
+    ↓<br>
+    Right and left bundle branches<br>
+    ↓<br>
+    Purkinje fibers<br>
+    ↓<br>
+    Ventricular myocardium
+  </div>
+
+  <p>
+    The atrioventricular node deliberately slows conduction,
+    allowing time for ventricular filling before ventricular contraction.
+  </p>
+
+  <hr>
+
+  <h3>2. What causes arrhythmias?</h3>
+
+  <p>
+    Cardiac arrhythmias can result from abnormal impulse formation,
+    abnormal impulse conduction, or a combination of both.
+  </p>
+
+  <div class="callout">
+    <strong>ARRHYTHMIA MECHANISM BOARD</strong><br><br>
+
+    Abnormal automaticity<br>
+    +<br>
+    Triggered activity<br>
+    +<br>
+    Reentry circuits<br>
+    +<br>
+    Conduction block<br>
+    ↓<br>
+    <strong>Abnormal cardiac rhythm</strong>
+  </div>
+
+  <hr>
+
+  <h3>3. Reentry</h3>
+
+  <p>
+    Reentry occurs when an electrical impulse repeatedly circulates through a pathway
+    rather than extinguishing normally.
+  </p>
+
+  <div class="callout">
+    <strong>REENTRY CONCEPT</strong><br><br>
+
+    Two conduction pathways<br>
+    +<br>
+    Unidirectional block in one pathway<br>
+    +<br>
+    Slow conduction in another pathway<br>
+    ↓<br>
+    Previously refractory tissue recovers<br>
+    ↓<br>
+    Impulse re-enters tissue<br>
+    ↓<br>
+    <strong>Self-sustaining tachyarrhythmia</strong>
+  </div>
+
+  <hr>
+
+  <h3>4. Ventricular fast-response action potential</h3>
+
+  <div class="callout">
+    <strong>PHASE 0</strong><br>
+    Rapid Na⁺ influx<br>
+    → rapid depolarization<br><br>
+
+    <strong>PHASE 1</strong><br>
+    Brief K⁺ efflux<br>
+    → early repolarization<br><br>
+
+    <strong>PHASE 2</strong><br>
+    Ca²⁺ influx balanced by K⁺ efflux<br>
+    → plateau<br><br>
+
+    <strong>PHASE 3</strong><br>
+    K⁺ efflux predominates<br>
+    → repolarization<br><br>
+
+    <strong>PHASE 4</strong><br>
+    Resting membrane potential
+  </div>
+
+  <hr>
+
+  <h3>5. Ventricular action-potential memory board</h3>
+
+  <div class="callout">
+    <strong>0 = Na⁺ IN</strong><br>
+    <strong>1 = K⁺ OUT</strong><br>
+    <strong>2 = Ca²⁺ IN + K⁺ OUT</strong><br>
+    <strong>3 = K⁺ OUT</strong><br>
+    <strong>4 = REST</strong>
+  </div>
+
+  <hr>
+
+  <h3>6. SA and AV nodal action potential</h3>
+
+  <p>
+    Nodal cells behave differently from ventricular myocytes.
+    Their phase 0 depolarization depends mainly on calcium rather than fast sodium channels.
+  </p>
+
+  <div class="callout">
+    <strong>NODAL ACTION POTENTIAL</strong><br><br>
+
+    Phase 4<br>
+    spontaneous diastolic depolarization<br>
+    ↓<br>
+    funny current + calcium currents<br>
+    ↓<br>
+
+    Phase 0<br>
+    L-type Ca²⁺ influx<br>
+    ↓<br>
+    nodal depolarization<br>
+    ↓<br>
+
+    Phase 3<br>
+    K⁺ efflux<br>
+    ↓<br>
+    repolarization
+  </div>
+
+  <hr>
+
+  <h3>7. Why this distinction matters</h3>
+
+  <div class="callout">
+    <strong>FAST-RESPONSE TISSUE</strong><br>
+    Atria<br>
+    Ventricles<br>
+    His-Purkinje system<br>
+    → fast Na⁺ channels dominate phase 0<br><br>
+
+    <strong>SLOW-RESPONSE TISSUE</strong><br>
+    SA node<br>
+    AV node<br>
+    → Ca²⁺ channels dominate phase 0
+  </div>
+
+  <p>
+    Therefore sodium-channel blockers mainly alter fast-response tissues,
+    while non-dihydropyridine calcium-channel blockers strongly affect nodal conduction.
+  </p>
+
+  <hr>
+
+  <h3>8. ECG interval board</h3>
+
+  <div class="callout">
+    <strong>PR INTERVAL</strong><br>
+    Atrial-to-ventricular conduction<br>
+    Strongly influenced by AV nodal conduction<br><br>
+
+    <strong>QRS COMPLEX</strong><br>
+    Ventricular depolarization<br>
+    Sensitive to slowed ventricular sodium-channel conduction<br><br>
+
+    <strong>QT INTERVAL</strong><br>
+    Ventricular depolarization + repolarization<br>
+    Prolongation may increase torsades de pointes risk
+  </div>
+
+  <hr>
+
+  <h3>9. Vaughan–Williams classification</h3>
+
+  <table style="width:100%;border-collapse:collapse;">
+    <tr>
+      <th style="border:1px solid #ccc;padding:8px;">Class</th>
+      <th style="border:1px solid #ccc;padding:8px;">Main target</th>
+      <th style="border:1px solid #ccc;padding:8px;">Major electrophysiologic effect</th>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Class I</td>
+      <td style="border:1px solid #ccc;padding:8px;">Fast Na⁺ channels</td>
+      <td style="border:1px solid #ccc;padding:8px;">Slows depolarization/conduction</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Class II</td>
+      <td style="border:1px solid #ccc;padding:8px;">β-adrenergic receptors</td>
+      <td style="border:1px solid #ccc;padding:8px;">Slows nodal automaticity and conduction</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Class III</td>
+      <td style="border:1px solid #ccc;padding:8px;">Primarily K⁺ channels</td>
+      <td style="border:1px solid #ccc;padding:8px;">Prolongs repolarization and refractory period</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Class IV</td>
+      <td style="border:1px solid #ccc;padding:8px;">L-type Ca²⁺ channels</td>
+      <td style="border:1px solid #ccc;padding:8px;">Slows AV nodal conduction</td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <h3>10. Class I sodium-channel blockers</h3>
+
+  <p>
+    Class I agents block fast voltage-gated sodium channels in cardiac tissue.
+    They are divided into IA, IB and IC according to their sodium-channel blocking strength
+    and effects on action-potential duration.
+  </p>
+
+  <div class="callout">
+    <strong>CLASS I MASTER BOARD</strong><br><br>
+
+    IA<br>
+    moderate Na⁺ block<br>
+    action potential duration ↑<br><br>
+
+    IB<br>
+    weak Na⁺ block<br>
+    action potential duration ↓<br><br>
+
+    IC<br>
+    strong Na⁺ block<br>
+    major conduction slowing<br>
+    minimal direct effect on action-potential duration
+  </div>
+
+  <hr>
+
+  <h3>11. Class IA drugs</h3>
+
+  <div class="callout">
+    <strong>CLASS IA</strong><br><br>
+
+    Quinidine<br>
+    Procainamide — Pronestyl historically / generic use<br>
+    Disopyramide — Norpace
+  </div>
+
+  <p>
+    Class IA agents moderately block sodium channels and also reduce potassium currents,
+    prolonging repolarization.
+  </p>
+
+  <div class="callout">
+    Class IA<br>
+    ↓ Na⁺ conductance<br>
+    +<br>
+    ↓ K⁺ repolarizing current<br>
+    ↓<br>
+    Slower phase 0 conduction<br>
+    +<br>
+    Longer action potential<br>
+    ↓<br>
+    <strong>QRS widening + QT prolongation</strong>
+  </div>
+
+  <hr>
+
+  <h3>12. Class IA adverse effects</h3>
+
+  <div class="callout">
+    QT prolongation<br>
+    Torsades de pointes<br>
+    Hypotension<br>
+    Proarrhythmia
+  </div>
+
+  <p>
+    Each drug also has distinctive toxicities.
+  </p>
+
+  <div class="callout">
+    <strong>QUINIDINE</strong><br>
+    Cinchonism:<br>
+    tinnitus<br>
+    headache<br>
+    dizziness<br>
+    visual disturbance<br><br>
+
+    <strong>PROCAINAMIDE</strong><br>
+    Drug-induced lupus-like syndrome<br><br>
+
+    <strong>DISOPYRAMIDE</strong><br>
+    Anticholinergic effects<br>
+    negative inotropy
+  </div>
+
+  <hr>
+
+  <h3>13. Procainamide and NAPA</h3>
+
+  <p>
+    Procainamide is metabolized to N-acetylprocainamide,
+    commonly abbreviated NAPA.
+  </p>
+
+  <div class="callout">
+    Procainamide<br>
+    ↓ acetylation<br>
+    NAPA<br>
+    ↓<br>
+    Potassium-channel blocking activity<br>
+    ↓<br>
+    QT prolongation risk
+  </div>
+
+  <hr>
+
+  <h3>14. Class IB drugs</h3>
+
+  <div class="callout">
+    <strong>CLASS IB</strong><br><br>
+
+    Lidocaine — Xylocaine<br>
+    Mexiletine — Mexitil
+  </div>
+
+  <p>
+    Class IB agents preferentially affect depolarized or ischemic ventricular tissue.
+  </p>
+
+  <div class="callout">
+    Class IB Na⁺ blockade<br>
+    ↓<br>
+    Reduced abnormal ventricular automaticity<br>
+    ↓<br>
+    Useful particularly for selected ventricular arrhythmias
+  </div>
+
+  <p>
+    Lidocaine is administered intravenously for arrhythmia treatment.
+    Mexiletine is an orally active related agent.
+  </p>
+
+  <hr>
+
+  <h3>15. Lidocaine toxicity</h3>
+
+  <div class="callout">
+    <strong>CENTRAL NERVOUS SYSTEM TOXICITY</strong><br><br>
+
+    Paresthesias<br>
+    Tremor<br>
+    Confusion<br>
+    Seizures at high concentrations
+  </div>
+
+  <hr>
+
+  <h3>16. Class IC drugs</h3>
+
+  <div class="callout">
+    <strong>CLASS IC</strong><br><br>
+
+    Flecainide — Tambocor<br>
+    Propafenone — Rythmol
+  </div>
+
+  <p>
+    Class IC agents strongly block fast sodium channels and markedly slow conduction.
+  </p>
+
+  <div class="callout">
+    Strong Na⁺ channel blockade<br>
+    ↓<br>
+    Major slowing of phase 0<br>
+    ↓<br>
+    Slow intracardiac conduction<br>
+    ↓<br>
+    <strong>QRS widening</strong>
+  </div>
+
+  <hr>
+
+  <h3>17. Major Class IC warning</h3>
+
+  <p>
+    Class IC agents can be dangerous in patients with significant structural heart disease
+    or prior myocardial infarction because of proarrhythmic risk.
+  </p>
+
+  <div class="callout">
+    Structural heart disease / prior MI<br>
+    +<br>
+    potent Na⁺ channel blockade<br>
+    ↓<br>
+    slowed conduction in abnormal myocardium<br>
+    ↓<br>
+    <strong>Potentially dangerous ventricular proarrhythmia</strong>
+  </div>
+
+  <hr>
+
+  <h3>18. Class II — beta blockers</h3>
+
+  <div class="callout">
+    <strong>COMMON ANTIARRHYTHMIC BETA BLOCKERS</strong><br><br>
+
+    Metoprolol — Lopressor / Toprol-XL<br>
+    Esmolol — Brevibloc<br>
+    Propranolol — Inderal
+  </div>
+
+  <p>
+    Beta blockers reduce sympathetic stimulation of the heart.
+  </p>
+
+  <div class="callout">
+    β1 blockade<br>
+    ↓<br>
+    cAMP signaling<br>
+    ↓<br>
+    SA-node automaticity<br>
+    ↓<br>
+    AV-node conduction<br>
+    ↑<br>
+    AV-node refractory period<br>
+    ↓<br>
+    <strong>Reduced supraventricular tachyarrhythmia transmission</strong>
+  </div>
+
+  <hr>
+
+  <h3>19. ECG effects of beta blockers</h3>
+
+  <div class="callout">
+    Slower AV nodal conduction<br>
+    ↓<br>
+    <strong>PR interval may increase</strong>
+  </div>
+
+  <hr>
+
+  <h3>20. Beta-blocker adverse effects</h3>
+
+  <div class="callout">
+    Bradycardia<br>
+    AV block<br>
+    Hypotension<br>
+    Fatigue<br>
+    Bronchospasm with nonselective agents<br>
+    Masking of adrenergic warning symptoms of hypoglycemia
+  </div>
+
+  <hr>
+
+  <h3>21. Class III potassium-channel blockers</h3>
+
+  <div class="callout">
+    <strong>CLASS III</strong><br><br>
+
+    Amiodarone — Cordarone / Pacerone<br>
+    Sotalol — Betapace<br>
+    Dofetilide — Tikosyn<br>
+    Ibutilide — Corvert<br>
+    Dronedarone — Multaq
+  </div>
+
+  <p>
+    Class III drugs generally prolong repolarization by reducing outward potassium currents.
+  </p>
+
+  <div class="callout">
+    K⁺ channel blockade<br>
+    ↓<br>
+    Slower phase 3 repolarization<br>
+    ↓<br>
+    Longer action potential<br>
+    ↓<br>
+    Longer effective refractory period<br>
+    ↓<br>
+    <strong>QT interval prolongation</strong>
+  </div>
+
+  <hr>
+
+  <h3>22. Amiodarone</h3>
+
+  <p>
+    Amiodarone is pharmacologically complex and demonstrates properties from multiple
+    Vaughan–Williams classes.
+  </p>
+
+  <div class="callout">
+    <strong>AMIODARONE EFFECTS</strong><br><br>
+
+    Na⁺ channel blockade<br>
+    β-blocking activity<br>
+    K⁺ channel blockade<br>
+    Ca²⁺ channel blockade
+  </div>
+
+  <p>
+    It is used for selected atrial and ventricular arrhythmias.
+  </p>
+
+  <hr>
+
+  <h3>23. Amiodarone toxicity board</h3>
+
+  <div class="callout">
+    <strong>AMIODARONE — THINK MULTIORGAN TOXICITY</strong><br><br>
+
+    Pulmonary toxicity / fibrosis<br>
+    Thyroid dysfunction<br>
+    Hepatotoxicity<br>
+    Corneal deposits<br>
+    Optic neuropathy risk<br>
+    Photosensitivity<br>
+    Blue-gray skin discoloration<br>
+    Bradycardia<br>
+    QT prolongation<br>
+    Neurologic effects
+  </div>
+
+  <hr>
+
+  <h3>24. Why does amiodarone affect the thyroid?</h3>
+
+  <p>
+    Amiodarone contains a large iodine load and also alters thyroid-hormone metabolism.
+  </p>
+
+  <div class="callout">
+    Amiodarone<br>
+    ↓<br>
+    High iodine exposure + thyroid metabolism effects<br>
+    ↓<br>
+    <strong>Hypothyroidism OR hyperthyroidism</strong>
+  </div>
+
+  <hr>
+
+  <h3>25. Amiodarone monitoring</h3>
+
+  <div class="callout">
+    <strong>MONITORING BOARD</strong><br><br>
+
+    Electrocardiogram<br>
+    Heart rate<br>
+    Thyroid function<br>
+    Liver function<br>
+    Pulmonary symptoms / evaluation as appropriate<br>
+    Eye symptoms when clinically indicated<br>
+    Drug interactions
+  </div>
+
+  <hr>
+
+  <h3>26. Important amiodarone interactions</h3>
+
+  <div class="callout">
+    <strong>AMIODARONE + WARFARIN</strong><br>
+    warfarin effect may increase<br>
+    → INR may rise<br><br>
+
+    <strong>AMIODARONE + DIGOXIN</strong><br>
+    digoxin concentrations may increase<br><br>
+
+    <strong>AMIODARONE + OTHER QT-PROLONGING DRUGS</strong><br>
+    increased proarrhythmic risk
+  </div>
+
+  <hr>
+
+  <h3>27. Sotalol</h3>
+
+  <p>
+    Sotalol combines nonselective beta-blocking activity with Class III potassium-channel blockade.
+  </p>
+
+  <div class="callout">
+    Sotalol<br>
+    ↓<br>
+    β blockade<br>
+    +<br>
+    K⁺ channel blockade<br>
+    ↓<br>
+    Slower nodal activity<br>
+    +<br>
+    QT prolongation
+  </div>
+
+  <p>
+    Important risks include bradycardia and torsades de pointes.
+  </p>
+
+  <hr>
+
+  <h3>28. Dofetilide</h3>
+
+  <p>
+    Dofetilide selectively blocks cardiac potassium channels and markedly prolongs repolarization.
+  </p>
+
+  <div class="callout">
+    Dofetilide<br>
+    ↓<br>
+    K⁺ current blockade<br>
+    ↓<br>
+    QT prolongation<br>
+    ↓<br>
+    <strong>Torsades risk</strong>
+  </div>
+
+  <p>
+    Initiation requires close ECG and renal-function assessment because dosing depends on renal clearance
+    and the QT interval must be monitored.
+  </p>
+
+  <hr>
+
+  <h3>29. Ibutilide</h3>
+
+  <p>
+    Ibutilide is an intravenous antiarrhythmic used for pharmacologic conversion
+    of selected atrial arrhythmias.
+  </p>
+
+  <div class="callout">
+    <strong>MAJOR RISK</strong><br><br>
+
+    QT prolongation<br>
+    ↓<br>
+    Torsades de pointes
+  </div>
+
+  <hr>
+
+  <h3>30. Dronedarone</h3>
+
+  <p>
+    Dronedarone is structurally related to amiodarone but does not contain iodine.
+  </p>
+
+  <div class="callout">
+    <strong>DRONEDARONE</strong><br><br>
+
+    Less thyroid iodine-related toxicity than amiodarone<br>
+    BUT<br>
+    important cardiac and hepatic safety limitations remain
+  </div>
+
+  <p>
+    Dronedarone should not be used in certain patients with symptomatic or recently decompensated heart failure,
+    and it is contraindicated in permanent atrial fibrillation because of increased adverse outcomes.
+  </p>
+
+  <hr>
+
+  <h3>31. Class IV calcium-channel blockers</h3>
+
+  <div class="callout">
+    <strong>CLASS IV</strong><br><br>
+
+    Verapamil — Calan / Verelan<br>
+    Diltiazem — Cardizem / Tiazac
+  </div>
+
+  <p>
+    These non-dihydropyridine calcium-channel blockers inhibit L-type calcium channels
+    in the SA and AV nodes.
+  </p>
+
+  <div class="callout">
+    L-type Ca²⁺ channel blockade<br>
+    ↓<br>
+    Slower nodal phase 0 depolarization<br>
+    ↓<br>
+    Slower AV conduction<br>
+    ↑<br>
+    AV nodal refractory period<br>
+    ↓<br>
+    <strong>Reduced ventricular response to supraventricular impulses</strong>
+  </div>
+
+  <hr>
+
+  <h3>32. Class IV ECG effect</h3>
+
+  <div class="callout">
+    AV nodal slowing<br>
+    ↓<br>
+    <strong>PR interval may increase</strong>
+  </div>
+
+  <hr>
+
+  <h3>33. Verapamil and diltiazem adverse effects</h3>
+
+  <div class="callout">
+    Bradycardia<br>
+    AV block<br>
+    Hypotension<br>
+    Negative inotropy<br><br>
+
+    Verapamil especially:<br>
+    constipation
+  </div>
+
+  <p>
+    Their negative inotropic effects make them unsuitable in many patients with HFrEF.
+  </p>
+
+  <hr>
+
+  <h3>34. Adenosine</h3>
+
+  <div class="callout">
+    <strong>ADENOSINE — ADENOCARD</strong>
+  </div>
+
+  <p>
+    Adenosine is not part of the classic Vaughan–Williams system.
+    It has an extremely short plasma half-life and transiently suppresses AV nodal conduction.
+  </p>
+
+  <div class="callout">
+    Adenosine receptor activation<br>
+    ↓<br>
+    Increased K⁺ efflux<br>
+    +<br>
+    Reduced Ca²⁺ influx<br>
+    ↓<br>
+    Hyperpolarization of AV nodal tissue<br>
+    ↓<br>
+    Transient AV nodal block<br>
+    ↓<br>
+    <strong>Termination of selected AV-node-dependent SVTs</strong>
+  </div>
+
+  <hr>
+
+  <h3>35. Adenosine administration</h3>
+
+  <p>
+    Because adenosine is metabolized within seconds, it is administered as a rapid intravenous bolus,
+    typically followed immediately by a saline flush.
+  </p>
+
+  <div class="callout">
+    <strong>VERY SHORT HALF-LIFE</strong><br><br>
+
+    Adenosine<br>
+    → rapid IV push<br>
+    → immediate saline flush
+  </div>
+
+  <hr>
+
+  <h3>36. Adenosine adverse effects</h3>
+
+  <div class="callout">
+    Flushing<br>
+    Chest pressure<br>
+    Dyspnea<br>
+    Sense of impending doom<br>
+    Transient AV block<br>
+    Bronchospasm in susceptible patients
+  </div>
+
+  <p>
+    The symptoms are usually brief because the drug disappears rapidly from circulation.
+  </p>
+
+  <hr>
+
+  <h3>37. Adenosine interactions</h3>
+
+  <div class="callout">
+    <strong>CAFFEINE / THEOPHYLLINE</strong><br>
+    antagonize adenosine receptors<br>
+    → may reduce adenosine effect<br><br>
+
+    <strong>DIPYRIDAMOLE</strong><br>
+    increases extracellular adenosine activity<br>
+    → may enhance adenosine effect
+  </div>
+
+  <hr>
+
+  <h3>38. Digoxin in arrhythmias</h3>
+
+  <div class="callout">
+    Digoxin<br>
+    ↓<br>
+    Increased vagal activity<br>
+    ↓<br>
+    Slower AV nodal conduction<br>
+    ↑<br>
+    AV nodal refractory period<br>
+    ↓<br>
+    <strong>Reduced ventricular rate in selected atrial arrhythmias</strong>
+  </div>
+
+  <p>
+    Digoxin also inhibits the Na⁺/K⁺ ATPase and has a narrow therapeutic index.
+  </p>
+
+  <hr>
+
+  <h3>39. Magnesium</h3>
+
+  <p>
+    Intravenous magnesium sulfate is particularly important in torsades de pointes,
+    even when the serum magnesium level is not dramatically low.
+  </p>
+
+  <div class="callout">
+    <strong>TORSADES</strong><br>
+    ↓<br>
+    Magnesium sulfate<br>
+    ↓<br>
+    Stabilization of cardiac electrophysiology<br>
+    ↓<br>
+    <strong>Suppression of torsades</strong>
+  </div>
+
+  <hr>
+
+  <h3>40. QT prolongation</h3>
+
+  <p>
+    The QT interval represents ventricular depolarization and repolarization.
+    Excessive prolongation increases the risk of early afterdepolarizations and torsades de pointes.
+  </p>
+
+  <div class="callout">
+    K⁺ channel blockade<br>
+    ↓<br>
+    Prolonged ventricular repolarization<br>
+    ↓<br>
+    Long QT<br>
+    ↓<br>
+    Early afterdepolarizations<br>
+    ↓<br>
+    <strong>Torsades de pointes</strong>
+  </div>
+
+  <hr>
+
+  <h3>41. Torsades de pointes</h3>
+
+  <p>
+    Torsades de pointes is a polymorphic ventricular tachycardia associated with prolonged repolarization.
+  </p>
+
+  <div class="callout">
+    <strong>MAJOR RISK FACTORS</strong><br><br>
+
+    QT-prolonging drugs<br>
+    Hypokalemia<br>
+    Hypomagnesemia<br>
+    Bradycardia<br>
+    Congenital long-QT syndromes<br>
+    Multiple QT-prolonging medications
+  </div>
+
+  <hr>
+
+  <h3>42. Drug-induced torsades prevention</h3>
+
+  <div class="callout">
+    Review QT-prolonging medications<br>
+    ↓<br>
+    Correct K⁺<br>
+    ↓<br>
+    Correct Mg²⁺<br>
+    ↓<br>
+    Review renal/hepatic function<br>
+    ↓<br>
+    Avoid dangerous combinations<br>
+    ↓<br>
+    Monitor ECG when indicated
+  </div>
+
+  <hr>
+
+  <h3>43. Sodium-channel blocker comparison board</h3>
+
+  <table style="width:100%;border-collapse:collapse;">
+    <tr>
+      <th style="border:1px solid #ccc;padding:8px;">Subclass</th>
+      <th style="border:1px solid #ccc;padding:8px;">Examples</th>
+      <th style="border:1px solid #ccc;padding:8px;">Action potential</th>
+      <th style="border:1px solid #ccc;padding:8px;">Key concern</th>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">IA</td>
+      <td style="border:1px solid #ccc;padding:8px;">Quinidine, procainamide, disopyramide</td>
+      <td style="border:1px solid #ccc;padding:8px;">Prolonged</td>
+      <td style="border:1px solid #ccc;padding:8px;">QT prolongation / torsades</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">IB</td>
+      <td style="border:1px solid #ccc;padding:8px;">Lidocaine, mexiletine</td>
+      <td style="border:1px solid #ccc;padding:8px;">Shortened</td>
+      <td style="border:1px solid #ccc;padding:8px;">Neurologic toxicity</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">IC</td>
+      <td style="border:1px solid #ccc;padding:8px;">Flecainide, propafenone</td>
+      <td style="border:1px solid #ccc;padding:8px;">Minimal change</td>
+      <td style="border:1px solid #ccc;padding:8px;">Proarrhythmia in structural heart disease</td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <h3>44. Antiarrhythmic ECG board</h3>
+
+  <div class="callout">
+    <strong>PR ↑</strong><br>
+    Beta blockers<br>
+    Verapamil<br>
+    Diltiazem<br>
+    Digoxin<br><br>
+
+    <strong>QRS ↑</strong><br>
+    Strong sodium-channel blockade<br>
+    especially Class IC<br><br>
+
+    <strong>QT ↑</strong><br>
+    Class IA<br>
+    many Class III drugs<br>
+    → torsades risk
+  </div>
+
+  <hr>
+
+  <h3>45. Atrial fibrillation treatment concepts</h3>
+
+  <p>
+    Pharmacologic management of atrial fibrillation may focus on ventricular rate control,
+    rhythm control, and prevention of thromboembolism.
+  </p>
+
+  <div class="callout">
+    <strong>RATE CONTROL</strong><br>
+    Beta blocker<br>
+    Diltiazem / verapamil in appropriate patients<br>
+    Digoxin in selected patients<br><br>
+
+    <strong>RHYTHM CONTROL</strong><br>
+    Selected Class I or III antiarrhythmics depending on structural heart disease and patient factors<br><br>
+
+    <strong>STROKE PREVENTION</strong><br>
+    Separate anticoagulation assessment is essential
+  </div>
+
+  <hr>
+
+  <h3>46. Why structural heart disease changes drug selection</h3>
+
+  <div class="callout">
+    Damaged / scarred myocardium<br>
+    ↓<br>
+    Heterogeneous conduction<br>
+    ↓<br>
+    Strong Na⁺ channel blockade<br>
+    ↓<br>
+    Further conduction slowing<br>
+    ↓<br>
+    Reentry / ventricular proarrhythmia risk
+  </div>
+
+  <p>
+    This is one reason flecainide and propafenone are avoided in important structural heart disease.
+  </p>
+
+  <hr>
+
+  <h3>47. Clinical case — AV nodal SVT</h3>
+
+  <p>
+    A patient has a regular narrow-complex supraventricular tachycardia
+    dependent on the AV node. Vagal maneuvers fail.
+  </p>
+
+  <div class="callout">
+    Adenosine<br>
+    ↓<br>
+    Transient AV nodal block<br>
+    ↓<br>
+    Breaks AV-node-dependent reentry circuit<br>
+    ↓<br>
+    <strong>Rhythm may terminate</strong>
+  </div>
+
+  <hr>
+
+  <h3>48. Clinical case — procainamide</h3>
+
+  <p>
+    A patient receiving long-term procainamide develops arthralgia,
+    fever and positive antinuclear antibodies.
+  </p>
+
+  <div class="callout">
+    Procainamide<br>
+    ↓<br>
+    Immune-mediated adverse effect<br>
+    ↓<br>
+    <strong>Drug-induced lupus-like syndrome</strong>
+  </div>
+
+  <hr>
+
+  <h3>49. Clinical case — amiodarone</h3>
+
+  <p>
+    A patient taking amiodarone develops progressive dyspnea and a dry cough.
+  </p>
+
+  <div class="callout">
+    Amiodarone<br>
+    ↓<br>
+    Pulmonary toxicity<br>
+    ↓<br>
+    Interstitial lung injury / fibrosis<br>
+    ↓<br>
+    <strong>Requires prompt evaluation</strong>
+  </div>
+
+  <hr>
+
+  <h3>50. Clinical case — torsades</h3>
+
+  <p>
+    A patient receiving a QT-prolonging antiarrhythmic develops polymorphic ventricular tachycardia.
+    Potassium and magnesium are low.
+  </p>
+
+  <div class="callout">
+    QT prolongation<br>
+    + hypokalemia<br>
+    + hypomagnesemia<br>
+    ↓<br>
+    Torsades de pointes<br>
+    ↓<br>
+    <strong>IV magnesium + correction of electrolytes + removal of precipitating factors</strong>
+  </div>
+
+  <hr>
+
+  <h3>51. Clinical case — flecainide</h3>
+
+  <p>
+    A patient with previous myocardial infarction and ventricular scar
+    is being considered for flecainide.
+  </p>
+
+  <div class="callout">
+    Prior myocardial injury<br>
+    +<br>
+    Structural heart disease<br>
+    +<br>
+    Potent Class IC sodium-channel blockade<br>
+    ↓<br>
+    <strong>Dangerous ventricular proarrhythmia risk</strong>
+  </div>
+
+  <hr>
+
+  <h3>52. Clinical case — sotalol</h3>
+
+  <p>
+    A patient taking sotalol has worsening renal function and a markedly prolonged QT interval.
+  </p>
+
+  <div class="callout">
+    Reduced renal clearance<br>
+    ↓<br>
+    Sotalol accumulation<br>
+    ↓<br>
+    Greater potassium-channel blockade<br>
+    ↓<br>
+    Longer QT<br>
+    ↓<br>
+    <strong>Torsades risk increases</strong>
+  </div>
+
+  <hr>
+
+  <h3>53. Master antiarrhythmic memory board</h3>
+
+  <div class="callout">
+    <strong>CLASS I — Na⁺</strong><br>
+    IA = quinidine, procainamide, disopyramide<br>
+    IB = lidocaine, mexiletine<br>
+    IC = flecainide, propafenone<br><br>
+
+    <strong>CLASS II — β BLOCKERS</strong><br>
+    metoprolol, esmolol, propranolol<br>
+    → slow AV node<br><br>
+
+    <strong>CLASS III — K⁺</strong><br>
+    amiodarone, sotalol, dofetilide, ibutilide<br>
+    → prolong QT<br><br>
+
+    <strong>CLASS IV — Ca²⁺</strong><br>
+    verapamil, diltiazem<br>
+    → slow AV node<br><br>
+
+    <strong>OTHER</strong><br>
+    adenosine → transient AV block<br>
+    digoxin → vagal AV slowing<br>
+    magnesium → torsades
+  </div>
+
+  <hr>
+
+  <h3>54. Toxicity memory board</h3>
+
+  <div class="callout">
+    <strong>QUINIDINE</strong> → cinchonism<br><br>
+
+    <strong>PROCAINAMIDE</strong> → lupus-like syndrome<br><br>
+
+    <strong>LIDOCAINE</strong> → CNS toxicity<br><br>
+
+    <strong>FLECAINIDE</strong> → avoid major structural heart disease<br><br>
+
+    <strong>AMIODARONE</strong> → lung, liver, thyroid, eye, skin<br><br>
+
+    <strong>SOTALOL / DOFETILIDE</strong> → torsades<br><br>
+
+    <strong>VERAPAMIL</strong> → constipation, bradycardia<br><br>
+
+    <strong>ADENOSINE</strong> → flushing, chest pressure, transient dyspnea
+  </div>
+
+  <hr>
+
+  <h3>Knowledge Check 1</h3>
+
+  <p>
+    Which ion is primarily responsible for phase 0 depolarization
+    in ventricular myocytes?
+  </p>
+
+  <button class="btn" onclick="checkCardioARR1('A')">
+    A. Sodium
+  </button>
+
+  <button class="btn" onclick="checkCardioARR1('B')">
+    B. Chloride
+  </button>
+
+  <p id="cardioARR1Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 2</h3>
+
+  <p>
+    Which ion primarily mediates phase 0 depolarization in the AV node?
+  </p>
+
+  <button class="btn" onclick="checkCardioARR2('A')">
+    A. Calcium
+  </button>
+
+  <button class="btn" onclick="checkCardioARR2('B')">
+    B. Fast sodium current
+  </button>
+
+  <p id="cardioARR2Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 3</h3>
+
+  <p>
+    Which antiarrhythmic is associated with drug-induced lupus?
+  </p>
+
+  <button class="btn" onclick="checkCardioARR3('A')">
+    A. Procainamide
+  </button>
+
+  <button class="btn" onclick="checkCardioARR3('B')">
+    B. Lidocaine
+  </button>
+
+  <p id="cardioARR3Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 4</h3>
+
+  <p>
+    Which Class IC drug should generally be avoided in significant structural heart disease?
+  </p>
+
+  <button class="btn" onclick="checkCardioARR4('A')">
+    A. Flecainide
+  </button>
+
+  <button class="btn" onclick="checkCardioARR4('B')">
+    B. Magnesium sulfate
+  </button>
+
+  <p id="cardioARR4Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 5</h3>
+
+  <p>
+    Which antiarrhythmic is famous for pulmonary, thyroid,
+    hepatic, ocular and skin toxicity?
+  </p>
+
+  <button class="btn" onclick="checkCardioARR5('A')">
+    A. Amiodarone
+  </button>
+
+  <button class="btn" onclick="checkCardioARR5('B')">
+    B. Adenosine
+  </button>
+
+  <p id="cardioARR5Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 6</h3>
+
+  <p>
+    Which drug is commonly used for rapid termination
+    of an AV-node-dependent supraventricular tachycardia?
+  </p>
+
+  <button class="btn" onclick="checkCardioARR6('A')">
+    A. Adenosine
+  </button>
+
+  <button class="btn" onclick="checkCardioARR6('B')">
+    B. Hydrochlorothiazide
+  </button>
+
+  <p id="cardioARR6Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 7</h3>
+
+  <p>
+    Which drug is a standard pharmacologic treatment
+    for torsades de pointes?
+  </p>
+
+  <button class="btn" onclick="checkCardioARR7('A')">
+    A. Magnesium sulfate
+  </button>
+
+  <button class="btn" onclick="checkCardioARR7('B')">
+    B. Flecainide
+  </button>
+
+  <p id="cardioARR7Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 8</h3>
+
+  <p>
+    Which ECG interval is particularly associated
+    with ventricular repolarization and torsades risk when prolonged?
+  </p>
+
+  <button class="btn" onclick="checkCardioARR8('A')">
+    A. QT interval
+  </button>
+
+  <button class="btn" onclick="checkCardioARR8('B')">
+    B. PR interval only
+  </button>
+
+  <p id="cardioARR8Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 9</h3>
+
+  <p>
+    Which class contains verapamil and diltiazem?
+  </p>
+
+  <button class="btn" onclick="checkCardioARR9('A')">
+    A. Class IV
+  </button>
+
+  <button class="btn" onclick="checkCardioARR9('B')">
+    B. Class IB
+  </button>
+
+  <p id="cardioARR9Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 10</h3>
+
+  <p>
+    Which statement about Class IA antiarrhythmics is correct?
+  </p>
+
+  <button class="btn" onclick="checkCardioARR10('A')">
+    A. They can prolong the QT interval and cause torsades
+  </button>
+
+  <button class="btn" onclick="checkCardioARR10('B')">
+    B. They universally shorten ventricular repolarization
+  </button>
+
+  <p id="cardioARR10Answer"></p>
+
+  <br>
+
+  <button class="btn primary" onclick="startPharmacologyModule(2)">
+    Back to Module 2
+  </button>
+
+  `;
+
+  const lessonBox = document.getElementById('lessonBox');
+
+  window.scrollTo({
+    top: lessonBox.offsetTop - 170,
+    behavior: 'smooth'
+  });
+}
+
+
+/* =========================================================
+   LESSON 8 KNOWLEDGE-CHECK FUNCTIONS
+   ========================================================= */
+
+function checkCardioARR1(answer){
+
+  const result = document.getElementById('cardioARR1Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Rapid opening of fast voltage-gated sodium channels produces phase 0 depolarization in ventricular myocytes.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Ventricular phase 0 is primarily caused by rapid sodium influx.';
+  }
+}
+
+
+function checkCardioARR2(answer){
+
+  const result = document.getElementById('cardioARR2Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Phase 0 depolarization in SA and AV nodal cells depends primarily on L-type calcium influx.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Fast sodium channels dominate phase 0 in ventricular tissue, not nodal tissue.';
+  }
+}
+
+
+function checkCardioARR3(answer){
+
+  const result = document.getElementById('cardioARR3Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Procainamide is a classic cause of a drug-induced lupus-like syndrome.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Lidocaine is better known for dose-related neurologic toxicity.';
+  }
+}
+
+
+function checkCardioARR4(answer){
+
+  const result = document.getElementById('cardioARR4Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Flecainide can be dangerously proarrhythmic in patients with significant structural heart disease or prior myocardial infarction.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Magnesium sulfate is commonly used to treat torsades de pointes.';
+  }
+}
+
+
+function checkCardioARR5(answer){
+
+  const result = document.getElementById('cardioARR5Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Amiodarone can affect the lungs, thyroid, liver, eyes, skin and nervous system and therefore requires broad toxicity monitoring.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Adenosine causes very brief effects because of its extremely short half-life.';
+  }
+}
+
+
+function checkCardioARR6(answer){
+
+  const result = document.getElementById('cardioARR6Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Adenosine produces transient AV nodal block and can terminate selected AV-node-dependent supraventricular tachycardias.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Hydrochlorothiazide is a thiazide diuretic and does not terminate SVT.';
+  }
+}
+
+
+function checkCardioARR7(answer){
+
+  const result = document.getElementById('cardioARR7Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Intravenous magnesium sulfate is a key treatment for torsades de pointes.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Flecainide can itself be proarrhythmic and is not the standard treatment for torsades.';
+  }
+}
+
+
+function checkCardioARR8(answer){
+
+  const result = document.getElementById('cardioARR8Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Excessive QT prolongation reflects delayed ventricular repolarization and increases torsades risk.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> The PR interval mainly reflects atrioventricular conduction.';
+  }
+}
+
+
+function checkCardioARR9(answer){
+
+  const result = document.getElementById('cardioARR9Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Verapamil and diltiazem are Class IV antiarrhythmics that block L-type calcium channels and slow AV nodal conduction.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Class IB consists primarily of sodium-channel blockers such as lidocaine and mexiletine.';
+  }
+}
+
+
+function checkCardioARR10(answer){
+
+  const result = document.getElementById('cardioARR10Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Class IA drugs prolong ventricular action-potential duration and the QT interval, which can increase torsades risk.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Class IA agents generally prolong rather than shorten ventricular repolarization.';
+  }
+}
   // Keep this below all pharmacology lessons
 document.getElementById('referralButton').addEventListener('click',()=>{
 
