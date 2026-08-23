@@ -1,0 +1,205 @@
+<!-- =========================================================
+ GPSJ v0.9 — PK/PD & QUANTITATIVE PHARMACOLOGY INTELLIGENCE
+ Drop-in block: paste immediately BEFORE </body> in the current v0.8 index.html
+ Preserves the existing platform and adds an interactive PK/PD laboratory.
+ ========================================================= -->
+<style>
+/* v0.9 responsive navigation fix */
+@media (max-width:980px){
+  .topbar .nav{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;padding:8px 0!important}
+  .topbar .brand{min-width:0}
+  .topbar .navlinks{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;overscroll-behavior-inline:contain;
+    scrollbar-width:none;padding:2px 0 6px;-webkit-overflow-scrolling:touch}
+  .topbar .navlinks::-webkit-scrollbar{display:none}
+  .topbar .navlinks button{flex:0 0 auto!important;white-space:nowrap!important;padding:9px 11px!important}
+}
+.gpsj-v09{margin:24px 0;border:1px solid #d8e1f6;border-radius:22px;background:#fff;overflow:hidden}
+.gpsj-v09 *{box-sizing:border-box}
+.gpsj-v09-head{padding:22px;background:linear-gradient(135deg,#eef3ff,#f7f2ff)}
+.gpsj-v09-head h2{margin:5px 0 8px;font-size:30px;color:#14213d}
+.gpsj-v09-head p{margin:0;color:#667085;line-height:1.55}
+.gpsj-v09-badges{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.gpsj-v09-badges span{padding:6px 9px;border-radius:999px;background:#fff;border:1px solid #d9e2f7;color:#29459b;font-size:11px;font-weight:850}
+.gpsj-v09-body{padding:20px}
+.pkpd-depth{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.pkpd-depth button,.pkpd-tabs button{border:1px solid #cad5ef;background:#fff;color:#233a8b;border-radius:11px;padding:9px 12px;font-weight:800}
+.pkpd-depth button.active,.pkpd-tabs button.active{background:#233a8b;color:#fff;border-color:#233a8b}
+.pkpd-principle{padding:16px;border-left:5px solid #12845a;background:#f3fbf7;border-radius:13px;margin-bottom:16px}
+.pkpd-principle h3{margin:0 0 8px}
+.pkpd-formulas{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:9px;margin-top:12px}
+.pkpd-formula{padding:12px;border-radius:12px;background:#0d1b3d;color:#edf3ff;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;overflow:auto}
+.pkpd-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}
+.pkpd-panel{display:none}.pkpd-panel.active{display:block}
+.pkpd-grid{display:grid;grid-template-columns:minmax(260px,.75fr) minmax(360px,1.25fr);gap:16px}
+.pkpd-controls,.pkpd-chart-card,.pkpd-result-card{border:1px solid #e0e6f2;border-radius:16px;padding:15px;background:#fbfcff}
+.pkpd-controls h3,.pkpd-chart-card h3,.pkpd-result-card h3{margin-top:0}
+.pkpd-control{margin:11px 0}
+.pkpd-control label{display:flex;justify-content:space-between;gap:8px;font-weight:800;color:#2a3d68}
+.pkpd-control input[type=range]{width:100%;accent-color:#3158d8}
+.pkpd-value{font-variant-numeric:tabular-nums;color:#3158d8}
+#pkpdCanvas{display:block;width:100%;height:330px;border-radius:12px;background:#fff;border:1px solid #e4e8f0}
+.pkpd-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:9px;margin-top:12px}
+.pkpd-metric{padding:12px;border:1px solid #e0e6f2;border-radius:12px;background:#fff}
+.pkpd-metric strong{display:block;font-size:19px;color:#213b8f}.pkpd-metric small{color:#667085}
+.pkpd-chain{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:12px 0}
+.pkpd-chain span{padding:9px 11px;border-radius:10px;background:#eef2ff;font-weight:750}.pkpd-chain b{color:#6d49cf}
+.pkpd-note{padding:12px 14px;border-left:4px solid #e68a19;background:#fff8ed;border-radius:10px;line-height:1.5}
+.pkpd-evidence{padding:12px 14px;border-left:4px solid #12845a;background:#f1fbf6;border-radius:10px;line-height:1.5}
+.pkpd-depth-card{display:none;margin-top:12px;padding:14px;border:1px solid #e0e6f2;border-radius:13px;background:#fff}
+.pkpd-depth-card.active{display:block}
+.pkpd-table{width:100%;border-collapse:collapse}.pkpd-table th,.pkpd-table td{padding:10px;border-bottom:1px solid #e4e8f0;text-align:left;vertical-align:top}
+.pkpd-table th{background:#f3f6fc}
+body.gpsj-dark .gpsj-v09,body.gpsj-dark .pkpd-controls,body.gpsj-dark .pkpd-chart-card,body.gpsj-dark .pkpd-result-card,
+body.gpsj-dark .pkpd-depth-card,body.gpsj-dark .pkpd-metric{background:var(--card);color:var(--text);border-color:var(--line)}
+body.gpsj-dark .gpsj-v09-head{background:#18243b}body.gpsj-dark .gpsj-v09-head h2{color:var(--text)}
+@media(max-width:760px){.pkpd-grid{grid-template-columns:1fr}.gpsj-v09-body{padding:13px}.gpsj-v09-head{padding:17px}#pkpdCanvas{height:280px}}
+</style>
+
+<section class="gpsj-v09" id="gpsjPKPD">
+  <div class="gpsj-v09-head">
+    <span class="badge">GPSJ Quantitative Pharmacology • v0.9</span>
+    <h2>From dose → exposure → target effect → therapeutic or toxic response.</h2>
+    <p>Begin with normal pharmacokinetic and pharmacodynamic relationships, then change one variable at a time and observe how the system responds. The simulator is educational and uses a simplified one-compartment model.</p>
+    <div class="gpsj-v09-badges"><span>Universal science first</span><span>Interactive PK</span><span>Interactive PD</span><span>Case comparison</span><span>Regional layer separated</span><span>Evidence boundaries</span></div>
+  </div>
+
+  <div class="gpsj-v09-body">
+    <div class="pkpd-depth" id="pkpdDepth">
+      <button data-depth="foundation">Foundation</button><button class="active" data-depth="clinical">Clinical</button>
+      <button data-depth="advanced">Advanced</button><button data-depth="scientist">Scientist</button>
+    </div>
+
+    <div class="pkpd-principle">
+      <h3>1. Normal quantitative reference state</h3>
+      <div>Before a disease state or dose adjustment is introduced, establish the relationships governing concentration, elimination and effect.</div>
+      <div class="pkpd-formulas">
+        <div class="pkpd-formula">k = CL / Vd</div>
+        <div class="pkpd-formula">t½ = 0.693 × Vd / CL</div>
+        <div class="pkpd-formula">C(t) ≈ (F × Dose / Vd) × e^(−kt)</div>
+        <div class="pkpd-formula">E = Emax × C / (EC50 + C)</div>
+      </div>
+    </div>
+
+    <div class="pkpd-tabs" id="pkpdTabs">
+      <button class="active" data-tab="sim">PK/PD simulator</button>
+      <button data-tab="case">Case deviation</button>
+      <button data-tab="meaning">Interpretation</button>
+      <button data-tab="evidence">Evidence & frontier</button>
+    </div>
+
+    <div class="pkpd-panel active" data-panel="sim">
+      <div class="pkpd-grid">
+        <div class="pkpd-controls">
+          <h3>Change the system</h3>
+          <div class="pkpd-control"><label>Dose <span class="pkpd-value" id="vDose"></span></label><input id="pDose" type="range" min="50" max="1000" step="25" value="500"></div>
+          <div class="pkpd-control"><label>Bioavailability F <span class="pkpd-value" id="vF"></span></label><input id="pF" type="range" min="0.1" max="1" step="0.05" value="0.8"></div>
+          <div class="pkpd-control"><label>Clearance CL <span class="pkpd-value" id="vCL"></span></label><input id="pCL" type="range" min="1" max="15" step="0.5" value="5"></div>
+          <div class="pkpd-control"><label>Volume Vd <span class="pkpd-value" id="vVd"></span></label><input id="pVd" type="range" min="10" max="100" step="5" value="50"></div>
+          <div class="pkpd-control"><label>EC50 <span class="pkpd-value" id="vEC50"></span></label><input id="pEC50" type="range" min="0.5" max="10" step="0.5" value="4"></div>
+          <div class="pkpd-control"><label>Emax <span class="pkpd-value" id="vEmax"></span></label><input id="pEmax" type="range" min="20" max="100" step="5" value="100"></div>
+          <button class="btn secondary" id="pkpdReset">Reset reference state</button>
+        </div>
+        <div class="pkpd-chart-card">
+          <h3>Concentration–time profile</h3>
+          <canvas id="pkpdCanvas" width="800" height="330"></canvas>
+          <div class="pkpd-metrics">
+            <div class="pkpd-metric"><strong id="mC0">—</strong><small>Initial model concentration</small></div>
+            <div class="pkpd-metric"><strong id="mHalf">—</strong><small>Half-life</small></div>
+            <div class="pkpd-metric"><strong id="mAUC">—</strong><small>AUC∞ approximation</small></div>
+            <div class="pkpd-metric"><strong id="mEffect">—</strong><small>Initial E/Emax response</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pkpd-panel" data-panel="case">
+      <div class="pkpd-result-card">
+        <h3>2. Understand the deviation before choosing an intervention</h3>
+        <div class="pkpd-chain"><span>Normal clearance</span><b>→</b><span>Case: clearance falls</span><b>→</b><span>Elimination slows</span><b>→</b><span>Exposure rises</span><b>→</b><span>Effect/toxicity may change</span></div>
+        <p>Use the clearance slider to model a case in which elimination capacity changes. Compare the new half-life and area under the concentration–time curve with the reference state. A real clinical decision requires drug-specific data, patient factors, validated equations, indication, route, formulation, monitoring and current local guidance.</p>
+        <div class="pkpd-note"><strong>Safety boundary:</strong> this educational simulator does not calculate an individualized dose and must not be used as a prescribing tool.</div>
+      </div>
+    </div>
+
+    <div class="pkpd-panel" data-panel="meaning">
+      <div class="pkpd-result-card">
+        <h3>3. Teach the same relationship at the appropriate depth</h3>
+        <div class="pkpd-depth-card" data-depth-card="foundation"><strong>Foundation</strong><p>Dose enters the body, drug concentration changes with time, and the body removes drug. More exposure can increase effect until the system approaches a maximum response.</p></div>
+        <div class="pkpd-depth-card active" data-depth-card="clinical"><strong>Clinical</strong><p>Clearance and volume determine elimination rate and half-life. Bioavailability changes systemic exposure. Pharmacodynamic response depends on concentration relative to potency and the achievable maximum effect.</p></div>
+        <div class="pkpd-depth-card" data-depth-card="advanced"><strong>Advanced</strong><p>Interpret exposure metrics such as Cmax, AUC and trough in the context of therapeutic index, accumulation, steady state, nonlinear behavior, active metabolites, protein binding and organ function.</p></div>
+        <div class="pkpd-depth-card" data-depth-card="scientist"><strong>Scientist</strong><p>Extend beyond the one-compartment model to population PK, nonlinear mixed-effects modeling, covariate models, target-mediated disposition, physiologically based PK, exposure–response modeling and model-informed precision dosing. Model assumptions and uncertainty must remain explicit.</p></div>
+        <table class="pkpd-table"><tr><th>Variable</th><th>Meaning</th><th>Typical unit</th></tr>
+          <tr><td>CL</td><td>Clearance: apparent volume cleared per time</td><td>L/h</td></tr>
+          <tr><td>Vd</td><td>Apparent volume of distribution</td><td>L</td></tr>
+          <tr><td>F</td><td>Fraction reaching systemic circulation</td><td>unitless</td></tr>
+          <tr><td>EC50</td><td>Concentration producing 50% of Emax in this simple model</td><td>concentration unit</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="pkpd-panel" data-panel="evidence">
+      <div class="pkpd-result-card">
+        <h3>4. Evidence, uncertainty and research frontier</h3>
+        <div class="pkpd-evidence"><strong>Established model concepts:</strong> clearance, apparent volume, first-order elimination, half-life, AUC and Emax relationships are foundational quantitative pharmacology concepts. Their applicability depends on the drug and model assumptions.</div>
+        <p><strong>Model-dependent:</strong> the displayed concentration curve assumes an instantaneous systemic input into a one-compartment model with first-order elimination. It is not a universal representation of oral absorption or multicompartment disposition.</p>
+        <p><strong>Advanced/frontier layer:</strong> mechanistic PBPK, population PK/PD, Bayesian forecasting, quantitative systems pharmacology, digital biomarkers and model-informed precision dosing can integrate richer physiology and uncertainty. GPSJ should label validated clinical tools separately from research models.</p>
+        <div class="pkpd-note"><strong>Regional practice:</strong> dosing recommendations, therapeutic drug monitoring targets, approved indications and product information must be loaded from verified jurisdiction-specific sources rather than inferred from universal equations.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const ids=['pDose','pF','pCL','pVd','pEC50','pEmax'];
+  const ref={pDose:500,pF:.8,pCL:5,pVd:50,pEC50:4,pEmax:100};
+
+  function values(){
+    return {D:+$('pDose').value,F:+$('pF').value,CL:+$('pCL').value,V:+$('pVd').value,EC50:+$('pEC50').value,Emax:+$('pEmax').value};
+  }
+  function updateLabels(v){
+    $('vDose').textContent=v.D.toFixed(0)+' mg';
+    $('vF').textContent=v.F.toFixed(2);
+    $('vCL').textContent=v.CL.toFixed(1)+' L/h';
+    $('vVd').textContent=v.V.toFixed(0)+' L';
+    $('vEC50').textContent=v.EC50.toFixed(1)+' mg/L';
+    $('vEmax').textContent=v.Emax.toFixed(0)+'%';
+  }
+  function draw(){
+    const v=values(), k=v.CL/v.V, c0=v.F*v.D/v.V, half=.693/k, auc=v.F*v.D/v.CL, effect=v.Emax*c0/(v.EC50+c0);
+    updateLabels(v);
+    $('mC0').textContent=c0.toFixed(2)+' mg/L';
+    $('mHalf').textContent=half.toFixed(1)+' h';
+    $('mAUC').textContent=auc.toFixed(1)+' mg·h/L';
+    $('mEffect').textContent=effect.toFixed(0)+'%';
+
+    const cv=$('pkpdCanvas'), ctx=cv.getContext('2d');
+    const cssW=cv.clientWidth||800, cssH=cv.clientHeight||330, dpr=window.devicePixelRatio||1;
+    cv.width=Math.round(cssW*dpr); cv.height=Math.round(cssH*dpr); ctx.setTransform(dpr,0,0,dpr,0,0);
+    const W=cssW,H=cssH,p={l:52,r:18,t:18,b:40}, maxT=24, maxC=Math.max(2,c0*1.12);
+    ctx.clearRect(0,0,W,H); ctx.strokeStyle='#dfe5f0';ctx.lineWidth=1;
+    for(let i=0;i<=4;i++){let y=p.t+(H-p.t-p.b)*i/4;ctx.beginPath();ctx.moveTo(p.l,y);ctx.lineTo(W-p.r,y);ctx.stroke();}
+    ctx.fillStyle='#667085';ctx.font='12px system-ui';
+    ctx.fillText('Concentration',5,16);ctx.fillText('Time (h)',W-58,H-9);
+    ctx.strokeStyle='#3158d8';ctx.lineWidth=3;ctx.beginPath();
+    for(let i=0;i<=120;i++){let t=maxT*i/120,c=c0*Math.exp(-k*t),x=p.l+(W-p.l-p.r)*t/maxT,y=p.t+(H-p.t-p.b)*(1-c/maxC);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)}
+    ctx.stroke();
+    ctx.fillStyle='#3158d8';ctx.fillText('0',p.l-4,H-p.b+18);ctx.fillText('24',W-p.r-12,H-p.b+18);
+  }
+  ids.forEach(id=>$(id).addEventListener('input',draw));
+  $('pkpdReset').addEventListener('click',()=>{Object.keys(ref).forEach(id=>$(id).value=ref[id]);draw()});
+  document.querySelectorAll('#pkpdTabs button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('#pkpdTabs button').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+    document.querySelectorAll('.pkpd-panel').forEach(p=>p.classList.toggle('active',p.dataset.panel===b.dataset.tab));
+  }));
+  document.querySelectorAll('#pkpdDepth button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('#pkpdDepth button').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+    document.querySelectorAll('[data-depth-card]').forEach(c=>c.classList.toggle('active',c.dataset.depthCard===b.dataset.depth));
+    try{let p=JSON.parse(localStorage.getItem('gpsjAdaptiveProfile')||'{}');p.depth=b.dataset.depth;localStorage.setItem('gpsjAdaptiveProfile',JSON.stringify(p))}catch(e){}
+  }));
+  window.addEventListener('resize',()=>requestAnimationFrame(draw));
+  draw();
+})();
+</script>
+<!-- END GPSJ v0.9 -->
