@@ -2779,30 +2779,575 @@ function startPharmacologyLesson4(){
   const title = document.getElementById('lessonTitle');
   const text = document.getElementById('lessonText');
 
-  title.textContent = 'Lesson 4 — Therapeutic Index and Safety';
+  title.textContent = 'Lesson 4 — Therapeutic Index and Drug Safety';
 
   text.innerHTML = `
-    <h3>Therapeutic index</h3>
+    <h3>Learning objectives</h3>
 
-    <p>
-      The <strong>therapeutic index</strong> compares doses that
-      produce therapeutic effects with doses that produce toxicity.
-    </p>
+    <p>By the end of this lesson, you should be able to:</p>
 
-    <p>
-      Drugs with a <strong>narrow therapeutic index</strong>
-      require closer monitoring because small dose changes may
-      significantly increase toxicity risk.
-    </p>
-
-    <p><strong>Examples:</strong> warfarin, digoxin and lithium.</p>
+    <ul>
+      <li>Define therapeutic window and therapeutic index.</li>
+      <li>Differentiate narrow and wide therapeutic index drugs.</li>
+      <li>Explain why therapeutic drug monitoring is necessary.</li>
+      <li>Recognize important examples such as warfarin, digoxin, lithium and phenytoin.</li>
+      <li>Differentiate adverse effects, toxicity, side effects and contraindications.</li>
+      <li>Explain dose-related and idiosyncratic adverse drug reactions.</li>
+      <li>Recognize important patient factors that increase drug toxicity.</li>
+      <li>Understand basic concepts of drug interactions and safety monitoring.</li>
+    </ul>
 
     <hr>
 
-    <h3>Quick Check</h3>
+    <h3>1. Therapeutic effect versus toxic effect</h3>
 
     <p>
-      Which situation generally requires closer drug monitoring?
+      A drug produces a <strong>therapeutic effect</strong> when its pharmacological
+      action provides the intended clinical benefit.
+    </p>
+
+    <p>
+      A <strong>toxic effect</strong> occurs when drug exposure causes harmful
+      physiological effects.
+    </p>
+
+    <p>
+      The goal of pharmacotherapy is therefore to maintain drug exposure
+      high enough for benefit but low enough to avoid unacceptable toxicity.
+    </p>
+
+    <p><strong>Basic concept:</strong></p>
+
+    <p>
+      Dose → Drug concentration → Therapeutic response
+      <br>
+      Excessive concentration → Toxicity
+    </p>
+
+    <hr>
+
+    <h3>2. Therapeutic window</h3>
+
+    <p>
+      The <strong>therapeutic window</strong> is the range of drug concentrations
+      between the minimum concentration that produces useful therapeutic effects
+      and the concentration at which significant toxicity becomes more likely.
+    </p>
+
+    <p>
+      A wide therapeutic window generally provides more flexibility in dosing.
+    </p>
+
+    <p>
+      A narrow therapeutic window requires much greater attention to dose,
+      patient characteristics, drug interactions and laboratory monitoring.
+    </p>
+
+    <hr>
+
+    <h3>3. Therapeutic index</h3>
+
+    <p>
+      The <strong>therapeutic index</strong> compares toxic and effective doses.
+    </p>
+
+    <p>
+      A simplified relationship is:
+    </p>
+
+    <p>
+      <strong>Therapeutic Index = Toxic Dose / Effective Dose</strong>
+    </p>
+
+    <p>
+      In experimental pharmacology, this may be represented as:
+    </p>
+
+    <p>
+      <strong>TI = TD50 / ED50</strong>
+    </p>
+
+    <p>
+      <strong>TD50</strong> = dose producing toxicity in 50% of a population.
+    </p>
+
+    <p>
+      <strong>ED50</strong> = dose producing the desired effect in 50% of a population.
+    </p>
+
+    <p>
+      A larger separation between effective and toxic doses generally indicates
+      a larger safety margin.
+    </p>
+
+    <hr>
+
+    <h3>4. Narrow therapeutic index</h3>
+
+    <p>
+      A <strong>narrow therapeutic index</strong> means that therapeutic and toxic
+      concentrations are relatively close together.
+    </p>
+
+    <p>
+      Small changes in dose, absorption, metabolism or elimination may therefore
+      produce clinically significant toxicity or loss of therapeutic effect.
+    </p>
+
+    <p><strong>Important examples include:</strong></p>
+
+    <ul>
+      <li>Warfarin</li>
+      <li>Digoxin</li>
+      <li>Lithium</li>
+      <li>Phenytoin</li>
+      <li>Tacrolimus</li>
+      <li>Cyclosporine</li>
+      <li>Theophylline</li>
+    </ul>
+
+    <hr>
+
+    <h3>5. Therapeutic drug monitoring</h3>
+
+    <p>
+      <strong>Therapeutic drug monitoring</strong> uses measured drug concentrations
+      and clinical information to guide treatment.
+    </p>
+
+    <p>
+      Monitoring is especially useful when:
+    </p>
+
+    <ul>
+      <li>The therapeutic window is narrow.</li>
+      <li>Drug concentrations correlate with efficacy or toxicity.</li>
+      <li>Pharmacokinetics vary substantially among patients.</li>
+      <li>Clinical response is difficult to measure directly.</li>
+      <li>Major drug interactions are possible.</li>
+    </ul>
+
+    <hr>
+
+    <h3>6. Peak and trough concentrations</h3>
+
+    <p>
+      A <strong>peak concentration</strong> is a high drug concentration occurring
+      after administration.
+    </p>
+
+    <p>
+      A <strong>trough concentration</strong> is generally measured immediately
+      before the next scheduled dose.
+    </p>
+
+    <p>
+      Depending on the medication, peak or trough concentrations may help evaluate
+      therapeutic exposure and toxicity risk.
+    </p>
+
+    <p>
+      Timing is critical. A concentration obtained at the wrong time can be
+      misleading.
+    </p>
+
+    <hr>
+
+    <h3>7. Warfarin safety</h3>
+
+    <p>
+      Warfarin inhibits <strong>vitamin K epoxide reductase</strong>.
+    </p>
+
+    <p>
+      This decreases regeneration of reduced vitamin K and reduces production
+      of functional vitamin K-dependent clotting factors:
+    </p>
+
+    <p>
+      <strong>Factors II, VII, IX and X</strong>
+    </p>
+
+    <p>
+      Excessive anticoagulation increases bleeding risk.
+    </p>
+
+    <p>
+      Warfarin therapy is commonly monitored using the
+      <strong>International Normalized Ratio (INR)</strong>.
+    </p>
+
+    <p><strong>Mechanistic chain:</strong></p>
+
+    <p>
+      Warfarin → vitamin K epoxide reductase inhibition →
+      reduced active vitamin K → reduced clotting factor activity →
+      reduced coagulation → increased bleeding risk
+    </p>
+
+    <hr>
+
+    <h3>8. Digoxin safety</h3>
+
+    <p>
+      Digoxin has a relatively narrow therapeutic range.
+    </p>
+
+    <p>
+      Toxicity may produce:
+    </p>
+
+    <ul>
+      <li>Nausea and vomiting</li>
+      <li>Loss of appetite</li>
+      <li>Confusion</li>
+      <li>Visual disturbances</li>
+      <li>Cardiac arrhythmias</li>
+    </ul>
+
+    <p>
+      Renal function is important because digoxin is substantially eliminated
+      through the kidneys.
+    </p>
+
+    <p>
+      Reduced renal clearance can therefore increase drug concentration
+      and toxicity risk.
+    </p>
+
+    <hr>
+
+    <h3>9. Lithium safety</h3>
+
+    <p>
+      Lithium also has a narrow therapeutic index.
+    </p>
+
+    <p>
+      Lithium concentrations may increase when renal elimination decreases.
+    </p>
+
+    <p>
+      Toxicity may include:
+    </p>
+
+    <ul>
+      <li>Tremor</li>
+      <li>Vomiting or diarrhea</li>
+      <li>Confusion</li>
+      <li>Ataxia</li>
+      <li>Seizures in severe toxicity</li>
+    </ul>
+
+    <p>
+      Renal function, fluid balance and sodium balance can significantly affect
+      lithium concentrations.
+    </p>
+
+    <hr>
+
+    <h3>10. Phenytoin and nonlinear kinetics</h3>
+
+    <p>
+      Phenytoin is an important example because its metabolism can become saturated.
+    </p>
+
+    <p>
+      Once metabolic pathways approach saturation, a relatively small increase
+      in dose may produce a disproportionately large increase in plasma concentration.
+    </p>
+
+    <p>
+      This contributes to its toxicity risk and makes careful dose adjustment important.
+    </p>
+
+    <hr>
+
+    <h3>11. Adverse drug reaction</h3>
+
+    <p>
+      An <strong>adverse drug reaction</strong> is a harmful or unintended response
+      associated with medication use.
+    </p>
+
+    <p>
+      Adverse effects may range from mild discomfort to severe organ toxicity,
+      life-threatening reactions or death.
+    </p>
+
+    <hr>
+
+    <h3>12. Side effect versus toxicity</h3>
+
+    <p>
+      A <strong>side effect</strong> is an additional pharmacological effect
+      occurring alongside the intended therapeutic action.
+    </p>
+
+    <p>
+      <strong>Toxicity</strong> generally refers to harmful effects caused by
+      excessive pharmacological exposure or damaging drug effects.
+    </p>
+
+    <p>
+      Not every side effect represents overdose or toxicity.
+    </p>
+
+    <hr>
+
+    <h3>13. Dose-related adverse reactions</h3>
+
+    <p>
+      Many adverse reactions are predictable from a drug's known pharmacology
+      and become more likely as dose or concentration increases.
+    </p>
+
+    <p><strong>Examples:</strong></p>
+
+    <ul>
+      <li>Insulin → excessive glucose lowering → hypoglycemia</li>
+      <li>Warfarin → excessive anticoagulation → bleeding</li>
+      <li>Opioids → excessive mu-receptor activation → respiratory depression</li>
+      <li>Antihypertensives → excessive blood pressure reduction → hypotension</li>
+    </ul>
+
+    <hr>
+
+    <h3>14. Idiosyncratic reactions</h3>
+
+    <p>
+      An <strong>idiosyncratic reaction</strong> is an unusual and often unpredictable
+      response that does not simply reflect the expected dose-dependent pharmacology
+      of the medication.
+    </p>
+
+    <p>
+      Genetic susceptibility can sometimes contribute.
+    </p>
+
+    <hr>
+
+    <h3>15. Allergic reactions</h3>
+
+    <p>
+      A drug allergy involves an immune-mediated reaction to a medication
+      or one of its components.
+    </p>
+
+    <p>
+      Possible manifestations include:
+    </p>
+
+    <ul>
+      <li>Rash</li>
+      <li>Urticaria</li>
+      <li>Angioedema</li>
+      <li>Bronchospasm</li>
+      <li>Anaphylaxis</li>
+    </ul>
+
+    <p>
+      Drug allergy should not automatically be used as a synonym for every
+      medication intolerance or adverse effect.
+    </p>
+
+    <hr>
+
+    <h3>16. Contraindications</h3>
+
+    <p>
+      A <strong>contraindication</strong> is a circumstance in which a medication
+      should generally not be used because the expected risk is unacceptably high.
+    </p>
+
+    <p>
+      Contraindications may relate to:
+    </p>
+
+    <ul>
+      <li>Specific diseases</li>
+      <li>Pregnancy</li>
+      <li>Severe organ dysfunction</li>
+      <li>Serious drug interactions</li>
+      <li>Previous severe hypersensitivity</li>
+    </ul>
+
+    <hr>
+
+    <h3>17. Renal impairment and toxicity</h3>
+
+    <p>
+      If a medication is primarily eliminated by the kidneys,
+      reduced renal function can decrease clearance.
+    </p>
+
+    <p><strong>Mechanism:</strong></p>
+
+    <p>
+      Reduced renal function → reduced drug elimination →
+      increased plasma concentration → increased toxicity risk
+    </p>
+
+    <p>
+      Dose reduction or a longer dosing interval may therefore be required
+      for some medications.
+    </p>
+
+    <hr>
+
+    <h3>18. Hepatic impairment and toxicity</h3>
+
+    <p>
+      The liver is an important site of drug metabolism.
+    </p>
+
+    <p>
+      Severe hepatic dysfunction can reduce metabolism of certain medications,
+      potentially increasing systemic exposure.
+    </p>
+
+    <p>
+      The clinical effect depends on the specific drug, metabolic pathway,
+      hepatic blood flow and degree of liver dysfunction.
+    </p>
+
+    <hr>
+
+    <h3>19. Drug interactions</h3>
+
+    <p>
+      Drug interactions can increase or decrease medication exposure or response.
+    </p>
+
+    <p>
+      An enzyme inhibitor may reduce metabolism of a substrate,
+      increasing its concentration.
+    </p>
+
+    <p>
+      An enzyme inducer may increase metabolism,
+      potentially reducing drug concentration.
+    </p>
+
+    <p><strong>General pattern:</strong></p>
+
+    <p>
+      Enzyme inhibition → slower metabolism → concentration may rise
+      <br>
+      Enzyme induction → faster metabolism → concentration may fall
+    </p>
+
+    <hr>
+
+    <h3>20. Pharmacodynamic interactions</h3>
+
+    <p>
+      Some interactions occur without changing drug concentration.
+    </p>
+
+    <p>
+      Instead, two medications may produce additive or opposing physiological effects.
+    </p>
+
+    <p><strong>Example:</strong></p>
+
+    <p>
+      Opioid + another central nervous system depressant →
+      greater central nervous system depression →
+      increased sedation and respiratory risk
+    </p>
+
+    <hr>
+
+    <h3>21. High-alert medications</h3>
+
+    <p>
+      Some medications can cause especially serious harm when used incorrectly.
+    </p>
+
+    <p>
+      Important examples commonly encountered in medication safety include:
+    </p>
+
+    <ul>
+      <li>Insulin</li>
+      <li>Anticoagulants</li>
+      <li>Opioids</li>
+      <li>Concentrated electrolytes</li>
+      <li>Certain chemotherapy agents</li>
+    </ul>
+
+    <p>
+      These drugs often require additional safeguards during prescribing,
+      preparation, dispensing and administration.
+    </p>
+
+    <hr>
+
+    <h3>22. Patient-specific toxicity risk</h3>
+
+    <p>
+      Drug safety is influenced by more than the prescribed dose.
+    </p>
+
+    <p>Important factors include:</p>
+
+    <ul>
+      <li>Age</li>
+      <li>Body size</li>
+      <li>Renal function</li>
+      <li>Hepatic function</li>
+      <li>Genetic variation</li>
+      <li>Other medications</li>
+      <li>Hydration status</li>
+      <li>Electrolyte abnormalities</li>
+      <li>Adherence</li>
+    </ul>
+
+    <hr>
+
+    <h3>23. Medication safety workflow</h3>
+
+    <p>
+      Safe medication use requires multiple layers of assessment:
+    </p>
+
+    <p>
+      Correct patient → correct medication → correct dose →
+      correct route → correct timing → interaction assessment →
+      monitoring → clinical reassessment
+    </p>
+
+    <hr>
+
+    <h3>High-yield summary</h3>
+
+    <p><strong>Therapeutic window:</strong> useful exposure range between inadequate effect and toxicity.</p>
+
+    <p><strong>Therapeutic index:</strong> relationship between toxic and effective doses.</p>
+
+    <p><strong>Narrow therapeutic index:</strong> small separation between therapeutic and toxic exposure.</p>
+
+    <p><strong>Therapeutic drug monitoring:</strong> measurement of drug concentrations when clinically useful.</p>
+
+    <p><strong>Warfarin:</strong> monitor anticoagulant effect with INR.</p>
+
+    <p><strong>Digoxin:</strong> toxicity risk increases with impaired clearance.</p>
+
+    <p><strong>Lithium:</strong> renal function and fluid/sodium balance strongly influence concentrations.</p>
+
+    <p><strong>Phenytoin:</strong> nonlinear kinetics can produce disproportionate concentration increases.</p>
+
+    <p><strong>Enzyme inhibition:</strong> may increase substrate concentration.</p>
+
+    <p><strong>Enzyme induction:</strong> may decrease substrate concentration.</p>
+
+    <hr>
+
+    <h3>Knowledge Check 1</h3>
+
+    <p>
+      Which medication characteristic generally requires closer monitoring?
     </p>
 
     <button class="btn" onclick="checkPharmTIAnswer('A')">
@@ -2815,6 +3360,64 @@ function startPharmacologyLesson4(){
 
     <p id="pharmTIAnswer"></p>
 
+    <hr>
+
+    <h3>Knowledge Check 2</h3>
+
+    <p>
+      Reduced kidney function is most likely to increase toxicity of a
+      renally eliminated drug by doing what?
+    </p>
+
+    <button class="btn" onclick="checkTIRenal('A')">
+      A. Decreasing drug clearance
+    </button>
+
+    <button class="btn" onclick="checkTIRenal('B')">
+      B. Increasing drug clearance
+    </button>
+
+    <p id="tiRenalAnswer"></p>
+
+    <hr>
+
+    <h3>Knowledge Check 3</h3>
+
+    <p>
+      Which laboratory measure is commonly used to monitor warfarin therapy?
+    </p>
+
+    <button class="btn" onclick="checkTIWarfarin('A')">
+      A. INR
+    </button>
+
+    <button class="btn" onclick="checkTIWarfarin('B')">
+      B. Serum amylase
+    </button>
+
+    <p id="tiWarfarinAnswer"></p>
+
+    <hr>
+
+    <h3>Knowledge Check 4</h3>
+
+    <p>
+      What can happen when a metabolic enzyme is inhibited
+      for a drug that depends on that enzyme for elimination?
+    </p>
+
+    <button class="btn" onclick="checkTIInhibition('A')">
+      A. Drug concentration may increase
+    </button>
+
+    <button class="btn" onclick="checkTIInhibition('B')">
+      B. Drug concentration must decrease
+    </button>
+
+    <p id="tiInhibitionAnswer"></p>
+
+    <br>
+
     <button class="btn primary" onclick="openPharmModule1Menu()">
       Back to Module 1
     </button>
@@ -2826,10 +3429,46 @@ function checkPharmTIAnswer(answer){
 
   if(answer === 'A'){
     result.innerHTML =
-      '<strong>Correct ✓</strong> Narrow therapeutic index drugs generally require closer monitoring.';
+      '<strong>Correct ✓</strong> Narrow therapeutic index drugs generally require closer monitoring because therapeutic and toxic exposures are relatively close.';
   } else {
     result.innerHTML =
-      '<strong>Not quite.</strong> Narrow therapeutic index drugs have less separation between effective and toxic doses.';
+      '<strong>Not quite.</strong> A wide therapeutic index generally provides a larger safety margin.';
+  }
+}
+
+function checkTIRenal(answer){
+  const result = document.getElementById('tiRenalAnswer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Reduced renal function can decrease clearance, causing drug accumulation and increasing toxicity risk.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Renal impairment generally reduces clearance of drugs that depend heavily on the kidneys for elimination.';
+  }
+}
+
+function checkTIWarfarin(answer){
+  const result = document.getElementById('tiWarfarinAnswer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Warfarin anticoagulant effect is commonly monitored using the International Normalized Ratio (INR).';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> INR is the key monitoring parameter associated with warfarin therapy.';
+  }
+}
+
+function checkTIInhibition(answer){
+  const result = document.getElementById('tiInhibitionAnswer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Enzyme inhibition can reduce metabolism and increase drug concentration when that pathway is important for elimination.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Inhibiting an important metabolic pathway can slow elimination and raise drug exposure.';
   }
 }
 document.getElementById('referralButton').addEventListener('click',()=>{
