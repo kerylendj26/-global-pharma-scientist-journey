@@ -5742,6 +5742,855 @@ function checkCardioCCB5(answer){
       '<strong>Not quite.</strong> Amlodipine and felodipine are dihydropyridines whose clinically dominant effect is vascular smooth-muscle relaxation.';
   }
 }
+  /* =========================================================
+   MODULE 2 — CARDIOVASCULAR PHARMACOLOGY
+   LESSON 5 — DIURETICS
+   ========================================================= */
+
+function startCardioLesson5(){
+
+  const title = document.getElementById('lessonTitle');
+  const text = document.getElementById('lessonText');
+
+  title.textContent = 'Lesson 5 — Diuretics';
+
+  text.innerHTML = `
+
+  <h2>Lesson 5 — Diuretics</h2>
+
+  <h3>Learning objectives</h3>
+
+  <p>By the end of this lesson, you should be able to:</p>
+
+  <ul>
+    <li>Explain how the nephron handles sodium and water.</li>
+    <li>Identify the major nephron sites targeted by diuretic classes.</li>
+    <li>Differentiate loop, thiazide, potassium-sparing and osmotic diuretics.</li>
+    <li>Identify major generic and common brand-name diuretics.</li>
+    <li>Connect transporter or receptor blockade to electrolyte changes and therapeutic effects.</li>
+    <li>Recognize hypokalemia, hyperkalemia, hyponatremia and volume depletion.</li>
+    <li>Explain important adverse effects such as ototoxicity, hyperuricemia and endocrine effects.</li>
+    <li>Identify important contraindications, interactions and monitoring parameters.</li>
+  </ul>
+
+  <hr>
+
+  <h3>1. Nephron overview</h3>
+
+  <p>
+    The kidney controls extracellular fluid volume, electrolyte balance and blood pressure
+    by filtering plasma and selectively reabsorbing sodium, water and other solutes along
+    different nephron segments.
+  </p>
+
+  <div class="callout">
+    <strong>NEPHRON MAP</strong><br><br>
+
+    Glomerulus<br>
+    ↓<br>
+    Proximal convoluted tubule<br>
+    ↓<br>
+    Descending loop of Henle<br>
+    ↓<br>
+    Thick ascending loop of Henle<br>
+    ↓<br>
+    Distal convoluted tubule<br>
+    ↓<br>
+    Collecting duct
+  </div>
+
+  <p>
+    Diuretics work by decreasing sodium reabsorption at specific nephron sites.
+    Water follows sodium, increasing urine output.
+  </p>
+
+  <div class="callout">
+    <strong>CORE CONCEPT</strong><br><br>
+
+    ↓ Sodium reabsorption<br>
+    ↓<br>
+    ↑ Sodium remains in tubular fluid<br>
+    ↓<br>
+    Water remains in the nephron<br>
+    ↓<br>
+    ↑ Urine volume<br>
+    ↓<br>
+    ↓ Extracellular fluid volume<br>
+    ↓<br>
+    ↓ Blood pressure / ↓ congestion
+  </div>
+
+  <hr>
+
+  <h3>2. Major diuretic classes and sites of action</h3>
+
+  <table style="width:100%;border-collapse:collapse;">
+    <tr>
+      <th style="border:1px solid #ccc;padding:8px;">Class</th>
+      <th style="border:1px solid #ccc;padding:8px;">Primary site</th>
+      <th style="border:1px solid #ccc;padding:8px;">Main target</th>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Carbonic anhydrase inhibitor</td>
+      <td style="border:1px solid #ccc;padding:8px;">Proximal tubule</td>
+      <td style="border:1px solid #ccc;padding:8px;">Carbonic anhydrase</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Osmotic diuretic</td>
+      <td style="border:1px solid #ccc;padding:8px;">Proximal tubule / descending limb</td>
+      <td style="border:1px solid #ccc;padding:8px;">Increases tubular osmotic pressure</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Loop diuretic</td>
+      <td style="border:1px solid #ccc;padding:8px;">Thick ascending limb</td>
+      <td style="border:1px solid #ccc;padding:8px;">Na⁺/K⁺/2Cl⁻ cotransporter</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Thiazide diuretic</td>
+      <td style="border:1px solid #ccc;padding:8px;">Distal convoluted tubule</td>
+      <td style="border:1px solid #ccc;padding:8px;">Na⁺/Cl⁻ cotransporter</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Potassium-sparing diuretic</td>
+      <td style="border:1px solid #ccc;padding:8px;">Collecting duct</td>
+      <td style="border:1px solid #ccc;padding:8px;">Aldosterone receptor or ENaC</td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <h3>3. Loop diuretics</h3>
+
+  <div class="callout">
+    <strong>MAJOR LOOP DIURETICS</strong><br><br>
+
+    Furosemide — Lasix<br>
+    Bumetanide — Bumex<br>
+    Torsemide — Demadex<br>
+    Ethacrynic acid — Edecrin
+  </div>
+
+  <p>
+    Loop diuretics are among the most potent commonly used diuretics.
+  </p>
+
+  <div class="callout">
+    <strong>LOOP MECHANISM</strong><br><br>
+
+    Loop diuretic<br>
+    ↓<br>
+    Blocks Na⁺/K⁺/2Cl⁻ cotransporter in thick ascending limb<br>
+    ↓<br>
+    Reduced sodium and chloride reabsorption<br>
+    ↓<br>
+    Increased sodium delivery downstream<br>
+    ↓<br>
+    Increased water excretion<br>
+    ↓<br>
+    <strong>Powerful diuresis</strong>
+  </div>
+
+  <p>
+    Loop diuretics also reduce the lumen-positive electrical gradient in the thick ascending limb.
+    This decreases paracellular calcium and magnesium reabsorption.
+  </p>
+
+  <div class="callout">
+    <strong>LOOP ELECTROLYTE EFFECTS</strong><br><br>
+
+    ↓ Sodium<br>
+    ↓ Potassium<br>
+    ↓ Magnesium<br>
+    ↓ Calcium<br><br>
+
+    Think: <strong>loops lose calcium</strong>.
+  </div>
+
+  <hr>
+
+  <h3>4. Major uses of loop diuretics</h3>
+
+  <ul>
+    <li>Heart failure with volume overload</li>
+    <li>Pulmonary edema</li>
+    <li>Peripheral edema</li>
+    <li>Edema associated with renal disease</li>
+    <li>Selected hypertension cases</li>
+    <li>Hypercalcemia as part of appropriate management</li>
+  </ul>
+
+  <hr>
+
+  <h3>5. Loop diuretic adverse effects</h3>
+
+  <div class="callout">
+    <strong>LOOP TOXICITY BOARD</strong><br><br>
+
+    Hypokalemia<br>
+    Hyponatremia<br>
+    Hypomagnesemia<br>
+    Volume depletion<br>
+    Hypotension<br>
+    Metabolic alkalosis<br>
+    Hyperuricemia<br>
+    Ototoxicity
+  </div>
+
+  <p>
+    <strong>Ototoxicity</strong> is especially important with high doses, rapid intravenous administration,
+    severe renal impairment or concomitant use of other ototoxic drugs.
+  </p>
+
+  <p>
+    Ethacrynic acid is structurally distinct from the sulfonamide-containing loop agents and may be considered
+    when a clinically significant sulfonamide-related concern exists.
+  </p>
+
+  <hr>
+
+  <h3>6. Why do loop diuretics cause hypokalemia?</h3>
+
+  <div class="callout">
+    Loop diuretic<br>
+    ↓<br>
+    Increased sodium delivery to collecting duct<br>
+    ↓<br>
+    More sodium reabsorbed through epithelial sodium channels<br>
+    ↓<br>
+    Increased electrical drive for potassium secretion<br>
+    ↓<br>
+    <strong>Potassium loss</strong>
+  </div>
+
+  <p>
+    Volume depletion also activates the renin–angiotensin–aldosterone system, which can further promote
+    potassium secretion.
+  </p>
+
+  <hr>
+
+  <h3>7. Thiazide and thiazide-like diuretics</h3>
+
+  <div class="callout">
+    <strong>MAJOR THIAZIDE / THIAZIDE-LIKE DRUGS</strong><br><br>
+
+    Hydrochlorothiazide — Microzide<br>
+    Chlorthalidone — generic commonly used<br>
+    Indapamide — generic commonly used<br>
+    Metolazone — Zaroxolyn
+  </div>
+
+  <p>
+    Thiazides inhibit the sodium-chloride cotransporter in the distal convoluted tubule.
+  </p>
+
+  <div class="callout">
+    <strong>THIAZIDE MECHANISM</strong><br><br>
+
+    Thiazide<br>
+    ↓<br>
+    Blocks Na⁺/Cl⁻ cotransporter<br>
+    ↓<br>
+    Reduced sodium reabsorption<br>
+    ↓<br>
+    Increased sodium and water excretion<br>
+    ↓<br>
+    Reduced extracellular volume<br>
+    ↓<br>
+    Lower blood pressure
+  </div>
+
+  <hr>
+
+  <h3>8. Thiazides and calcium</h3>
+
+  <p>
+    Unlike loop diuretics, thiazides increase calcium reabsorption in the distal tubule.
+  </p>
+
+  <div class="callout">
+    <strong>CALCIUM MEMORY BOARD</strong><br><br>
+
+    Loop diuretics → calcium excretion ↑<br>
+    Thiazides → calcium excretion ↓<br><br>
+
+    <strong>Loops lose calcium; thiazides save calcium.</strong>
+  </div>
+
+  <hr>
+
+  <h3>9. Important thiazide adverse effects</h3>
+
+  <div class="callout">
+    Hypokalemia<br>
+    Hyponatremia<br>
+    Metabolic alkalosis<br>
+    Hyperuricemia<br>
+    Hypercalcemia<br>
+    Hyperglycemia may occur<br>
+    Hypotension / dehydration
+  </div>
+
+  <p>
+    Thiazides may increase uric acid and can precipitate gout in susceptible patients.
+  </p>
+
+  <hr>
+
+  <h3>10. Potassium-sparing diuretics</h3>
+
+  <p>
+    Potassium-sparing agents act in the collecting duct and produce weaker natriuresis than loop or thiazide diuretics,
+    but they reduce urinary potassium loss.
+  </p>
+
+  <div class="callout">
+    <strong>ALDOSTERONE ANTAGONISTS</strong><br><br>
+
+    Spironolactone — Aldactone<br>
+    Eplerenone — Inspra
+  </div>
+
+  <div class="callout">
+    <strong>EPITHELIAL SODIUM CHANNEL BLOCKERS</strong><br><br>
+
+    Amiloride — Midamor<br>
+    Triamterene — Dyrenium
+  </div>
+
+  <hr>
+
+  <h3>11. Aldosterone antagonist mechanism</h3>
+
+  <div class="callout">
+    Spironolactone / Eplerenone<br>
+    ↓<br>
+    Blocks mineralocorticoid receptor<br>
+    ↓<br>
+    Reduced aldosterone-driven sodium reabsorption<br>
+    ↓<br>
+    Reduced potassium secretion<br>
+    ↓<br>
+    <strong>Sodium loss + potassium retention</strong>
+  </div>
+
+  <p>
+    Spironolactone also has antiandrogenic and progesterone-receptor effects that contribute to some of its
+    endocrine adverse effects.
+  </p>
+
+  <hr>
+
+  <h3>12. Spironolactone adverse effects</h3>
+
+  <div class="callout">
+    <strong>SPIRONOLACTONE BOARD</strong><br><br>
+
+    Hyperkalemia<br>
+    Gynecomastia<br>
+    Breast tenderness<br>
+    Menstrual irregularities<br>
+    Sexual dysfunction may occur
+  </div>
+
+  <p>
+    Eplerenone is more selective for the mineralocorticoid receptor and generally causes fewer antiandrogenic effects.
+  </p>
+
+  <hr>
+
+  <h3>13. ENaC blocker mechanism</h3>
+
+  <div class="callout">
+    Amiloride / Triamterene<br>
+    ↓<br>
+    Blocks epithelial sodium channel (ENaC)<br>
+    ↓<br>
+    Reduced sodium entry into collecting-duct cells<br>
+    ↓<br>
+    Reduced potassium secretion<br>
+    ↓<br>
+    <strong>Potassium-sparing effect</strong>
+  </div>
+
+  <hr>
+
+  <h3>14. Hyperkalemia risk</h3>
+
+  <p>
+    Potassium-sparing diuretics can cause clinically important hyperkalemia.
+  </p>
+
+  <div class="callout">
+    <strong>HIGH-RISK COMBINATIONS</strong><br><br>
+
+    Potassium-sparing diuretic<br>
+    + ACE inhibitor<br>
+    + ARB<br>
+    + potassium supplement<br>
+    + other potassium-increasing therapies<br>
+    ↓<br>
+    <strong>Higher hyperkalemia risk</strong>
+  </div>
+
+  <hr>
+
+  <h3>15. Carbonic anhydrase inhibitors</h3>
+
+  <div class="callout">
+    <strong>MAJOR DRUG</strong><br><br>
+
+    Acetazolamide — Diamox
+  </div>
+
+  <p>
+    Carbonic anhydrase inhibitors act mainly in the proximal tubule.
+  </p>
+
+  <div class="callout">
+    Acetazolamide<br>
+    ↓<br>
+    Carbonic anhydrase inhibition<br>
+    ↓<br>
+    Reduced bicarbonate reabsorption<br>
+    ↓<br>
+    Increased bicarbonate loss in urine<br>
+    ↓<br>
+    <strong>Metabolic acidosis</strong>
+  </div>
+
+  <p>
+    Uses include glaucoma, prevention and treatment of acute mountain sickness,
+    selected metabolic alkalosis states and certain intracranial-pressure disorders.
+  </p>
+
+  <hr>
+
+  <h3>16. Osmotic diuretics</h3>
+
+  <div class="callout">
+    <strong>MAJOR DRUG</strong><br><br>
+
+    Mannitol — Osmitrol
+  </div>
+
+  <p>
+    Mannitol is filtered by the glomerulus but not significantly reabsorbed.
+    It increases tubular osmotic pressure and holds water within the nephron.
+  </p>
+
+  <div class="callout">
+    Mannitol in tubular fluid<br>
+    ↓<br>
+    Increased osmotic pressure<br>
+    ↓<br>
+    Water remains in nephron<br>
+    ↓<br>
+    Increased urine output
+  </div>
+
+  <p>
+    Mannitol may be used in selected situations involving increased intracranial or intraocular pressure.
+  </p>
+
+  <p>
+    It can initially expand extracellular volume and may worsen pulmonary edema or heart failure in susceptible patients.
+  </p>
+
+  <hr>
+
+  <h3>17. Diuretic comparison board</h3>
+
+  <table style="width:100%;border-collapse:collapse;">
+    <tr>
+      <th style="border:1px solid #ccc;padding:8px;">Class</th>
+      <th style="border:1px solid #ccc;padding:8px;">Potassium</th>
+      <th style="border:1px solid #ccc;padding:8px;">Calcium</th>
+      <th style="border:1px solid #ccc;padding:8px;">High-yield toxicity</th>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Loop</td>
+      <td style="border:1px solid #ccc;padding:8px;">↓</td>
+      <td style="border:1px solid #ccc;padding:8px;">↓</td>
+      <td style="border:1px solid #ccc;padding:8px;">Ototoxicity, hypokalemia</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Thiazide</td>
+      <td style="border:1px solid #ccc;padding:8px;">↓</td>
+      <td style="border:1px solid #ccc;padding:8px;">↑</td>
+      <td style="border:1px solid #ccc;padding:8px;">Hyperuricemia, hyponatremia</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Potassium-sparing</td>
+      <td style="border:1px solid #ccc;padding:8px;">↑</td>
+      <td style="border:1px solid #ccc;padding:8px;">Minimal direct effect</td>
+      <td style="border:1px solid #ccc;padding:8px;">Hyperkalemia</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Acetazolamide</td>
+      <td style="border:1px solid #ccc;padding:8px;">May decrease</td>
+      <td style="border:1px solid #ccc;padding:8px;">Variable</td>
+      <td style="border:1px solid #ccc;padding:8px;">Metabolic acidosis</td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <h3>18. Drug interaction board</h3>
+
+  <div class="callout">
+    <strong>Loop / Thiazide + Digoxin</strong><br>
+    Hypokalemia can increase digoxin toxicity risk.<br><br>
+
+    <strong>Diuretic + NSAID</strong><br>
+    Nonsteroidal anti-inflammatory drugs may reduce diuretic and antihypertensive response in some patients.<br><br>
+
+    <strong>Potassium-sparing + ACE inhibitor / ARB</strong><br>
+    Hyperkalemia risk increases.<br><br>
+
+    <strong>Thiazides + Lithium</strong><br>
+    Lithium concentrations may increase and toxicity risk may rise.
+  </div>
+
+  <hr>
+
+  <h3>19. Monitoring board</h3>
+
+  <div class="callout">
+    <strong>MONITOR</strong><br><br>
+
+    Blood pressure<br>
+    Body weight<br>
+    Volume status<br>
+    Sodium<br>
+    Potassium<br>
+    Magnesium when appropriate<br>
+    Renal function<br>
+    Uric acid when clinically relevant<br><br>
+
+    Potassium-sparing agents:<br>
+    <strong>watch potassium especially closely.</strong>
+  </div>
+
+  <hr>
+
+  <h3>20. Clinical reasoning case 1</h3>
+
+  <p>
+    A patient with acute pulmonary congestion receives intravenous furosemide.
+    Why can the medication improve symptoms?
+  </p>
+
+  <div class="callout">
+    Furosemide<br>
+    ↓<br>
+    Powerful natriuresis and diuresis<br>
+    ↓<br>
+    Reduced intravascular volume and venous congestion<br>
+    ↓<br>
+    Reduced pulmonary congestion
+  </div>
+
+  <hr>
+
+  <h3>21. Clinical reasoning case 2</h3>
+
+  <p>
+    A patient taking hydrochlorothiazide develops painful swelling of the first metatarsophalangeal joint.
+    Which adverse effect should be considered?
+  </p>
+
+  <div class="callout">
+    Thiazide<br>
+    ↓<br>
+    Reduced renal uric acid clearance in susceptible patients<br>
+    ↓<br>
+    Hyperuricemia<br>
+    ↓<br>
+    <strong>Gout flare</strong>
+  </div>
+
+  <hr>
+
+  <h3>22. Clinical reasoning case 3</h3>
+
+  <p>
+    A patient taking spironolactone and lisinopril develops muscle weakness.
+    Which electrolyte abnormality is especially concerning?
+  </p>
+
+  <div class="callout">
+    Spironolactone<br>
+    +<br>
+    ACE inhibitor<br>
+    ↓<br>
+    Reduced potassium elimination<br>
+    ↓<br>
+    <strong>Hyperkalemia</strong>
+  </div>
+
+  <hr>
+
+  <h3>23. High-yield memory board</h3>
+
+  <div class="callout">
+    <strong>DIURETIC MASTER MEMORY</strong><br><br>
+
+    LOOP<br>
+    Thick ascending limb<br>
+    Na/K/2Cl blocker<br>
+    Powerful<br>
+    ↓ K<br>
+    ↓ Ca<br>
+    Ototoxicity<br><br>
+
+    THIAZIDE<br>
+    Distal convoluted tubule<br>
+    Na/Cl blocker<br>
+    ↓ K<br>
+    ↑ Ca<br>
+    Hyperuricemia<br><br>
+
+    POTASSIUM-SPARING<br>
+    Collecting duct<br>
+    Aldosterone receptor or ENaC<br>
+    ↑ K<br>
+    Hyperkalemia risk<br><br>
+
+    ACETAZOLAMIDE<br>
+    Proximal tubule<br>
+    Carbonic anhydrase inhibitor<br>
+    Bicarbonate loss<br>
+    Metabolic acidosis<br><br>
+
+    MANNITOL<br>
+    Osmotic diuretic<br>
+    Holds water in tubular fluid
+  </div>
+
+  <hr>
+
+  <h3>Knowledge Check 1</h3>
+
+  <p>
+    Which transporter is inhibited by loop diuretics such as furosemide?
+  </p>
+
+  <button class="btn" onclick="checkCardioDIU1('A')">
+    A. Na⁺/K⁺/2Cl⁻ cotransporter
+  </button>
+
+  <button class="btn" onclick="checkCardioDIU1('B')">
+    B. Na⁺/Cl⁻ cotransporter
+  </button>
+
+  <p id="cardioDIU1Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 2</h3>
+
+  <p>
+    Which diuretic class generally increases calcium reabsorption?
+  </p>
+
+  <button class="btn" onclick="checkCardioDIU2('A')">
+    A. Thiazides
+  </button>
+
+  <button class="btn" onclick="checkCardioDIU2('B')">
+    B. Loop diuretics
+  </button>
+
+  <p id="cardioDIU2Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 3</h3>
+
+  <p>
+    Which electrolyte abnormality is a major concern with spironolactone?
+  </p>
+
+  <button class="btn" onclick="checkCardioDIU3('A')">
+    A. Hyperkalemia
+  </button>
+
+  <button class="btn" onclick="checkCardioDIU3('B')">
+    B. Severe hypokalemia
+  </button>
+
+  <p id="cardioDIU3Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 4</h3>
+
+  <p>
+    Which adverse effect is especially associated with loop diuretics?
+  </p>
+
+  <button class="btn" onclick="checkCardioDIU4('A')">
+    A. Ototoxicity
+  </button>
+
+  <button class="btn" onclick="checkCardioDIU4('B')">
+    B. Bradykinin-mediated cough
+  </button>
+
+  <p id="cardioDIU4Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 5</h3>
+
+  <p>
+    Why can hydrochlorothiazide worsen gout?
+  </p>
+
+  <button class="btn" onclick="checkCardioDIU5('A')">
+    A. It can increase uric acid concentration
+  </button>
+
+  <button class="btn" onclick="checkCardioDIU5('B')">
+    B. It directly converts uric acid to sodium
+  </button>
+
+  <p id="cardioDIU5Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 6</h3>
+
+  <p>
+    Which diuretic is a carbonic anhydrase inhibitor?
+  </p>
+
+  <button class="btn" onclick="checkCardioDIU6('A')">
+    A. Acetazolamide
+  </button>
+
+  <button class="btn" onclick="checkCardioDIU6('B')">
+    B. Torsemide
+  </button>
+
+  <p id="cardioDIU6Answer"></p>
+
+  <br>
+
+  <button class="btn primary" onclick="startPharmacologyModule(2)">
+    Back to Module 2
+  </button>
+
+  `;
+
+  const lessonBox = document.getElementById('lessonBox');
+
+  window.scrollTo({
+    top: lessonBox.offsetTop - 170,
+    behavior: 'smooth'
+  });
+}
+
+
+/* =========================================================
+   LESSON 5 KNOWLEDGE-CHECK FUNCTIONS
+   ========================================================= */
+
+function checkCardioDIU1(answer){
+
+  const result = document.getElementById('cardioDIU1Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Loop diuretics inhibit the Na⁺/K⁺/2Cl⁻ cotransporter in the thick ascending limb.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> The Na⁺/Cl⁻ cotransporter is the major target of thiazide diuretics.';
+  }
+}
+
+
+function checkCardioDIU2(answer){
+
+  const result = document.getElementById('cardioDIU2Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Thiazide diuretics increase calcium reabsorption and therefore reduce urinary calcium excretion.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Loop diuretics increase urinary calcium loss.';
+  }
+}
+
+
+function checkCardioDIU3(answer){
+
+  const result = document.getElementById('cardioDIU3Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Spironolactone is potassium-sparing and can cause clinically important hyperkalemia.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Spironolactone reduces potassium secretion rather than increasing it.';
+  }
+}
+
+
+function checkCardioDIU4(answer){
+
+  const result = document.getElementById('cardioDIU4Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Ototoxicity is an important adverse effect of loop diuretics, especially with high exposure or rapid intravenous administration.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Bradykinin-associated cough is characteristic of ACE inhibitors.';
+  }
+}
+
+
+function checkCardioDIU5(answer){
+
+  const result = document.getElementById('cardioDIU5Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Thiazide therapy can increase uric acid and precipitate gout in susceptible patients.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Thiazides do not convert uric acid into sodium.';
+  }
+}
+
+
+function checkCardioDIU6(answer){
+
+  const result = document.getElementById('cardioDIU6Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Acetazolamide inhibits carbonic anhydrase in the proximal tubule and promotes bicarbonate loss.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Torsemide is a loop diuretic.';
+  }
+}
+
+
+// Keep this below all pharmacology lessons
 document.getElementById('referralButton').addEventListener('click',()=>{
 
   const code=
