@@ -1168,7 +1168,29 @@ else if(moduleNumber === 2){
     </button>
   `;
 }
-  window.scrollTo({
+  else if(moduleNumber === 3){
+
+  title.textContent = 'Module 3 — Anticoagulants & Antiplatelets';
+
+  text.innerHTML = `
+    <h3>Anticoagulants & Antiplatelets Learning Path</h3>
+
+    <p><strong>Lesson 1:</strong> Hemostasis and the Coagulation Cascade</p>
+
+    <button class="btn primary" onclick="startAnticoagLesson(1)">
+      Open Lesson 1
+    </button>
+
+    <br><br>
+
+    <p><strong>Lesson 2:</strong> Unfractionated Heparin & Low-Molecular-Weight Heparins</p>
+
+    <button class="btn primary" onclick="startAnticoagLesson(2)">
+      Open Lesson 2
+    </button>
+  `;
+}
+    window.scrollTo({
     top: document.getElementById('lessonBox').offsetTop,
     behavior: 'smooth'
   });
@@ -1212,6 +1234,22 @@ else if(moduleNumber === 2){
 
   if(lessonNumber === 8){
     startCardioLesson8();
+    return;
+  }
+}
+/* =========================================================
+   MODULE 3 — ANTICOAGULANTS & ANTIPLATELETS LESSON ROUTER
+   ========================================================= */
+
+function startAnticoagLesson(lessonNumber){
+
+  if(lessonNumber === 1){
+    startAnticoagLesson1();
+    return;
+  }
+
+  if(lessonNumber === 2){
+    startAnticoagLesson2();
     return;
   }
 }
@@ -12361,6 +12399,622 @@ function checkAnticoag12(answer){
   } else {
     result.innerHTML =
       '<strong>Not quite.</strong> Hyperglycemia is not the common toxicity. The major concern is bleeding.';
+  }
+}
+ /* =========================================================
+   MODULE 3 — ANTICOAGULANTS & ANTIPLATELETS
+   LESSON 2 — UNFRACTIONATED HEPARIN & LMWH
+   ========================================================= */
+
+function startAnticoagLesson2(){
+
+  const title = document.getElementById('lessonTitle');
+  const text = document.getElementById('lessonText');
+
+  title.textContent =
+    'Lesson 2 — Unfractionated Heparin & Low-Molecular-Weight Heparins';
+
+  text.innerHTML = `
+
+  <h2>Lesson 2 — Unfractionated Heparin & Low-Molecular-Weight Heparins</h2>
+
+  <h3>Learning objectives</h3>
+
+  <p>By the end of this lesson, you should be able to:</p>
+
+  <ul>
+    <li>Explain the role of antithrombin in coagulation.</li>
+    <li>Explain how unfractionated heparin enhances antithrombin activity.</li>
+    <li>Differentiate unfractionated heparin from low-molecular-weight heparins.</li>
+    <li>Connect factor Xa and thrombin inhibition to reduced fibrin formation.</li>
+    <li>Identify major indications, adverse effects and contraindications.</li>
+    <li>Recognize heparin-induced thrombocytopenia.</li>
+    <li>Identify appropriate laboratory monitoring.</li>
+    <li>Explain the role of protamine sulfate in reversal.</li>
+    <li>Apply heparin pharmacology to clinical cases.</li>
+  </ul>
+
+  <hr>
+
+  <h3>1. Coagulation target review</h3>
+
+  <p>
+    The coagulation cascade ultimately generates <strong>thrombin, also called factor IIa</strong>.
+    Thrombin converts soluble fibrinogen into insoluble fibrin strands that stabilize a blood clot.
+  </p>
+
+  <div class="callout">
+    Factor Xa<br>
+    ↓<br>
+    Prothrombin (Factor II)<br>
+    ↓<br>
+    <strong>Thrombin (Factor IIa)</strong><br>
+    ↓<br>
+    Fibrinogen<br>
+    ↓<br>
+    <strong>Fibrin</strong><br>
+    ↓<br>
+    Stable clot
+  </div>
+
+  <p>
+    Therefore, reducing factor Xa or thrombin activity decreases fibrin formation and produces
+    an anticoagulant effect.
+  </p>
+
+  <hr>
+
+  <h3>2. Antithrombin</h3>
+
+  <p>
+    <strong>Antithrombin</strong> is a naturally occurring anticoagulant protein.
+    It inhibits several activated coagulation factors, especially:
+  </p>
+
+  <ul>
+    <li>Factor IIa — thrombin</li>
+    <li>Factor Xa</li>
+    <li>Factor IXa</li>
+    <li>Factor XIa</li>
+    <li>Factor XIIa</li>
+  </ul>
+
+  <div class="callout">
+    Heparin does not directly destroy the clot.<br><br>
+    Heparin<br>
+    ↓<br>
+    Binds antithrombin<br>
+    ↓<br>
+    Accelerates antithrombin activity<br>
+    ↓<br>
+    ↓ Factor Xa + ↓ thrombin activity<br>
+    ↓<br>
+    ↓ fibrin generation<br>
+    ↓<br>
+    <strong>Reduced formation and extension of thrombi</strong>
+  </div>
+
+  <hr>
+
+  <h3>3. Unfractionated heparin</h3>
+
+  <p>
+    <strong>Unfractionated heparin (UFH)</strong> is a heterogeneous mixture of long
+    sulfated polysaccharide chains.
+  </p>
+
+  <p><strong>Mechanism</strong></p>
+
+  <div class="callout">
+    UFH<br>
+    ↓<br>
+    Binds antithrombin<br>
+    ↓<br>
+    Conformational activation of antithrombin<br>
+    ↓<br>
+    Strong inhibition of Factor Xa<br>
+    +<br>
+    Strong inhibition of thrombin (Factor IIa)<br>
+    ↓<br>
+    Reduced conversion of fibrinogen to fibrin<br>
+    ↓<br>
+    <strong>Anticoagulation</strong>
+  </div>
+
+  <p>
+    Long UFH chains are able to bridge antithrombin and thrombin simultaneously,
+    explaining its substantial anti-IIa activity.
+  </p>
+
+  <hr>
+
+  <h3>4. Low-molecular-weight heparins</h3>
+
+  <p>
+    Low-molecular-weight heparins, abbreviated <strong>LMWHs</strong>,
+    are shorter fragments derived from unfractionated heparin.
+  </p>
+
+  <p><strong>Major drugs</strong></p>
+
+  <ul>
+    <li><strong>Enoxaparin</strong> — Lovenox</li>
+    <li><strong>Dalteparin</strong> — Fragmin</li>
+  </ul>
+
+  <p><strong>Mechanism</strong></p>
+
+  <div class="callout">
+    LMWH<br>
+    ↓<br>
+    Binds and activates antithrombin<br>
+    ↓<br>
+    Predominantly inhibits Factor Xa<br>
+    ↓<br>
+    Less thrombin generation<br>
+    ↓<br>
+    Less fibrin formation<br>
+    ↓<br>
+    <strong>Anticoagulation</strong>
+  </div>
+
+  <p>
+    Because LMWH chains are shorter, they are less capable than UFH of simultaneously
+    binding antithrombin and thrombin.
+  </p>
+
+  <p>
+    Therefore:
+    <strong>LMWH has proportionally greater anti-Xa activity than anti-IIa activity.</strong>
+  </p>
+
+  <hr>
+
+  <h3>5. UFH versus LMWH</h3>
+
+  <div class="callout">
+    <strong>UNFRACTIONATED HEPARIN</strong><br>
+    Anti-Xa + strong anti-IIa activity<br>
+    IV or subcutaneous administration<br>
+    Short half-life<br>
+    Rapid titration possible<br>
+    Usually monitored with aPTT or institution-specific anti-Xa testing<br>
+    More predictable complete reversal with protamine<br><br>
+
+    <strong>LOW-MOLECULAR-WEIGHT HEPARIN</strong><br>
+    Predominantly anti-Xa activity<br>
+    Usually subcutaneous administration<br>
+    Longer half-life<br>
+    More predictable pharmacokinetics<br>
+    Routine coagulation monitoring usually unnecessary<br>
+    Greater dependence on renal elimination<br>
+    Protamine provides only partial reversal
+  </div>
+
+  <hr>
+
+  <h3>6. Major indications</h3>
+
+  <p>Heparins are commonly used for prevention or treatment of thromboembolic disease.</p>
+
+  <ul>
+    <li>Deep-vein thrombosis prevention</li>
+    <li>Deep-vein thrombosis treatment</li>
+    <li>Pulmonary embolism treatment</li>
+    <li>Acute coronary syndromes</li>
+    <li>Periprocedural anticoagulation</li>
+    <li>Selected bridging situations</li>
+  </ul>
+
+  <p>
+    Heparins act quickly and are useful when relatively rapid anticoagulation is required.
+  </p>
+
+  <hr>
+
+  <h3>7. Laboratory monitoring</h3>
+
+  <p><strong>Unfractionated heparin</strong></p>
+
+  <p>
+    Intravenous therapeutic UFH requires laboratory-guided dosing.
+    Institutions may use activated partial thromboplastin time or calibrated anti-factor Xa levels.
+  </p>
+
+  <div class="callout">
+    UFH → commonly monitor:<br>
+    <strong>aPTT = activated partial thromboplastin time</strong><br>
+    or<br>
+    <strong>anti-factor Xa activity</strong>
+  </div>
+
+  <p><strong>LMWH</strong></p>
+
+  <p>
+    Routine coagulation monitoring is usually unnecessary because LMWH has more predictable
+    pharmacokinetics.
+  </p>
+
+  <p>
+    Anti-factor Xa testing may be considered in selected situations according to clinical context
+    and institutional practice.
+  </p>
+
+  <hr>
+
+  <h3>8. Other important monitoring</h3>
+
+  <ul>
+    <li>Complete blood count</li>
+    <li>Hemoglobin and hematocrit</li>
+    <li>Platelet count</li>
+    <li>Clinical evidence of bleeding</li>
+    <li>Renal function, especially with LMWH</li>
+  </ul>
+
+  <hr>
+
+  <h3>9. Major adverse effect — bleeding</h3>
+
+  <p>
+    The most important toxicity of heparin therapy is <strong>bleeding</strong>.
+  </p>
+
+  <div class="callout">
+    Excess anticoagulation<br>
+    ↓<br>
+    Reduced thrombin / factor Xa activity<br>
+    ↓<br>
+    Reduced fibrin generation<br>
+    ↓<br>
+    <strong>Bleeding risk</strong>
+  </div>
+
+  <p>
+    Risk increases with excessive anticoagulant exposure, concurrent antithrombotic therapy,
+    invasive procedures and patient-specific bleeding risk factors.
+  </p>
+
+  <hr>
+
+  <h3>10. Heparin-induced thrombocytopenia</h3>
+
+  <p>
+    <strong>Heparin-induced thrombocytopenia (HIT)</strong> is a serious immune-mediated
+    complication associated particularly with unfractionated heparin.
+  </p>
+
+  <div class="callout">
+    Heparin<br>
+    +<br>
+    Platelet factor 4<br>
+    ↓<br>
+    Immune antibody formation<br>
+    ↓<br>
+    Platelet activation<br>
+    ↓<br>
+    Thrombin generation<br>
+    ↓<br>
+    Platelet consumption + thrombosis<br>
+    ↓<br>
+    <strong>Thrombocytopenia with paradoxical thrombosis</strong>
+  </div>
+
+  <p>
+    HIT is important because the major danger is not simply low platelets.
+    The patient can develop severe venous or arterial thrombosis.
+  </p>
+
+  <p><strong>Key principle:</strong></p>
+
+  <div class="callout">
+    Suspected HIT<br>
+    ↓<br>
+    <strong>Stop all heparin exposure</strong><br>
+    ↓<br>
+    Evaluate clinically and with appropriate testing<br>
+    ↓<br>
+    Use an appropriate non-heparin anticoagulant when indicated
+  </div>
+
+  <hr>
+
+  <h3>11. Protamine sulfate</h3>
+
+  <p>
+    <strong>Protamine sulfate</strong> is the major reversal agent for unfractionated heparin.
+  </p>
+
+  <div class="callout">
+    Heparin = strongly negatively charged molecule<br>
+    Protamine = positively charged molecule<br>
+    ↓<br>
+    Protamine binds heparin<br>
+    ↓<br>
+    Inactive complex formation<br>
+    ↓<br>
+    <strong>Reduced anticoagulant activity</strong>
+  </div>
+
+  <p>
+    Protamine reverses UFH much more completely than LMWH.
+    Reversal of LMWH anticoagulant activity is incomplete.
+  </p>
+
+  <p><strong>High-yield recall:</strong></p>
+
+  <div class="callout">
+    UFH overdose → <strong>Protamine sulfate</strong><br>
+    Warfarin → Vitamin K ± 4-factor PCC depending on clinical severity<br>
+    Dabigatran → Idarucizumab<br>
+    Factor Xa inhibitors → Andexanet alfa in selected situations
+  </div>
+
+  <hr>
+
+  <h3>12. Renal considerations</h3>
+
+  <p>
+    LMWHs depend substantially on renal elimination.
+    Reduced renal function may increase drug exposure and bleeding risk.
+  </p>
+
+  <p>
+    UFH may therefore be preferred in some patients with severe renal impairment because
+    it is rapidly titratable and has a short half-life.
+  </p>
+
+  <hr>
+
+  <h3>13. Pregnancy concept</h3>
+
+  <p>
+    Heparins are large, highly charged molecules and do not significantly cross the placenta.
+    For that reason, heparin-based anticoagulation is commonly used when anticoagulation is
+    required during pregnancy, depending on the clinical situation.
+  </p>
+
+  <hr>
+
+  <h3>14. High-yield comparison board</h3>
+
+  <div class="callout">
+
+    <strong>UFH</strong><br>
+    Target pathway: antithrombin<br>
+    Major factor effects: Xa + IIa<br>
+    Monitoring: aPTT or anti-Xa according to protocol<br>
+    Elimination: less dependent on kidney than LMWH<br>
+    Reversal: protamine sulfate — strong reversal<br>
+    HIT risk: higher than LMWH<br><br>
+
+    <strong>LMWH</strong><br>
+    Examples: enoxaparin, dalteparin<br>
+    Target pathway: antithrombin<br>
+    Major factor effect: Xa greater than IIa<br>
+    Monitoring: usually none routinely<br>
+    Elimination: renal contribution important<br>
+    Reversal: protamine only partially effective<br>
+    HIT risk: lower than UFH but still possible
+
+  </div>
+
+  <hr>
+
+  <h3>15. Mechanism integration</h3>
+
+  <div class="callout">
+    Heparin / LMWH<br>
+    ↓<br>
+    Antithrombin activation<br>
+    ↓<br>
+    Factor Xa inhibition<br>
+    ↓<br>
+    ↓ thrombin generation<br>
+    ↓<br>
+    ↓ fibrin production<br>
+    ↓<br>
+    ↓ clot propagation<br>
+    ↓<br>
+    <strong>Prevention/treatment of thrombosis</strong>
+  </div>
+
+  <hr>
+
+  <h3>16. Clinical case — monitoring</h3>
+
+  <p>
+    A hospitalized patient begins an intravenous unfractionated heparin infusion for acute
+    venous thromboembolism.
+  </p>
+
+  <p><strong>Which laboratory test is traditionally associated with therapeutic UFH monitoring?</strong></p>
+
+  <button class="btn" onclick="checkAnticoagHep1('A')">
+    A. Activated partial thromboplastin time
+  </button>
+
+  <button class="btn" onclick="checkAnticoagHep1('B')">
+    B. International normalized ratio
+  </button>
+
+  <p id="anticoagHep1Answer"></p>
+
+  <hr>
+
+  <h3>17. Clinical case — LMWH mechanism</h3>
+
+  <p>
+    Enoxaparin produces its anticoagulant effect primarily through which mechanism?
+  </p>
+
+  <button class="btn" onclick="checkAnticoagHep2('A')">
+    A. Antithrombin-mediated inhibition with predominant anti-factor Xa activity
+  </button>
+
+  <button class="btn" onclick="checkAnticoagHep2('B')">
+    B. Direct irreversible inhibition of platelet cyclooxygenase
+  </button>
+
+  <p id="anticoagHep2Answer"></p>
+
+  <hr>
+
+  <h3>18. Clinical case — thrombocytopenia</h3>
+
+  <p>
+    Several days after beginning heparin, a patient's platelet count falls substantially
+    and a new thrombosis develops.
+  </p>
+
+  <p><strong>What complication should be suspected?</strong></p>
+
+  <button class="btn" onclick="checkAnticoagHep3('A')">
+    A. Heparin-induced thrombocytopenia
+  </button>
+
+  <button class="btn" onclick="checkAnticoagHep3('B')">
+    B. Vitamin K deficiency caused directly by heparin
+  </button>
+
+  <p id="anticoagHep3Answer"></p>
+
+  <hr>
+
+  <h3>19. Clinical case — reversal</h3>
+
+  <p>
+    A patient receiving intravenous unfractionated heparin develops serious bleeding related
+    to excessive anticoagulation.
+  </p>
+
+  <p><strong>Which reversal agent is most directly associated with UFH?</strong></p>
+
+  <button class="btn" onclick="checkAnticoagHep4('A')">
+    A. Protamine sulfate
+  </button>
+
+  <button class="btn" onclick="checkAnticoagHep4('B')">
+    B. Phytonadione
+  </button>
+
+  <p id="anticoagHep4Answer"></p>
+
+  <hr>
+
+  <h3>20. Clinical case — renal function</h3>
+
+  <p>
+    Which heparin group requires particularly careful consideration of renal function because
+    accumulation may occur when kidney function is substantially reduced?
+  </p>
+
+  <button class="btn" onclick="checkAnticoagHep5('A')">
+    A. Low-molecular-weight heparins
+  </button>
+
+  <button class="btn" onclick="checkAnticoagHep5('B')">
+    B. Aspirin
+  </button>
+
+  <p id="anticoagHep5Answer"></p>
+
+  <hr>
+
+  <h3>Rapid recall</h3>
+
+  <div class="callout">
+    UFH → antithrombin → Xa + IIa inhibition<br>
+    LMWH → antithrombin → Xa greater than IIa inhibition<br>
+    UFH monitoring → aPTT / protocol-specific anti-Xa<br>
+    LMWH → generally predictable response<br>
+    Major toxicity → bleeding<br>
+    Platelet fall + thrombosis → think HIT<br>
+    UFH reversal → protamine sulfate<br>
+    LMWH → greater renal dependence
+  </div>
+
+  `;
+
+  document.getElementById('lessonBox').style.display = 'block';
+
+  window.scrollTo({
+    top: document.getElementById('lessonBox').offsetTop,
+    behavior: 'smooth'
+  });
+}
+
+
+/* =========================================================
+   MODULE 3 — LESSON 2 QUIZ FUNCTIONS
+   ========================================================= */
+
+function checkAnticoagHep1(answer){
+
+  const result = document.getElementById('anticoagHep1Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Activated partial thromboplastin time is traditionally associated with therapeutic unfractionated-heparin monitoring; many institutions may also use calibrated anti-factor Xa protocols.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> International normalized ratio is primarily associated with warfarin monitoring.';
+  }
+}
+
+
+function checkAnticoagHep2(answer){
+
+  const result = document.getElementById('anticoagHep2Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Enoxaparin potentiates antithrombin and has proportionally greater anti-factor Xa than anti-thrombin activity.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Irreversible platelet cyclooxygenase inhibition describes aspirin, not enoxaparin.';
+  }
+}
+
+
+function checkAnticoagHep3(answer){
+
+  const result = document.getElementById('anticoagHep3Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> A substantial platelet decrease with new thrombosis during heparin exposure is a classic warning pattern for immune-mediated HIT.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> HIT is the major immune-mediated syndrome characterized by platelet activation, thrombocytopenia and thrombosis.';
+  }
+}
+
+
+function checkAnticoagHep4(answer){
+
+  const result = document.getElementById('anticoagHep4Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Protamine sulfate binds and neutralizes unfractionated heparin.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Phytonadione is vitamin K and is associated with reversal of warfarin, not UFH.';
+  }
+}
+
+
+function checkAnticoagHep5(answer){
+
+  const result = document.getElementById('anticoagHep5Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Low-molecular-weight heparins depend importantly on renal clearance, so renal impairment may increase exposure.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> The renal-accumulation concern here applies particularly to low-molecular-weight heparins.';
   }
 }
   // Keep this below all pharmacology lessons
