@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Global Pharma Scientist Journey — Beta 0.2</title>
+<meta name="description" content="Global Pharma Scientist Journey — lifelong learning, scientific creation, career navigation and professional growth.">
+<style>
+:root{
+  --navy:#0d1b3d; --navy2:#14285d; --blue:#3158d8; --purple:#6d49cf;
+  --bg:#f5f7fb; --card:#fff; --text:#14213d; --muted:#667085; --line:#e4e8f0;
+  --green:#12845a; --orange:#e68a19; --red:#c43c47;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+button,input,select,textarea{font:inherit}
+a{text-decoration:none;color:inherit}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(13,27,61,.97);color:#fff;border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(10px)}
+.wrap{max-width:1180px;margin:auto;padding:0 18px}
+.nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:11px}
+.logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--purple));font-weight:900;box-shadow:0 8px 20px rgba(0,0,0,.18)}
+.brand strong{display:block}.brand span{font-size:11px;opacity:.72}
+.navlinks{display:flex;gap:4px;flex-wrap:wrap}
+.navlinks a{padding:9px 10px;border-radius:10px;font-weight:800;font-size:14px}
+.navlinks a:hover{background:rgba(255,255,255,.12)}
+.hero{padding:50px 0 36px;color:#fff;background:
+radial-gradient(circle at 12% 18%,rgba(109,73,207,.30),transparent 31%),
+radial-gradient(circle at 85% 12%,rgba(49,88,216,.30),transparent 28%),
+linear-gradient(135deg,#0d1b3d,#1b3272)}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:26px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.1);font-size:12px;font-weight:800}
+.hero h1{font-size:52px;line-height:1.03;margin:15px 0}
+.hero p{font-size:18px;line-height:1.65;color:#dce5ff;max-width:760px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.btn{border:0;border-radius:12px;padding:12px 15px;font-weight:800;cursor:pointer}
+.primary{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff}
+.secondary{background:#eef2ff;color:#28449e}
+.ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.hero-card,.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;color:var(--text)}
+.hero-card{box-shadow:0 20px 55px rgba(0,0,0,.18)}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.kpi{padding:14px;border-radius:14px;background:#f7f8fc;border:1px solid var(--line)}
+.kpi strong{display:block;font-size:25px}.kpi span{font-size:12px;color:var(--muted)}
+section.page{padding:34px 0;scroll-margin-top:100px}
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.section-title h2{margin:0;font-size:30px}.section-title p{margin:0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.badge{display:inline-block;padding:6px 9px;border-radius:999px;background:#eef2ff;color:#324aa1;font-size:12px;font-weight:800}
+.muted{color:var(--muted)}
+.progress{height:10px;border-radius:999px;background:#e9edf5;overflow:hidden}
+.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--purple))}
+.list{display:grid;gap:8px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+label{font-size:13px;font-weight:800;display:block;margin-bottom:6px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #ccd3df;border-radius:12px;background:#fff}
+textarea{min-height:100px}
+.tool-card{min-height:178px;display:flex;flex-direction:column;justify-content:space-between}
+.tool-icon{font-size:28px}
+.notice{border-left:4px solid var(--blue);padding:12px 14px;background:#f5f7ff;border-radius:10px}
+.rating button{background:transparent;border:0;font-size:34px;color:#c7ccd6;cursor:pointer;padding:1px}
+.rating button.on{color:#f4b400}
+.refbox{background:linear-gradient(135deg,#eef2ff,#f8f5ff);border:1px solid #d9dff4;border-radius:18px;padding:18px}
+.refcode{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:white;border:1px dashed #aab3d2;border-radius:10px;padding:12px;word-break:break-all}
+.toast{position:fixed;right:16px;bottom:16px;z-index:999;background:#111b3f;color:#fff;padding:12px 14px;border-radius:12px;opacity:0;transform:translateY(20px);transition:.2s;pointer-events:none}
+.toast.show{opacity:1;transform:none}
+.footer{background:#0d1b3d;color:#dce5ff;padding:32px 0;margin-top:25px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px}
+hr{border:0;border-top:1px solid var(--line);margin:18px 0}
+@media(max-width:900px){
+  .hero-grid,.grid,.grid2,.grid4,.formgrid,.footer-grid{grid-template-columns:1fr}
+  .hero h1{font-size:39px}
+  .nav{align-items:flex-start;padding:9px 0}
+  .navlinks{width:100%;overflow:auto;flex-wrap:nowrap;padding-bottom:4px}
+  .navlinks a{white-space:nowrap}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="logo">GPSJ</div>
+      <div><strong>Global Pharma Scientist Journey</strong><span>Working brand • Beta 0.2</span></div>
+    </div>
+    <div class="navlinks">
+      <a href="#home">Home</a>
+      <a href="#account">Account</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#learn">Learn</a>
+      <a href="#create">Create</a>
+      <a href="#career">Career</a>
+      <a href="#rewards">Rewards</a>
+      <a href="#membership">Membership</a>
+    </div>
+  </div>
+</div>
+
+<header id="home" class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">🌍 Global learning • science • careers • creation</span>
+      <h1>The platform that grows with your scientific journey.</h1>
+      <p>Learn pharmacy and pharmaceutical sciences, create professional work, discover schools and career pathways, receive personalized recall, and stay current with verified sources.</p>
+      <div class="actions">
+        <a class="btn primary" href="#account">Start free</a>
+        <a class="btn ghost" href="#dashboard">Preview dashboard</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>One account. A lifetime of growth.</h3>
+      <div class="kpis">
+        <div class="kpi"><strong>Learn</strong><span>Adaptive lessons & audio</span></div>
+        <div class="kpi"><strong>Create</strong><span>Slides, writing, maps, visuals</span></div>
+        <div class="kpi"><strong>Advance</strong><span>Schools, jobs, certifications</span></div>
+        <div class="kpi"><strong>Contribute</strong><span>Community & rewards</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section class="page">
+  <div class="section-title"><div><h2>Explore the ecosystem</h2><p>Every tool connects to the same verified knowledge system.</p></div></div>
+  <div class="grid">
+    <div class="card"><h3>🧠 Learning</h3><p class="muted">Pharmacology, pharmaceutics, infectious diseases, biology, law, logistics, sterile compounding and more.</p></div>
+    <div class="card"><h3>💊 Global Drug Reference</h3><p class="muted">Country-aware brands, mechanisms, uses, adverse effects, monitoring and dated sources.</p></div>
+    <div class="card"><h3>🎧 Audio Recall</h3><p class="muted">Full lesson, rapid recap and weak-point audio for commuting or offline review.</p></div>
+    <div class="card"><h3>📝 Scientific Creator</h3><p class="muted">Reports, manuscripts, lectures, speeches, posters and presentation support.</p></div>
+    <div class="card"><h3>🗺️ Map & Visual Studio</h3><p class="muted">Research maps, image enhancement, diagrams and high-resolution exports.</p></div>
+    <div class="card"><h3>🚀 Career Navigator</h3><p class="muted">Degrees, certifications, schools, contacts, funding, salaries and opportunities.</p></div>
+  </div>
+</section>
+
+<section id="account" class="page">
+  <div class="section-title"><div><h2>Create your account</h2><p>This Beta stores demo preferences only on this device.</p></div></div>
+  <div class="card">
+    <div class="formgrid">
+      <div><label>Name</label><input id="name" placeholder="Your name"></div>
+      <div><label>Country</label><select id="country"><option>Gabon</option><option>United States</option><option>France</option><option>Italy</option><option>Brazil</option><option>China</option><option>Other</option></select></div>
+      <div><label>Interface language</label><select id="language"><option>English</option><option>Français</option><option>Italiano</option><option>Português (Brasil)</option><option>Español</option><option>简体中文</option></select></div>
+      <div><label>Role</label><select id="role"><option>Learner / Pharmacy Technician</option><option>University Student</option><option>Graduate / Researcher</option><option>Pharmacist / Physician</option><option>Educator</option><option>Verified Professional</option></select></div>
+    </div>
+    <div class="actions"><button class="btn primary" id="saveProfile">Save demo profile</button></div>
+    <p id="profileMessage" class="muted"></p>
+  </div>
+</section>
+
+<section id="dashboard" class="page">
+  <div class="section-title"><div><h2 id="welcome">My dashboard</h2><p>Learning, creation and career command center.</p></div></div>
+  <div class="grid4">
+    <div class="card"><span class="muted">Mastery</span><h2>78%</h2><div class="progress"><span style="width:78%"></span></div></div>
+    <div class="card"><span class="muted">Streak</span><h2>12 days</h2><span class="badge">+120 XP</span></div>
+    <div class="card"><span class="muted">Reward credits</span><h2 id="creditBalance">1,460</h2><span class="badge">Demo wallet</span></div>
+    <div class="card"><span class="muted">Projects</span><h2>9</h2><span class="badge">3 active</span></div>
+  </div>
+  <div class="grid2" style="margin-top:14px">
+    <div class="card">
+      <h3>Continue learning</h3><p><b>ACE inhibitors</b> • Lesson 4 of 8</p>
+      <div class="progress"><span style="width:62%"></span></div>
+      <div class="actions"><a class="btn primary" href="#learn">Continue</a><button class="btn secondary" onclick="demoToast('Audio recap is a Beta preview.')">🎧 Audio recap</button></div>
+    </div>
+    <div class="card">
+      <h3>Weak area detected</h3><p>Brand ↔ generic recognition</p>
+      <p class="muted">Future review is automatically adjusted around repeated mistakes.</p>
+      <button class="btn secondary" onclick="demoToast('3-minute remediation preview opened.')">Start 3-minute fix</button>
+    </div>
+  </div>
+</section>
+
+<section id="learn" class="page">
+  <div class="section-title"><div><h2>Learning experience</h2><p>Depth changes with user level, goals and performance.</p></div></div>
+  <div class="grid2">
+    <div class="card">
+      <span class="badge">Cardiovascular Pharmacology</span>
+      <h2>ACE Inhibitors</h2>
+      <p><b>Recognition:</b> many generic names end in <code>-pril</code>.</p>
+      <p><b>Example:</b> lisinopril — U.S. brand Zestril®; legacy brand Prinivil®.</p>
+      <p><b>Mechanism:</b> ACE inhibition → reduced angiotensin II → reduced aldosterone. Reduced bradykinin breakdown helps explain cough and angioedema.</p>
+      <div class="notice"><b>Source panel</b><br>Authority • jurisdiction • update date • platform verification date • official link</div>
+      <div class="actions"><button class="btn primary" onclick="demoToast('Lesson completion recorded in demo mode.')">Complete lesson + earn XP</button><button class="btn secondary" onclick="demoToast('Personalized audio is planned for the connected version.')">🎧 Generate recap</button></div>
+    </div>
+    <div class="card">
+      <h3>Quick check</h3><p>Which generic name is an ACE inhibitor?</p>
+      <div class="actions">
+        <button class="btn secondary" onclick="answer(false)">Losartan</button>
+        <button class="btn primary" onclick="answer(true)">Lisinopril</button>
+        <button class="btn secondary" onclick="answer(false)">Amlodipine</button>
+      </div>
+      <p id="quizFeedback" class="muted"></p>
+      <hr>
+      <h3>Adaptive feedback</h3><div class="progress"><span style="width:86%"></span></div><p><b>Current mastery: 86%</b></p>
+    </div>
+  </div>
+</section>
+
+<section id="create" class="page">
+  <div class="section-title"><div><h2>Create & improve your work</h2><p>Portable, editable outputs with source-aware assistance.</p></div></div>
+  <div class="grid">
+    <div class="card tool-card"><div><div class="tool-icon">📝</div><h3>Scientific Writing</h3><p class="muted">Research proposals, reviews, theses, reports, abstracts and manuscripts.</p></div><button class="btn primary" onclick="demoToast('Scientific Writing Studio — Beta preview.')">Start document</button></div>
+    <div class="card tool-card"><div><div class="tool-icon">📊</div><h3>Presentation Studio</h3><p class="muted">Create or improve slides, structure, citations, visuals and speaker notes.</p></div><button class="btn primary" onclick="demoToast('Presentation Studio — Beta preview.')">Create presentation</button></div>
+    <div class="card tool-card"><div><div class="tool-icon">🖼️</div><h3>Visual Studio</h3><p class="muted">Enhance low-quality images and create high-resolution scientific visuals.</p></div><button class="btn primary" onclick="demoToast('Visual Studio — Beta preview.')">Improve image</button></div>
+    <div class="card tool-card"><div><div class="tool-icon">🗺️</div><h3>Research Map Studio</h3><p class="muted">Study areas, GPS points, spreadsheets and publication-ready maps.</p></div><button class="btn primary" onclick="demoToast('Map Studio — Beta preview.')">Create map</button></div>
+    <div class="card tool-card"><div><div class="tool-icon">🌐</div><h3>Translation Center</h3><p class="muted">Scientific translation with terminology and formatting preservation.</p></div><button class="btn primary" onclick="demoToast('Translation Center — Beta preview.')">Translate</button></div>
+    <div class="card tool-card"><div><div class="tool-icon">⬇️</div><h3>Export Center</h3><p class="muted">DOCX, PPTX, XLSX/CSV, PDF and image outputs in the full platform.</p></div><button class="btn primary" onclick="downloadDemo()">Download demo note</button></div>
+  </div>
+</section>
+
+<section id="career" class="page">
+  <div class="section-title"><div><h2>Career & education navigator</h2><p>From the user's current level to the next realistic step.</p></div></div>
+  <div class="card">
+    <div class="formgrid">
+      <div><label>Current level</label><select><option>Pharmacy technician</option><option>Undergraduate</option><option>Pharmacy degree</option><option>Master's</option><option>PhD</option><option>Professional</option></select></div>
+      <div><label>Interest</label><select><option>Clinical pharmacy</option><option>Pharmacology</option><option>Pharmacognosy</option><option>Oncology</option><option>Infectious diseases</option><option>Regulatory affairs</option><option>Research</option></select></div>
+    </div>
+    <h3 style="margin-top:18px">Example pathway</h3>
+    <div class="list">
+      <div class="row"><span>Recommended qualification</span><button class="btn secondary" onclick="demoToast('Qualification explanation preview.')">Why?</button></div>
+      <div class="row"><span>Schools + official contacts</span><button class="btn secondary" onclick="demoToast('Verified school directory comes with the connected data version.')">Explore</button></div>
+      <div class="row"><span>Funding & scholarships</span><button class="btn secondary" onclick="demoToast('Funding discovery preview.')">View</button></div>
+      <div class="row"><span>Salary & career outlook</span><button class="btn secondary" onclick="demoToast('Country-aware salary data preview.')">Compare</button></div>
+      <div class="row"><span>Current opportunities</span><button class="btn secondary" onclick="demoToast('Live opportunities require the backend/data phase.')">Browse</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="rewards" class="page">
+  <div class="section-title"><div><h2>Rewards & referral demo</h2><p>Try the sharing experience now. Real referral tracking comes with the backend.</p></div></div>
+  <div class="grid">
+    <div class="card"><h3>Learning XP</h3><h2>6,280</h2><p class="muted">Earned through demonstrated mastery.</p></div>
+    <div class="card"><h3>Platform credits</h3><h2>1,460</h2><p class="muted">Future eligible premium benefits.</p></div>
+    <div class="card"><h3>Referrals</h3><h2 id="demoShares">0</h2><p class="muted">Demo share actions on this device.</p></div>
+  </div>
+  <div class="refbox" style="margin-top:14px">
+    <h3>Invite & Earn — Demo</h3>
+    <p class="muted">This creates a shareable Beta link with a demo referral parameter. It does not yet award real credits.</p>
+    <div class="refcode" id="referralLink"></div>
+    <div class="actions">
+      <button class="btn primary" id="shareReferral">Share invite</button>
+      <button class="btn secondary" id="copyReferral">Copy link</button>
+    </div>
+  </div>
+</section>
+
+<section id="membership" class="page">
+  <div class="section-title"><div><h2>Memberships</h2><p>Membership follows the user's needs instead of charging per task.</p></div></div>
+  <div class="grid">
+    <div class="card"><h3>Explorer</h3><h2>Free</h2><p class="muted">Basic learning, selected references and career discovery.</p></div>
+    <div class="card"><h3>Learner</h3><p class="muted">Full learning, audio, adaptive quizzes and certification preparation.</p></div>
+    <div class="card"><h3>Academic</h3><p class="muted">Research, writing, presentations and project tools.</p></div>
+    <div class="card"><h3>Professional</h3><p class="muted">Advanced reference, updates and professional creator tools.</p></div>
+    <div class="card"><h3>Educator</h3><p class="muted">Courses, lectures, assessments and classroom materials.</p></div>
+    <div class="card"><h3>Institution</h3><p class="muted">Multi-user administration for universities and organizations.</p></div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <h3>Rate Beta 0.2</h3>
+    <div class="rating" id="rating"><button data-v="1">★</button><button data-v="2">★</button><button data-v="3">★</button><button data-v="4">★</button><button data-v="5">★</button></div>
+    <textarea id="feedback" placeholder="What should we improve?"></textarea>
+    <div class="actions"><button class="btn primary" id="saveFeedback">Save feedback on this device</button></div>
+    <p id="thanks" class="muted"></p>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div><h3>Global Pharma Scientist Journey</h3><p>Beta 0.2 — working prototype for lifelong learning, scientific creation, careers and professional development.</p></div>
+    <div><b>Trust</b><p>Source-linked • dated • jurisdiction-aware.</p></div>
+    <div><b>Working contact concept</b><p>journey@future-domain</p></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function demoToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);
+}
+function answer(correct){
+  document.getElementById('quizFeedback').textContent=correct?'Correct ✓ Lisinopril is an ACE inhibitor.':'Not quite. Look for the -pril stem: lisinopril.';
+}
+function downloadDemo(){
+  const blob=new Blob(['GPSJ Beta 0.2 demo export\\n\\nFuture platform exports will include DOCX, PPTX, XLSX/CSV, PDF and images.'],{type:'text/plain'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='GPSJ-Beta-Demo.txt';a.click();URL.revokeObjectURL(a.href);
+}
+const nameEl=document.getElementById('name'),countryEl=document.getElementById('country'),languageEl=document.getElementById('language'),roleEl=document.getElementById('role');
+const saved=JSON.parse(localStorage.getItem('gpsj_profile')||'{}');
+if(saved.name){nameEl.value=saved.name;countryEl.value=saved.country||'Gabon';languageEl.value=saved.language||'English';roleEl.value=saved.role||'Learner / Pharmacy Technician';document.getElementById('welcome').textContent='Welcome back, '+saved.name;}
+document.getElementById('saveProfile').onclick=()=>{
+  const profile={name:nameEl.value.trim(),country:countryEl.value,language:languageEl.value,role:roleEl.value};
+  localStorage.setItem('gpsj_profile',JSON.stringify(profile));
+  document.getElementById('profileMessage').textContent='Demo profile saved on this device.';
+  if(profile.name)document.getElementById('welcome').textContent='Welcome back, '+profile.name;
+  demoToast('Profile saved.');
+};
+const base=location.origin+location.pathname;
+const refId='GPSJ-'+Math.random().toString(36).slice(2,8).toUpperCase();
+const refUrl=base+'?ref='+refId;
+document.getElementById('referralLink').textContent=refUrl;
+function countShare(){
+  let n=Number(localStorage.getItem('gpsj_demo_shares')||0)+1;
+  localStorage.setItem('gpsj_demo_shares',n);document.getElementById('demoShares').textContent=n;
+}
+document.getElementById('demoShares').textContent=localStorage.getItem('gpsj_demo_shares')||0;
+document.getElementById('shareReferral').onclick=async()=>{
+  const text='Try Global Pharma Scientist Journey — Beta 0.2';
+  try{
+    if(navigator.share){await navigator.share({title:'GPSJ Beta',text,url:refUrl});countShare();demoToast('Share action recorded in demo mode.');}
+    else{await navigator.clipboard.writeText(refUrl);countShare();demoToast('Referral link copied.');}
+  }catch(e){}
+};
+document.getElementById('copyReferral').onclick=async()=>{await navigator.clipboard.writeText(refUrl);countShare();demoToast('Referral link copied.');};
+let rating=Number(localStorage.getItem('gpsj_rating')||0);
+const stars=[...document.querySelectorAll('#rating button')];
+function paint(){stars.forEach(x=>x.classList.toggle('on',Number(x.dataset.v)<=rating))}
+paint();
+stars.forEach(b=>b.onclick=()=>{rating=Number(b.dataset.v);paint();});
+document.getElementById('saveFeedback').onclick=()=>{
+  localStorage.setItem('gpsj_rating',rating);
+  localStorage.setItem('gpsj_feedback',document.getElementById('feedback').value);
+  document.getElementById('thanks').textContent=rating?`Saved: ${rating}/5. Thank you.`:'Choose a star rating first.';
+  demoToast('Feedback saved on this device.');
+};
+document.getElementById('feedback').value=localStorage.getItem('gpsj_feedback')||'';
+</script>
+
+</body>
+</html>
