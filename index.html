@@ -4445,6 +4445,639 @@ function checkCardioARB4(answer){
       '<strong>Not quite.</strong> ARBs can affect potassium balance and renal hemodynamics, so these require monitoring.';
   }
 }
+  function startCardioLesson3(){
+
+  const title = document.getElementById('lessonTitle');
+  const text = document.getElementById('lessonText');
+
+  title.textContent = 'Lesson 3 — Beta Blockers';
+
+  text.innerHTML = `
+    <h2>Lesson 3 — Beta Blockers</h2>
+
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson, you should be able to:</p>
+
+    <ul>
+      <li>Explain beta-1 and beta-2 receptor physiology.</li>
+      <li>Explain how beta blockers reduce heart rate, contractility and renin release.</li>
+      <li>Differentiate cardioselective and nonselective beta blockers.</li>
+      <li>Identify major generic and brand-name beta blockers.</li>
+      <li>Connect receptor blockade to therapeutic effects and adverse effects.</li>
+      <li>Recognize bronchospasm risk, hypoglycemia masking and bradycardia.</li>
+      <li>Explain why abrupt beta-blocker withdrawal can be dangerous.</li>
+      <li>Identify important contraindications, interactions and monitoring parameters.</li>
+    </ul>
+
+    <hr>
+
+    <h3>1. Beta-adrenergic receptor physiology</h3>
+
+    <p>
+      Beta receptors are part of the sympathetic adrenergic system.
+      Epinephrine and norepinephrine activate these receptors and produce
+      tissue-specific effects.
+    </p>
+
+    <div class="callout">
+      <strong>RECEPTOR MAP</strong><br><br>
+
+      <strong>Beta-1 receptors</strong><br>
+      Major locations: heart and juxtaglomerular cells of the kidney<br>
+      Activation → increased heart rate<br>
+      Activation → increased myocardial contractility<br>
+      Activation → increased atrioventricular conduction<br>
+      Activation → increased renin release<br><br>
+
+      <strong>Beta-2 receptors</strong><br>
+      Major locations: bronchial smooth muscle, vascular smooth muscle,
+      uterus and several metabolic tissues<br>
+      Activation → bronchodilation<br>
+      Activation → vascular smooth-muscle relaxation in selected beds<br>
+      Activation → influences glycogenolysis and other metabolic responses
+    </div>
+
+    <hr>
+
+    <h3>2. Core beta-blocker mechanism</h3>
+
+    <p>
+      Beta blockers antagonize beta-adrenergic receptors and reduce the effects
+      of sympathetic stimulation.
+    </p>
+
+    <div class="callout">
+      <strong>MECHANISM FLOWCHART</strong><br><br>
+
+      Beta blocker<br>
+      ↓<br>
+      Beta-1 receptor blockade in the heart<br>
+      ↓<br>
+      Decreased cyclic adenosine monophosphate signaling<br>
+      ↓<br>
+      Decreased calcium-dependent cardiac activity<br>
+      ↓<br>
+      ↓ Heart rate + ↓ Contractility + ↓ AV-node conduction<br>
+      ↓<br>
+      ↓ Cardiac workload and myocardial oxygen demand
+    </div>
+
+    <p>
+      Beta-1 blockade in the kidney also decreases renin release, reducing
+      renin–angiotensin–aldosterone system activation.
+    </p>
+
+    <div class="callout">
+      Beta-1 blockade in kidney<br>
+      ↓<br>
+      Renin release<br>
+      ↓<br>
+      Angiotensin II formation<br>
+      ↓<br>
+      Aldosterone signaling<br>
+      ↓<br>
+      Contribution to blood-pressure reduction
+    </div>
+
+    <hr>
+
+    <h3>3. Cardioselective versus nonselective beta blockers</h3>
+
+    <table style="width:100%;border-collapse:collapse;">
+      <tr>
+        <th style="border:1px solid #ccc;padding:8px;">Type</th>
+        <th style="border:1px solid #ccc;padding:8px;">Main receptor effect</th>
+        <th style="border:1px solid #ccc;padding:8px;">Examples</th>
+        <th style="border:1px solid #ccc;padding:8px;">Clinical significance</th>
+      </tr>
+
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">
+          Cardioselective
+        </td>
+        <td style="border:1px solid #ccc;padding:8px;">
+          Preferential beta-1 blockade
+        </td>
+        <td style="border:1px solid #ccc;padding:8px;">
+          Metoprolol, atenolol, bisoprolol, esmolol
+        </td>
+        <td style="border:1px solid #ccc;padding:8px;">
+          Less beta-2 blockade at lower therapeutic doses, although selectivity is not absolute
+        </td>
+      </tr>
+
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">
+          Nonselective
+        </td>
+        <td style="border:1px solid #ccc;padding:8px;">
+          Beta-1 + beta-2 blockade
+        </td>
+        <td style="border:1px solid #ccc;padding:8px;">
+          Propranolol, nadolol, timolol
+        </td>
+        <td style="border:1px solid #ccc;padding:8px;">
+          Greater concern for bronchospasm in susceptible patients
+        </td>
+      </tr>
+
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">
+          Mixed alpha/beta blockade
+        </td>
+        <td style="border:1px solid #ccc;padding:8px;">
+          Beta blockade + alpha-1 blockade
+        </td>
+        <td style="border:1px solid #ccc;padding:8px;">
+          Carvedilol, labetalol
+        </td>
+        <td style="border:1px solid #ccc;padding:8px;">
+          Adds vasodilation through alpha-1 antagonism
+        </td>
+      </tr>
+    </table>
+
+    <hr>
+
+    <h3>4. Major beta blockers</h3>
+
+    <table style="width:100%;border-collapse:collapse;">
+      <tr>
+        <th style="border:1px solid #ccc;padding:8px;">Generic</th>
+        <th style="border:1px solid #ccc;padding:8px;">Common brand</th>
+        <th style="border:1px solid #ccc;padding:8px;">Key characteristic</th>
+      </tr>
+
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Metoprolol</td>
+        <td style="border:1px solid #ccc;padding:8px;">Lopressor / Toprol-XL</td>
+        <td style="border:1px solid #ccc;padding:8px;">Beta-1 selective</td>
+      </tr>
+
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Atenolol</td>
+        <td style="border:1px solid #ccc;padding:8px;">Tenormin</td>
+        <td style="border:1px solid #ccc;padding:8px;">Beta-1 selective</td>
+      </tr>
+
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Bisoprolol</td>
+        <td style="border:1px solid #ccc;padding:8px;">Zebeta</td>
+        <td style="border:1px solid #ccc;padding:8px;">Beta-1 selective</td>
+      </tr>
+
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Esmolol</td>
+        <td style="border:1px solid #ccc;padding:8px;">Brevibloc</td>
+        <td style="border:1px solid #ccc;padding:8px;">Very short-acting intravenous beta-1 blocker</td>
+      </tr>
+
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Propranolol</td>
+        <td style="border:1px solid #ccc;padding:8px;">Inderal</td>
+        <td style="border:1px solid #ccc;padding:8px;">Nonselective beta blocker</td>
+      </tr>
+
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Nadolol</td>
+        <td style="border:1px solid #ccc;padding:8px;">Corgard</td>
+        <td style="border:1px solid #ccc;padding:8px;">Nonselective beta blocker</td>
+      </tr>
+
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Timolol</td>
+        <td style="border:1px solid #ccc;padding:8px;">Timoptic</td>
+        <td style="border:1px solid #ccc;padding:8px;">Nonselective; commonly used ophthalmically</td>
+      </tr>
+
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Carvedilol</td>
+        <td style="border:1px solid #ccc;padding:8px;">Coreg</td>
+        <td style="border:1px solid #ccc;padding:8px;">Beta blocker + alpha-1 blocker</td>
+      </tr>
+
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Labetalol</td>
+        <td style="border:1px solid #ccc;padding:8px;">Trandate</td>
+        <td style="border:1px solid #ccc;padding:8px;">Beta blocker + alpha-1 blocker</td>
+      </tr>
+    </table>
+
+    <p>
+      <strong>Memory anchor:</strong> many beta blockers end in
+      <strong>-olol</strong>.
+    </p>
+
+    <hr>
+
+    <h3>5. Major therapeutic uses</h3>
+
+    <ul>
+      <li>Hypertension</li>
+      <li>Selected tachyarrhythmias and rate control</li>
+      <li>Chronic stable angina</li>
+      <li>Post-myocardial-infarction therapy in appropriate patients</li>
+      <li>Heart failure with selected evidence-based beta blockers</li>
+      <li>Essential tremor</li>
+      <li>Migraine prevention</li>
+      <li>Hyperthyroid symptom control</li>
+      <li>Glaucoma with selected ophthalmic agents</li>
+    </ul>
+
+    <hr>
+
+    <h3>6. Why can beta blockers cause bradycardia?</h3>
+
+    <div class="callout">
+      Beta-1 blockade<br>
+      ↓<br>
+      Reduced sinoatrial-node stimulation<br>
+      ↓<br>
+      Reduced pacemaker activity<br>
+      ↓<br>
+      <strong>Bradycardia</strong>
+    </div>
+
+    <p>
+      Excessive beta blockade can also impair atrioventricular conduction and
+      contribute to heart block in susceptible patients.
+    </p>
+
+    <hr>
+
+    <h3>7. Why can nonselective beta blockers cause bronchospasm?</h3>
+
+    <div class="callout">
+      Beta-2 receptor blockade in bronchial smooth muscle<br>
+      ↓<br>
+      Reduced bronchodilatory signaling<br>
+      ↓<br>
+      Increased airway resistance in susceptible patients<br>
+      ↓<br>
+      <strong>Bronchospasm risk</strong>
+    </div>
+
+    <p>
+      This is especially important in patients with asthma or reactive airway disease.
+      Cardioselective agents may be preferred in some situations, but beta-1
+      selectivity is dose-dependent and not absolute.
+    </p>
+
+    <hr>
+
+    <h3>8. Diabetes and masking of hypoglycemia</h3>
+
+    <p>
+      Sympathetic activation normally produces warning signs during hypoglycemia,
+      including tachycardia and tremor.
+    </p>
+
+    <div class="callout">
+      Beta blockade<br>
+      ↓<br>
+      Blunted sympathetic warning signs<br>
+      ↓<br>
+      Less obvious tachycardia / tremor<br>
+      ↓<br>
+      <strong>Hypoglycemia may be harder to recognize</strong>
+    </div>
+
+    <p>
+      Sweating may still occur because it is largely mediated through cholinergic
+      sympathetic pathways.
+    </p>
+
+    <hr>
+
+    <h3>9. Abrupt withdrawal and rebound sympathetic activity</h3>
+
+    <p>
+      Chronic beta blockade may lead to increased receptor sensitivity or receptor
+      up-regulation.
+    </p>
+
+    <div class="callout">
+      Chronic beta blockade<br>
+      ↓<br>
+      Adaptive receptor changes<br>
+      ↓<br>
+      Sudden drug discontinuation<br>
+      ↓<br>
+      Excess response to circulating catecholamines<br>
+      ↓<br>
+      <strong>Rebound tachycardia, hypertension or angina</strong>
+    </div>
+
+    <p>
+      Beta blockers are therefore often tapered when discontinuation is clinically appropriate.
+    </p>
+
+    <hr>
+
+    <h3>10. Important adverse effects</h3>
+
+    <ul>
+      <li>Bradycardia</li>
+      <li>Hypotension</li>
+      <li>Fatigue</li>
+      <li>Dizziness</li>
+      <li>Atrioventricular conduction slowing</li>
+      <li>Bronchospasm risk with beta-2 blockade</li>
+      <li>Masking of some hypoglycemia symptoms</li>
+      <li>Possible worsening of acute decompensated heart failure if used inappropriately</li>
+    </ul>
+
+    <hr>
+
+    <h3>11. Important contraindications and cautions</h3>
+
+    <div class="callout">
+      <strong>CAUTION / AVOID WHEN APPROPRIATE</strong><br><br>
+
+      Severe bradycardia<br>
+      Certain second- or third-degree atrioventricular blocks without pacing<br>
+      Cardiogenic shock<br>
+      Acute decompensated heart failure in some settings<br>
+      Reactive airway disease, especially with nonselective agents<br>
+      Peripheral vascular disease — use clinical judgment<br>
+      Diabetes — monitor for masking of hypoglycemia symptoms
+    </div>
+
+    <hr>
+
+    <h3>12. Drug interaction board</h3>
+
+    <div class="callout">
+      <strong>Beta blocker + verapamil or diltiazem</strong><br>
+      → additive AV-node suppression<br>
+      → bradycardia / heart block risk<br><br>
+
+      <strong>Beta blocker + digoxin</strong><br>
+      → additive slowing of AV conduction<br><br>
+
+      <strong>Beta blocker + other antihypertensives</strong><br>
+      → increased hypotension risk<br><br>
+
+      <strong>Beta blocker + insulin or glucose-lowering therapy</strong><br>
+      → hypoglycemia warning signs may be less obvious
+    </div>
+
+    <hr>
+
+    <h3>13. Monitoring board</h3>
+
+    <div class="callout">
+      <strong>MONITOR</strong><br><br>
+
+      Heart rate<br>
+      Blood pressure<br>
+      Symptoms of dizziness or syncope<br>
+      Signs of heart failure when clinically relevant<br>
+      Respiratory symptoms in susceptible patients<br>
+      Glucose awareness in patients at risk of hypoglycemia<br>
+      Electrocardiographic conduction when clinically indicated
+    </div>
+
+    <hr>
+
+    <h3>14. Clinical comparison board</h3>
+
+    <table style="width:100%;border-collapse:collapse;">
+      <tr>
+        <th style="border:1px solid #ccc;padding:8px;">Drug</th>
+        <th style="border:1px solid #ccc;padding:8px;">Selectivity</th>
+        <th style="border:1px solid #ccc;padding:8px;">Useful teaching point</th>
+      </tr>
+
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Metoprolol</td>
+        <td style="border:1px solid #ccc;padding:8px;">Beta-1 selective</td>
+        <td style="border:1px solid #ccc;padding:8px;">Common cardiovascular beta blocker</td>
+      </tr>
+
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Propranolol</td>
+        <td style="border:1px solid #ccc;padding:8px;">Nonselective</td>
+        <td style="border:1px solid #ccc;padding:8px;">Also used for tremor, migraine and hyperthyroid symptoms</td>
+      </tr>
+
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Carvedilol</td>
+        <td style="border:1px solid #ccc;padding:8px;">Beta + alpha-1 blockade</td>
+        <td style="border:1px solid #ccc;padding:8px;">Evidence-based heart-failure therapy</td>
+      </tr>
+
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Esmolol</td>
+        <td style="border:1px solid #ccc;padding:8px;">Beta-1 selective</td>
+        <td style="border:1px solid #ccc;padding:8px;">Very short half-life; useful for rapid intravenous titration</td>
+      </tr>
+    </table>
+
+    <hr>
+
+    <h3>15. Clinical reasoning case</h3>
+
+    <p>
+      A patient with hypertension and asthma requires additional blood-pressure control.
+      Which beta-blocker property would generally be more desirable if a beta blocker
+      is considered clinically appropriate?
+    </p>
+
+    <div class="callout">
+      Preferential beta-1 selectivity<br>
+      ↓<br>
+      Less beta-2 blockade at lower doses<br>
+      ↓<br>
+      Lower theoretical bronchospasm risk than a nonselective agent<br><br>
+
+      <strong>Important:</strong> cardioselectivity is not absolute and decreases as dose increases.
+    </div>
+
+    <hr>
+
+    <h3>16. High-yield memory board</h3>
+
+    <div class="callout">
+      <strong>BETA BLOCKER = often -OLOL</strong><br><br>
+
+      Beta-1 blockade → ↓ heart rate<br>
+      Beta-1 blockade → ↓ contractility<br>
+      Beta-1 blockade → ↓ AV conduction<br>
+      Beta-1 blockade → ↓ renin<br><br>
+
+      Beta-2 blockade → bronchospasm risk<br><br>
+
+      Monitor → heart rate + blood pressure<br>
+      Diabetes → may mask tachycardia from hypoglycemia<br>
+      Never forget → abrupt withdrawal can cause rebound sympathetic effects
+    </div>
+
+    <hr>
+
+    <h3>Knowledge Check 1</h3>
+
+    <p>
+      Which receptor subtype is primarily responsible for increasing heart rate
+      and contractility in the heart?
+    </p>
+
+    <button class="btn" onclick="checkCardioBB1('A')">
+      A. Beta-1 receptor
+    </button>
+
+    <button class="btn" onclick="checkCardioBB1('B')">
+      B. Beta-2 receptor
+    </button>
+
+    <p id="cardioBB1Answer"></p>
+
+    <hr>
+
+    <h3>Knowledge Check 2</h3>
+
+    <p>
+      Which beta blocker is nonselective?
+    </p>
+
+    <button class="btn" onclick="checkCardioBB2('A')">
+      A. Propranolol
+    </button>
+
+    <button class="btn" onclick="checkCardioBB2('B')">
+      B. Metoprolol
+    </button>
+
+    <p id="cardioBB2Answer"></p>
+
+    <hr>
+
+    <h3>Knowledge Check 3</h3>
+
+    <p>
+      Why can nonselective beta blockers worsen bronchospasm in susceptible patients?
+    </p>
+
+    <button class="btn" onclick="checkCardioBB3('A')">
+      A. They block beta-2-mediated bronchodilation
+    </button>
+
+    <button class="btn" onclick="checkCardioBB3('B')">
+      B. They strongly activate beta-2 receptors
+    </button>
+
+    <p id="cardioBB3Answer"></p>
+
+    <hr>
+
+    <h3>Knowledge Check 4</h3>
+
+    <p>
+      Which combination can significantly increase the risk of bradycardia and AV block?
+    </p>
+
+    <button class="btn" onclick="checkCardioBB4('A')">
+      A. Beta blocker plus verapamil
+    </button>
+
+    <button class="btn" onclick="checkCardioBB4('B')">
+      B. Beta blocker plus acetaminophen
+    </button>
+
+    <p id="cardioBB4Answer"></p>
+
+    <hr>
+
+    <h3>Knowledge Check 5</h3>
+
+    <p>
+      Why should chronic beta-blocker therapy generally not be stopped abruptly?
+    </p>
+
+    <button class="btn" onclick="checkCardioBB5('A')">
+      A. Rebound sympathetic effects may occur
+    </button>
+
+    <button class="btn" onclick="checkCardioBB5('B')">
+      B. Beta receptors permanently disappear
+    </button>
+
+    <p id="cardioBB5Answer"></p>
+
+    <br>
+
+    <button class="btn primary" onclick="startPharmacologyModule(2)">
+      Back to Module 2
+    </button>
+  `;
+
+  const lessonBox = document.getElementById('lessonBox');
+
+  window.scrollTo({
+    top: lessonBox.offsetTop - 170,
+    behavior: 'smooth'
+  });
+}
+
+function checkCardioBB1(answer){
+  const result = document.getElementById('cardioBB1Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Beta-1 receptor stimulation increases heart rate, contractility and AV conduction.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Beta-1 receptors are the dominant cardiac beta receptors involved in chronotropy and inotropy.';
+  }
+}
+
+function checkCardioBB2(answer){
+  const result = document.getElementById('cardioBB2Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Propranolol blocks both beta-1 and beta-2 receptors and is therefore nonselective.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Metoprolol is relatively beta-1 selective, whereas propranolol is nonselective.';
+  }
+}
+
+function checkCardioBB3(answer){
+  const result = document.getElementById('cardioBB3Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Beta-2 receptors normally promote bronchodilation, so beta-2 blockade can increase airway resistance.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> The problem is beta-2 blockade, not beta-2 activation.';
+  }
+}
+
+function checkCardioBB4(answer){
+  const result = document.getElementById('cardioBB4Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Verapamil and beta blockers both suppress AV-node conduction and can produce significant bradycardia or heart block.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Acetaminophen does not typically produce this additive AV-node suppression.';
+  }
+}
+
+function checkCardioBB5(answer){
+  const result = document.getElementById('cardioBB5Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Abrupt withdrawal after chronic beta blockade can produce rebound sympathetic activity, including tachycardia, hypertension and worsening angina.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Beta receptors do not permanently disappear. Chronic blockade can produce adaptive changes that make abrupt withdrawal risky.';
+  }
+}
 document.getElementById('referralButton').addEventListener('click',()=>{
 
   const code=
