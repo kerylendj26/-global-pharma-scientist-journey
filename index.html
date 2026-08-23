@@ -1139,64 +1139,383 @@ if(lessonNumber === 4){
   return;
 }
   if(lessonNumber === 1){
-    title.textContent = 'Lesson 1 — Pharmacodynamics';
+  title.textContent = 'Lesson 1 — Pharmacodynamics';
 
-    text.innerHTML = `
-      <h3>What does a drug do to the body?</h3>
+  text.innerHTML = `
+    <h2>Lesson 1 — Pharmacodynamics</h2>
 
-      <p>
-        <strong>Pharmacodynamics</strong> is the study of the
-        biochemical and physiological effects of drugs and
-        how those effects are produced.
-      </p>
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson, you should be able to:</p>
+    <ul>
+      <li>Define pharmacodynamics and distinguish it from pharmacokinetics.</li>
+      <li>Identify major drug targets.</li>
+      <li>Differentiate agonists, partial agonists, inverse agonists and antagonists.</li>
+      <li>Explain affinity, potency and efficacy.</li>
+      <li>Interpret basic dose-response relationships.</li>
+      <li>Explain competitive and noncompetitive antagonism.</li>
+      <li>Describe receptor desensitization, tolerance and up/down-regulation.</li>
+    </ul>
 
-      <h3>1. Drug targets</h3>
-      <p>
-        Drugs interact with molecular targets such as receptors,
-        enzymes, ion channels and transporters.
-      </p>
+    <hr>
 
-      <h3>2. Agonists</h3>
-      <p>
-        An agonist binds to a receptor and activates it,
-        producing a biological response.
-      </p>
+    <h3>1. What is pharmacodynamics?</h3>
+    <p>
+      <strong>Pharmacodynamics</strong> describes what a drug does to the body.
+      It focuses on the relationship between drug concentration, molecular targets
+      and the biological response that follows.
+    </p>
 
-      <h3>3. Antagonists</h3>
-      <p>
-        An antagonist binds to a receptor but does not activate it.
-        Instead, it blocks or reduces the effect of an agonist.
-      </p>
+    <p><strong>Core mechanism:</strong></p>
+    <p>
+      Drug → Molecular target → Cellular response →
+      Physiological effect → Therapeutic effect
+    </p>
 
-      <h3>4. Core mechanism</h3>
-      <p>
-        Drug → Molecular target → Cellular response →
-        Physiological effect → Therapeutic effect
-      </p>
+    <p>
+      Example: albuterol binds beta-2 adrenergic receptors in bronchial smooth muscle,
+      increases cyclic adenosine monophosphate signaling, relaxes bronchial smooth muscle
+      and produces bronchodilation.
+    </p>
 
-      <hr>
+    <hr>
 
-      <h3>Quick Check</h3>
+    <h3>2. Major molecular drug targets</h3>
 
-      <p>
-        A drug binds to a receptor and activates it.
-        What type of drug is it?
-      </p>
+    <p><strong>Receptors:</strong> proteins that recognize signaling molecules and drugs.</p>
 
-      <button class="btn" onclick="checkPharmAnswer('A')">
-        A. Agonist
-      </button>
+    <p>
+      Example: morphine activates mu-opioid receptors and reduces transmission
+      of nociceptive pain signals.
+    </p>
 
-      <button class="btn" onclick="checkPharmAnswer('B')">
-        B. Antagonist
-      </button>
+    <p><strong>Enzymes:</strong> drugs can inhibit or modify enzymatic activity.</p>
 
-      <p id="pharmAnswer"></p>
-      <button class="btn primary" onclick="openPharmModule1Menu()">
-  Back to Module 1
-</button>
-    `;
-  }
+    <p>
+      Example: lisinopril inhibits angiotensin-converting enzyme, reducing formation
+      of angiotensin II.
+    </p>
+
+    <p><strong>Ion channels:</strong> drugs may open or block channels that control ion movement.</p>
+
+    <p>
+      Example: lidocaine blocks voltage-gated sodium channels and prevents propagation
+      of action potentials.
+    </p>
+
+    <p><strong>Transporters:</strong> drugs may inhibit membrane transport proteins.</p>
+
+    <p>
+      Example: selective serotonin reuptake inhibitors block the serotonin transporter,
+      increasing serotonin in the synaptic cleft.
+    </p>
+
+    <hr>
+
+    <h3>3. Agonists</h3>
+
+    <p>
+      An <strong>agonist</strong> binds to a receptor and activates it,
+      producing a biological response.
+    </p>
+
+    <p>
+      A <strong>full agonist</strong> can produce the maximal response of the receptor system.
+    </p>
+
+    <p>
+      Example: morphine is a mu-opioid receptor agonist.
+    </p>
+
+    <hr>
+
+    <h3>4. Partial agonists</h3>
+
+    <p>
+      A <strong>partial agonist</strong> activates a receptor but produces a lower maximum
+      response than a full agonist, even when occupying all available receptors.
+    </p>
+
+    <p>
+      Example: buprenorphine is a partial mu-opioid receptor agonist.
+    </p>
+
+    <p>
+      In the presence of a full agonist, a partial agonist may functionally reduce
+      the overall receptor response because it competes for the same receptor.
+    </p>
+
+    <hr>
+
+    <h3>5. Inverse agonists</h3>
+
+    <p>
+      Some receptors have a small amount of activity even when no ligand is bound.
+      An <strong>inverse agonist</strong> binds to the receptor and decreases this basal activity.
+    </p>
+
+    <p>
+      This differs from a neutral antagonist, which blocks agonist binding
+      without necessarily changing basal receptor activity.
+    </p>
+
+    <hr>
+
+    <h3>6. Antagonists</h3>
+
+    <p>
+      An <strong>antagonist</strong> binds to a receptor without activating it
+      and prevents or reduces agonist activity.
+    </p>
+
+    <p>
+      Example: naloxone competitively blocks opioid receptors and reverses opioid effects.
+    </p>
+
+    <hr>
+
+    <h3>7. Competitive antagonism</h3>
+
+    <p>
+      A <strong>competitive antagonist</strong> competes with an agonist for the same
+      receptor binding site.
+    </p>
+
+    <p>
+      Its effect can often be overcome by increasing agonist concentration.
+      The dose-response curve shifts to the right, but the same maximal effect may still be reached.
+    </p>
+
+    <hr>
+
+    <h3>8. Noncompetitive antagonism</h3>
+
+    <p>
+      A <strong>noncompetitive antagonist</strong> reduces receptor signaling in a way
+      that cannot be fully overcome simply by adding more agonist.
+    </p>
+
+    <p>
+      This often decreases the maximum achievable response.
+    </p>
+
+    <hr>
+
+    <h3>9. Affinity</h3>
+
+    <p>
+      <strong>Affinity</strong> describes how strongly a drug binds to its receptor.
+    </p>
+
+    <p>
+      High affinity means the drug binds strongly, but affinity alone does not tell us
+      how strongly the drug activates the receptor.
+    </p>
+
+    <hr>
+
+    <h3>10. Potency</h3>
+
+    <p>
+      <strong>Potency</strong> describes the amount of drug required to produce
+      a given effect.
+    </p>
+
+    <p>
+      A more potent drug produces the same effect at a lower dose than a less potent drug.
+    </p>
+
+    <p>
+      <strong>EC50</strong> is the concentration that produces 50% of the maximal effect.
+      A lower EC50 generally indicates greater potency.
+    </p>
+
+    <hr>
+
+    <h3>11. Efficacy</h3>
+
+    <p>
+      <strong>Efficacy</strong> describes the maximum effect a drug can produce.
+    </p>
+
+    <p>
+      <strong>Emax</strong> represents the maximum response.
+    </p>
+
+    <p>
+      A drug can be more potent but still have lower efficacy than another drug.
+    </p>
+
+    <hr>
+
+    <h3>12. Dose-response relationship</h3>
+
+    <p>
+      As drug concentration increases, the biological response usually increases
+      until the system approaches its maximum response.
+    </p>
+
+    <p>
+      Important concepts:
+    </p>
+
+    <ul>
+      <li><strong>Threshold:</strong> concentration where a measurable effect begins.</li>
+      <li><strong>EC50:</strong> concentration producing 50% of maximal effect.</li>
+      <li><strong>Emax:</strong> maximum achievable effect.</li>
+    </ul>
+
+    <hr>
+
+    <h3>13. Receptor regulation</h3>
+
+    <p>
+      Receptors can change in number or responsiveness after repeated drug exposure.
+    </p>
+
+    <p>
+      <strong>Down-regulation:</strong> receptor number or responsiveness decreases,
+      commonly after prolonged agonist exposure.
+    </p>
+
+    <p>
+      <strong>Up-regulation:</strong> receptor number or responsiveness increases,
+      sometimes after prolonged receptor blockade.
+    </p>
+
+    <hr>
+
+    <h3>14. Desensitization and tolerance</h3>
+
+    <p>
+      <strong>Desensitization</strong> is a reduction in receptor responsiveness
+      after repeated or prolonged stimulation.
+    </p>
+
+    <p>
+      <strong>Tolerance</strong> means a larger dose may be needed over time
+      to produce the same clinical effect.
+    </p>
+
+    <p>
+      Mechanisms may include receptor changes, altered signaling or increased drug metabolism.
+    </p>
+
+    <hr>
+
+    <h3>15. Clinical mechanism example</h3>
+
+    <p><strong>Drug:</strong> naloxone</p>
+
+    <p><strong>Target:</strong> opioid receptors, especially mu receptors</p>
+
+    <p><strong>Action:</strong> competitive receptor antagonism</p>
+
+    <p><strong>Physiological effect:</strong> displacement of opioid agonists from receptors</p>
+
+    <p><strong>Therapeutic effect:</strong> reversal of opioid-induced respiratory depression</p>
+
+    <p><strong>Mechanism chain:</strong></p>
+
+    <p>
+      Naloxone → opioid receptor blockade →
+      reduced opioid signaling → improved respiratory drive
+    </p>
+
+    <hr>
+
+    <h3>High-yield summary</h3>
+
+    <p>
+      <strong>Agonist:</strong> binds + activates receptor
+    </p>
+
+    <p>
+      <strong>Partial agonist:</strong> activates receptor but produces lower Emax
+    </p>
+
+    <p>
+      <strong>Antagonist:</strong> binds without activating and blocks agonist action
+    </p>
+
+    <p>
+      <strong>Potency:</strong> how much drug is required
+    </p>
+
+    <p>
+      <strong>Efficacy:</strong> maximum effect the drug can produce
+    </p>
+
+    <p>
+      <strong>Competitive antagonist:</strong> rightward shift, Emax can remain achievable
+    </p>
+
+    <p>
+      <strong>Noncompetitive antagonist:</strong> commonly lowers Emax
+    </p>
+
+    <hr>
+
+    <h3>Knowledge Check 1</h3>
+
+    <p>
+      A drug binds to a receptor and produces the maximum possible receptor response.
+      Which description fits best?
+    </p>
+
+    <button class="btn" onclick="checkPharmAnswer('A')">
+      A. Full agonist
+    </button>
+
+    <button class="btn" onclick="checkPharmAnswer('B')">
+      B. Antagonist
+    </button>
+
+    <p id="pharmAnswer"></p>
+
+    <hr>
+
+    <h3>Knowledge Check 2</h3>
+
+    <p>
+      Drug X produces the same effect as Drug Y at a much lower dose.
+      Drug X is therefore:
+    </p>
+
+    <button class="btn" onclick="checkPharmPotency('A')">
+      A. More potent
+    </button>
+
+    <button class="btn" onclick="checkPharmPotency('B')">
+      B. More efficacious
+    </button>
+
+    <p id="pharmPotencyAnswer"></p>
+
+    <hr>
+
+    <h3>Knowledge Check 3</h3>
+
+    <p>
+      Which parameter represents the maximum effect a drug can produce?
+    </p>
+
+    <button class="btn" onclick="checkPharmEfficacy('A')">
+      A. EC50
+    </button>
+
+    <button class="btn" onclick="checkPharmEfficacy('B')">
+      B. Emax
+    </button>
+
+    <p id="pharmEfficacyAnswer"></p>
+
+    <br>
+
+    <button class="btn primary" onclick="openPharmModule1Menu()">
+      Back to Module 1
+    </button>
+  `;
+}
 
   document.getElementById('lessonBox').scrollIntoView({
     behavior: 'smooth',
@@ -1213,6 +1532,29 @@ function checkPharmAnswer(answer){
   } else {
     result.innerHTML =
       '<strong>Not quite.</strong> An antagonist binds without activating the receptor and blocks agonist activity.';
+  }
+}
+  function checkPharmPotency(answer){
+  const result = document.getElementById('pharmPotencyAnswer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Drug X is more potent because it produces the same effect at a lower dose.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Efficacy refers to maximum effect. Potency refers to how much drug is required to produce an effect.';
+  }
+}
+
+function checkPharmEfficacy(answer){
+  const result = document.getElementById('pharmEfficacyAnswer');
+
+  if(answer === 'B'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Emax represents the maximum effect a drug can produce.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> EC50 reflects potency; Emax reflects maximum efficacy.';
   }
 }
 function openPharmModule1Menu(){
