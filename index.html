@@ -5078,6 +5078,670 @@ function checkCardioBB5(answer){
       '<strong>Not quite.</strong> Beta receptors do not permanently disappear. Chronic blockade can produce adaptive changes that make abrupt withdrawal risky.';
   }
 }
+  /* =========================================================
+   MODULE 2 — CARDIOVASCULAR PHARMACOLOGY
+   LESSON 4 — CALCIUM CHANNEL BLOCKERS
+   ========================================================= */
+
+function startCardioLesson4(){
+
+  const title = document.getElementById('lessonTitle');
+  const text = document.getElementById('lessonText');
+
+  title.textContent = 'Lesson 4 — Calcium Channel Blockers (CCBs)';
+
+  text.innerHTML = `
+
+  <h2>Lesson 4 — Calcium Channel Blockers (CCBs)</h2>
+
+  <h3>Learning objectives</h3>
+
+  <p>By the end of this lesson, you should be able to:</p>
+
+  <ul>
+    <li>Explain the role of L-type calcium channels in vascular smooth muscle and cardiac tissue.</li>
+    <li>Explain how calcium channel blockers lower blood pressure.</li>
+    <li>Differentiate dihydropyridine and non-dihydropyridine calcium channel blockers.</li>
+    <li>Identify major generic and common brand-name calcium channel blockers.</li>
+    <li>Connect calcium-channel blockade to therapeutic and adverse effects.</li>
+    <li>Explain why dihydropyridines commonly cause peripheral edema.</li>
+    <li>Recognize bradycardia and atrioventricular block associated with verapamil and diltiazem.</li>
+    <li>Identify important contraindications, interactions and monitoring parameters.</li>
+  </ul>
+
+  <hr>
+
+  <h3>1. Why is calcium important?</h3>
+
+  <p>
+    Calcium ions play a major role in contraction of vascular smooth muscle
+    and cardiac muscle. Calcium entry through
+    <strong>L-type voltage-gated calcium channels</strong>
+    contributes to vascular tone, myocardial contraction and electrical
+    conduction through the heart.
+  </p>
+
+  <div class="callout">
+    <strong>PHYSIOLOGY BOARD</strong><br><br>
+
+    Cell membrane depolarization<br>
+    ↓<br>
+    L-type calcium channels open<br>
+    ↓<br>
+    Calcium enters the cell<br>
+    ↓<br>
+    Increased intracellular calcium<br>
+    ↓<br>
+    <strong>Muscle contraction</strong>
+  </div>
+
+  <p>
+    Therefore, blocking these channels reduces calcium entry and changes
+    vascular and/or cardiac function depending on the drug.
+  </p>
+
+  <hr>
+
+  <h3>2. Core mechanism of calcium channel blockers</h3>
+
+  <div class="callout">
+    <strong>MECHANISM MAP</strong><br><br>
+
+    Calcium channel blocker<br>
+    ↓<br>
+    Blocks L-type voltage-gated calcium channels<br>
+    ↓<br>
+    Reduced calcium entry into cells<br>
+    ↓<br>
+    Reduced calcium-dependent contraction
+  </div>
+
+  <p>
+    Calcium channel blockers are divided into two clinically important groups:
+  </p>
+
+  <p>
+    <strong>1. Dihydropyridines (DHPs)</strong><br>
+    Act predominantly on vascular smooth muscle.
+  </p>
+
+  <p>
+    <strong>2. Non-dihydropyridines (non-DHPs)</strong><br>
+    Verapamil and diltiazem have greater clinically important effects on
+    the heart, particularly heart rate and atrioventricular conduction.
+  </p>
+
+  <hr>
+
+  <h3>3. Dihydropyridine calcium channel blockers</h3>
+
+  <p>
+    Most dihydropyridine drugs can be recognized by the
+    <strong>-dipine</strong> ending.
+  </p>
+
+  <div class="callout">
+    <strong>DRUG RECOGNITION BOARD</strong><br><br>
+
+    Amlodipine — common brand: Norvasc<br>
+    Nifedipine — common brands include Procardia XL and Adalat CC<br>
+    Felodipine — common historical brand: Plendil<br>
+    Nicardipine — common brand: Cardene<br>
+    Clevidipine — common brand: Cleviprex<br>
+    Isradipine — generic available<br><br>
+
+    <strong>Memory clue: many DHP calcium channel blockers end in -dipine.</strong>
+  </div>
+
+  <h3>Primary vascular mechanism</h3>
+
+  <div class="callout">
+    DHP calcium channel blocker<br>
+    ↓<br>
+    Blocks L-type calcium channels in arteriolar smooth muscle<br>
+    ↓<br>
+    Reduced intracellular calcium<br>
+    ↓<br>
+    Reduced smooth-muscle contraction<br>
+    ↓<br>
+    <strong>Arteriolar vasodilation</strong><br>
+    ↓<br>
+    Reduced systemic vascular resistance<br>
+    ↓<br>
+    <strong>Lower blood pressure</strong>
+  </div>
+
+  <p>
+    Dihydropyridines are therefore particularly useful when the desired
+    therapeutic effect is arterial vasodilation.
+  </p>
+
+  <hr>
+
+  <h3>4. Non-dihydropyridine calcium channel blockers</h3>
+
+  <p>
+    The two major non-dihydropyridines are:
+  </p>
+
+  <div class="callout">
+    <strong>VERAPAMIL</strong><br>
+    Common brand examples: Calan SR and Verelan<br><br>
+
+    <strong>DILTIAZEM</strong><br>
+    Common brand examples: Cardizem CD and Tiazac
+  </div>
+
+  <p>
+    These agents block L-type calcium channels in cardiac tissue as well as
+    vascular smooth muscle.
+  </p>
+
+  <div class="callout">
+    <strong>CARDIAC MECHANISM BOARD</strong><br><br>
+
+    Verapamil / Diltiazem<br>
+    ↓<br>
+    L-type calcium-channel blockade<br>
+    ↓<br>
+    Reduced calcium-dependent activity in the sinoatrial and
+    atrioventricular nodes<br>
+    ↓<br>
+    Slower sinoatrial node activity<br>
+    +<br>
+    Slower atrioventricular node conduction<br>
+    ↓<br>
+    <strong>Reduced heart rate and slowed AV conduction</strong>
+  </div>
+
+  <p>
+    They also reduce myocardial contractility to varying degrees.
+    Verapamil generally has a stronger negative inotropic effect than
+    diltiazem.
+  </p>
+
+  <hr>
+
+  <h3>5. DHP vs non-DHP comparison board</h3>
+
+  <div class="callout">
+    <strong>CALCIUM CHANNEL BLOCKER MASTER BOARD</strong><br><br>
+
+    <strong>DIHYDROPYRIDINES</strong><br>
+    Examples: amlodipine, nifedipine, felodipine<br>
+    Main target: vascular smooth muscle<br>
+    Major effect: arteriolar vasodilation<br>
+    Blood pressure: ↓<br>
+    Common problem: peripheral edema<br><br>
+
+    <strong>NON-DIHYDROPYRIDINES</strong><br>
+    Examples: verapamil, diltiazem<br>
+    Main clinically important target: heart + vessels<br>
+    Heart rate: ↓<br>
+    AV conduction: ↓<br>
+    Contractility: ↓<br>
+    Important problems: bradycardia and AV block<br>
+    Verapamil: constipation is especially notable
+  </div>
+
+  <hr>
+
+  <h3>6. Major therapeutic uses</h3>
+
+  <p><strong>Hypertension</strong></p>
+
+  <p>
+    Dihydropyridines such as amlodipine reduce systemic vascular resistance
+    through arteriolar vasodilation.
+  </p>
+
+  <p><strong>Angina</strong></p>
+
+  <p>
+    Calcium channel blockers can reduce myocardial oxygen demand and/or
+    improve coronary blood flow depending on the agent and clinical setting.
+  </p>
+
+  <p><strong>Vasospastic angina</strong></p>
+
+  <p>
+    Calcium channel blockers can reduce coronary vasospasm.
+  </p>
+
+  <p><strong>Selected supraventricular tachyarrhythmias</strong></p>
+
+  <p>
+    Verapamil and diltiazem can slow atrioventricular nodal conduction and
+    are used for ventricular rate control in selected supraventricular
+    arrhythmias, including atrial fibrillation and atrial flutter when
+    clinically appropriate.
+  </p>
+
+  <hr>
+
+  <h3>7. Why does amlodipine cause peripheral edema?</h3>
+
+  <p>
+    Peripheral edema is an important adverse effect of dihydropyridine
+    calcium channel blockers.
+  </p>
+
+  <div class="callout">
+    <strong>EDEMA MECHANISM BOARD</strong><br><br>
+
+    DHP calcium channel blocker<br>
+    ↓<br>
+    Preferential arteriolar dilation<br>
+    ↓<br>
+    Increased hydrostatic pressure within capillary beds<br>
+    ↓<br>
+    Fluid moves into interstitial tissue<br>
+    ↓<br>
+    <strong>Dependent peripheral edema</strong>
+  </div>
+
+  <p>
+    This is important: the edema is not simply evidence of total-body
+    fluid overload. It is strongly related to altered microvascular
+    hemodynamics caused by arteriolar dilation.
+  </p>
+
+  <hr>
+
+  <h3>8. Important adverse effects</h3>
+
+  <div class="callout">
+    <strong>DIHYDROPYRIDINES</strong><br><br>
+
+    Peripheral edema<br>
+    Headache<br>
+    Flushing<br>
+    Dizziness<br>
+    Hypotension<br>
+    Palpitations<br>
+    Reflex tachycardia may occur, particularly with rapidly acting
+    vasodilating formulations
+  </div>
+
+  <br>
+
+  <div class="callout">
+    <strong>VERAPAMIL / DILTIAZEM</strong><br><br>
+
+    Bradycardia<br>
+    Hypotension<br>
+    AV conduction slowing / AV block<br>
+    Worsening cardiac dysfunction in susceptible patients because of
+    negative inotropic effects<br><br>
+
+    <strong>Verapamil → constipation is especially characteristic.</strong>
+  </div>
+
+  <hr>
+
+  <h3>9. Why can verapamil and diltiazem cause bradycardia?</h3>
+
+  <div class="callout">
+    Verapamil / Diltiazem<br>
+    ↓<br>
+    L-type calcium-channel blockade in nodal tissue<br>
+    ↓<br>
+    Reduced calcium-dependent depolarization<br>
+    ↓<br>
+    Slower SA-node activity + slower AV-node conduction<br>
+    ↓<br>
+    <strong>Bradycardia / conduction delay</strong>
+  </div>
+
+  <hr>
+
+  <h3>10. Interaction with beta blockers</h3>
+
+  <p>
+    Combining a beta blocker with verapamil or diltiazem can produce
+    additive cardiac suppression.
+  </p>
+
+  <div class="callout">
+    Beta blocker<br>
+    +<br>
+    Verapamil or Diltiazem<br>
+    ↓<br>
+    Greater suppression of heart rate and AV conduction<br>
+    ↓<br>
+    <strong>Increased risk of bradycardia, AV block and cardiac dysfunction</strong>
+  </div>
+
+  <p>
+    The combination is not universally prohibited, but it requires careful
+    clinical assessment and monitoring.
+  </p>
+
+  <hr>
+
+  <h3>11. Heart failure consideration</h3>
+
+  <p>
+    Verapamil and diltiazem have negative inotropic effects and are generally
+    avoided in patients with heart failure with reduced ejection fraction
+    because they may worsen cardiac function.
+  </p>
+
+  <p>
+    This restriction does not automatically apply to every calcium channel
+    blocker. Amlodipine, for example, does not have the same clinically
+    important myocardial depressant effect.
+  </p>
+
+  <hr>
+
+  <h3>12. Important interactions</h3>
+
+  <p><strong>Beta blockers + verapamil/diltiazem</strong></p>
+
+  <p>
+    Increased risk of excessive bradycardia, conduction abnormalities and
+    cardiac depression.
+  </p>
+
+  <p><strong>CYP3A4 interactions</strong></p>
+
+  <p>
+    Several calcium channel blockers are metabolized through cytochrome
+    P450 3A4 pathways. Inhibitors or inducers of this pathway may alter
+    concentrations of susceptible agents.
+  </p>
+
+  <p>
+    Verapamil and diltiazem can also inhibit CYP3A4 and P-glycoprotein,
+    creating clinically important interaction potential with selected
+    medications.
+  </p>
+
+  <hr>
+
+  <h3>13. Monitoring</h3>
+
+  <div class="callout">
+    <strong>MONITORING BOARD</strong><br><br>
+
+    All major CCBs:<br>
+    • Blood pressure<br>
+    • Dizziness / symptomatic hypotension<br>
+    • Peripheral edema<br><br>
+
+    Verapamil / Diltiazem:<br>
+    • Heart rate<br>
+    • Symptoms of bradycardia<br>
+    • AV conduction when clinically indicated<br>
+    • Signs or symptoms of worsening heart failure in susceptible patients
+  </div>
+
+  <hr>
+
+  <h3>14. High-yield clinical recognition</h3>
+
+  <div class="callout">
+    <strong>FAST RECALL BOARD</strong><br><br>
+
+    <strong>-dipine → think vessels</strong><br>
+    Amlodipine → vasodilation → edema<br><br>
+
+    <strong>Verapamil → think heart + constipation</strong><br>
+    ↓ heart rate<br>
+    ↓ AV conduction<br>
+    ↓ contractility<br><br>
+
+    <strong>Diltiazem → think heart + vessels</strong><br>
+    ↓ heart rate<br>
+    ↓ AV conduction<br><br>
+
+    Beta blocker + verapamil/diltiazem<br>
+    → watch for excessive cardiac suppression
+  </div>
+
+  <hr>
+
+  <h3>15. Clinical reasoning case</h3>
+
+  <div class="callout">
+    <strong>CASE</strong><br><br>
+
+    A patient taking amlodipine for hypertension develops bilateral ankle
+    swelling. There is no sudden weight gain, severe dyspnea or other
+    evidence presented here of acute volume overload.<br><br>
+
+    <strong>Mechanistic explanation:</strong><br>
+    Amlodipine dilates arterioles, increasing capillary hydrostatic pressure
+    and promoting movement of fluid into interstitial tissue.<br><br>
+
+    This is a classic mechanism-based adverse effect of dihydropyridine
+    calcium channel blockers.
+  </div>
+
+  <hr>
+
+  <h3>16. Master mechanism map</h3>
+
+  <div class="callout">
+    <strong>CALCIUM CHANNEL BLOCKERS</strong><br>
+    ↓<br>
+    Block L-type calcium channels<br>
+    ↓<br><br>
+
+    ┌─────────────────────────────┐<br>
+    │ DIHYDROPYRIDINES            │<br>
+    │ Amlodipine / Nifedipine     │<br>
+    └─────────────────────────────┘<br>
+    ↓<br>
+    Arteriolar smooth-muscle relaxation<br>
+    ↓<br>
+    Vasodilation<br>
+    ↓<br>
+    Reduced systemic vascular resistance<br>
+    ↓<br>
+    Lower blood pressure<br>
+    ↓<br>
+    Peripheral edema may occur<br><br>
+
+    ┌─────────────────────────────┐<br>
+    │ NON-DIHYDROPYRIDINES        │<br>
+    │ Verapamil / Diltiazem       │<br>
+    └─────────────────────────────┘<br>
+    ↓<br>
+    Cardiac L-type channel blockade<br>
+    ↓<br>
+    Reduced SA-node activity<br>
+    + slower AV-node conduction<br>
+    ↓<br>
+    Reduced heart rate<br>
+    ↓<br>
+    Bradycardia / AV block risk
+  </div>
+
+  <hr>
+
+  <h3>17. Knowledge Check 1</h3>
+
+  <p>
+    Which calcium channel blocker is a dihydropyridine with predominantly
+    vascular effects?
+  </p>
+
+  <button class="btn" onclick="checkCardioCCB1('A')">
+    A. Amlodipine
+  </button>
+
+  <button class="btn" onclick="checkCardioCCB1('B')">
+    B. Verapamil
+  </button>
+
+  <p id="cardioCCB1Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 2</h3>
+
+  <p>
+    Which adverse effect is particularly associated with verapamil?
+  </p>
+
+  <button class="btn" onclick="checkCardioCCB2('A')">
+    A. Constipation
+  </button>
+
+  <button class="btn" onclick="checkCardioCCB2('B')">
+    B. Persistent dry cough from bradykinin accumulation
+  </button>
+
+  <p id="cardioCCB2Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 3</h3>
+
+  <p>
+    Why can combining a beta blocker with verapamil increase the risk of
+    clinically important bradycardia?
+  </p>
+
+  <button class="btn" onclick="checkCardioCCB3('A')">
+    A. Both can suppress cardiac rate and AV conduction
+  </button>
+
+  <button class="btn" onclick="checkCardioCCB3('B')">
+    B. Both strongly stimulate beta-1 receptors
+  </button>
+
+  <p id="cardioCCB3Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 4</h3>
+
+  <p>
+    A patient develops ankle edema after starting amlodipine. What is the
+    best mechanistic explanation?
+  </p>
+
+  <button class="btn" onclick="checkCardioCCB4('A')">
+    A. Arteriolar dilation increases capillary hydrostatic pressure
+  </button>
+
+  <button class="btn" onclick="checkCardioCCB4('B')">
+    B. Direct blockade of aldosterone receptors
+  </button>
+
+  <p id="cardioCCB4Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 5</h3>
+
+  <p>
+    Which calcium channel blockers are most directly associated with slowing
+    atrioventricular nodal conduction?
+  </p>
+
+  <button class="btn" onclick="checkCardioCCB5('A')">
+    A. Verapamil and diltiazem
+  </button>
+
+  <button class="btn" onclick="checkCardioCCB5('B')">
+    B. Amlodipine and felodipine
+  </button>
+
+  <p id="cardioCCB5Answer"></p>
+
+  <br>
+
+  <button class="btn primary" onclick="startPharmacologyModule(2)">
+    Back to Module 2
+  </button>
+
+  `;
+
+  const lessonBox = document.getElementById('lessonBox');
+
+  window.scrollTo({
+    top: lessonBox.offsetTop - 170,
+    behavior: 'smooth'
+  });
+}
+
+
+/* =========================================================
+   LESSON 4 KNOWLEDGE-CHECK FUNCTIONS
+   ========================================================= */
+
+function checkCardioCCB1(answer){
+
+  const result = document.getElementById('cardioCCB1Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Amlodipine is a dihydropyridine calcium channel blocker with predominantly vascular smooth-muscle effects.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Verapamil is a non-dihydropyridine with important cardiac effects.';
+  }
+}
+
+
+function checkCardioCCB2(answer){
+
+  const result = document.getElementById('cardioCCB2Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Constipation is a characteristic adverse effect of verapamil.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Bradykinin-associated dry cough is characteristic of angiotensin-converting enzyme inhibitors, not verapamil.';
+  }
+}
+
+
+function checkCardioCCB3(answer){
+
+  const result = document.getElementById('cardioCCB3Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Beta blockers and verapamil can both decrease heart rate and AV nodal conduction, producing additive cardiac suppression.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> These drugs suppress rather than stimulate the relevant cardiac pathways.';
+  }
+}
+
+
+function checkCardioCCB4(answer){
+
+  const result = document.getElementById('cardioCCB4Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Dihydropyridine-induced arteriolar dilation can raise capillary hydrostatic pressure and promote dependent peripheral edema.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Amlodipine does not lower blood pressure by directly blocking aldosterone receptors.';
+  }
+}
+
+
+function checkCardioCCB5(answer){
+
+  const result = document.getElementById('cardioCCB5Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Verapamil and diltiazem are non-dihydropyridines that slow AV nodal conduction.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Amlodipine and felodipine are dihydropyridines whose clinically dominant effect is vascular smooth-muscle relaxation.';
+  }
+}
 document.getElementById('referralButton').addEventListener('click',()=>{
 
   const code=
