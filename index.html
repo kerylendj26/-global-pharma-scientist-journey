@@ -4045,6 +4045,404 @@ function checkCardioACE4(answer){
       '<strong>Not quite.</strong> The major routine concerns include potassium elevation and changes in kidney function.';
   }
 }
+  function startCardioLesson2(){
+
+  const title = document.getElementById('lessonTitle');
+  const text = document.getElementById('lessonText');
+
+  title.textContent = 'Lesson 2 — Angiotensin II Receptor Blockers (ARBs)';
+
+  text.innerHTML = `
+    <h2>Lesson 2 — Angiotensin II Receptor Blockers (ARBs)</h2>
+
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson, you should be able to:</p>
+    <ul>
+      <li>Explain the renin–angiotensin–aldosterone system (RAAS).</li>
+      <li>Explain how angiotensin II receptor blockers lower blood pressure.</li>
+      <li>Identify major ARB drugs and common brand names.</li>
+      <li>Connect AT1 receptor blockade to therapeutic and adverse effects.</li>
+      <li>Compare ARBs with angiotensin-converting enzyme (ACE) inhibitors.</li>
+      <li>Recognize hyperkalemia, renal effects and pregnancy risk.</li>
+      <li>Identify important monitoring parameters.</li>
+    </ul>
+
+    <hr>
+
+    <h3>1. The RAAS pathway</h3>
+
+    <p>
+      The renin–angiotensin–aldosterone system helps regulate blood pressure,
+      circulating volume and sodium balance.
+    </p>
+
+    <div class="callout">
+      <strong>PATHWAY BOARD</strong><br><br>
+
+      Low blood pressure / low renal perfusion<br>
+      ↓<br>
+      Kidney releases <strong>renin</strong><br>
+      ↓<br>
+      Angiotensinogen → Angiotensin I<br>
+      ↓<br>
+      <strong>ACE</strong><br>
+      ↓<br>
+      Angiotensin II<br>
+      ↓<br>
+      <strong>AT1 receptor activation</strong><br>
+      ↓<br>
+      Vasoconstriction + Aldosterone secretion<br>
+      ↓<br>
+      Sodium/water retention<br>
+      ↓<br>
+      <strong>Blood pressure increases</strong>
+    </div>
+
+    <hr>
+
+    <h3>2. Where do ARBs work?</h3>
+
+    <p>
+      ARBs selectively block the effects of angiotensin II primarily at
+      <strong>angiotensin II type 1 (AT1) receptors</strong>.
+    </p>
+
+    <div class="callout">
+      <strong>MECHANISM MAP</strong><br><br>
+
+      ARB<br>
+      ↓<br>
+      Blocks AT1 receptor<br>
+      ↓<br>
+      ↓ Angiotensin II-mediated vasoconstriction<br>
+      +<br>
+      ↓ Aldosterone secretion<br>
+      ↓<br>
+      ↓ Sodium and water retention<br>
+      ↓<br>
+      ↓ Vascular resistance / blood volume<br>
+      ↓<br>
+      <strong>Lower blood pressure</strong>
+    </div>
+
+    <p>
+      This mechanism explains both the therapeutic effects and several
+      important adverse effects of the class.
+    </p>
+
+    <hr>
+
+    <h3>3. Major ARBs</h3>
+
+    <table style="width:100%;border-collapse:collapse;">
+      <tr>
+        <th style="border:1px solid #ccc;padding:8px;">Generic</th>
+        <th style="border:1px solid #ccc;padding:8px;">Common brand</th>
+        <th style="border:1px solid #ccc;padding:8px;">Class</th>
+      </tr>
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Losartan</td>
+        <td style="border:1px solid #ccc;padding:8px;">Cozaar</td>
+        <td style="border:1px solid #ccc;padding:8px;">ARB</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Valsartan</td>
+        <td style="border:1px solid #ccc;padding:8px;">Diovan</td>
+        <td style="border:1px solid #ccc;padding:8px;">ARB</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Irbesartan</td>
+        <td style="border:1px solid #ccc;padding:8px;">Avapro</td>
+        <td style="border:1px solid #ccc;padding:8px;">ARB</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Candesartan</td>
+        <td style="border:1px solid #ccc;padding:8px;">Atacand</td>
+        <td style="border:1px solid #ccc;padding:8px;">ARB</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Olmesartan</td>
+        <td style="border:1px solid #ccc;padding:8px;">Benicar</td>
+        <td style="border:1px solid #ccc;padding:8px;">ARB</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Telmisartan</td>
+        <td style="border:1px solid #ccc;padding:8px;">Micardis</td>
+        <td style="border:1px solid #ccc;padding:8px;">ARB</td>
+      </tr>
+    </table>
+
+    <p><strong>Memory anchor:</strong> Many ARBs end in <strong>-sartan</strong>.</p>
+
+    <hr>
+
+    <h3>4. Major therapeutic uses</h3>
+
+    <ul>
+      <li>Hypertension</li>
+      <li>Heart failure in selected patients</li>
+      <li>Kidney protection in appropriate patients with chronic kidney disease</li>
+      <li>Alternative in many patients who cannot tolerate an ACE inhibitor because of cough</li>
+    </ul>
+
+    <hr>
+
+    <h3>5. Why can ARBs cause hyperkalemia?</h3>
+
+    <div class="callout">
+      AT1 receptor blockade<br>
+      ↓<br>
+      Aldosterone secretion<br>
+      ↓<br>
+      Renal potassium excretion<br>
+      ↓<br>
+      Potassium retention<br>
+      ↓<br>
+      <strong>Hyperkalemia</strong>
+    </div>
+
+    <p>
+      Therefore, <strong>serum potassium</strong> is an important monitoring
+      parameter during ARB therapy.
+    </p>
+
+    <hr>
+
+    <h3>6. Renal effects</h3>
+
+    <p>
+      Angiotensin II normally helps constrict the efferent arteriole of the
+      glomerulus. Blocking this effect can reduce intraglomerular pressure.
+    </p>
+
+    <div class="callout">
+      ARB → AT1 blockade → efferent arteriolar dilation →
+      reduced intraglomerular pressure → possible rise in serum creatinine
+    </div>
+
+    <p>
+      Kidney function should therefore be evaluated before and after initiation
+      or clinically important dose changes.
+    </p>
+
+    <hr>
+
+    <h3>7. ACE inhibitors versus ARBs</h3>
+
+    <table style="width:100%;border-collapse:collapse;">
+      <tr>
+        <th style="border:1px solid #ccc;padding:8px;">Feature</th>
+        <th style="border:1px solid #ccc;padding:8px;">ACE inhibitor</th>
+        <th style="border:1px solid #ccc;padding:8px;">ARB</th>
+      </tr>
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Primary target</td>
+        <td style="border:1px solid #ccc;padding:8px;">ACE</td>
+        <td style="border:1px solid #ccc;padding:8px;">AT1 receptor</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Angiotensin II signaling</td>
+        <td style="border:1px solid #ccc;padding:8px;">Reduced formation</td>
+        <td style="border:1px solid #ccc;padding:8px;">AT1 effects blocked</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Bradykinin</td>
+        <td style="border:1px solid #ccc;padding:8px;">Breakdown reduced</td>
+        <td style="border:1px solid #ccc;padding:8px;">Not directly affected</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Dry cough</td>
+        <td style="border:1px solid #ccc;padding:8px;">Characteristic adverse effect</td>
+        <td style="border:1px solid #ccc;padding:8px;">Much less characteristic</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #ccc;padding:8px;">Hyperkalemia</td>
+        <td style="border:1px solid #ccc;padding:8px;">Yes</td>
+        <td style="border:1px solid #ccc;padding:8px;">Yes</td>
+      </tr>
+    </table>
+
+    <hr>
+
+    <h3>8. Safety board</h3>
+
+    <div class="callout">
+      <strong>MONITOR</strong><br>
+      Blood pressure<br>
+      Serum potassium<br>
+      Serum creatinine / renal function<br><br>
+
+      <strong>MAJOR RISKS</strong><br>
+      Hyperkalemia<br>
+      Hypotension<br>
+      Renal function deterioration in susceptible patients<br>
+      Angioedema — uncommon but possible<br><br>
+
+      <strong>PREGNANCY</strong><br>
+      Drugs acting directly on the renin–angiotensin system can cause fetal harm.
+      ARBs should be discontinued as soon as pregnancy is detected.
+    </div>
+
+    <hr>
+
+    <h3>9. Clinical reasoning case</h3>
+
+    <p>
+      A patient taking lisinopril develops a persistent dry cough.
+      The clinician changes therapy to losartan.
+    </p>
+
+    <p><strong>Why can this make pharmacological sense?</strong></p>
+
+    <div class="callout">
+      Lisinopril inhibits ACE<br>
+      ↓<br>
+      Reduced bradykinin degradation<br>
+      ↓<br>
+      Bradykinin accumulation<br>
+      ↓<br>
+      Dry cough<br><br>
+
+      Losartan instead blocks the AT1 receptor and does not directly inhibit
+      bradykinin degradation.
+    </div>
+
+    <hr>
+
+    <h3>10. High-yield memory board</h3>
+
+    <div class="callout">
+      <strong>ARB = -SARTAN</strong><br><br>
+
+      Target → AT1 receptor<br>
+      Effect → vasodilation + ↓ aldosterone<br>
+      Benefit → ↓ blood pressure<br>
+      Electrolyte risk → ↑ potassium<br>
+      Monitor → potassium + renal function + blood pressure<br>
+      ACE cough → ARB may be considered when clinically appropriate<br>
+      Pregnancy → avoid / fetal toxicity risk
+    </div>
+
+    <hr>
+
+    <h3>Knowledge Check 1</h3>
+    <p>Which receptor is primarily blocked by ARBs?</p>
+
+    <button class="btn" onclick="checkCardioARB1('A')">
+      A. Angiotensin II AT1 receptor
+    </button>
+
+    <button class="btn" onclick="checkCardioARB1('B')">
+      B. Beta-1 adrenergic receptor
+    </button>
+
+    <p id="cardioARB1Answer"></p>
+
+    <hr>
+
+    <h3>Knowledge Check 2</h3>
+    <p>Why can ARBs increase serum potassium?</p>
+
+    <button class="btn" onclick="checkCardioARB2('A')">
+      A. Aldosterone secretion decreases
+    </button>
+
+    <button class="btn" onclick="checkCardioARB2('B')">
+      B. Aldosterone secretion increases
+    </button>
+
+    <p id="cardioARB2Answer"></p>
+
+    <hr>
+
+    <h3>Knowledge Check 3</h3>
+    <p>Which ARB is commonly recognized by the -sartan suffix?</p>
+
+    <button class="btn" onclick="checkCardioARB3('A')">
+      A. Losartan
+    </button>
+
+    <button class="btn" onclick="checkCardioARB3('B')">
+      B. Lisinopril
+    </button>
+
+    <p id="cardioARB3Answer"></p>
+
+    <hr>
+
+    <h3>Knowledge Check 4</h3>
+    <p>Which parameters are particularly important to monitor with an ARB?</p>
+
+    <button class="btn" onclick="checkCardioARB4('A')">
+      A. Potassium and renal function
+    </button>
+
+    <button class="btn" onclick="checkCardioARB4('B')">
+      B. Serum amylase only
+    </button>
+
+    <p id="cardioARB4Answer"></p>
+
+    <br>
+
+    <button class="btn primary" onclick="startPharmacologyModule(2)">
+      Back to Module 2
+    </button>
+  `;
+
+  document.getElementById('lessonBox').scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+}
+
+function checkCardioARB1(answer){
+  const result = document.getElementById('cardioARB1Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> ARBs primarily block angiotensin II AT1 receptors.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> The principal pharmacological target is the AT1 receptor.';
+  }
+}
+
+function checkCardioARB2(answer){
+  const result = document.getElementById('cardioARB2Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> AT1 blockade reduces aldosterone signaling, which can decrease renal potassium excretion and increase serum potassium.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> ARBs reduce the aldosterone effect rather than increasing it.';
+  }
+}
+
+function checkCardioARB3(answer){
+  const result = document.getElementById('cardioARB3Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Losartan is an angiotensin II receptor blocker. The -sartan ending is a useful class recognition clue.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Lisinopril is an ACE inhibitor; losartan is an ARB.';
+  }
+}
+
+function checkCardioARB4(answer){
+  const result = document.getElementById('cardioARB4Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Potassium and renal function are major safety parameters during ARB therapy.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> ARBs can affect potassium balance and renal hemodynamics, so these require monitoring.';
+  }
+}
 document.getElementById('referralButton').addEventListener('click',()=>{
 
   const code=
