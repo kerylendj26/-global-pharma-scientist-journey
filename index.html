@@ -4390,10 +4390,12 @@ function checkCardioACE4(answer){
     </button>
   `;
 
-  document.getElementById('lessonBox').scrollIntoView({
-    behavior: 'smooth',
-    block: 'start'
-  });
+  const lessonBox = document.getElementById('lessonBox');
+
+window.scrollTo({
+  top: lessonBox.offsetTop - 170,
+  behavior: 'smooth'
+});
 }
 
 function checkCardioARB1(answer){
