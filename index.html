@@ -7422,6 +7422,1569 @@ function checkCardioNIT6(answer){
       '<strong>Not quite.</strong> Hydrochlorothiazide is a thiazide diuretic.';
   }
 }
+  /* =========================================================
+   MODULE 2 — CARDIOVASCULAR PHARMACOLOGY
+   LESSON 7 — HEART FAILURE PHARMACOLOGY
+   ========================================================= */
+
+function startCardioLesson7(){
+
+  const title = document.getElementById('lessonTitle');
+  const text = document.getElementById('lessonText');
+
+  title.textContent = 'Lesson 7 — Heart Failure Pharmacology';
+
+  text.innerHTML = `
+
+  <h2>Lesson 7 — Heart Failure Pharmacology</h2>
+
+  <h3>Learning objectives</h3>
+
+  <p>By the end of this lesson, you should be able to:</p>
+
+  <ul>
+    <li>Explain the pathophysiology of heart failure and ventricular remodeling.</li>
+    <li>Differentiate heart failure with reduced ejection fraction from heart failure with preserved ejection fraction.</li>
+    <li>Explain the roles of the sympathetic nervous system and renin–angiotensin–aldosterone system in heart failure progression.</li>
+    <li>Identify the major guideline-directed pharmacologic classes used in chronic heart failure.</li>
+    <li>Connect each drug target to its physiologic and therapeutic effects.</li>
+    <li>Identify major generic and common brand-name heart-failure medications.</li>
+    <li>Differentiate drugs that improve outcomes from drugs used mainly for symptom relief.</li>
+    <li>Recognize important adverse effects, contraindications, drug interactions and monitoring requirements.</li>
+    <li>Explain the roles of diuretics, digoxin, ivabradine, hydralazine/isosorbide dinitrate and selected newer therapies.</li>
+    <li>Apply heart-failure pharmacology to clinical cases.</li>
+  </ul>
+
+  <hr>
+
+  <h3>1. What is heart failure?</h3>
+
+  <p>
+    Heart failure is a clinical syndrome in which abnormal cardiac structure or function
+    impairs the ability of the heart to fill with or eject blood adequately for the body's needs,
+    often producing congestion, exercise intolerance or both.
+  </p>
+
+  <div class="callout">
+    <strong>CORE HEART FAILURE CONCEPT</strong><br><br>
+
+    Cardiac injury or dysfunction<br>
+    ↓<br>
+    Reduced effective cardiac performance<br>
+    ↓<br>
+    Neurohormonal compensation<br>
+    ↓<br>
+    Sodium and water retention + vasoconstriction + increased cardiac workload<br>
+    ↓<br>
+    Ventricular remodeling<br>
+    ↓<br>
+    <strong>Progressive heart failure</strong>
+  </div>
+
+  <hr>
+
+  <h3>2. Cardiac output</h3>
+
+  <div class="callout">
+    <strong>CARDIAC OUTPUT BOARD</strong><br><br>
+
+    Cardiac Output = Heart Rate × Stroke Volume
+  </div>
+
+  <p>
+    Stroke volume is influenced by preload, contractility and afterload.
+  </p>
+
+  <div class="callout">
+    <strong>PRELOAD</strong><br>
+    Ventricular filling and end-diastolic stretch.<br><br>
+
+    <strong>CONTRACTILITY</strong><br>
+    Intrinsic ability of myocardium to generate force.<br><br>
+
+    <strong>AFTERLOAD</strong><br>
+    Resistance against which the ventricle ejects blood.
+  </div>
+
+  <hr>
+
+  <h3>3. Ejection fraction</h3>
+
+  <p>
+    Ejection fraction describes the proportion of ventricular end-diastolic volume
+    ejected during systole.
+  </p>
+
+  <div class="callout">
+    <strong>EJECTION FRACTION</strong><br><br>
+
+    EF = Stroke Volume ÷ End-Diastolic Volume × 100
+  </div>
+
+  <p>
+    Heart failure is commonly classified according to left ventricular ejection fraction.
+  </p>
+
+  <table style="width:100%;border-collapse:collapse;">
+    <tr>
+      <th style="border:1px solid #ccc;padding:8px;">Category</th>
+      <th style="border:1px solid #ccc;padding:8px;">General EF concept</th>
+      <th style="border:1px solid #ccc;padding:8px;">Core physiology</th>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">HFrEF</td>
+      <td style="border:1px solid #ccc;padding:8px;">Reduced EF, generally ≤40%</td>
+      <td style="border:1px solid #ccc;padding:8px;">Impaired systolic contraction</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">HFmrEF</td>
+      <td style="border:1px solid #ccc;padding:8px;">Mildly reduced EF, generally 41–49%</td>
+      <td style="border:1px solid #ccc;padding:8px;">Intermediate phenotype</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">HFpEF</td>
+      <td style="border:1px solid #ccc;padding:8px;">Preserved EF, generally ≥50%</td>
+      <td style="border:1px solid #ccc;padding:8px;">Impaired filling / increased ventricular stiffness frequently important</td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <h3>4. HFrEF versus HFpEF</h3>
+
+  <div class="callout">
+    <strong>HFrEF</strong><br><br>
+
+    Weak ventricular systolic contraction<br>
+    ↓<br>
+    Stroke volume falls<br>
+    ↓<br>
+    Ejection fraction falls<br>
+    ↓<br>
+    Neurohormonal activation increases
+  </div>
+
+  <br>
+
+  <div class="callout">
+    <strong>HFpEF</strong><br><br>
+
+    Stiff / poorly relaxing ventricle<br>
+    ↓<br>
+    Impaired ventricular filling<br>
+    ↓<br>
+    Elevated filling pressures<br>
+    ↓<br>
+    Congestion and exercise intolerance may develop despite preserved EF
+  </div>
+
+  <hr>
+
+  <h3>5. Why compensation eventually becomes harmful</h3>
+
+  <p>
+    When cardiac output falls, the body initially attempts to preserve arterial pressure
+    and organ perfusion through sympathetic and hormonal activation.
+  </p>
+
+  <div class="callout">
+    <strong>COMPENSATION → PROGRESSION BOARD</strong><br><br>
+
+    ↓ Cardiac output<br>
+    ↓<br>
+    Sympathetic nervous system activation<br>
+    +<br>
+    Renin–angiotensin–aldosterone system activation<br>
+    ↓<br>
+    Vasoconstriction<br>
+    Tachycardia<br>
+    Sodium retention<br>
+    Water retention<br>
+    Aldosterone signaling<br>
+    ↓<br>
+    Increased preload and afterload<br>
+    ↓<br>
+    Increased myocardial stress<br>
+    ↓<br>
+    Fibrosis + remodeling<br>
+    ↓<br>
+    <strong>Further cardiac dysfunction</strong>
+  </div>
+
+  <hr>
+
+  <h3>6. Sympathetic nervous system activation</h3>
+
+  <div class="callout">
+    Reduced cardiac output<br>
+    ↓<br>
+    Sympathetic activation<br>
+    ↓<br>
+    Norepinephrine release<br>
+    ↓<br>
+    β1 receptor stimulation<br>
+    ↓<br>
+    ↑ Heart rate<br>
+    ↑ Contractility<br>
+    ↑ Renin release<br>
+    ↓<br>
+    Short-term compensation<br>
+    BUT<br>
+    chronic myocardial stress and remodeling
+  </div>
+
+  <p>
+    This explains why carefully selected beta blockers improve long-term outcomes
+    in stable HFrEF despite initially reducing heart rate and contractility.
+  </p>
+
+  <hr>
+
+  <h3>7. RAAS activation in heart failure</h3>
+
+  <div class="callout">
+    <strong>RAAS PATHWAY</strong><br><br>
+
+    Reduced renal perfusion<br>
+    ↓<br>
+    Renin<br>
+    ↓<br>
+    Angiotensin I<br>
+    ↓ ACE<br>
+    Angiotensin II<br>
+    ↓<br>
+    AT1 receptor activation<br>
+    ↓<br>
+    Vasoconstriction<br>
+    +<br>
+    Aldosterone secretion<br>
+    ↓<br>
+    Sodium and water retention<br>
+    +<br>
+    Potassium excretion<br>
+    +<br>
+    Fibrotic/remodeling signaling
+  </div>
+
+  <hr>
+
+  <h3>8. The major HFrEF medication framework</h3>
+
+  <p>
+    Modern chronic HFrEF therapy is built around several complementary medication classes
+    that target different pathophysiologic pathways.
+  </p>
+
+  <div class="callout">
+    <strong>HFrEF CORE THERAPY BOARD</strong><br><br>
+
+    1. ARNI, ACE inhibitor or ARB pathway therapy<br><br>
+
+    2. Evidence-based beta blocker<br><br>
+
+    3. Mineralocorticoid receptor antagonist<br><br>
+
+    4. Sodium-glucose cotransporter 2 inhibitor<br><br>
+
+    PLUS<br><br>
+
+    Diuretics when congestion is present<br>
+    + selected additional therapies depending on patient characteristics
+  </div>
+
+  <hr>
+
+  <h3>9. ARNI — sacubitril/valsartan</h3>
+
+  <div class="callout">
+    <strong>SACUBITRIL / VALSARTAN — ENTRESTO</strong>
+  </div>
+
+  <p>
+    Sacubitril/valsartan is an angiotensin receptor–neprilysin inhibitor,
+    commonly abbreviated ARNI.
+  </p>
+
+  <p>
+    It combines two pharmacologic mechanisms.
+  </p>
+
+  <div class="callout">
+    <strong>VALSARTAN COMPONENT</strong><br><br>
+
+    Blocks angiotensin II AT1 receptors<br>
+    ↓<br>
+    Vasoconstriction<br>
+    ↓<br>
+    Aldosterone signaling<br>
+    ↓<br>
+    Sodium/water retention and maladaptive remodeling
+  </div>
+
+  <br>
+
+  <div class="callout">
+    <strong>SACUBITRIL COMPONENT</strong><br><br>
+
+    Inhibits neprilysin<br>
+    ↓<br>
+    Reduced breakdown of natriuretic peptides and other vasoactive peptides<br>
+    ↓<br>
+    Increased natriuretic peptide activity<br>
+    ↓<br>
+    Natriuresis<br>
+    Vasodilation<br>
+    Reduced maladaptive remodeling signaling
+  </div>
+
+  <hr>
+
+  <h3>10. Natriuretic peptide physiology</h3>
+
+  <div class="callout">
+    Ventricular stretch<br>
+    ↓<br>
+    Natriuretic peptide release<br>
+    ↓<br>
+    Natriuresis<br>
+    Diuresis<br>
+    Vasodilation<br>
+    Reduced renin/aldosterone signaling<br>
+    ↓<br>
+    <strong>Counter-regulation of heart-failure physiology</strong>
+  </div>
+
+  <hr>
+
+  <h3>11. Critical ARNI safety rule</h3>
+
+  <p>
+    Sacubitril/valsartan must not be administered simultaneously with an ACE inhibitor.
+  </p>
+
+  <div class="callout">
+    <strong>ACE INHIBITOR + NEPRILYSIN INHIBITION</strong><br><br>
+
+    Increased bradykinin-related signaling<br>
+    ↓<br>
+    Increased angioedema risk
+  </div>
+
+  <p>
+    When switching from an ACE inhibitor to sacubitril/valsartan,
+    an appropriate washout interval is required.
+  </p>
+
+  <div class="callout">
+    <strong>HIGH-YIELD NUMBER</strong><br><br>
+
+    ACE inhibitor → wait at least <strong>36 hours</strong> → start sacubitril/valsartan
+  </div>
+
+  <hr>
+
+  <h3>12. ARNI adverse effects and monitoring</h3>
+
+  <div class="callout">
+    Hypotension<br>
+    Hyperkalemia<br>
+    Renal function changes<br>
+    Angioedema risk<br><br>
+
+    Monitor:<br>
+    Blood pressure<br>
+    Potassium<br>
+    Renal function
+  </div>
+
+  <p>
+    Drugs acting directly on the renin–angiotensin system carry serious fetal toxicity risk
+    and should not be used during pregnancy.
+  </p>
+
+  <hr>
+
+  <h3>13. ACE inhibitors in HFrEF</h3>
+
+  <div class="callout">
+    <strong>COMMON EXAMPLES</strong><br><br>
+
+    Lisinopril — Prinivil / Zestril<br>
+    Enalapril — Vasotec<br>
+    Ramipril — Altace<br>
+    Captopril — Capoten
+  </div>
+
+  <div class="callout">
+    ACE inhibition<br>
+    ↓<br>
+    Angiotensin II formation<br>
+    ↓<br>
+    Vasoconstriction<br>
+    ↓<br>
+    Aldosterone<br>
+    ↓<br>
+    Sodium/water retention<br>
+    ↓<br>
+    Preload and afterload<br>
+    ↓<br>
+    Maladaptive remodeling
+  </div>
+
+  <p>
+    ACE inhibitors also reduce bradykinin degradation.
+  </p>
+
+  <div class="callout">
+    ACE inhibition<br>
+    ↓ bradykinin breakdown<br>
+    ↓<br>
+    Bradykinin accumulation<br>
+    ↓<br>
+    <strong>Dry cough and angioedema risk</strong>
+  </div>
+
+  <hr>
+
+  <h3>14. ARBs in heart failure</h3>
+
+  <div class="callout">
+    <strong>COMMON EXAMPLES</strong><br><br>
+
+    Valsartan — Diovan<br>
+    Losartan — Cozaar<br>
+    Candesartan — Atacand
+  </div>
+
+  <p>
+    Angiotensin II receptor blockers inhibit AT1 receptor signaling without directly inhibiting ACE.
+  </p>
+
+  <p>
+    Therefore, they generally do not produce the same degree of bradykinin-associated cough.
+  </p>
+
+  <hr>
+
+  <h3>15. Evidence-based beta blockers</h3>
+
+  <p>
+    Not every beta blocker has equivalent evidence for chronic HFrEF.
+  </p>
+
+  <div class="callout">
+    <strong>HIGH-YIELD HFrEF BETA BLOCKERS</strong><br><br>
+
+    Carvedilol — Coreg<br>
+    Metoprolol succinate extended release — Toprol-XL<br>
+    Bisoprolol — generic
+  </div>
+
+  <p>
+    Be careful not to substitute immediate-release metoprolol tartrate conceptually
+    for the evidence-based metoprolol succinate extended-release regimen used in HFrEF.
+  </p>
+
+  <hr>
+
+  <h3>16. Why beta blockers help heart failure</h3>
+
+  <div class="callout">
+    Chronic sympathetic activation<br>
+    ↓<br>
+    β1 receptor overstimulation<br>
+    ↓<br>
+    Tachycardia + increased oxygen demand + toxic remodeling<br><br>
+
+    Evidence-based beta blocker<br>
+    ↓<br>
+    β-adrenergic signaling<br>
+    ↓<br>
+    Heart rate<br>
+    ↓<br>
+    Myocardial oxygen demand<br>
+    ↓<br>
+    Renin release<br>
+    ↓<br>
+    Chronic sympathetic toxicity<br>
+    ↓<br>
+    <strong>Improved ventricular remodeling and outcomes over time</strong>
+  </div>
+
+  <hr>
+
+  <h3>17. Beta blockers must be introduced carefully</h3>
+
+  <p>
+    Beta blockers are generally initiated when a patient is clinically stable rather than during
+    uncontrolled shock or severe acute decompensation requiring escalating circulatory support.
+  </p>
+
+  <div class="callout">
+    <strong>START LOW → TITRATE GRADUALLY</strong><br><br>
+
+    Monitor:<br>
+    Heart rate<br>
+    Blood pressure<br>
+    Symptoms of worsening congestion<br>
+    Dizziness<br>
+    Bradycardia
+  </div>
+
+  <p>
+    Abrupt withdrawal after chronic therapy can cause rebound adrenergic effects and should generally be avoided.
+  </p>
+
+  <hr>
+
+  <h3>18. Mineralocorticoid receptor antagonists</h3>
+
+  <div class="callout">
+    <strong>SPIRONOLACTONE — ALDACTONE</strong><br>
+    <strong>EPLERENONE — INSPRA</strong>
+  </div>
+
+  <div class="callout">
+    Aldosterone<br>
+    ↓<br>
+    Mineralocorticoid receptor activation<br>
+    ↓<br>
+    Sodium retention<br>
+    Potassium excretion<br>
+    Fibrosis / remodeling<br><br>
+
+    MRA therapy<br>
+    ↓<br>
+    Blocks mineralocorticoid receptor<br>
+    ↓<br>
+    Less sodium retention<br>
+    Less potassium secretion<br>
+    Less maladaptive fibrotic signaling
+  </div>
+
+  <hr>
+
+  <h3>19. MRA adverse effects</h3>
+
+  <div class="callout">
+    <strong>MAJOR DANGER</strong><br>
+    Hyperkalemia<br><br>
+
+    Other concern:<br>
+    Renal function deterioration in susceptible patients
+  </div>
+
+  <p>
+    Spironolactone can also produce endocrine adverse effects because it interacts with
+    androgen and progesterone receptors.
+  </p>
+
+  <div class="callout">
+    Spironolactone<br>
+    → gynecomastia<br>
+    → breast tenderness<br>
+    → sexual/endocrine adverse effects<br><br>
+
+    Eplerenone<br>
+    → more selective mineralocorticoid receptor blockade<br>
+    → generally fewer antiandrogenic effects
+  </div>
+
+  <hr>
+
+  <h3>20. SGLT2 inhibitors</h3>
+
+  <div class="callout">
+    <strong>MAJOR HEART-FAILURE EXAMPLES</strong><br><br>
+
+    Dapagliflozin — Farxiga<br>
+    Empagliflozin — Jardiance
+  </div>
+
+  <p>
+    Sodium-glucose cotransporter 2 inhibitors were initially developed for diabetes,
+    but they have important cardiovascular and heart-failure benefits that extend beyond glucose lowering.
+  </p>
+
+  <hr>
+
+  <h3>21. SGLT2 renal mechanism</h3>
+
+  <div class="callout">
+    SGLT2 inhibition in proximal renal tubule<br>
+    ↓<br>
+    Reduced sodium-glucose reabsorption<br>
+    ↓<br>
+    Increased urinary glucose and sodium excretion<br>
+    ↓<br>
+    Osmotic diuresis + natriuresis<br>
+    +<br>
+    Favorable renal and cardiovascular effects<br>
+    ↓<br>
+    <strong>Reduced heart-failure events in appropriate patients</strong>
+  </div>
+
+  <p>
+    Their heart-failure benefit is not dependent solely on the presence of diabetes.
+  </p>
+
+  <hr>
+
+  <h3>22. SGLT2 inhibitor safety</h3>
+
+  <div class="callout">
+    Genital mycotic infections<br>
+    Volume depletion / hypotension<br>
+    Renal function changes during initiation<br>
+    Rare euglycemic diabetic ketoacidosis<br>
+    Serious urinary/perineal infections are uncommon but clinically important
+  </div>
+
+  <p>
+    Patients should receive appropriate counseling regarding dehydration,
+    acute illness and ketoacidosis warning symptoms.
+  </p>
+
+  <hr>
+
+  <h3>23. Loop diuretics in heart failure</h3>
+
+  <div class="callout">
+    <strong>COMMON LOOP DIURETICS</strong><br><br>
+
+    Furosemide — Lasix<br>
+    Bumetanide — Bumex<br>
+    Torsemide — Demadex
+  </div>
+
+  <p>
+    Loop diuretics are essential for relieving congestion when volume overload is present.
+  </p>
+
+  <div class="callout">
+    Loop diuretic<br>
+    ↓<br>
+    NKCC2 inhibition in thick ascending limb<br>
+    ↓<br>
+    Sodium excretion<br>
+    ↓<br>
+    Water excretion<br>
+    ↓<br>
+    Reduced intravascular congestion<br>
+    ↓<br>
+    Lower filling pressures<br>
+    ↓<br>
+    <strong>Improved edema and dyspnea</strong>
+  </div>
+
+  <hr>
+
+  <h3>24. Symptom relief versus disease modification</h3>
+
+  <div class="callout">
+    <strong>IMPORTANT DISTINCTION</strong><br><br>
+
+    LOOP DIURETICS<br>
+    Excellent for congestion and symptom control<br><br>
+
+    CORE HFrEF NEUROHORMONAL / CARDIORENAL THERAPIES<br>
+    Target disease progression and reduce important clinical events
+  </div>
+
+  <p>
+    A patient may therefore need both a loop diuretic for congestion
+    and disease-modifying therapies for long-term management.
+  </p>
+
+  <hr>
+
+  <h3>25. Diuretic monitoring</h3>
+
+  <div class="callout">
+    Daily weight trends when clinically appropriate<br>
+    Blood pressure<br>
+    Volume status<br>
+    Sodium<br>
+    Potassium<br>
+    Magnesium<br>
+    Renal function<br>
+    Signs of dehydration
+  </div>
+
+  <hr>
+
+  <h3>26. Hydralazine and isosorbide dinitrate</h3>
+
+  <div class="callout">
+    <strong>HYDRALAZINE</strong><br>
+    Predominantly arterial vasodilation<br>
+    ↓<br>
+    Afterload<br><br>
+
+    <strong>ISOSORBIDE DINITRATE</strong><br>
+    Predominantly venodilation<br>
+    ↓<br>
+    Preload
+  </div>
+
+  <div class="callout">
+    Hydralazine<br>
+    +<br>
+    Isosorbide dinitrate<br>
+    ↓<br>
+    Reduced preload + reduced afterload<br>
+    ↓<br>
+    Reduced ventricular workload
+  </div>
+
+  <p>
+    This combination has an important role in selected patients with HFrEF,
+    including certain patients who cannot use renin–angiotensin system inhibitors
+    and selected patients receiving optimized therapy for whom additional benefit is indicated.
+  </p>
+
+  <hr>
+
+  <h3>27. Hydralazine adverse effects</h3>
+
+  <div class="callout">
+    Headache<br>
+    Reflex tachycardia<br>
+    Hypotension<br>
+    Fluid retention<br>
+    Drug-induced lupus-like syndrome
+  </div>
+
+  <hr>
+
+  <h3>28. Nitrate adverse effects</h3>
+
+  <div class="callout">
+    Headache<br>
+    Flushing<br>
+    Hypotension<br>
+    Dizziness<br>
+    Reflex tachycardia<br><br>
+
+    <strong>Never combine nitrates with PDE-5 inhibitors.</strong>
+  </div>
+
+  <hr>
+
+  <h3>29. Digoxin</h3>
+
+  <div class="callout">
+    <strong>DIGOXIN — LANOXIN</strong>
+  </div>
+
+  <p>
+    Digoxin has both positive inotropic and neuroelectrophysiologic effects.
+  </p>
+
+  <hr>
+
+  <h3>30. Digoxin molecular mechanism</h3>
+
+  <div class="callout">
+    Digoxin<br>
+    ↓<br>
+    Inhibits Na⁺/K⁺ ATPase<br>
+    ↓<br>
+    Intracellular sodium rises<br>
+    ↓<br>
+    Na⁺/Ca²⁺ exchanger removes less intracellular calcium<br>
+    ↓<br>
+    Intracellular calcium rises<br>
+    ↓<br>
+    More calcium available for contraction<br>
+    ↓<br>
+    <strong>Positive inotropy</strong>
+  </div>
+
+  <p>
+    Digoxin also increases vagal influence on the atrioventricular node,
+    slowing AV conduction.
+  </p>
+
+  <hr>
+
+  <h3>31. Digoxin therapeutic role</h3>
+
+  <p>
+    Digoxin may improve symptoms and reduce hospitalization in selected patients with HFrEF,
+    but it is not one of the foundational first-line therapies that produces the broad mortality benefit
+    associated with the principal guideline-directed medication classes.
+  </p>
+
+  <p>
+    It may also be used in selected patients with atrial fibrillation for ventricular rate control.
+  </p>
+
+  <hr>
+
+  <h3>32. Digoxin has a narrow therapeutic index</h3>
+
+  <div class="callout">
+    <strong>NARROW THERAPEUTIC INDEX</strong><br><br>
+
+    Therapeutic concentrations<br>
+    and<br>
+    toxic concentrations<br>
+    can be relatively close.
+  </div>
+
+  <hr>
+
+  <h3>33. Digoxin toxicity</h3>
+
+  <div class="callout">
+    <strong>DIGOXIN TOXICITY BOARD</strong><br><br>
+
+    Nausea<br>
+    Vomiting<br>
+    Anorexia<br>
+    Confusion<br>
+    Weakness<br>
+    Visual disturbances<br>
+    Bradyarrhythmias<br>
+    Tachyarrhythmias<br>
+    Ventricular arrhythmias
+  </div>
+
+  <p>
+    Toxicity may produce many different rhythm disturbances.
+  </p>
+
+  <hr>
+
+  <h3>34. Potassium and digoxin toxicity</h3>
+
+  <div class="callout">
+    Loop or thiazide diuretic<br>
+    ↓<br>
+    Hypokalemia<br>
+    ↓<br>
+    Increased digoxin binding to Na⁺/K⁺ ATPase<br>
+    ↓<br>
+    <strong>Greater digoxin toxicity risk</strong>
+  </div>
+
+  <p>
+    Hypomagnesemia can also increase arrhythmia risk.
+  </p>
+
+  <hr>
+
+  <h3>35. Digoxin elimination and monitoring</h3>
+
+  <p>
+    Digoxin is substantially eliminated by the kidneys.
+  </p>
+
+  <div class="callout">
+    Reduced renal function<br>
+    ↓<br>
+    Digoxin clearance<br>
+    ↓<br>
+    Digoxin accumulation<br>
+    ↓<br>
+    Toxicity risk
+  </div>
+
+  <p>
+    Important monitoring can include:
+  </p>
+
+  <ul>
+    <li>Renal function</li>
+    <li>Potassium</li>
+    <li>Magnesium</li>
+    <li>Heart rate and rhythm</li>
+    <li>Serum digoxin concentration when clinically appropriate</li>
+    <li>Signs and symptoms of toxicity</li>
+  </ul>
+
+  <hr>
+
+  <h3>36. Digoxin toxicity antidote</h3>
+
+  <div class="callout">
+    <strong>DIGOXIN IMMUNE FAB</strong><br><br>
+
+    Used for selected cases of severe or life-threatening digoxin toxicity.
+  </div>
+
+  <hr>
+
+  <h3>37. Ivabradine</h3>
+
+  <div class="callout">
+    <strong>IVABRADINE — CORLANOR</strong>
+  </div>
+
+  <p>
+    Ivabradine selectively inhibits the hyperpolarization-activated
+    "funny" current in sinoatrial nodal cells.
+  </p>
+
+  <div class="callout">
+    Ivabradine<br>
+    ↓<br>
+    If current inhibition in SA node<br>
+    ↓<br>
+    Slower spontaneous diastolic depolarization<br>
+    ↓<br>
+    Reduced sinus heart rate<br>
+    ↓<br>
+    Lower myocardial workload
+  </div>
+
+  <p>
+    It can be considered in selected patients with symptomatic chronic HFrEF
+    who remain in sinus rhythm with an elevated heart rate despite appropriate therapy.
+  </p>
+
+  <hr>
+
+  <h3>38. Ivabradine adverse effects</h3>
+
+  <div class="callout">
+    Bradycardia<br>
+    Atrial fibrillation<br>
+    Luminous visual phenomena / phosphenes
+  </div>
+
+  <hr>
+
+  <h3>39. Vericiguat</h3>
+
+  <div class="callout">
+    <strong>VERICIGUAT — VERQUVO</strong>
+  </div>
+
+  <p>
+    Vericiguat stimulates soluble guanylate cyclase and enhances nitric-oxide–cGMP signaling.
+    It may be used in selected high-risk patients with worsening HFrEF despite standard therapy.
+  </p>
+
+  <div class="callout">
+    Soluble guanylate cyclase stimulation<br>
+    ↓<br>
+    ↑ cGMP signaling<br>
+    ↓<br>
+    Favorable vascular and cardiac signaling effects
+  </div>
+
+  <hr>
+
+  <h3>40. Drugs that can worsen HFrEF</h3>
+
+  <div class="callout">
+    <strong>IMPORTANT CAUTION BOARD</strong><br><br>
+
+    Verapamil / Diltiazem<br>
+    → negative inotropic effects<br><br>
+
+    Certain antiarrhythmic drugs<br>
+    → may worsen cardiac function or mortality depending on agent<br><br>
+
+    NSAIDs<br>
+    → sodium/water retention + renal effects<br>
+    → may worsen congestion<br><br>
+
+    Thiazolidinediones<br>
+    → fluid retention<br>
+    → may worsen heart failure
+  </div>
+
+  <hr>
+
+  <h3>41. Acute decompensated heart failure</h3>
+
+  <p>
+    Acute decompensated heart failure requires assessment of congestion,
+    perfusion, blood pressure and precipitating causes.
+  </p>
+
+  <div class="callout">
+    <strong>ACUTE MANAGEMENT CONCEPT</strong><br><br>
+
+    Congestion?<br>
+    → intravenous loop diuretic frequently central<br><br>
+
+    Severe hypertension?<br>
+    → selected vasodilator therapy may be appropriate<br><br>
+
+    Hypoperfusion / shock?<br>
+    → specialized hemodynamic support may be required<br><br>
+
+    Always identify and treat precipitating causes.
+  </div>
+
+  <hr>
+
+  <h3>42. Inotropes</h3>
+
+  <p>
+    Intravenous positive inotropes are generally reserved for selected patients
+    with severe low-output states, cardiogenic shock or advanced heart failure situations.
+  </p>
+
+  <div class="callout">
+    <strong>DOBUTAMINE</strong><br><br>
+
+    Primarily β1 agonism<br>
+    ↓<br>
+    Increased contractility<br>
+    ↓<br>
+    Increased cardiac output
+  </div>
+
+  <br>
+
+  <div class="callout">
+    <strong>MILRINONE</strong><br><br>
+
+    Phosphodiesterase-3 inhibition<br>
+    ↓<br>
+    ↑ cAMP<br>
+    ↓<br>
+    Increased intracellular calcium in myocardium<br>
+    + vascular smooth-muscle relaxation<br>
+    ↓<br>
+    Positive inotropy + vasodilation
+  </div>
+
+  <p>
+    These agents can increase arrhythmia risk and are not routine chronic outpatient substitutes
+    for evidence-based disease-modifying therapy.
+  </p>
+
+  <hr>
+
+  <h3>43. HFrEF master mechanism board</h3>
+
+  <div class="callout">
+    <strong>THE FOUR MAJOR PATHWAYS</strong><br><br>
+
+    ARNI / ACEI / ARB<br>
+    → suppress maladaptive RAAS signaling<br><br>
+
+    Evidence-based β blocker<br>
+    → suppress chronic sympathetic toxicity<br><br>
+
+    MRA<br>
+    → suppress aldosterone-mediated sodium retention and fibrosis<br><br>
+
+    SGLT2 inhibitor<br>
+    → cardiorenal protection + natriuretic/osmotic effects<br><br>
+
+    RESULT<br>
+    ↓<br>
+    Less congestion<br>
+    Less remodeling<br>
+    Fewer heart-failure events<br>
+    Better long-term outcomes in appropriate patients
+  </div>
+
+  <hr>
+
+  <h3>44. Medication comparison board</h3>
+
+  <table style="width:100%;border-collapse:collapse;">
+
+    <tr>
+      <th style="border:1px solid #ccc;padding:8px;">Class</th>
+      <th style="border:1px solid #ccc;padding:8px;">Main role</th>
+      <th style="border:1px solid #ccc;padding:8px;">Major concern</th>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">ARNI</td>
+      <td style="border:1px solid #ccc;padding:8px;">RAAS blockade + neprilysin inhibition</td>
+      <td style="border:1px solid #ccc;padding:8px;">Hypotension, hyperkalemia, angioedema</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">ACE inhibitor</td>
+      <td style="border:1px solid #ccc;padding:8px;">RAAS suppression</td>
+      <td style="border:1px solid #ccc;padding:8px;">Cough, hyperkalemia, angioedema</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Evidence-based beta blocker</td>
+      <td style="border:1px solid #ccc;padding:8px;">Sympathetic blockade</td>
+      <td style="border:1px solid #ccc;padding:8px;">Bradycardia, hypotension</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">MRA</td>
+      <td style="border:1px solid #ccc;padding:8px;">Aldosterone blockade</td>
+      <td style="border:1px solid #ccc;padding:8px;">Hyperkalemia</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">SGLT2 inhibitor</td>
+      <td style="border:1px solid #ccc;padding:8px;">Cardiorenal protection</td>
+      <td style="border:1px solid #ccc;padding:8px;">Genital infection, volume depletion, rare ketoacidosis</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Loop diuretic</td>
+      <td style="border:1px solid #ccc;padding:8px;">Congestion relief</td>
+      <td style="border:1px solid #ccc;padding:8px;">Hypokalemia, dehydration, renal effects</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Digoxin</td>
+      <td style="border:1px solid #ccc;padding:8px;">Selected symptom/hospitalization or rate-control role</td>
+      <td style="border:1px solid #ccc;padding:8px;">Narrow therapeutic index, arrhythmias</td>
+    </tr>
+
+  </table>
+
+  <hr>
+
+  <h3>45. Monitoring master board</h3>
+
+  <div class="callout">
+    <strong>RENAL FUNCTION</strong><br>
+    ARNI / ACEI / ARB<br>
+    MRA<br>
+    Diuretics<br>
+    SGLT2 inhibitors<br><br>
+
+    <strong>POTASSIUM</strong><br>
+    ARNI / ACEI / ARB → may increase K⁺<br>
+    MRA → may increase K⁺<br>
+    Loop diuretic → may decrease K⁺<br><br>
+
+    <strong>HEART RATE</strong><br>
+    Beta blockers<br>
+    Ivabradine<br>
+    Digoxin<br><br>
+
+    <strong>VOLUME STATUS / WEIGHT</strong><br>
+    Diuretics<br>
+    Overall HF management
+  </div>
+
+  <hr>
+
+  <h3>46. Clinical case — hyperkalemia</h3>
+
+  <p>
+    A patient takes sacubitril/valsartan and spironolactone.
+    Laboratory testing reveals potassium of 6.1 mEq/L.
+  </p>
+
+  <div class="callout">
+    ARB effect<br>
+    +<br>
+    Mineralocorticoid receptor blockade<br>
+    ↓<br>
+    Reduced renal potassium secretion<br>
+    ↓<br>
+    <strong>Hyperkalemia</strong>
+  </div>
+
+  <p>
+    Potassium and renal function require close assessment.
+  </p>
+
+  <hr>
+
+  <h3>47. Clinical case — congestion</h3>
+
+  <p>
+    A patient with heart failure develops orthopnea, bilateral leg edema
+    and a rapid increase in body weight.
+  </p>
+
+  <div class="callout">
+    Sodium/water retention<br>
+    ↓<br>
+    Increased intravascular and interstitial volume<br>
+    ↓<br>
+    Pulmonary + peripheral congestion<br>
+    ↓<br>
+    <strong>Loop diuretic therapy may be needed for decongestion</strong>
+  </div>
+
+  <hr>
+
+  <h3>48. Clinical case — digoxin toxicity</h3>
+
+  <p>
+    A patient receiving digoxin and furosemide develops nausea,
+    visual changes and an arrhythmia. Potassium is low.
+  </p>
+
+  <div class="callout">
+    Furosemide<br>
+    ↓<br>
+    Potassium loss<br>
+    ↓<br>
+    Greater digoxin binding to Na⁺/K⁺ ATPase<br>
+    ↓<br>
+    <strong>Increased digoxin toxicity risk</strong>
+  </div>
+
+  <hr>
+
+  <h3>49. Clinical case — ACEI to ARNI conversion</h3>
+
+  <p>
+    A patient taking lisinopril is being transitioned to sacubitril/valsartan.
+    Why must the medications not be switched immediately without an interval?
+  </p>
+
+  <div class="callout">
+    ACE inhibition<br>
+    +<br>
+    Neprilysin inhibition<br>
+    ↓<br>
+    Excess bradykinin-related signaling<br>
+    ↓<br>
+    Angioedema risk<br>
+    ↓<br>
+    <strong>At least 36-hour ACE inhibitor washout</strong>
+  </div>
+
+  <hr>
+
+  <h3>50. Clinical case — spironolactone</h3>
+
+  <p>
+    A patient taking spironolactone develops breast enlargement and tenderness.
+  </p>
+
+  <div class="callout">
+    Spironolactone<br>
+    ↓<br>
+    Mineralocorticoid receptor blockade<br>
+    + off-target androgen/progesterone receptor effects<br>
+    ↓<br>
+    <strong>Gynecomastia</strong>
+  </div>
+
+  <hr>
+
+  <h3>51. Fast recall board</h3>
+
+  <div class="callout">
+    <strong>HEART FAILURE MASTER MEMORY</strong><br><br>
+
+    ARNI<br>
+    Sacubitril + valsartan<br>
+    neprilysin inhibition + AT1 blockade<br>
+    36-hour ACEI washout<br><br>
+
+    HFrEF BETA BLOCKERS<br>
+    carvedilol<br>
+    metoprolol succinate<br>
+    bisoprolol<br><br>
+
+    MRA<br>
+    spironolactone / eplerenone<br>
+    WATCH K⁺<br><br>
+
+    SGLT2<br>
+    dapagliflozin / empagliflozin<br>
+    benefit extends beyond diabetes<br><br>
+
+    LOOP<br>
+    congestion relief<br>
+    WATCH K⁺ / Mg²⁺ / renal function<br><br>
+
+    DIGOXIN<br>
+    Na⁺/K⁺ ATPase inhibitor<br>
+    narrow therapeutic index<br>
+    hypokalemia increases toxicity risk<br>
+    antidote = digoxin immune Fab
+  </div>
+
+  <hr>
+
+  <h3>Knowledge Check 1</h3>
+
+  <p>
+    Which combination correctly identifies the major foundational medication
+    classes used in contemporary HFrEF therapy?
+  </p>
+
+  <button class="btn" onclick="checkCardioHF1('A')">
+    A. ARNI/ACEI/ARB pathway therapy + evidence-based beta blocker + MRA + SGLT2 inhibitor
+  </button>
+
+  <button class="btn" onclick="checkCardioHF1('B')">
+    B. Digoxin + verapamil + aspirin + hydrochlorothiazide only
+  </button>
+
+  <p id="cardioHF1Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 2</h3>
+
+  <p>
+    Which beta blocker has established evidence for chronic HFrEF?
+  </p>
+
+  <button class="btn" onclick="checkCardioHF2('A')">
+    A. Metoprolol succinate extended release
+  </button>
+
+  <button class="btn" onclick="checkCardioHF2('B')">
+    B. Propranolol as the standard HFrEF beta blocker
+  </button>
+
+  <p id="cardioHF2Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 3</h3>
+
+  <p>
+    What is the major electrolyte concern with spironolactone?
+  </p>
+
+  <button class="btn" onclick="checkCardioHF3('A')">
+    A. Hyperkalemia
+  </button>
+
+  <button class="btn" onclick="checkCardioHF3('B')">
+    B. Obligatory severe hypokalemia
+  </button>
+
+  <p id="cardioHF3Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 4</h3>
+
+  <p>
+    Which medication primarily improves congestion through powerful natriuresis
+    and diuresis?
+  </p>
+
+  <button class="btn" onclick="checkCardioHF4('A')">
+    A. Furosemide
+  </button>
+
+  <button class="btn" onclick="checkCardioHF4('B')">
+    B. Digoxin immune Fab
+  </button>
+
+  <p id="cardioHF4Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 5</h3>
+
+  <p>
+    Why can hypokalemia increase digoxin toxicity?
+  </p>
+
+  <button class="btn" onclick="checkCardioHF5('A')">
+    A. Low potassium increases digoxin interaction with Na⁺/K⁺ ATPase
+  </button>
+
+  <button class="btn" onclick="checkCardioHF5('B')">
+    B. Low potassium completely blocks digoxin absorption
+  </button>
+
+  <p id="cardioHF5Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 6</h3>
+
+  <p>
+    How long should generally separate discontinuation of an ACE inhibitor
+    and initiation of sacubitril/valsartan?
+  </p>
+
+  <button class="btn" onclick="checkCardioHF6('A')">
+    A. At least 36 hours
+  </button>
+
+  <button class="btn" onclick="checkCardioHF6('B')">
+    B. No interval is necessary
+  </button>
+
+  <p id="cardioHF6Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 7</h3>
+
+  <p>
+    Which medication inhibits the funny current in the sinoatrial node?
+  </p>
+
+  <button class="btn" onclick="checkCardioHF7('A')">
+    A. Ivabradine
+  </button>
+
+  <button class="btn" onclick="checkCardioHF7('B')">
+    B. Spironolactone
+  </button>
+
+  <p id="cardioHF7Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 8</h3>
+
+  <p>
+    Which statement about SGLT2 inhibitors in heart failure is correct?
+  </p>
+
+  <button class="btn" onclick="checkCardioHF8('A')">
+    A. Their heart-failure benefits are not limited to patients with diabetes
+  </button>
+
+  <button class="btn" onclick="checkCardioHF8('B')">
+    B. They are useful only when blood glucose exceeds 300 mg/dL
+  </button>
+
+  <p id="cardioHF8Answer"></p>
+
+  <br>
+
+  <button class="btn primary" onclick="startPharmacologyModule(2)">
+    Back to Module 2
+  </button>
+
+  `;
+
+  const lessonBox = document.getElementById('lessonBox');
+
+  window.scrollTo({
+    top: lessonBox.offsetTop - 170,
+    behavior: 'smooth'
+  });
+}
+
+
+/* =========================================================
+   LESSON 7 KNOWLEDGE-CHECK FUNCTIONS
+   ========================================================= */
+
+function checkCardioHF1(answer){
+
+  const result = document.getElementById('cardioHF1Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Contemporary foundational HFrEF therapy targets complementary pathways using RAAS/ARNI therapy, an evidence-based beta blocker, an MRA and an SGLT2 inhibitor when appropriate.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Digoxin, verapamil, aspirin and hydrochlorothiazide do not constitute the modern foundational HFrEF medication framework.';
+  }
+}
+
+
+function checkCardioHF2(answer){
+
+  const result = document.getElementById('cardioHF2Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Metoprolol succinate extended release is one of the evidence-based beta blockers used in chronic HFrEF, along with carvedilol and bisoprolol.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Propranolol is not one of the standard evidence-based beta blockers used for chronic HFrEF outcome improvement.';
+  }
+}
+
+
+function checkCardioHF3(answer){
+
+  const result = document.getElementById('cardioHF3Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Mineralocorticoid receptor blockade reduces potassium secretion, making hyperkalemia an important safety concern.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Spironolactone is potassium-sparing and therefore tends to increase rather than decrease serum potassium.';
+  }
+}
+
+
+function checkCardioHF4(answer){
+
+  const result = document.getElementById('cardioHF4Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Furosemide is a loop diuretic commonly used to relieve congestion through powerful natriuresis and diuresis.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Digoxin immune Fab is an antidote used in selected cases of severe digoxin toxicity.';
+  }
+}
+
+
+function checkCardioHF5(answer){
+
+  const result = document.getElementById('cardioHF5Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Hypokalemia increases digoxin binding to Na⁺/K⁺ ATPase and increases susceptibility to toxicity and arrhythmias.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Hypokalemia increases pharmacodynamic sensitivity to digoxin rather than blocking its gastrointestinal absorption.';
+  }
+}
+
+
+function checkCardioHF6(answer){
+
+  const result = document.getElementById('cardioHF6Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> A washout of at least 36 hours is required when switching from an ACE inhibitor to sacubitril/valsartan to reduce angioedema risk.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> ACE inhibition and neprilysin inhibition must not overlap because of increased angioedema risk.';
+  }
+}
+
+
+function checkCardioHF7(answer){
+
+  const result = document.getElementById('cardioHF7Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Ivabradine inhibits the If or funny current in sinoatrial nodal cells, reducing sinus heart rate.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Spironolactone is a mineralocorticoid receptor antagonist.';
+  }
+}
+
+
+function checkCardioHF8(answer){
+
+  const result = document.getElementById('cardioHF8Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> SGLT2 inhibitors provide important heart-failure benefits in appropriate patients regardless of whether diabetes is present.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Their cardiovascular role is not limited to severe hyperglycemia.';
+  }
+}
   // Keep this below all pharmacology lessons
 document.getElementById('referralButton').addEventListener('click',()=>{
 
