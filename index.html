@@ -1115,11 +1115,100 @@ function startLesson(topic){
       </button>
     `;
   }
+else if(moduleNumber === 2){
 
+  title.textContent = 'Module 2 — Cardiovascular Pharmacology';
+
+  text.innerHTML = `
+    <h3>Cardiovascular Pharmacology Learning Path</h3>
+
+    <p><strong>Lesson 1:</strong> Renin–Angiotensin–Aldosterone System and ACE Inhibitors</p>
+    <button class="btn primary" onclick="startCardioLesson(1)">
+      Open Lesson 1
+    </button>
+
+    <p><strong>Lesson 2:</strong> Angiotensin II Receptor Blockers</p>
+    <button class="btn primary" onclick="startCardioLesson(2)">
+      Open Lesson 2
+    </button>
+
+    <p><strong>Lesson 3:</strong> Beta Blockers</p>
+    <button class="btn primary" onclick="startCardioLesson(3)">
+      Open Lesson 3
+    </button>
+
+    <p><strong>Lesson 4:</strong> Calcium Channel Blockers</p>
+    <button class="btn primary" onclick="startCardioLesson(4)">
+      Open Lesson 4
+    </button>
+
+    <p><strong>Lesson 5:</strong> Diuretics</p>
+    <button class="btn primary" onclick="startCardioLesson(5)">
+      Open Lesson 5
+    </button>
+
+    <p><strong>Lesson 6:</strong> Nitrates and Antianginal Therapy</p>
+    <button class="btn primary" onclick="startCardioLesson(6)">
+      Open Lesson 6
+    </button>
+
+    <p><strong>Lesson 7:</strong> Heart Failure Pharmacology</p>
+    <button class="btn primary" onclick="startCardioLesson(7)">
+      Open Lesson 7
+    </button>
+
+    <p><strong>Lesson 8:</strong> Antiarrhythmic Pharmacology</p>
+    <button class="btn primary" onclick="startCardioLesson(8)">
+      Open Lesson 8
+    </button>
+  `;
+}
   window.scrollTo({
     top: document.getElementById('lessonBox').offsetTop,
     behavior: 'smooth'
   });
+}
+  function startCardioLesson(lessonNumber){
+
+  if(lessonNumber === 1){
+    startCardioLesson1();
+    return;
+  }
+
+  if(lessonNumber === 2){
+    startCardioLesson2();
+    return;
+  }
+
+  if(lessonNumber === 3){
+    startCardioLesson3();
+    return;
+  }
+
+  if(lessonNumber === 4){
+    startCardioLesson4();
+    return;
+  }
+
+  if(lessonNumber === 5){
+    startCardioLesson5();
+    return;
+  }
+
+  if(lessonNumber === 6){
+    startCardioLesson6();
+    return;
+  }
+
+  if(lessonNumber === 7){
+    startCardioLesson7();
+    return;
+  }
+
+  if(lessonNumber === 8){
+    startCardioLesson8();
+    return;
+  }
 }
 function startPharmacologyLesson(lessonNumber){
   const title = document.getElementById('lessonTitle');
@@ -3469,6 +3558,486 @@ function checkTIInhibition(answer){
   } else {
     result.innerHTML =
       '<strong>Not quite.</strong> Inhibiting an important metabolic pathway can slow elimination and raise drug exposure.';
+  }
+}
+  function startCardioLesson1(){
+
+  const title = document.getElementById('lessonTitle');
+  const text = document.getElementById('lessonText');
+
+  title.textContent =
+    'Cardiovascular Lesson 1 — RAAS and ACE Inhibitors';
+
+  text.innerHTML = `
+    <h3>Learning objectives</h3>
+
+    <p>By the end of this lesson, you should be able to:</p>
+
+    <ul>
+      <li>Explain the renin–angiotensin–aldosterone system.</li>
+      <li>Describe how angiotensin II increases blood pressure.</li>
+      <li>Explain the mechanism of ACE inhibitors.</li>
+      <li>Recognize common ACE inhibitors and their uses.</li>
+      <li>Explain cough, hyperkalemia, hypotension and angioedema.</li>
+      <li>Identify important contraindications and monitoring parameters.</li>
+    </ul>
+
+    <hr>
+
+    <h3>1. Renin–Angiotensin–Aldosterone System</h3>
+
+    <p>
+      The <strong>renin–angiotensin–aldosterone system (RAAS)</strong>
+      helps regulate blood pressure, sodium balance and extracellular fluid volume.
+    </p>
+
+    <p>
+      RAAS is activated when the kidneys detect reduced renal perfusion,
+      reduced sodium delivery or increased sympathetic stimulation.
+    </p>
+
+    <p><strong>Core pathway:</strong></p>
+
+    <p>
+      Reduced renal perfusion →
+      Renin release →
+      Angiotensinogen → Angiotensin I →
+      Angiotensin-converting enzyme →
+      Angiotensin II
+    </p>
+
+    <hr>
+
+    <h3>2. Renin</h3>
+
+    <p>
+      <strong>Renin</strong> is released by juxtaglomerular cells in the kidney.
+    </p>
+
+    <p>
+      Renin converts <strong>angiotensinogen</strong>, produced mainly by the liver,
+      into <strong>angiotensin I</strong>.
+    </p>
+
+    <hr>
+
+    <h3>3. Angiotensin-Converting Enzyme</h3>
+
+    <p>
+      <strong>Angiotensin-converting enzyme (ACE)</strong> converts
+      angiotensin I into angiotensin II.
+    </p>
+
+    <p>
+      ACE also contributes to the breakdown of <strong>bradykinin</strong>.
+    </p>
+
+    <hr>
+
+    <h3>4. Angiotensin II</h3>
+
+    <p>
+      Angiotensin II is a powerful regulator of blood pressure.
+    </p>
+
+    <p>Major effects include:</p>
+
+    <ul>
+      <li>Vasoconstriction</li>
+      <li>Increased aldosterone secretion</li>
+      <li>Increased sodium and water retention</li>
+      <li>Increased sympathetic activity</li>
+      <li>Increased antidiuretic hormone release</li>
+    </ul>
+
+    <p><strong>Overall effect:</strong></p>
+
+    <p>
+      Vasoconstriction + sodium/water retention →
+      increased circulating volume →
+      increased blood pressure
+    </p>
+
+    <hr>
+
+    <h3>5. Aldosterone</h3>
+
+    <p>
+      Angiotensin II stimulates aldosterone secretion from the adrenal cortex.
+    </p>
+
+    <p>
+      Aldosterone promotes sodium reabsorption and potassium excretion
+      in the distal nephron.
+    </p>
+
+    <p>
+      Water follows sodium, increasing extracellular fluid volume.
+    </p>
+
+    <hr>
+
+    <h3>6. ACE Inhibitors</h3>
+
+    <p>
+      <strong>ACE inhibitors</strong> block angiotensin-converting enzyme.
+    </p>
+
+    <p><strong>Mechanism:</strong></p>
+
+    <p>
+      ACE inhibition →
+      decreased angiotensin II →
+      decreased vasoconstriction →
+      decreased aldosterone →
+      reduced sodium/water retention →
+      reduced blood pressure
+    </p>
+
+    <hr>
+
+    <h3>7. Common ACE Inhibitors</h3>
+
+    <ul>
+      <li><strong>Lisinopril</strong> — Zestril, Prinivil</li>
+      <li><strong>Enalapril</strong> — Vasotec</li>
+      <li><strong>Ramipril</strong> — Altace</li>
+      <li><strong>Benazepril</strong> — Lotensin</li>
+      <li><strong>Captopril</strong> — Capoten</li>
+      <li><strong>Quinapril</strong> — Accupril</li>
+      <li><strong>Fosinopril</strong> — Monopril</li>
+    </ul>
+
+    <p>
+      A useful class clue is that many ACE inhibitors end in
+      <strong>-pril</strong>.
+    </p>
+
+    <hr>
+
+    <h3>8. Main Clinical Uses</h3>
+
+    <p>ACE inhibitors are commonly used for:</p>
+
+    <ul>
+      <li>Hypertension</li>
+      <li>Heart failure</li>
+      <li>Post-myocardial infarction therapy in appropriate patients</li>
+      <li>Reduction of albuminuria in selected patients with chronic kidney disease</li>
+    </ul>
+
+    <hr>
+
+    <h3>9. ACE Inhibitor Cough</h3>
+
+    <p>
+      ACE normally helps break down bradykinin.
+    </p>
+
+    <p>
+      ACE inhibition reduces bradykinin breakdown.
+    </p>
+
+    <p><strong>Mechanistic chain:</strong></p>
+
+    <p>
+      ACE inhibition →
+      decreased bradykinin breakdown →
+      bradykinin accumulation →
+      airway irritation →
+      persistent dry cough
+    </p>
+
+    <p>
+      This is one of the classic adverse effects of ACE inhibitors.
+    </p>
+
+    <hr>
+
+    <h3>10. Hyperkalemia</h3>
+
+    <p>
+      ACE inhibitors reduce angiotensin II formation.
+    </p>
+
+    <p>
+      Less angiotensin II means less aldosterone secretion.
+    </p>
+
+    <p><strong>Mechanistic chain:</strong></p>
+
+    <p>
+      ACE inhibition →
+      decreased angiotensin II →
+      decreased aldosterone →
+      decreased renal potassium excretion →
+      increased serum potassium
+    </p>
+
+    <p>
+      Therefore, <strong>hyperkalemia</strong> is an important safety concern.
+    </p>
+
+    <hr>
+
+    <h3>11. Hypotension</h3>
+
+    <p>
+      ACE inhibitors reduce vascular resistance and reduce sodium/water retention.
+    </p>
+
+    <p>
+      This can cause excessive blood-pressure lowering, especially after
+      the first dose in volume-depleted patients.
+    </p>
+
+    <hr>
+
+    <h3>12. Angioedema</h3>
+
+    <p>
+      ACE inhibitors can rarely cause <strong>angioedema</strong>.
+    </p>
+
+    <p>
+      Swelling may involve the lips, tongue, face or airway.
+    </p>
+
+    <p>
+      Because airway involvement can be life-threatening,
+      angioedema requires urgent medical evaluation.
+    </p>
+
+    <p>
+      Bradykinin accumulation contributes to this reaction.
+    </p>
+
+    <hr>
+
+    <h3>13. Kidney Function</h3>
+
+    <p>
+      ACE inhibitors alter renal hemodynamics by reducing angiotensin II-mediated
+      constriction of the efferent arteriole.
+    </p>
+
+    <p>
+      Serum creatinine may increase after therapy begins.
+    </p>
+
+    <p>
+      Renal function should therefore be monitored,
+      particularly in patients at increased risk of acute kidney injury.
+    </p>
+
+    <hr>
+
+    <h3>14. Bilateral Renal Artery Stenosis</h3>
+
+    <p>
+      In significant bilateral renal artery stenosis,
+      kidney filtration may depend heavily on angiotensin II-mediated
+      efferent arteriolar constriction.
+    </p>
+
+    <p>
+      Blocking angiotensin II formation may substantially reduce
+      glomerular filtration pressure.
+    </p>
+
+    <p>
+      This can precipitate acute deterioration in kidney function.
+    </p>
+
+    <hr>
+
+    <h3>15. Pregnancy</h3>
+
+    <p>
+      Drugs that directly inhibit the renin–angiotensin system,
+      including ACE inhibitors, can cause fetal harm.
+    </p>
+
+    <p>
+      ACE inhibitors should generally be avoided during pregnancy.
+    </p>
+
+    <hr>
+
+    <h3>16. Important Monitoring</h3>
+
+    <p>Important parameters include:</p>
+
+    <ul>
+      <li>Blood pressure</li>
+      <li>Serum potassium</li>
+      <li>Serum creatinine</li>
+      <li>Renal function</li>
+      <li>Symptoms of cough</li>
+      <li>Signs of angioedema</li>
+    </ul>
+
+    <hr>
+
+    <h3>17. High-Yield Mechanism Summary</h3>
+
+    <p>
+      <strong>ACE inhibitor target:</strong>
+      Angiotensin-converting enzyme
+    </p>
+
+    <p>
+      <strong>Primary physiological effects:</strong>
+      decreased angiotensin II and decreased aldosterone
+    </p>
+
+    <p>
+      <strong>Therapeutic effects:</strong>
+      vasodilation, reduced blood pressure and reduced cardiac workload
+    </p>
+
+    <p>
+      <strong>Bradykinin effect:</strong>
+      increased bradykinin because ACE-mediated degradation decreases
+    </p>
+
+    <p>
+      <strong>Key adverse effects:</strong>
+      cough, hyperkalemia, hypotension, renal dysfunction and angioedema
+    </p>
+
+    <hr>
+
+    <h3>Knowledge Check 1</h3>
+
+    <p>
+      ACE inhibitors reduce blood pressure primarily by decreasing formation
+      of which substance?
+    </p>
+
+    <button class="btn" onclick="checkCardioACE1('A')">
+      A. Angiotensin II
+    </button>
+
+    <button class="btn" onclick="checkCardioACE1('B')">
+      B. Angiotensinogen
+    </button>
+
+    <p id="cardioACE1Answer"></p>
+
+    <hr>
+
+    <h3>Knowledge Check 2</h3>
+
+    <p>
+      Why can ACE inhibitors cause a persistent dry cough?
+    </p>
+
+    <button class="btn" onclick="checkCardioACE2('A')">
+      A. Bradykinin accumulates
+    </button>
+
+    <button class="btn" onclick="checkCardioACE2('B')">
+      B. Aldosterone increases
+    </button>
+
+    <p id="cardioACE2Answer"></p>
+
+    <hr>
+
+    <h3>Knowledge Check 3</h3>
+
+    <p>
+      Why can ACE inhibitors increase serum potassium?
+    </p>
+
+    <button class="btn" onclick="checkCardioACE3('A')">
+      A. Aldosterone secretion decreases
+    </button>
+
+    <button class="btn" onclick="checkCardioACE3('B')">
+      B. Aldosterone secretion increases
+    </button>
+
+    <p id="cardioACE3Answer"></p>
+
+    <hr>
+
+    <h3>Knowledge Check 4</h3>
+
+    <p>
+      Which laboratory values should be monitored closely after starting
+      an ACE inhibitor?
+    </p>
+
+    <button class="btn" onclick="checkCardioACE4('A')">
+      A. Potassium and renal function
+    </button>
+
+    <button class="btn" onclick="checkCardioACE4('B')">
+      B. Amylase and bilirubin only
+    </button>
+
+    <p id="cardioACE4Answer"></p>
+
+    <br>
+
+    <button class="btn primary" onclick="startPharmacologyModule(2)">
+      Back to Module 2
+    </button>
+  `;
+
+  document.getElementById('lessonBox').scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+}
+
+function checkCardioACE1(answer){
+  const result = document.getElementById('cardioACE1Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> ACE inhibition decreases conversion of angiotensin I to angiotensin II.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> ACE acts downstream of angiotensinogen and converts angiotensin I into angiotensin II.';
+  }
+}
+
+function checkCardioACE2(answer){
+  const result = document.getElementById('cardioACE2Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> ACE inhibition decreases bradykinin breakdown, allowing bradykinin to accumulate.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> ACE inhibitors decrease aldosterone. The cough is associated with increased bradykinin.';
+  }
+}
+
+function checkCardioACE3(answer){
+  const result = document.getElementById('cardioACE3Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Less angiotensin II leads to less aldosterone, reducing renal potassium excretion.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> ACE inhibitors reduce aldosterone secretion, which can increase serum potassium.';
+  }
+}
+
+function checkCardioACE4(answer){
+  const result = document.getElementById('cardioACE4Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Potassium and renal function are important safety parameters during ACE inhibitor therapy.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> The major routine concerns include potassium elevation and changes in kidney function.';
   }
 }
 document.getElementById('referralButton').addEventListener('click',()=>{
