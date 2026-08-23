@@ -6590,7 +6590,839 @@ function checkCardioDIU6(answer){
 }
 
 
-// Keep this below all pharmacology lessons
+/* =========================================================
+   MODULE 2 — CARDIOVASCULAR PHARMACOLOGY
+   LESSON 6 — NITRATES AND ANTIANGINAL THERAPY
+   ========================================================= */
+
+function startCardioLesson6(){
+
+  const title = document.getElementById('lessonTitle');
+  const text = document.getElementById('lessonText');
+
+  title.textContent = 'Lesson 6 — Nitrates and Antianginal Therapy';
+
+  text.innerHTML = `
+
+  <h2>Lesson 6 — Nitrates and Antianginal Therapy</h2>
+
+  <h3>Learning objectives</h3>
+
+  <p>By the end of this lesson, you should be able to:</p>
+
+  <ul>
+    <li>Explain the pathophysiologic basis of myocardial ischemia and angina.</li>
+    <li>Differentiate stable angina, vasospastic angina and acute coronary syndromes conceptually.</li>
+    <li>Explain how organic nitrates are converted to nitric oxide.</li>
+    <li>Connect nitric oxide signaling to venodilation, reduced preload and lower myocardial oxygen demand.</li>
+    <li>Identify major nitrate drugs, dosage forms and common brand names.</li>
+    <li>Explain nitrate tolerance and the need for a nitrate-free interval.</li>
+    <li>Recognize the life-threatening interaction between nitrates and phosphodiesterase-5 inhibitors.</li>
+    <li>Compare nitrates with beta blockers, calcium channel blockers and ranolazine in antianginal therapy.</li>
+    <li>Identify major adverse effects, contraindications, interactions and monitoring parameters.</li>
+  </ul>
+
+  <hr>
+
+  <h3>1. What causes angina?</h3>
+
+  <p>
+    Angina occurs when myocardial oxygen demand exceeds myocardial oxygen supply.
+    The result is transient myocardial ischemia that may produce chest pressure,
+    tightness, heaviness or discomfort.
+  </p>
+
+  <div class="callout">
+    <strong>ISCHEMIA BALANCE BOARD</strong><br><br>
+
+    MYOCARDIAL OXYGEN DEMAND<br>
+    ↑ Heart rate<br>
+    ↑ Contractility<br>
+    ↑ Ventricular wall stress<br>
+    ↑ Preload / afterload<br><br>
+
+    versus<br><br>
+
+    MYOCARDIAL OXYGEN SUPPLY<br>
+    Coronary blood flow<br>
+    Coronary perfusion pressure<br>
+    Coronary vessel patency<br>
+    Blood oxygen content
+  </div>
+
+  <p>
+    Antianginal drugs improve this balance by reducing oxygen demand,
+    increasing oxygen supply, or both.
+  </p>
+
+  <hr>
+
+  <h3>2. Major clinical angina patterns</h3>
+
+  <table style="width:100%;border-collapse:collapse;">
+    <tr>
+      <th style="border:1px solid #ccc;padding:8px;">Pattern</th>
+      <th style="border:1px solid #ccc;padding:8px;">Typical mechanism</th>
+      <th style="border:1px solid #ccc;padding:8px;">High-yield treatment concept</th>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Stable angina</td>
+      <td style="border:1px solid #ccc;padding:8px;">Fixed atherosclerotic narrowing with exertional demand</td>
+      <td style="border:1px solid #ccc;padding:8px;">Reduce myocardial oxygen demand; nitrates relieve episodes</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Vasospastic angina</td>
+      <td style="border:1px solid #ccc;padding:8px;">Transient coronary vasospasm</td>
+      <td style="border:1px solid #ccc;padding:8px;">Nitrates and calcium channel blockers are especially useful</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Unstable angina / ACS concept</td>
+      <td style="border:1px solid #ccc;padding:8px;">Plaque disruption and dynamic coronary obstruction</td>
+      <td style="border:1px solid #ccc;padding:8px;">Requires urgent acute coronary syndrome evaluation and treatment</td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <h3>3. Organic nitrates</h3>
+
+  <div class="callout">
+    <strong>MAJOR NITRATES</strong><br><br>
+
+    Nitroglycerin — Nitrostat, Nitro-Dur and other formulations<br>
+    Isosorbide dinitrate — Isordil<br>
+    Isosorbide mononitrate — Imdur
+  </div>
+
+  <p>
+    Nitrates are nitric-oxide donors or prodrugs that ultimately increase
+    nitric oxide signaling in vascular smooth muscle.
+  </p>
+
+  <hr>
+
+  <h3>4. Nitrate molecular mechanism</h3>
+
+  <div class="callout">
+    <strong>MOLECULAR MECHANISM MAP</strong><br><br>
+
+    Organic nitrate<br>
+    ↓<br>
+    Biotransformation to nitric oxide-related signaling species<br>
+    ↓<br>
+    Activation of soluble guanylyl cyclase<br>
+    ↓<br>
+    ↑ Cyclic guanosine monophosphate (cGMP)<br>
+    ↓<br>
+    Reduced myosin light-chain phosphorylation<br>
+    ↓<br>
+    Vascular smooth-muscle relaxation<br>
+    ↓<br>
+    <strong>Vasodilation</strong>
+  </div>
+
+  <hr>
+
+  <h3>5. Why do nitrates reduce myocardial oxygen demand?</h3>
+
+  <p>
+    At usual therapeutic doses, nitrates produce prominent venodilation.
+  </p>
+
+  <div class="callout">
+    <strong>PRELOAD BOARD</strong><br><br>
+
+    Venodilation<br>
+    ↓<br>
+    Venous return to the heart<br>
+    ↓<br>
+    Ventricular end-diastolic volume<br>
+    ↓<br>
+    Preload<br>
+    ↓<br>
+    Ventricular wall tension<br>
+    ↓<br>
+    <strong>Myocardial oxygen demand decreases</strong>
+  </div>
+
+  <p>
+    This reduction in preload is one of the most important antianginal effects of nitrates.
+  </p>
+
+  <hr>
+
+  <h3>6. Coronary effects</h3>
+
+  <p>
+    Nitrates can dilate epicardial coronary vessels and relieve coronary vasospasm.
+    This is particularly relevant in vasospastic angina.
+  </p>
+
+  <div class="callout">
+    Coronary vasospasm<br>
+    ↓<br>
+    Nitrate-induced vascular smooth-muscle relaxation<br>
+    ↓<br>
+    Reduced spasm<br>
+    ↓<br>
+    Improved coronary blood flow
+  </div>
+
+  <hr>
+
+  <h3>7. Nitroglycerin dosage forms</h3>
+
+  <table style="width:100%;border-collapse:collapse;">
+    <tr>
+      <th style="border:1px solid #ccc;padding:8px;">Form</th>
+      <th style="border:1px solid #ccc;padding:8px;">Typical role</th>
+      <th style="border:1px solid #ccc;padding:8px;">Teaching point</th>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Sublingual tablet</td>
+      <td style="border:1px solid #ccc;padding:8px;">Rapid relief of acute angina</td>
+      <td style="border:1px solid #ccc;padding:8px;">Rapid onset</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Translingual spray</td>
+      <td style="border:1px solid #ccc;padding:8px;">Rapid relief</td>
+      <td style="border:1px solid #ccc;padding:8px;">Avoid swallowing before absorption</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Transdermal patch</td>
+      <td style="border:1px solid #ccc;padding:8px;">Prevention</td>
+      <td style="border:1px solid #ccc;padding:8px;">Requires daily nitrate-free interval</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Intravenous</td>
+      <td style="border:1px solid #ccc;padding:8px;">Selected acute hospital settings</td>
+      <td style="border:1px solid #ccc;padding:8px;">Requires close hemodynamic monitoring</td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <h3>8. Sublingual nitroglycerin teaching</h3>
+
+  <div class="callout">
+    <strong>PATIENT COUNSELING BOARD</strong><br><br>
+
+    Sit down before use if possible because dizziness or hypotension may occur.<br><br>
+
+    Place the tablet under the tongue and allow it to dissolve.<br><br>
+
+    Chest pain that is new, severe, persistent or concerning for myocardial infarction
+    requires emergency evaluation rather than repeated self-treatment without help.
+  </div>
+
+  <p>
+    Follow the patient's prescribed emergency instructions and current clinical guidance.
+  </p>
+
+  <hr>
+
+  <h3>9. Major nitrate adverse effects</h3>
+
+  <div class="callout">
+    <strong>NITRATE ADVERSE EFFECT BOARD</strong><br><br>
+
+    Headache<br>
+    Flushing<br>
+    Dizziness<br>
+    Orthostatic hypotension<br>
+    Syncope<br>
+    Reflex tachycardia<br>
+    Rare methemoglobinemia with substantial exposure
+  </div>
+
+  <p>
+    Headache is especially common because cerebral and extracranial vessels also dilate.
+  </p>
+
+  <hr>
+
+  <h3>10. Why can nitrates cause reflex tachycardia?</h3>
+
+  <div class="callout">
+    Vasodilation<br>
+    ↓<br>
+    Blood pressure<br>
+    ↓<br>
+    Baroreceptor activation<br>
+    ↓<br>
+    Sympathetic response<br>
+    ↓<br>
+    <strong>Reflex tachycardia</strong>
+  </div>
+
+  <p>
+    This is one reason nitrates are frequently used together with other antianginal therapy
+    when clinically appropriate.
+  </p>
+
+  <hr>
+
+  <h3>11. Nitrate tolerance</h3>
+
+  <p>
+    Continuous nitrate exposure can lead to reduced hemodynamic and antianginal response.
+  </p>
+
+  <div class="callout">
+    Continuous nitrate exposure<br>
+    ↓<br>
+    Cellular and neurohormonal adaptive changes<br>
+    ↓<br>
+    Reduced drug effect<br>
+    ↓<br>
+    <strong>Tolerance</strong>
+  </div>
+
+  <p>
+    Long-acting nitrate therapy is therefore commonly scheduled with a daily nitrate-free interval.
+  </p>
+
+  <div class="callout">
+    <strong>MEMORY RULE</strong><br><br>
+
+    Long-acting nitrate therapy<br>
+    → include a nitrate-free period each day<br>
+    → helps reduce development of tolerance
+  </div>
+
+  <hr>
+
+  <h3>12. Dangerous interaction: PDE-5 inhibitors</h3>
+
+  <p>
+    This is one of the most important drug-interaction warnings in cardiovascular pharmacology.
+  </p>
+
+  <div class="callout">
+    <strong>DANGER — NITRATES + PDE-5 INHIBITORS</strong><br><br>
+
+    Nitrate<br>
+    → increases cGMP production<br><br>
+
+    PDE-5 inhibitor<br>
+    → decreases cGMP breakdown<br><br>
+
+    Combined<br>
+    ↓<br>
+    Excessive cGMP signaling<br>
+    ↓<br>
+    Profound vasodilation<br>
+    ↓<br>
+    <strong>Severe hypotension, syncope, ischemia or cardiovascular collapse</strong>
+  </div>
+
+  <p>
+    Examples of phosphodiesterase type 5 inhibitors include:
+  </p>
+
+  <ul>
+    <li>Sildenafil — Viagra / Revatio</li>
+    <li>Tadalafil — Cialis / Adcirca</li>
+    <li>Vardenafil — Levitra / Staxyn</li>
+    <li>Avanafil — Stendra</li>
+  </ul>
+
+  <p>
+    Nitrates must not be combined with PDE-5 inhibitors within the clinically specified
+    exclusion interval for the particular agent.
+  </p>
+
+  <hr>
+
+  <h3>13. Other important nitrate cautions</h3>
+
+  <div class="callout">
+    Severe hypotension<br>
+    Significant volume depletion<br>
+    Conditions where maintaining preload is critical<br>
+    Concomitant potent vasodilators<br>
+    Recent PDE-5 inhibitor use
+  </div>
+
+  <p>
+    Nitrates should be used with particular caution in right ventricular infarction because
+    excessive preload reduction can cause marked hypotension.
+  </p>
+
+  <hr>
+
+  <h3>14. Beta blockers in stable angina</h3>
+
+  <div class="callout">
+    Beta-1 blockade<br>
+    ↓<br>
+    Heart rate<br>
+    ↓<br>
+    Contractility<br>
+    ↓<br>
+    Myocardial oxygen demand<br>
+    ↓<br>
+    <strong>Reduced exertional angina</strong>
+  </div>
+
+  <p>
+    Beta blockers are particularly useful in chronic stable angina when reducing heart rate
+    and myocardial workload is desirable.
+  </p>
+
+  <hr>
+
+  <h3>15. Calcium channel blockers in angina</h3>
+
+  <p>
+    Calcium channel blockers reduce myocardial oxygen demand through vasodilation and,
+    for verapamil and diltiazem, through cardiac rate and conduction effects.
+  </p>
+
+  <div class="callout">
+    <strong>DHP CCB</strong><br>
+    Arteriolar vasodilation<br>
+    ↓ afterload<br>
+    ↓ myocardial oxygen demand<br><br>
+
+    <strong>VERAPAMIL / DILTIAZEM</strong><br>
+    ↓ heart rate<br>
+    ↓ AV conduction<br>
+    ↓ contractility<br>
+    + vasodilation
+  </div>
+
+  <p>
+    Calcium channel blockers are also important in vasospastic angina because they reduce coronary vasospasm.
+  </p>
+
+  <hr>
+
+  <h3>16. Ranolazine</h3>
+
+  <div class="callout">
+    <strong>RANOLAZINE — RANEXA</strong><br><br>
+
+    Used for chronic angina.<br><br>
+
+    Important mechanism:<br>
+    inhibition of the late inward sodium current in cardiac myocytes<br>
+    ↓<br>
+    less intracellular sodium accumulation<br>
+    ↓<br>
+    less secondary intracellular calcium overload<br>
+    ↓<br>
+    improved diastolic relaxation and reduced wall tension
+  </div>
+
+  <p>
+    Ranolazine generally has less effect on heart rate and blood pressure than many other antianginal drugs.
+  </p>
+
+  <p>
+    Important concerns include QT-interval prolongation and clinically relevant CYP3A interactions.
+  </p>
+
+  <hr>
+
+  <h3>17. Antianginal comparison board</h3>
+
+  <table style="width:100%;border-collapse:collapse;">
+    <tr>
+      <th style="border:1px solid #ccc;padding:8px;">Drug class</th>
+      <th style="border:1px solid #ccc;padding:8px;">Major effect</th>
+      <th style="border:1px solid #ccc;padding:8px;">Key concern</th>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Nitrates</td>
+      <td style="border:1px solid #ccc;padding:8px;">↓ preload; coronary vasodilation</td>
+      <td style="border:1px solid #ccc;padding:8px;">Headache, hypotension, PDE-5 interaction</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Beta blockers</td>
+      <td style="border:1px solid #ccc;padding:8px;">↓ heart rate and contractility</td>
+      <td style="border:1px solid #ccc;padding:8px;">Bradycardia, AV block, bronchospasm with nonselective agents</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Calcium channel blockers</td>
+      <td style="border:1px solid #ccc;padding:8px;">Vasodilation ± cardiac slowing</td>
+      <td style="border:1px solid #ccc;padding:8px;">Edema or bradycardia depending on subclass</td>
+    </tr>
+
+    <tr>
+      <td style="border:1px solid #ccc;padding:8px;">Ranolazine</td>
+      <td style="border:1px solid #ccc;padding:8px;">Reduces late sodium current</td>
+      <td style="border:1px solid #ccc;padding:8px;">QT prolongation and CYP3A interactions</td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <h3>18. Stable angina treatment logic</h3>
+
+  <div class="callout">
+    <strong>CLINICAL REASONING MAP</strong><br><br>
+
+    Acute episode<br>
+    ↓<br>
+    Rapid-acting nitroglycerin when prescribed and appropriate<br><br>
+
+    Chronic prevention<br>
+    ↓<br>
+    Beta blocker and/or calcium channel blocker depending on patient factors<br>
+    ± long-acting nitrate<br>
+    ± ranolazine<br><br>
+
+    PLUS<br>
+    aggressive cardiovascular risk-factor management
+  </div>
+
+  <hr>
+
+  <h3>19. Why are nitrates useful in vasospastic angina?</h3>
+
+  <div class="callout">
+    Coronary artery spasm<br>
+    ↓<br>
+    Reduced vessel diameter<br>
+    ↓<br>
+    Reduced myocardial oxygen supply<br><br>
+
+    Nitrate<br>
+    ↓<br>
+    Vascular smooth-muscle relaxation<br>
+    ↓<br>
+    Coronary vasodilation<br>
+    ↓<br>
+    <strong>Relief of vasospasm</strong>
+  </div>
+
+  <hr>
+
+  <h3>20. Monitoring board</h3>
+
+  <div class="callout">
+    <strong>NITRATES</strong><br>
+    Blood pressure<br>
+    Heart rate<br>
+    Frequency and severity of angina<br>
+    Headache / dizziness<br>
+    Adherence to nitrate-free interval<br>
+    PDE-5 inhibitor exposure<br><br>
+
+    <strong>RANOLAZINE</strong><br>
+    Angina control<br>
+    QT interval when clinically appropriate<br>
+    Drug interactions<br>
+    Hepatic / renal considerations as clinically indicated
+  </div>
+
+  <hr>
+
+  <h3>21. Clinical case — nitrate + sildenafil</h3>
+
+  <p>
+    A patient with chronic angina uses sublingual nitroglycerin and reports taking sildenafil earlier.
+    Why is this dangerous?
+  </p>
+
+  <div class="callout">
+    Nitrate → ↑ cGMP<br>
+    Sildenafil → ↓ cGMP breakdown<br>
+    ↓<br>
+    Excessive cGMP<br>
+    ↓<br>
+    Profound vasodilation<br>
+    ↓<br>
+    <strong>Potentially severe hypotension</strong>
+  </div>
+
+  <hr>
+
+  <h3>22. Clinical case — nitrate headache</h3>
+
+  <p>
+    A patient starts long-acting nitrate therapy and develops a throbbing headache.
+  </p>
+
+  <div class="callout">
+    Nitrate<br>
+    ↓<br>
+    Nitric oxide / cGMP signaling<br>
+    ↓<br>
+    Vasodilation of cranial vessels<br>
+    ↓<br>
+    <strong>Headache</strong>
+  </div>
+
+  <hr>
+
+  <h3>23. Clinical case — tolerance</h3>
+
+  <p>
+    A patient wears a nitroglycerin patch continuously, 24 hours every day.
+    Over time, the antianginal effect becomes weaker.
+  </p>
+
+  <div class="callout">
+    Continuous nitrate exposure<br>
+    ↓<br>
+    Tolerance develops<br>
+    ↓<br>
+    Reduced therapeutic response<br>
+    ↓<br>
+    <strong>Schedule a daily nitrate-free interval when clinically appropriate</strong>
+  </div>
+
+  <hr>
+
+  <h3>24. High-yield memory board</h3>
+
+  <div class="callout">
+    <strong>NITRATE MASTER MEMORY</strong><br><br>
+
+    NITRATE<br>
+    → NO<br>
+    → guanylyl cyclase<br>
+    → ↑ cGMP<br>
+    → smooth-muscle relaxation<br><br>
+
+    VENODILATION<br>
+    → ↓ preload<br>
+    → ↓ wall stress<br>
+    → ↓ myocardial oxygen demand<br><br>
+
+    MAJOR ADVERSE EFFECTS<br>
+    headache<br>
+    flushing<br>
+    hypotension<br>
+    reflex tachycardia<br><br>
+
+    MAJOR DANGER<br>
+    nitrate + PDE-5 inhibitor<br>
+    → profound hypotension<br><br>
+
+    LONG-ACTING NITRATES<br>
+    → nitrate-free interval<br>
+    → prevent tolerance
+  </div>
+
+  <hr>
+
+  <h3>Knowledge Check 1</h3>
+
+  <p>
+    What is the major hemodynamic effect responsible for the antianginal benefit of usual-dose nitrates?
+  </p>
+
+  <button class="btn" onclick="checkCardioNIT1('A')">
+    A. Venodilation and reduced preload
+  </button>
+
+  <button class="btn" onclick="checkCardioNIT1('B')">
+    B. Increased myocardial contractility
+  </button>
+
+  <p id="cardioNIT1Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 2</h3>
+
+  <p>
+    Which second messenger increases after nitric oxide activates soluble guanylyl cyclase?
+  </p>
+
+  <button class="btn" onclick="checkCardioNIT2('A')">
+    A. cGMP
+  </button>
+
+  <button class="btn" onclick="checkCardioNIT2('B')">
+    B. cAMP only
+  </button>
+
+  <p id="cardioNIT2Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 3</h3>
+
+  <p>
+    Which medication creates a major contraindicated interaction with nitrates?
+  </p>
+
+  <button class="btn" onclick="checkCardioNIT3('A')">
+    A. Sildenafil
+  </button>
+
+  <button class="btn" onclick="checkCardioNIT3('B')">
+    B. Acetaminophen
+  </button>
+
+  <p id="cardioNIT3Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 4</h3>
+
+  <p>
+    Why is a nitrate-free interval used with long-acting nitrate therapy?
+  </p>
+
+  <button class="btn" onclick="checkCardioNIT4('A')">
+    A. To reduce nitrate tolerance
+  </button>
+
+  <button class="btn" onclick="checkCardioNIT4('B')">
+    B. To permanently increase adrenergic receptors
+  </button>
+
+  <p id="cardioNIT4Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 5</h3>
+
+  <p>
+    Which drug is particularly useful for relieving coronary vasospasm?
+  </p>
+
+  <button class="btn" onclick="checkCardioNIT5('A')">
+    A. Nitroglycerin
+  </button>
+
+  <button class="btn" onclick="checkCardioNIT5('B')">
+    B. Digoxin
+  </button>
+
+  <p id="cardioNIT5Answer"></p>
+
+  <hr>
+
+  <h3>Knowledge Check 6</h3>
+
+  <p>
+    Which antianginal agent is known for inhibition of the late inward sodium current?
+  </p>
+
+  <button class="btn" onclick="checkCardioNIT6('A')">
+    A. Ranolazine
+  </button>
+
+  <button class="btn" onclick="checkCardioNIT6('B')">
+    B. Hydrochlorothiazide
+  </button>
+
+  <p id="cardioNIT6Answer"></p>
+
+  <br>
+
+  <button class="btn primary" onclick="startPharmacologyModule(2)">
+    Back to Module 2
+  </button>
+
+  `;
+
+  const lessonBox = document.getElementById('lessonBox');
+
+  window.scrollTo({
+    top: lessonBox.offsetTop - 170,
+    behavior: 'smooth'
+  });
+}
+
+
+/* =========================================================
+   LESSON 6 KNOWLEDGE-CHECK FUNCTIONS
+   ========================================================= */
+
+function checkCardioNIT1(answer){
+  const result = document.getElementById('cardioNIT1Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Nitrates prominently dilate veins, reducing venous return, preload, ventricular wall stress and myocardial oxygen demand.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Increasing contractility would generally increase myocardial oxygen demand.';
+  }
+}
+
+
+function checkCardioNIT2(answer){
+  const result = document.getElementById('cardioNIT2Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Nitric oxide activates soluble guanylyl cyclase and increases cyclic guanosine monophosphate, producing smooth-muscle relaxation.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> The key nitrate pathway is nitric oxide → guanylyl cyclase → cGMP.';
+  }
+}
+
+
+function checkCardioNIT3(answer){
+  const result = document.getElementById('cardioNIT3Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Sildenafil inhibits PDE-5 and can dramatically potentiate nitrate-mediated cGMP signaling, causing severe hypotension.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Acetaminophen does not create the classic nitrate interaction.';
+  }
+}
+
+
+function checkCardioNIT4(answer){
+  const result = document.getElementById('cardioNIT4Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> A daily nitrate-free interval helps limit development of tolerance during long-acting nitrate therapy.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> The purpose is to reduce pharmacologic tolerance.';
+  }
+}
+
+
+function checkCardioNIT5(answer){
+  const result = document.getElementById('cardioNIT5Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Nitroglycerin relaxes vascular smooth muscle and can relieve coronary vasospasm.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Digoxin is not used to relieve coronary vasospasm.';
+  }
+}
+
+
+function checkCardioNIT6(answer){
+  const result = document.getElementById('cardioNIT6Answer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Ranolazine inhibits the late inward sodium current and is used in chronic angina.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Hydrochlorothiazide is a thiazide diuretic.';
+  }
+}
+  // Keep this below all pharmacology lessons
 document.getElementById('referralButton').addEventListener('click',()=>{
 
   const code=
