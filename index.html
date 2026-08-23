@@ -1595,33 +1595,491 @@ function startPharmacologyLesson2(){
   title.textContent = 'Lesson 2 — Pharmacokinetics';
 
   text.innerHTML = `
-    <h3>What does the body do to a drug?</h3>
+    <h2>Lesson 2 — Pharmacokinetics</h2>
+
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson, you should be able to:</p>
+
+    <ul>
+      <li>Define pharmacokinetics.</li>
+      <li>Explain absorption, distribution, metabolism and excretion.</li>
+      <li>Explain bioavailability and first-pass metabolism.</li>
+      <li>Describe protein binding and volume of distribution.</li>
+      <li>Explain hepatic metabolism and cytochrome P450 interactions.</li>
+      <li>Describe renal drug elimination.</li>
+      <li>Understand clearance and elimination half-life.</li>
+      <li>Explain steady state.</li>
+      <li>Distinguish loading dose from maintenance dose.</li>
+      <li>Differentiate first-order and zero-order elimination.</li>
+    </ul>
+
+    <hr>
+
+    <h3>1. What is pharmacokinetics?</h3>
 
     <p>
-      <strong>Pharmacokinetics</strong> describes how the body
-      absorbs, distributes, metabolizes and eliminates a drug.
+      <strong>Pharmacokinetics</strong> describes what the body does to a drug.
     </p>
 
-    <h3>ADME</h3>
-
-    <p><strong>Absorption:</strong> movement of a drug into the bloodstream.</p>
-
-    <p><strong>Distribution:</strong> movement of drug from blood into tissues.</p>
-
-    <p><strong>Metabolism:</strong> chemical modification of drugs, commonly in the liver.</p>
-
-    <p><strong>Excretion:</strong> removal of drug or metabolites, commonly through the kidneys.</p>
-
-    <p><strong>Core pathway:</strong></p>
+    <p>
+      The four major processes are commonly abbreviated as
+      <strong>ADME</strong>:
+    </p>
 
     <p>
-      Administration → Absorption → Distribution →
-      Metabolism → Excretion
+      <strong>A</strong>bsorption →
+      <strong>D</strong>istribution →
+      <strong>M</strong>etabolism →
+      <strong>E</strong>xcretion
     </p>
 
     <hr>
 
-    <h3>Quick Check</h3>
+    <h3>2. Absorption</h3>
+
+    <p>
+      <strong>Absorption</strong> is movement of a drug from its site of administration
+      into the systemic circulation.
+    </p>
+
+    <p>
+      Absorption can be influenced by:
+    </p>
+
+    <ul>
+      <li>Route of administration</li>
+      <li>Drug formulation</li>
+      <li>Gastrointestinal motility</li>
+      <li>Blood flow</li>
+      <li>Surface area</li>
+      <li>Lipid solubility</li>
+      <li>Drug ionization</li>
+      <li>Food and drug interactions</li>
+    </ul>
+
+    <p>
+      Intravenous administration bypasses the absorption step because the drug
+      is delivered directly into the circulation.
+    </p>
+
+    <hr>
+
+    <h3>3. Bioavailability</h3>
+
+    <p>
+      <strong>Bioavailability</strong> is the fraction of an administered dose
+      that reaches the systemic circulation unchanged.
+    </p>
+
+    <p>
+      Intravenous drugs have approximately <strong>100% bioavailability</strong>.
+    </p>
+
+    <p>
+      Oral drugs may have lower bioavailability because absorption may be incomplete
+      and some drug may be metabolized before reaching systemic circulation.
+    </p>
+
+    <hr>
+
+    <h3>4. First-pass metabolism</h3>
+
+    <p>
+      After many orally administered drugs are absorbed from the gastrointestinal tract,
+      they travel through the portal circulation to the liver before reaching
+      the systemic circulation.
+    </p>
+
+    <p>
+      Hepatic metabolism during this first passage can reduce the amount of unchanged
+      drug that reaches the bloodstream.
+    </p>
+
+    <p>
+      This phenomenon is called the <strong>first-pass effect</strong>.
+    </p>
+
+    <p>
+      Routes such as intravenous administration bypass first-pass metabolism.
+      Sublingual administration can also substantially avoid the hepatic first-pass effect.
+    </p>
+
+    <hr>
+
+    <h3>5. Distribution</h3>
+
+    <p>
+      <strong>Distribution</strong> describes movement of drug from the bloodstream
+      into tissues and body fluids.
+    </p>
+
+    <p>
+      Distribution depends on:
+    </p>
+
+    <ul>
+      <li>Blood flow to tissues</li>
+      <li>Capillary permeability</li>
+      <li>Lipid solubility</li>
+      <li>Protein binding</li>
+      <li>Tissue binding</li>
+      <li>Body composition</li>
+    </ul>
+
+    <hr>
+
+    <h3>6. Plasma protein binding</h3>
+
+    <p>
+      Many drugs bind reversibly to plasma proteins, especially albumin.
+    </p>
+
+    <p>
+      Only the <strong>unbound or free fraction</strong> can usually cross membranes,
+      interact with receptors and undergo elimination.
+    </p>
+
+    <p>
+      Therefore, changes in protein binding can alter the concentration of active free drug.
+    </p>
+
+    <hr>
+
+    <h3>7. Volume of distribution</h3>
+
+    <p>
+      <strong>Volume of distribution</strong> is an apparent volume that relates
+      the amount of drug in the body to the measured plasma concentration.
+    </p>
+
+    <p>
+      A drug that remains mainly in the bloodstream tends to have a relatively
+      low volume of distribution.
+    </p>
+
+    <p>
+      A drug that distributes extensively into tissues tends to have a larger
+      volume of distribution.
+    </p>
+
+    <p><strong>Conceptual relationship:</strong></p>
+
+    <p>
+      Volume of distribution =
+      Amount of drug in the body ÷ Plasma drug concentration
+    </p>
+
+    <hr>
+
+    <h3>8. Drug metabolism</h3>
+
+    <p>
+      <strong>Metabolism</strong> chemically modifies drugs, often making them
+      more water soluble and easier to eliminate.
+    </p>
+
+    <p>
+      The <strong>liver</strong> is a major site of drug metabolism,
+      although metabolism can also occur in the intestine, kidneys, lungs and other tissues.
+    </p>
+
+    <hr>
+
+    <h3>9. Phase I metabolism</h3>
+
+    <p>
+      Phase I reactions commonly include:
+    </p>
+
+    <ul>
+      <li>Oxidation</li>
+      <li>Reduction</li>
+      <li>Hydrolysis</li>
+    </ul>
+
+    <p>
+      Many Phase I reactions involve the
+      <strong>cytochrome P450 enzyme system</strong>.
+    </p>
+
+    <hr>
+
+    <h3>10. Phase II metabolism</h3>
+
+    <p>
+      Phase II reactions usually involve conjugation of a drug or metabolite
+      with another molecule.
+    </p>
+
+    <p>
+      These reactions commonly increase water solubility and facilitate elimination.
+    </p>
+
+    <p>
+      Examples include glucuronidation, sulfation and acetylation.
+    </p>
+
+    <hr>
+
+    <h3>11. Cytochrome P450 inhibition</h3>
+
+    <p>
+      A <strong>cytochrome P450 inhibitor</strong> decreases activity of a metabolic enzyme.
+    </p>
+
+    <p>
+      If another drug depends on that enzyme for metabolism, inhibition may decrease
+      its clearance and increase its plasma concentration.
+    </p>
+
+    <p>
+      This can increase the risk of adverse effects or toxicity.
+    </p>
+
+    <hr>
+
+    <h3>12. Cytochrome P450 induction</h3>
+
+    <p>
+      A <strong>cytochrome P450 inducer</strong> increases metabolic enzyme activity.
+    </p>
+
+    <p>
+      For many active drugs, enzyme induction can increase metabolism,
+      lower plasma concentrations and reduce therapeutic effect.
+    </p>
+
+    <p>
+      The effect may differ for prodrugs because metabolism can sometimes
+      increase formation of the active compound.
+    </p>
+
+    <hr>
+
+    <h3>13. Excretion</h3>
+
+    <p>
+      <strong>Excretion</strong> removes drugs or metabolites from the body.
+    </p>
+
+    <p>
+      The kidneys are a major route of drug elimination.
+    </p>
+
+    <p>
+      Other routes include bile, feces, lungs, sweat and breast milk.
+    </p>
+
+    <hr>
+
+    <h3>14. Renal elimination</h3>
+
+    <p>
+      Renal drug handling may involve:
+    </p>
+
+    <ul>
+      <li>Glomerular filtration</li>
+      <li>Active tubular secretion</li>
+      <li>Tubular reabsorption</li>
+    </ul>
+
+    <p>
+      Reduced renal function can decrease clearance of renally eliminated drugs,
+      increasing accumulation and toxicity risk.
+    </p>
+
+    <hr>
+
+    <h3>15. Clearance</h3>
+
+    <p>
+      <strong>Clearance</strong> describes the body's efficiency in eliminating a drug
+      from plasma.
+    </p>
+
+    <p>
+      Total clearance can include renal clearance, hepatic clearance
+      and other elimination pathways.
+    </p>
+
+    <p>
+      Lower clearance generally means the drug remains in the body longer.
+    </p>
+
+    <hr>
+
+    <h3>16. Elimination half-life</h3>
+
+    <p>
+      <strong>Half-life</strong> is the time required for the amount or concentration
+      of a drug in the body to decrease by approximately 50%.
+    </p>
+
+    <p>
+      Half-life is influenced strongly by clearance and volume of distribution.
+    </p>
+
+    <p><strong>Conceptually:</strong></p>
+
+    <p>
+      Increased volume of distribution → may increase half-life
+    </p>
+
+    <p>
+      Decreased clearance → may increase half-life
+    </p>
+
+    <hr>
+
+    <h3>17. Steady state</h3>
+
+    <p>
+      During repeated dosing, <strong>steady state</strong> occurs when the rate
+      of drug administration approximately equals the rate of drug elimination.
+    </p>
+
+    <p>
+      For many drugs with first-order kinetics, approximately
+      <strong>4 to 5 half-lives</strong> are needed to approach steady state.
+    </p>
+
+    <p>
+      Approximately 4 to 5 half-lives are also commonly needed for most of a drug
+      to be eliminated after dosing stops.
+    </p>
+
+    <hr>
+
+    <h3>18. Loading dose</h3>
+
+    <p>
+      A <strong>loading dose</strong> is a larger initial dose used when a therapeutic
+      drug concentration is needed relatively quickly.
+    </p>
+
+    <p>
+      Loading dose is strongly influenced by:
+    </p>
+
+    <p>
+      <strong>Volume of distribution and desired target concentration.</strong>
+    </p>
+
+    <hr>
+
+    <h3>19. Maintenance dose</h3>
+
+    <p>
+      A <strong>maintenance dose</strong> replaces drug that is eliminated
+      and helps maintain the desired concentration over time.
+    </p>
+
+    <p>
+      Maintenance dosing is strongly influenced by:
+    </p>
+
+    <p>
+      <strong>Drug clearance.</strong>
+    </p>
+
+    <hr>
+
+    <h3>20. First-order elimination</h3>
+
+    <p>
+      Most drugs follow <strong>first-order kinetics</strong> over their usual
+      therapeutic concentration range.
+    </p>
+
+    <p>
+      A constant <strong>fraction</strong> of drug is eliminated per unit time.
+    </p>
+
+    <p>
+      Example:
+    </p>
+
+    <p>
+      100 mg → 50 mg → 25 mg → 12.5 mg
+    </p>
+
+    <p>
+      The amount removed becomes smaller, but approximately the same proportion
+      is eliminated during each half-life.
+    </p>
+
+    <hr>
+
+    <h3>21. Zero-order elimination</h3>
+
+    <p>
+      In <strong>zero-order kinetics</strong>, elimination pathways are saturated,
+      so approximately a constant <strong>amount</strong> of drug is eliminated
+      per unit time.
+    </p>
+
+    <p>
+      Classic high-yield examples include:
+    </p>
+
+    <ul>
+      <li>Ethanol</li>
+      <li>Phenytoin at saturating concentrations</li>
+      <li>High-dose salicylates</li>
+    </ul>
+
+    <hr>
+
+    <h3>22. Integrated clinical example</h3>
+
+    <p>
+      Consider a renally eliminated medication in a patient whose kidney function declines.
+    </p>
+
+    <p><strong>Mechanism chain:</strong></p>
+
+    <p>
+      Reduced renal function →
+      reduced renal clearance →
+      slower drug elimination →
+      increased plasma concentration →
+      increased toxicity risk
+    </p>
+
+    <p>
+      Depending on the medication, the dose or dosing interval may need adjustment.
+    </p>
+
+    <hr>
+
+    <h3>High-yield summary</h3>
+
+    <p><strong>Absorption:</strong> drug enters systemic circulation.</p>
+
+    <p><strong>Bioavailability:</strong> fraction reaching systemic circulation unchanged.</p>
+
+    <p><strong>Distribution:</strong> drug moves between blood and tissues.</p>
+
+    <p><strong>Metabolism:</strong> chemical modification, commonly involving the liver.</p>
+
+    <p><strong>Excretion:</strong> removal of drug or metabolites.</p>
+
+    <p><strong>Loading dose:</strong> strongly related to volume of distribution.</p>
+
+    <p><strong>Maintenance dose:</strong> strongly related to clearance.</p>
+
+    <p><strong>Half-life:</strong> time for concentration to fall by approximately 50%.</p>
+
+    <p><strong>Steady state:</strong> usually approached after about 4–5 half-lives.</p>
+
+    <p><strong>First-order:</strong> constant fraction eliminated.</p>
+
+    <p><strong>Zero-order:</strong> constant amount eliminated.</p>
+
+    <hr>
+
+    <h3>Knowledge Check 1</h3>
 
     <p>
       Which organ is a major site of drug metabolism?
@@ -1637,6 +2095,63 @@ function startPharmacologyLesson2(){
 
     <p id="pharmPKAnswer"></p>
 
+    <hr>
+
+    <h3>Knowledge Check 2</h3>
+
+    <p>
+      A medication has an elimination half-life of 8 hours.
+      Approximately how long would it take to approach steady state?
+    </p>
+
+    <button class="btn" onclick="checkPKSteadyState('A')">
+      A. About 8 hours
+    </button>
+
+    <button class="btn" onclick="checkPKSteadyState('B')">
+      B. About 32–40 hours
+    </button>
+
+    <p id="pkSteadyStateAnswer"></p>
+
+    <hr>
+
+    <h3>Knowledge Check 3</h3>
+
+    <p>
+      Which pharmacokinetic parameter most directly influences maintenance dosing?
+    </p>
+
+    <button class="btn" onclick="checkPKMaintenance('A')">
+      A. Clearance
+    </button>
+
+    <button class="btn" onclick="checkPKMaintenance('B')">
+      B. Receptor efficacy
+    </button>
+
+    <p id="pkMaintenanceAnswer"></p>
+
+    <hr>
+
+    <h3>Knowledge Check 4</h3>
+
+    <p>
+      Which statement describes first-order elimination?
+    </p>
+
+    <button class="btn" onclick="checkPKOrder('A')">
+      A. A constant fraction is eliminated per unit time
+    </button>
+
+    <button class="btn" onclick="checkPKOrder('B')">
+      B. A constant amount is always eliminated per unit time
+    </button>
+
+    <p id="pkOrderAnswer"></p>
+
+    <br>
+
     <button class="btn primary" onclick="openPharmModule1Menu()">
       Back to Module 1
     </button>
@@ -1651,7 +2166,43 @@ function checkPharmPKAnswer(answer){
       '<strong>Correct ✓</strong> The liver is a major site of drug metabolism.';
   } else {
     result.innerHTML =
-      '<strong>Not quite.</strong> The liver is the major organ involved in metabolism of many drugs.';
+      '<strong>Not quite.</strong> The liver is a major organ responsible for metabolism of many drugs.';
+  }
+}
+
+function checkPKSteadyState(answer){
+  const result = document.getElementById('pkSteadyStateAnswer');
+
+  if(answer === 'B'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Steady state is generally approached after about 4–5 half-lives. For an 8-hour half-life, that is about 32–40 hours.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> One half-life is not enough. Most drugs require about 4–5 half-lives to approach steady state.';
+  }
+}
+
+function checkPKMaintenance(answer){
+  const result = document.getElementById('pkMaintenanceAnswer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> Maintenance dosing is strongly influenced by drug clearance.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> Receptor efficacy is a pharmacodynamic concept. Clearance is the key pharmacokinetic determinant here.';
+  }
+}
+
+function checkPKOrder(answer){
+  const result = document.getElementById('pkOrderAnswer');
+
+  if(answer === 'A'){
+    result.innerHTML =
+      '<strong>Correct ✓</strong> In first-order kinetics, a constant fraction of drug is eliminated per unit time.';
+  } else {
+    result.innerHTML =
+      '<strong>Not quite.</strong> A constant amount per unit time describes zero-order elimination.';
   }
 }
 
