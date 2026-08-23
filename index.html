@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Global Pharma Scientist Journey</title>
+<style>
+:root{--navy:#0d1b3d;--blue:#3158d8;--purple:#6d49cf;--bg:#f5f7fb;--card:#fff;--text:#14213d;--muted:#667085;--line:#e3e7ef}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+button,input,select,textarea{font:inherit}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(13,27,61,.97);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--purple));font-weight:900}
+.brand strong{display:block}.brand span{display:block;font-size:11px;opacity:.75}
+.navlinks{display:flex;gap:8px;flex-wrap:wrap}.navlinks button{border:0;color:#fff;background:transparent;padding:10px 12px;border-radius:10px;cursor:pointer;font-weight:700}.navlinks button.active{background:rgba(255,255,255,.12)}
+.hero{padding:54px 0 34px;background:radial-gradient(circle at 15% 20%,rgba(109,73,207,.24),transparent 32%),radial-gradient(circle at 85% 10%,rgba(49,88,216,.24),transparent 30%),linear-gradient(135deg,#0d1b3d,#182a60);color:#fff}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center}.hero h1{font-size:54px;line-height:1.02;margin:16px 0}.hero p{font-size:18px;line-height:1.6;color:#dce5ff}
+.eyebrow{display:inline-block;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.1);font-size:12px;font-weight:800}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.btn{border:0;border-radius:12px;padding:12px 16px;cursor:pointer;font-weight:800}.primary{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff}.secondary{background:#edf1ff;color:#24419f}.ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.18)}
+.hero-card,.card{background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:20px;padding:20px}.hero-card{box-shadow:0 20px 50px rgba(0,0,0,.18)}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.kpi{padding:14px;border-radius:14px;background:#f7f8fc;border:1px solid var(--line)}.kpi strong{font-size:26px;display:block}.kpi span{font-size:12px;color:var(--muted)}
+main{padding:28px 0 60px}.screen{display:none}.screen.active{display:block}
+.section-title{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:8px 0 16px}.section-title h2{margin:0;font-size:28px}.section-title p{margin:0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.muted{color:var(--muted)}.badge{display:inline-block;padding:6px 9px;border-radius:999px;background:#eef2ff;color:#324aa1;font-size:12px;font-weight:800}
+.list{display:grid;gap:10px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.row:last-child{border-bottom:0}
+.progress{height:10px;border-radius:999px;background:#e9edf5;overflow:hidden}.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--purple))}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}label{font-size:13px;font-weight:800;display:block;margin-bottom:6px}input,select,textarea{width:100%;border:1px solid #ccd3df;border-radius:12px;padding:12px;background:#fff}textarea{min-height:120px}
+.tool-card{min-height:170px;display:flex;flex-direction:column;justify-content:space-between}.tool-icon{font-size:28px}.quickbar{display:flex;gap:8px;flex-wrap:wrap}
+.notice{border-left:4px solid var(--blue);padding:12px 14px;background:#f5f7ff;border-radius:10px}.rating button{background:transparent;border:0;font-size:32px;color:#c5cad5;cursor:pointer;padding:2px}.rating button.on{color:#f4b400}
+.footer{background:#0d1b3d;color:#dce5ff;padding:30px 0}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px}
+@media(max-width:900px){.hero-grid,.grid,.grid2,.grid4,.formgrid,.footer-grid{grid-template-columns:1fr}.hero h1{font-size:38px}.nav{align-items:flex-start;padding:10px 0}.navlinks{width:100%;overflow:auto}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap nav">
+<div class="brand"><div class="logo">GPSJ</div><div><strong>Global Pharma Scientist Journey</strong><span>Working brand • Beta 0.1</span></div></div>
+<div class="navlinks" id="nav">
+<button class="active" data-screen="home">Home</button><button data-screen="signup">Create account</button><button data-screen="dashboard">Dashboard</button><button data-screen="learn">Learn</button><button data-screen="create">Create</button><button data-screen="career">Career</button><button data-screen="rewards">Rewards</button><button data-screen="membership">Membership</button>
+</div></div></div>
+
+<section class="hero"><div class="wrap hero-grid">
+<div><span class="eyebrow">🌍 Global learning • science • careers • creation</span><h1>The platform that grows with your scientific journey.</h1><p>Learn pharmacy and pharmaceutical sciences, build professional work, discover career pathways, receive personalized recalls, stay current with verified sources, and create presentations, reports, maps and more.</p><div class="actions"><button class="btn primary" data-go="signup">Start free</button><button class="btn ghost" data-go="dashboard">Preview dashboard</button></div></div>
+<div class="hero-card"><h3>One account. A lifetime of growth.</h3><div class="kpis"><div class="kpi"><strong>Learn</strong><span>Adaptive lessons & audio</span></div><div class="kpi"><strong>Create</strong><span>Writing, slides, maps, visuals</span></div><div class="kpi"><strong>Advance</strong><span>Schools, careers, certifications</span></div><div class="kpi"><strong>Contribute</strong><span>Rewards & community credit</span></div></div></div>
+</div></section>
+
+<main class="wrap">
+<section id="home" class="screen active">
+<div class="section-title"><div><h2>Explore the ecosystem</h2><p>Every part connects to the same verified knowledge base.</p></div></div>
+<div class="grid">
+<div class="card"><h3>🧠 Learning</h3><p class="muted">Pharmacology, pharmaceutics, infectious diseases, sterile compounding, medicinal chemistry, biology, law, logistics and more.</p></div>
+<div class="card"><h3>💊 Global Drug Reference</h3><p class="muted">Country-aware brand names, mechanisms, uses, adverse effects, monitoring and authoritative sources.</p></div>
+<div class="card"><h3>🎧 Audio Recall</h3><p class="muted">Full lesson, rapid recap and personalized weak-point audio for commuting or offline review.</p></div>
+<div class="card"><h3>📝 Scientific Creator</h3><p class="muted">Reports, manuscripts, proposals, lectures, speeches, posters, Word and PowerPoint support.</p></div>
+<div class="card"><h3>🗺️ Map & Visual Studio</h3><p class="muted">Research maps, image enhancement, 4K exports, diagrams and presentation-quality visuals.</p></div>
+<div class="card"><h3>🚀 Career Navigator</h3><p class="muted">Education pathways, certifications, schools, official contacts, funding, salary data and opportunities.</p></div>
+</div>
+<div class="section-title" style="margin-top:28px"><div><h2>Personal cards</h2><p>The platform brings the next useful thing to the user.</p></div></div>
+<div class="grid4">
+<div class="card"><span class="badge">Study recall</span><h3>Rocephin® → ?</h3><p class="muted">60-second brand/generic recall.</p></div>
+<div class="card"><span class="badge">Career evolution</span><h3>What skill can move you forward?</h3><p class="muted">Explore relevant certifications and programs.</p></div>
+<div class="card"><span class="badge">Medicine update</span><h3>Country & global updates</h3><p class="muted">Source, date, jurisdiction and official link.</p></div>
+<div class="card"><span class="badge">Fix a mistake</span><h3>Master what you missed</h3><p class="muted">Targeted remediation based on performance.</p></div>
+</div></section>
+
+<section id="signup" class="screen">
+<div class="section-title"><div><h2>Create your account</h2><p>Users choose their own language and professional direction.</p></div></div>
+<div class="card"><div class="formgrid">
+<div><label>Name</label><input placeholder="Your name"></div>
+<div><label>Country</label><select><option>Gabon</option><option>United States</option><option>France</option><option>Italy</option><option>Brazil</option><option>China</option><option>Other</option></select></div>
+<div><label>Interface language</label><select><option>English</option><option>Français</option><option>Italiano</option><option>Português (Brasil)</option><option>Español</option><option>简体中文</option></select></div>
+<div><label>Learning language</label><select><option>English</option><option>Français</option><option>Italiano</option><option>Português (Brasil)</option><option>Español</option><option>简体中文</option></select></div>
+<div><label>Role</label><select><option>Learner / Pharmacy Technician</option><option>University Student</option><option>Graduate / Researcher</option><option>Pharmacist / Physician</option><option>Educator</option><option>Verified Professional</option></select></div>
+<div><label>Primary goal</label><select><option>Learn pharmacy</option><option>Certification / licensure</option><option>University studies</option><option>Scientific research</option><option>Career advancement</option><option>Teaching</option></select></div>
+</div><div class="actions"><button class="btn primary" data-go="dashboard">Create profile</button></div></div>
+</section>
+
+<section id="dashboard" class="screen">
+<div class="section-title"><div><h2>My dashboard</h2><p>Personal learning, creation and career command center.</p></div></div>
+<div class="grid4">
+<div class="card"><span class="muted">Mastery</span><h2>78%</h2><div class="progress"><span style="width:78%"></span></div></div>
+<div class="card"><span class="muted">Streak</span><h2>12 days</h2><span class="badge">+120 XP</span></div>
+<div class="card"><span class="muted">Reward credits</span><h2>1,460</h2><span class="badge">Wallet</span></div>
+<div class="card"><span class="muted">Projects</span><h2>9</h2><span class="badge">3 active</span></div>
+</div>
+<div class="grid2" style="margin-top:14px">
+<div class="card"><h3>Continue learning</h3><p><b>ACE inhibitors</b> • Lesson 4 of 8</p><div class="progress"><span style="width:62%"></span></div><div class="actions"><button class="btn primary" data-go="learn">Continue</button><button class="btn secondary">🎧 Audio recap</button></div></div>
+<div class="card"><h3>Weak area detected</h3><p>Brand ↔ generic recognition</p><p class="muted">The system will automatically bring this topic back with spaced repetition.</p><button class="btn secondary">Start 3-minute fix</button></div>
+</div>
+</section>
+
+<section id="learn" class="screen">
+<div class="section-title"><div><h2>Learning experience</h2><p>Depth adapts to the user's level and goals.</p></div></div>
+<div class="grid2">
+<div class="card"><span class="badge">Cardiovascular Pharmacology</span><h2>ACE Inhibitors</h2><p><b>Recognition:</b> many generic names end in <code>-pril</code>.</p><p><b>Example:</b> lisinopril — U.S. brand Zestril®; important legacy brand Prinivil®.</p><p><b>Mechanism:</b> ACE inhibition → reduced angiotensin II → reduced aldosterone. Reduced bradykinin breakdown helps explain cough and angioedema.</p><div class="notice"><b>Source panel</b><br>Authority • jurisdiction • publication/update date • platform verification date • official link</div><div class="actions"><button class="btn primary">Complete lesson + earn XP</button><button class="btn secondary">🎧 Generate recap</button></div></div>
+<div class="card"><h3>Quick check</h3><p>Which generic name is an ACE inhibitor?</p><div class="quickbar"><button class="btn secondary">Losartan</button><button class="btn primary">Lisinopril</button><button class="btn secondary">Amlodipine</button></div><hr style="border:0;border-top:1px solid var(--line);margin:20px 0"><h3>Adaptive feedback</h3><p class="muted">The system tracks concept-level performance and automatically changes future review.</p><div class="progress"><span style="width:86%"></span></div><p><b>Current mastery: 86%</b></p></div>
+</div></section>
+
+<section id="create" class="screen">
+<div class="section-title"><div><h2>Create & improve your work</h2><p>Standard formats, editable outputs and source-aware assistance.</p></div></div>
+<div class="grid">
+<div class="card tool-card"><div><div class="tool-icon">📝</div><h3>Scientific Writing</h3><p class="muted">Research proposals, literature reviews, theses, reports, abstracts and manuscripts.</p></div><button class="btn primary">Start document</button></div>
+<div class="card tool-card"><div><div class="tool-icon">📊</div><h3>Presentation Studio</h3><p class="muted">Create or improve slides, citations, images, diagrams, speaker notes and structure.</p></div><button class="btn primary">Create presentation</button></div>
+<div class="card tool-card"><div><div class="tool-icon">🖼️</div><h3>Visual Studio</h3><p class="muted">Enhance low-quality images, generate scientific visuals and export in high resolution.</p></div><button class="btn primary">Improve image</button></div>
+<div class="card tool-card"><div><div class="tool-icon">🗺️</div><h3>Research Map Studio</h3><p class="muted">Study areas, GPS points, CSV/Excel data and publication-ready maps.</p></div><button class="btn primary">Create map</button></div>
+<div class="card tool-card"><div><div class="tool-icon">🌐</div><h3>Translation Center</h3><p class="muted">Scientific translation with formatting and terminology preservation.</p></div><button class="btn primary">Translate</button></div>
+<div class="card tool-card"><div><div class="tool-icon">⬇️</div><h3>Export Center</h3><p class="muted">DOCX, PPTX, XLSX/CSV, PDF and image outputs.</p></div><button class="btn primary">My exports</button></div>
+</div></section>
+
+<section id="career" class="screen">
+<div class="section-title"><div><h2>Career & education navigator</h2><p>From where you are today to the next realistic step.</p></div></div>
+<div class="card"><div class="formgrid"><div><label>Current level</label><select><option>Pharmacy technician</option><option>Undergraduate</option><option>Pharmacy degree</option><option>Master's</option><option>PhD</option><option>Professional</option></select></div><div><label>Interest</label><select><option>Clinical pharmacy</option><option>Pharmacology</option><option>Pharmacognosy</option><option>Oncology</option><option>Infectious diseases</option><option>Regulatory affairs</option><option>Research</option></select></div></div>
+<h3 style="margin-top:18px">Example pathway</h3><div class="list"><div class="row"><span>Current degree or role</span><b>Starting point</b></div><div class="row"><span>Recommended qualification</span><button class="btn secondary">Why?</button></div><div class="row"><span>Schools + official contacts</span><button class="btn secondary">Explore</button></div><div class="row"><span>Funding & scholarships</span><button class="btn secondary">View</button></div><div class="row"><span>Salary & career outlook</span><button class="btn secondary">Compare</button></div><div class="row"><span>Current opportunities</span><button class="btn secondary">Browse</button></div></div></div>
+</section>
+
+<section id="rewards" class="screen">
+<div class="section-title"><div><h2>Rewards</h2><p>Learning, contribution and referral rewards remain transparent and distinct.</p></div></div>
+<div class="grid"><div class="card"><h3>Learning XP</h3><h2>6,280</h2><p class="muted">Earned through demonstrated mastery.</p></div><div class="card"><h3>Platform credits</h3><h2>1,460</h2><p class="muted">Use for eligible premium tools and benefits.</p></div><div class="card"><h3>Referrals</h3><h2>7</h2><p class="muted">Direct legitimate referrals only.</p></div></div>
+</section>
+
+<section id="membership" class="screen">
+<div class="section-title"><div><h2>Memberships</h2><p>Access scales with the user's role rather than charging per task.</p></div></div>
+<div class="grid">
+<div class="card"><h3>Explorer</h3><h2>Free</h2><p class="muted">Basic learning, selected references, career discovery.</p><button class="btn secondary">Current</button></div>
+<div class="card"><h3>Learner</h3><p class="muted">Full learning, audio, adaptive quizzes and certification preparation.</p><button class="btn primary">Choose Learner</button></div>
+<div class="card"><h3>Academic</h3><p class="muted">Research, writing, presentations and project tools.</p><button class="btn primary">Choose Academic</button></div>
+<div class="card"><h3>Professional</h3><p class="muted">Advanced reference, updates and professional creator tools.</p><button class="btn primary">Choose Professional</button></div>
+<div class="card"><h3>Educator</h3><p class="muted">Course creation, lectures, assessments and student materials.</p><button class="btn primary">Choose Educator</button></div>
+<div class="card"><h3>Institution</h3><p class="muted">Universities and organizations with multi-user administration.</p><button class="btn primary">Contact</button></div>
+</div>
+<div class="card" style="margin-top:16px"><h3>Rate this prototype</h3><p class="muted">Feedback drives improvements, while scientific changes remain source-controlled.</p><div class="rating" id="rating"><button data-v="1">★</button><button data-v="2">★</button><button data-v="3">★</button><button data-v="4">★</button><button data-v="5">★</button></div><textarea id="feedback" placeholder="What should we improve?"></textarea><div class="actions"><button class="btn primary" id="saveFeedback">Submit feedback</button></div><p id="thanks" class="muted"></p></div>
+</section>
+</main>
+
+<footer class="footer"><div class="wrap footer-grid"><div><h3>Global Pharma Scientist Journey</h3><p>Working prototype for a lifelong global platform around medicines, pharmaceutical sciences, careers, research, education and professional creation.</p></div><div><b>Trust</b><p>Source-linked • dated • jurisdiction-aware • user-controlled.</p></div><div><b>Working contact concept</b><p>journey@ourfuturebrand.com</p></div></div></footer>
+
+<script>
+const screens=[...document.querySelectorAll('.screen')];
+function go(id){screens.forEach(s=>s.classList.toggle('active',s.id===id));document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));window.scrollTo({top:0,behavior:'smooth'});}
+document.querySelectorAll('[data-screen]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.screen)));
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+let rating=0;
+document.querySelectorAll('#rating button').forEach(b=>b.addEventListener('click',()=>{rating=Number(b.dataset.v);document.querySelectorAll('#rating button').forEach(x=>x.classList.toggle('on',Number(x.dataset.v)<=rating));}));
+document.getElementById('saveFeedback').addEventListener('click',()=>{document.getElementById('thanks').textContent=rating?`Thank you — ${rating}/5 saved for this prototype session.`:'Choose a star rating first.';});
+</script>
+</body>
+</html>
