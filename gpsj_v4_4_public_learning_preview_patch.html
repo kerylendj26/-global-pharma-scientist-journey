@@ -1,0 +1,264 @@
+<!-- =========================================================
+ GPSJ v4.4 — PUBLIC LEARNING PREVIEW
+ Goal:
+ • Public users can enter Learn without signing in.
+ • They experience several meaningful learning screens.
+ • Sign-in is requested only for deeper/adaptive/saved learning.
+ • Public capability map remains visible.
+ • Founder/Executive Command remains authentication-only.
+========================================================= -->
+
+<style id="gpsj-v44-public-learning-preview">
+.public-learn-banner{
+  background:linear-gradient(135deg,#143a93,#6e45df);color:#fff;
+  border-radius:24px;padding:24px;margin-bottom:18px
+}
+.public-learn-banner h2{font-size:34px;margin:5px 0 8px}
+.public-learn-banner p{max-width:850px;line-height:1.55;margin:0}
+.public-field-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.public-field{
+  background:#fff;border:1px solid var(--line);border-radius:18px;padding:17px;
+  min-height:155px;text-align:left;color:var(--text)
+}
+.public-field:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
+.public-field strong{display:block;font-size:18px;margin:6px 0}
+.public-field small{color:var(--muted);line-height:1.4}
+.preview-shell{display:none;margin-top:18px}
+.preview-shell.open{display:block}
+.preview-progress{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}
+.preview-dot{
+  border:1px solid var(--line);border-radius:999px;padding:8px 11px;
+  background:#fff;color:#284c98;font-weight:800
+}
+.preview-dot.active{background:var(--blue);color:#fff;border-color:transparent}
+.preview-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px}
+.preview-card h3{margin-top:0}
+.preview-visual{
+  margin:14px 0;border-radius:18px;min-height:240px;padding:22px;
+  background:linear-gradient(135deg,#0b224f,#3158d8);color:#fff;
+  display:flex;align-items:center;justify-content:center;text-align:center
+}
+.preview-visual .relationship{display:flex;gap:9px;align-items:center;justify-content:center;flex-wrap:wrap}
+.preview-visual .node{
+  padding:12px 14px;border:1px solid rgba(255,255,255,.3);
+  background:rgba(255,255,255,.12);border-radius:14px;font-weight:850
+}
+.preview-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.preview-question button{display:block;width:100%;text-align:left;margin:8px 0}
+.preview-feedback{margin-top:10px;padding:12px;border-radius:12px;background:#eef4ff;display:none}
+.preview-gate{
+  background:linear-gradient(135deg,#102f69,#5d3ac8);color:#fff;
+  border-radius:20px;padding:22px;margin-top:16px
+}
+.preview-gate h3{margin-top:0;font-size:25px}
+.preview-gate p{line-height:1.5}
+.preview-benefits{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}
+.preview-benefits span{
+  padding:7px 9px;border-radius:999px;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22);font-size:12px;font-weight:800
+}
+.public-preview-note{font-size:12px;color:var(--muted);margin-top:9px}
+@media(max-width:800px){.public-field-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.public-field-grid{grid-template-columns:1fr}}
+</style>
+
+<section id="view-public-learn" class="view">
+  <div class="public-learn-banner">
+    <div class="chip" style="background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.25)">
+      📘 Public Learning Preview
+    </div>
+    <h2>Learn before you sign in.</h2>
+    <p>
+      Explore a real GPSJ lesson experience. Choose a field, understand a scientific relationship,
+      see it visually, interact with it and test yourself. Sign in only when you want deeper adaptive
+      learning, saved progress and a personalized journey.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Choose a field</h2>
+    <p class="lead">The public preview demonstrates the learning architecture across disciplines.</p>
+    <div class="public-field-grid" id="publicFieldGrid">
+      <button class="public-field" data-public-topic="Pharmacology" data-public-example="Receptor → response → therapeutic effect">
+        <span>💊</span><strong>Pharmacology</strong><small>Mechanisms, drug effects, safety and therapeutic reasoning.</small>
+      </button>
+      <button class="public-field" data-public-topic="Biology" data-public-example="Cell signal → pathway → biological response">
+        <span>🧬</span><strong>Biology</strong><small>Cells, genetics, physiology, organisms and systems.</small>
+      </button>
+      <button class="public-field" data-public-topic="Chemistry" data-public-example="Structure → interaction → chemical behavior">
+        <span>⚗️</span><strong>Chemistry</strong><small>Structure, reactions, measurement and molecular behavior.</small>
+      </button>
+      <button class="public-field" data-public-topic="Medicine" data-public-example="Finding → mechanism → clinical interpretation">
+        <span>🩺</span><strong>Medicine & Health</strong><small>Human systems, disease mechanisms and evidence-based reasoning.</small>
+      </button>
+      <button class="public-field" data-public-topic="Engineering" data-public-example="Need → design constraint → tested solution">
+        <span>⚙️</span><strong>Engineering</strong><small>Understand systems, design solutions, simulate and improve.</small>
+      </button>
+      <button class="public-field" data-public-topic="Environmental Science" data-public-example="Exposure → system effect → intervention">
+        <span>🌍</span><strong>Environmental Science</strong><small>Natural systems, exposure, sustainability and intervention.</small>
+      </button>
+    </div>
+  </div>
+
+  <div id="publicPreviewShell" class="preview-shell">
+    <div class="preview-progress">
+      <span class="preview-dot active" data-preview-dot="1">1 · Principle</span>
+      <span class="preview-dot" data-preview-dot="2">2 · Visual</span>
+      <span class="preview-dot" data-preview-dot="3">3 · Interact</span>
+      <span class="preview-dot" data-preview-dot="4">4 · Practice</span>
+      <span class="preview-dot" data-preview-dot="5">Continue</span>
+    </div>
+
+    <div class="preview-card">
+      <div class="breadcrumb">Public Learn · <span id="publicTopicName">Pharmacology</span></div>
+      <h3 id="publicPreviewTitle">Principle first</h3>
+      <div id="publicPreviewBody"></div>
+      <div class="preview-actions">
+        <button class="btn secondary" id="publicPreviewBack" style="display:none">← Back</button>
+        <button class="btn primary" id="publicPreviewNext">See it visually →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script id="gpsj-v44-public-learning-preview-js">
+(function(){
+  const PUBLIC_PREVIEW_LIMIT = 4;
+  let state = {topic:'Pharmacology', example:'Receptor → response → therapeutic effect', step:1};
+
+  function signedIn(){
+    try { return !!(window.gpsjSession && window.gpsjSession.authenticated); }
+    catch(e){ return false; }
+  }
+
+  function openSignIn(){
+    if(typeof window.openIdentityAccess === 'function') return window.openIdentityAccess();
+    const b=document.getElementById('loginProfileBtn');
+    if(b) b.click();
+  }
+
+  function activateView(id){
+    if(typeof window.setView === 'function'){
+      // Existing GPSJ router may not know this new public route, so fall through if it rejects it.
+      try { window.setView(id); } catch(e){}
+    }
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+    const target=document.getElementById('view-'+id);
+    if(target){target.classList.add('active');window.scrollTo({top:0,behavior:'auto'});}
+  }
+
+  // Public Learn must be reachable even while logged out.
+  window.openPublicLearn = function(){ activateView('public-learn'); };
+
+  function render(){
+    const shell=document.getElementById('publicPreviewShell');
+    if(!shell)return;
+    shell.classList.add('open');
+    document.getElementById('publicTopicName').textContent=state.topic;
+    document.querySelectorAll('[data-preview-dot]').forEach(d=>{
+      d.classList.toggle('active', Number(d.dataset.previewDot)===state.step);
+    });
+
+    const title=document.getElementById('publicPreviewTitle');
+    const body=document.getElementById('publicPreviewBody');
+    const next=document.getElementById('publicPreviewNext');
+    const back=document.getElementById('publicPreviewBack');
+    back.style.display=state.step>1?'inline-block':'none';
+
+    if(state.step===1){
+      title.textContent='Understand the relationship first';
+      body.innerHTML=`<p>GPSJ begins with a causal relationship instead of asking the learner to memorize isolated facts.</p>
+        <div class="content-box"><strong>${state.topic} example</strong><p>${state.example}</p></div>
+        <p class="public-preview-note">Public preview · no account required.</p>`;
+      next.textContent='See it visually →';
+    } else if(state.step===2){
+      title.textContent='See the relationship';
+      const nodes=state.example.split('→').map(x=>x.trim());
+      body.innerHTML=`<p>The visual layer turns the principle into a connected system.</p>
+        <div class="preview-visual"><div class="relationship">${
+          nodes.map((n,i)=>`<span class="node">${n}</span>${i<nodes.length-1?'<b>→</b>':''}`).join('')
+        }</div></div>
+        <p>In production, this layer can use appropriate diagrams, verified imagery, animation or simulation depending on the subject.</p>`;
+      next.textContent='Interact →';
+    } else if(state.step===3){
+      title.textContent='Manipulate the idea';
+      body.innerHTML=`<p>Change a variable and observe how the relationship responds.</p>
+        <div class="content-box">
+          <label><strong>Input / intensity</strong></label>
+          <input id="publicPreviewRange" type="range" min="0" max="100" value="50" style="width:100%;margin:14px 0">
+          <div id="publicRangeResult"><strong>Response index: 50%</strong><p>Move the control to explore the relationship.</p></div>
+        </div>`;
+      const r=body.querySelector('#publicPreviewRange'), o=body.querySelector('#publicRangeResult');
+      r.oninput=()=>o.innerHTML=`<strong>Response index: ${r.value}%</strong><p>GPSJ connects the changing input to the concept rather than presenting a static screen.</p>`;
+      next.textContent='Test my understanding →';
+    } else if(state.step===4){
+      title.textContent='Check understanding';
+      body.innerHTML=`<p>Which sequence best represents the relationship you just explored?</p>
+        <div class="preview-question">
+          <button class="btn secondary" data-preview-answer="0">Effect → unrelated fact → input</button>
+          <button class="btn secondary" data-preview-answer="1">${state.example}</button>
+          <button class="btn secondary" data-preview-answer="0">Memorize → repeat → finish</button>
+        </div>
+        <div id="publicPreviewFeedback" class="preview-feedback"></div>`;
+      body.querySelectorAll('[data-preview-answer]').forEach(b=>b.onclick=()=>{
+        const f=body.querySelector('#publicPreviewFeedback');
+        f.style.display='block';
+        f.textContent=b.dataset.previewAnswer==='1'
+          ? 'Correct. GPSJ teaches the relationship first, then increases depth.'
+          : 'Try again. Follow the causal relationship shown in the visual.';
+      });
+      next.textContent='Continue learning →';
+    } else {
+      title.textContent='Continue your learning journey';
+      body.innerHTML=`<div class="preview-gate">
+        <h3>You have completed the public preview.</h3>
+        <p>Sign in to continue from this point with deeper lessons and a workspace that adapts to your goals and verified context.</p>
+        <div class="preview-benefits">
+          <span>Adaptive depth</span><span>Saved progress</span><span>Personalized practice</span>
+          <span>Audio learning</span><span>Mastery tracking</span><span>Full curriculum</span>
+        </div>
+        <button class="btn primary" id="publicGateSignIn">👤 Sign in to continue</button>
+        <p style="font-size:12px;color:#dbe5ff;margin-bottom:0">Your preview topic can be carried into the authenticated learning journey.</p>
+      </div>`;
+      body.querySelector('#publicGateSignIn').onclick=openSignIn;
+      next.style.display='none';
+    }
+    if(state.step<=PUBLIC_PREVIEW_LIMIT) next.style.display='inline-block';
+  }
+
+  document.querySelectorAll('[data-public-topic]').forEach(b=>b.addEventListener('click',()=>{
+    state={topic:b.dataset.publicTopic,example:b.dataset.publicExample,step:1};
+    render();
+    document.getElementById('publicPreviewShell').scrollIntoView({block:'start',behavior:'smooth'});
+  }));
+
+  const next=document.getElementById('publicPreviewNext');
+  const back=document.getElementById('publicPreviewBack');
+  if(next) next.addEventListener('click',()=>{
+    if(state.step<PUBLIC_PREVIEW_LIMIT){state.step++;render();}
+    else if(signedIn()){ activateView('learn'); }
+    else {state.step=5;render();}
+  });
+  if(back) back.addEventListener('click',()=>{if(state.step>1){state.step--;render();}});
+
+  // Upgrade all public "Learn" entry points to the preview while signed out.
+  document.addEventListener('click',function(e){
+    const t=e.target.closest('[data-goto="learn"],[data-view="learn"]');
+    if(!t || signedIn()) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    openPublicLearn();
+  },true);
+
+  // Add a visible public Learn tab beside Home / Explore GPSJ.
+  const nav=document.getElementById('navrow');
+  if(nav && !nav.querySelector('[data-public-learn-nav]')){
+    const b=document.createElement('button');
+    b.className='navbtn public-nav';
+    b.dataset.publicLearnNav='1';
+    b.textContent='Learn';
+    b.onclick=openPublicLearn;
+    const personal=document.getElementById('personalNav');
+    nav.insertBefore(b,personal || null);
+  }
+})();
+</script>
