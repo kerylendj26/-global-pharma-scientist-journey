@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=yes">
+<meta name="theme-color" content="#0e224d">
+<title>GPSJ v4.10 — Public Ecosystem Gateway + Safe Instrument Lab</title>
+<style>
+:root{--nav:#0e224d;--blue:#3158e8;--purple:#7446e8;--bg:#f3f6fb;--card:#fff;--text:#13213e;--muted:#68748d;--line:#d8e2f2;--green:#0d8b61;--amber:#a76600;--red:#b42318;--shadow:0 10px 30px rgba(17,40,85,.12)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.45}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation}.topbar{position:sticky;top:0;z-index:50;background:linear-gradient(135deg,var(--nav),#101f43);color:#fff;padding:calc(12px + env(safe-area-inset-top)) 20px 11px}.brand{display:flex;gap:12px;align-items:center}.logo{width:50px;height:50px;border-radius:15px;background:linear-gradient(135deg,var(--blue),var(--purple));display:grid;place-items:center;font-weight:950}.brand h1{font-size:22px;margin:0}.brand p{margin:2px 0;color:#c7d4f3;font-size:13px}.nav{display:flex;gap:8px;overflow-x:auto;padding-top:11px}.nav button,.btn{min-height:46px;border:0;border-radius:13px;padding:10px 15px;font-weight:850}.nav button{background:rgba(255,255,255,.09);color:#fff;white-space:nowrap}.nav .accent{background:#fff;color:var(--nav)}
+main{max-width:1220px;margin:auto;padding:20px}.hero{padding:25px;border-radius:25px;color:#fff;background:linear-gradient(135deg,#123b93,#7044df);box-shadow:var(--shadow)}.hero h2{font-size:38px;margin:5px 0 9px}.hero p{font-size:17px;max-width:940px}.chips{display:flex;gap:7px;flex-wrap:wrap}.chip{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.24);font-size:12px;font-weight:850}
+.section{margin-top:20px}.section>h2{font-size:30px;margin:0 0 5px}.lead{color:var(--muted);margin-top:0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:17px;box-shadow:0 2px 8px rgba(17,40,85,.03)}.card h3{margin:0 0 7px}.card p{color:var(--muted)}.workspace{display:grid;grid-template-columns:1.05fr 1.95fr;gap:14px}.stack{display:grid;gap:12px}.field{display:grid;gap:7px}.field label{font-weight:800}.field input,.field select,.field textarea{width:100%;min-height:48px;border:1px solid var(--line);border-radius:12px;padding:11px;background:#fff}.field textarea{min-height:95px;resize:vertical}.btn{background:#edf3ff;color:#23499a}.btn.primary{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff}.btn.safe{background:#eaf8f2;color:#08704e}.btn.warn{background:#fff5e5;color:#865000}.btn.danger{background:#fff0ef;color:#a32118}.btn:disabled{opacity:.45;cursor:not-allowed}
+.modebar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.mode{min-height:78px;border:1px solid var(--line);border-radius:15px;background:#f9fbff;padding:11px;text-align:left}.mode strong{display:block}.mode small{color:var(--muted)}.mode.active{border:2px solid var(--blue);background:#eef3ff}
+.device-list{display:grid;gap:8px}.device{border:1px solid var(--line);border-radius:14px;padding:12px;background:#fafcff;display:flex;justify-content:space-between;gap:10px;align-items:center}.device strong{display:block}.badge{display:inline-block;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:900}.green{background:#e8f7f0;color:#08704e}.amber{background:#fff3df;color:#895400}.red{background:#ffebea;color:#a32118}.blue{background:#eaf0ff;color:#264aa2}
+.riskbox{border-radius:17px;padding:16px;border:1px solid var(--line);background:#f9fbff}.riskline{height:12px;background:#e6ebf4;border-radius:999px;overflow:hidden;margin:9px 0}.riskfill{height:100%;width:18%;background:linear-gradient(90deg,#18a36f,#e4a11b,#c63127);transition:width .25s}.alert{padding:12px;border-radius:12px;margin-top:9px;background:#eef4ff}.alert.high{background:#fff0ef;color:#8f1e17}.alert.medium{background:#fff6e7;color:#7c4b00}.alert.low{background:#eaf8f2;color:#086c4c}
+.console{background:#071b40;color:#e8f0ff;border-radius:18px;padding:16px;min-height:255px}.console-head{display:flex;justify-content:space-between;gap:10px;align-items:center}.console pre{white-space:pre-wrap;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;margin:12px 0 0}.touchpad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.touch{min-height:70px;border:1px solid #cdd9ef;background:#f7faff;border-radius:15px;font-weight:850;color:#203d83}.touch:active{transform:scale(.98)}.audit{max-height:230px;overflow:auto}.audit-item{padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}.audit-item:last-child{border:0}.safety{border-left:5px solid var(--green)}.world{border-left:5px solid var(--purple)}
+.bottom{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.bottom .card{min-height:145px}
+.low .console{min-height:150px}.large{font-size:118%}.focus button:focus,.focus input:focus,.focus select:focus,.focus textarea:focus{outline:4px solid #ffbf47;outline-offset:2px}
+@media(pointer:coarse){button,.btn,.field input,.field select{min-height:52px}.touch{min-height:82px}}
+@media(max-width:900px){.workspace{grid-template-columns:1fr}.grid,.bottom{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){main{padding:12px}.hero h2{font-size:30px}.grid,.bottom,.modebar{grid-template-columns:1fr}.brand h1{font-size:18px}.brand p{font-size:11px}.topbar{padding-left:12px;padding-right:12px}.touchpad{grid-template-columns:1fr 1fr}}
+</style>
+
+<style id="gpsj-v49-home-style">
+  #gpsjV49Home{max-width:1180px;margin:0 auto;padding:24px 24px 56px;font-family:inherit;color:#10213f}
+  #gpsjV49Home *{box-sizing:border-box}
+  .v49-hero{border-radius:30px;padding:42px;background:linear-gradient(135deg,#153d86 0%,#2856af 52%,#6840e7 100%);color:white;box-shadow:0 18px 50px rgba(29,55,120,.15)}
+  .v49-kicker{display:inline-flex;padding:8px 14px;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(255,255,255,.1);font-weight:800}
+  .v49-hero h1{font-size:clamp(2.25rem,5vw,4.6rem);line-height:1.02;margin:20px 0 14px;max-width:900px}
+  .v49-hero p{font-size:clamp(1.05rem,2vw,1.35rem);line-height:1.55;max-width:900px;margin:0}
+  .v49-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+  .v49-btn{appearance:none;border:0;border-radius:15px;padding:15px 20px;font-size:1rem;font-weight:850;cursor:pointer;min-height:52px}
+  .v49-btn.primary{background:white;color:#173f8e}
+  .v49-btn.secondary{background:rgba(255,255,255,.12);color:white;border:1px solid rgba(255,255,255,.35)}
+  .v49-section{margin-top:34px}
+  .v49-section h2{font-size:clamp(1.8rem,3vw,2.7rem);margin:0 0 8px}
+  .v49-section-lead{font-size:1.08rem;color:#66738f;max-width:900px;line-height:1.5;margin:0 0 20px}
+  .v49-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .v49-card{background:white;border:1px solid #d7e1f2;border-radius:22px;padding:22px;min-height:205px;display:flex;flex-direction:column;box-shadow:0 7px 22px rgba(35,65,120,.04)}
+  .v49-icon{font-size:2rem;margin-bottom:13px}
+  .v49-card h3{font-size:1.25rem;margin:0 0 8px}
+  .v49-card p{color:#68758f;line-height:1.5;margin:0 0 18px}
+  .v49-card button{margin-top:auto;align-self:flex-start;background:#eef3ff;color:#1c4c9c;border:0;border-radius:12px;padding:11px 14px;font-weight:800;cursor:pointer}
+  .v49-strip{margin-top:28px;border:1px solid #d7e1f2;background:white;border-radius:22px;padding:22px;display:grid;grid-template-columns:1.4fr 1fr;gap:18px;align-items:center}
+  .v49-strip h3{font-size:1.45rem;margin:0 0 7px}
+  .v49-strip p{margin:0;color:#68758f;line-height:1.5}
+  .v49-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+  .v49-tag{padding:9px 12px;border-radius:999px;background:#f0f4ff;color:#244e97;font-weight:750}
+  @media(max-width:820px){.v49-grid{grid-template-columns:1fr 1fr}.v49-strip{grid-template-columns:1fr}.v49-tags{justify-content:flex-start}}
+  @media(max-width:560px){#gpsjV49Home{padding:16px 14px 44px}.v49-hero{padding:28px 22px;border-radius:23px}.v49-grid{grid-template-columns:1fr}.v49-card{min-height:0}.v49-btn{width:100%}}
+</style>
+
+</head>
+<body>
+
+<main id="gpsjV49Home">
+  <section class="v49-hero">
+    <span class="v49-kicker">🌍 GPSJ — Global Platform for Science & Learning</span>
+    <h1>Your science. Your learning. Your journey.</h1>
+    <p>Learn, understand, create and advance through one global scientific ecosystem. Education remains open to everyone, while deeper professional, institutional and personalized capabilities can grow with the user.</p>
+    <div class="v49-actions">
+      <button class="v49-btn primary" data-v49-target="learn">Start learning</button>
+      <button class="v49-btn secondary" data-v49-target="explore">Explore GPSJ</button>
+    </div>
+  </section>
+
+  <section class="v49-section">
+    <h2>Explore the GPSJ ecosystem</h2>
+    <p class="v49-section-lead">Choose where you want to begin. GPSJ connects learning, research, experimentation and professional development through one scientific ecosystem.</p>
+    <div class="v49-grid">
+      <article class="v49-card"><div class="v49-icon">📚</div><h3>Learn & Teach</h3><p>Open the universal scientific directory, structured lessons, visual learning, interaction, practice, audio and adaptive learning.</p><button data-v49-target="learn">Open Learn</button></article>
+      <article class="v49-card"><div class="v49-icon">🔬</div><h3>Research & Evidence</h3><p>Move from questions and literature to experimental reasoning, evidence interpretation, reproducibility and scientific collaboration.</p><button data-v49-target="research">Explore research</button></article>
+      <article class="v49-card"><div class="v49-icon">🧪</div><h3>Scientific Screen Lab</h3><p>Touch-first laboratory learning, safe simulations, instrument discovery and educational testing environments designed to evolve with science.</p><button data-v49-target="lab">Open Screen Lab</button></article>
+      <article class="v49-card"><div class="v49-icon">🎨</div><h3>Create & Present</h3><p>Develop scientific presentations, reports, visual explanations, educational media and other knowledge products.</p><button data-v49-target="create">Explore creation</button></article>
+      <article class="v49-card"><div class="v49-icon">🧭</div><h3>Career & Competency</h3><p>Connect learning to competencies, professional development, career pathways and continuing scientific growth.</p><button data-v49-target="career">Explore careers</button></article>
+      <article class="v49-card"><div class="v49-icon">🏛️</div><h3>Institutions & Facilities</h3><p>Support universities, laboratories, research environments and authorized facility workflows without changing the public learning front door.</p><button data-v49-target="institutions">Explore institutions</button></article>
+      <article class="v49-card"><div class="v49-icon">🌐</div><h3>Language & Global Access</h3><p>Make science understandable across languages, devices, bandwidth conditions and regions while keeping universal science distinct from local rules.</p><button data-v49-target="language">Language & access</button></article>
+      <article class="v49-card"><div class="v49-icon">🛍️</div><h3>Scientific Marketplace</h3><p>A future authorized ecosystem for educational and professional scientific resources, services and tools with appropriate controls.</p><button data-v49-target="marketplace">Explore marketplace</button></article>
+      <article class="v49-card"><div class="v49-icon">🤝</div><h3>Contribute & Advance</h3><p>Enable scientists, educators and learners to contribute knowledge, build competency and participate in a growing global scientific community.</p><button data-v49-target="contribute">Explore contribution</button></article>
+    </div>
+  </section>
+
+  
+<section class="v49-strip" aria-label="Global access and responsible science">
+  <div>
+    <h3>Science for everyone. Progress with responsibility.</h3>
+    <p>GPSJ is designed to expand access to scientific education and responsible experimentation while applying appropriate safeguards as users move into advanced tools, connected instruments and professional workflows.</p>
+  </div>
+  <div class="v49-tags">
+    <span class="v49-tag">Learn globally</span>
+    <span class="v49-tag">Explore safely</span>
+    <span class="v49-tag">Adapt continuously</span>
+  </div>
+</section>
+
+<section class="v49-strip">
+    <div><h3>Education remains the front door.</h3><p>Anyone can begin learning. Sign-in becomes valuable when a user wants saved progress, adaptive depth, professional identity, institutional permissions or other personalized capabilities.</p></div>
+    <div class="v49-tags"><span class="v49-tag">Universal access</span><span class="v49-tag">Touch-first</span><span class="v49-tag">Low bandwidth</span><span class="v49-tag">Accessible</span><span class="v49-tag">Safety-aware</span></div>
+  </section>
+</main>
+
+<header class="topbar">
+ <div class="brand"><div class="logo">GPSJ</div><div><h1>Global Pharma Scientist Journey</h1><p>Public Ecosystem Gateway + Safe Instrument Laboratory v4.10 · Touch-first · Education & Research</p></div></div>
+ <div class="nav"><button onclick="home()">Home</button><button onclick="go('lab')">🧪 Lab</button><button onclick="go('connect')">🔌 Connect</button><button onclick="go('safety')">🛡 Safety</button><button class="accent">🌐 Language</button><button onclick="signin()">👤 Sign in</button></div>
+</header>
+<main>
+<section class="hero">
+ <div class="chip">🧪 GPSJ Laboratory & Experimental Science</div>
+ <h2>Connect what you have. Learn by testing safely.</h2>
+ <p>GPSJ begins by asking what instruments, sensors, analytical systems or prototypes are physically available. It then builds an educational workflow around those resources while keeping observation, simulation, supervised testing and real-world control clearly separated.</p>
+ <div class="chips"><span class="chip">Touch-first</span><span class="chip">Instrument-aware</span><span class="chip">Prototype testing</span><span class="chip">Read-only first</span><span class="chip">Risk-aware</span><span class="chip">Worldwide learning</span></div>
+</section>
+
+<section class="section" id="lab"><h2>Scientific Screen Lab</h2><p class="lead">A modular laboratory workspace designed for tablets, touch laptops, kiosks, laboratory displays and phones.</p>
+ <div class="modebar">
+  <button class="mode active" data-mode="Observation" onclick="setMode(this)"><strong>👁 Observation</strong><small>Read and capture data. No device control.</small></button>
+  <button class="mode" data-mode="Simulation" onclick="setMode(this)"><strong>🧠 Simulation</strong><small>Test ideas in a virtual environment.</small></button>
+  <button class="mode" data-mode="Supervised testing" onclick="setMode(this)"><strong>🧑‍🔬 Supervised testing</strong><small>Human-confirmed educational testing.</small></button>
+  <button class="mode" data-mode="Real-world control" onclick="setMode(this)"><strong>🎛 Real-world control</strong><small>Restricted; validation and authorization required.</small></button>
+ </div>
+</section>
+
+<section class="section workspace" id="connect">
+ <div class="stack">
+  <div class="card">
+   <h3>1. What do you have around you?</h3>
+   <p>Describe the equipment or creation you want GPSJ to work with.</p>
+   <div class="field"><label>Device / creation</label><input id="deviceName" placeholder="e.g., microscope, balance, sensor, custom prototype"></div>
+   <div class="field"><label>Category</label><select id="category"><option>Microscope / imaging</option><option>Measurement sensor</option><option>Balance / metrology</option><option>Spectroscopy / analytical</option><option>Chromatography / separation</option><option>Environmental monitor</option><option>Educational robot / automation</option><option>Custom prototype</option><option>Other scientific instrument</option></select></div>
+   <div class="field"><label>Connection available</label><select id="connection"><option>Not sure — help me identify it</option><option>USB</option><option>Bluetooth</option><option>Wi‑Fi / local network</option><option>Serial</option><option>Camera / image only</option><option>Manual data entry</option><option>Vendor API / SDK</option></select></div>
+   <div class="field"><label>What are you trying to learn or test?</label><textarea id="purpose" placeholder="Describe the educational or research goal."></textarea></div>
+   <button class="btn primary" onclick="discover()">Analyze compatibility</button>
+  </div>
+  <div class="card"><h3>Nearby / declared devices</h3><div id="devices" class="device-list"><div class="device"><div><strong>No device declared yet</strong><small>GPSJ starts read-only and asks before escalating access.</small></div><span class="badge blue">Discovery</span></div></div></div>
+ </div>
+
+ <div class="stack">
+  <div class="card world">
+   <h3>2. Safe experiment planner</h3>
+   <div class="field"><label>Experiment / test description</label><textarea id="experiment" placeholder="Describe what you want to observe, measure, compare or test." oninput="assess()"></textarea></div>
+   <div class="riskbox" id="safety">
+    <strong>GPSJ risk understanding</strong>
+    <div class="riskline"><div class="riskfill" id="riskfill"></div></div>
+    <div id="riskbadge"><span class="badge green">Level 1 · Educational / low risk</span></div>
+    <div class="alert low" id="riskmsg">Safe educational mode is active. GPSJ will favor observation, benign experiments and simulation.</div>
+   </div>
+  </div>
+
+  <div class="card">
+   <h3>3. Touch instrument console</h3>
+   <div class="console">
+    <div class="console-head"><strong id="consoleTitle">Observation console</strong><span class="badge green" id="accessBadge">READ ONLY</span></div>
+    <pre id="console">GPSJ LAB READY
+• Waiting for a declared instrument or prototype.
+• Safety classifier active.
+• Read-only is the default connection state.
+• No hazardous execution is enabled.</pre>
+   </div>
+   <div class="touchpad">
+    <button class="touch" onclick="action('Capture observation')">📸 Capture</button>
+    <button class="touch" onclick="action('Record measurement')">📈 Measure</button>
+    <button class="touch" onclick="action('Annotate result')">✍️ Annotate</button>
+    <button class="touch" onclick="action('Open safe simulation')">🧠 Simulate</button>
+    <button class="touch" onclick="action('Compare observations')">🔬 Compare</button>
+    <button class="touch" onclick="action('Generate learning report')">📄 Report</button>
+   </div>
+  </div>
+
+  <div class="card safety">
+   <h3>4. Safety & escalation engine</h3>
+   <p>GPSJ evaluates the complete trajectory, not only a single prompt. Riskier combinations are redirected toward safe learning, simulation, detection, mitigation or benign substitutes.</p>
+   <div class="grid">
+    <div><span class="badge green">L1</span><br><strong>Proceed</strong><small> Educational observation.</small></div>
+    <div><span class="badge blue">L2</span><br><strong>Guide</strong><small> Add precautions.</small></div>
+    <div><span class="badge amber">L3</span><br><strong>Restrict</strong><small> Simulation/supervision.</small></div>
+   </div>
+   <div style="margin-top:10px"><span class="badge red">L4</span> <strong>Stop hazardous execution</strong> — preserve safe educational explanation and mitigation pathways.</div>
+  </div>
+ </div>
+</section>
+
+<section class="section">
+ <h2>Connection architecture</h2>
+ <div class="grid">
+  <div class="card"><h3>🔎 Discover</h3><p>Identify model, interface and capabilities. Ask the scientist what is physically available rather than assuming a laboratory configuration.</p></div>
+  <div class="card"><h3>🧩 Device adapter</h3><p>Modular adapters allow future instruments, sensors and prototypes to be added without rebuilding GPSJ. Prototype uses simulated adapters only.</p></div>
+  <div class="card"><h3>🔒 Permission boundary</h3><p>Read-only first. Higher access requires compatibility, validation, appropriate authorization and human confirmation.</p></div>
+  <div class="card"><h3>📊 Capture & interpret</h3><p>Measurements, images and observations can flow into educational visualization, comparison, statistics and reporting.</p></div>
+  <div class="card"><h3>🧾 Audit trail</h3><p>High-risk alerts and access changes record the trigger, safeguard, reviewer state and outcome.</p></div>
+  <div class="card"><h3>🌍 Universal access</h3><p>The educational layer remains globally accessible; regional rules and regulated workflows are applied only where verified and relevant.</p></div>
+ </div>
+</section>
+
+<section class="section">
+ <h2>Live audit trail</h2>
+ <div class="card audit" id="audit"><div class="audit-item">System initialized · Touch-first laboratory shell · Safety classifier enabled</div></div>
+</section>
+
+<div class="bottom">
+ <div class="card"><strong>📶 Adaptive delivery</strong><p>Low-bandwidth mode simplifies heavy visuals while preserving the scientific workflow.</p><button class="btn" onclick="document.body.classList.toggle('low')">Toggle low bandwidth</button></div>
+ <div class="card"><strong>♿ Accessibility</strong><p>Large touch targets, keyboard fallback, readable controls and device-native assistive technology.</p><button class="btn" onclick="document.body.classList.toggle('large')">Larger text</button></div>
+ <div class="card"><strong>⌨️ Focus visibility</strong><p>Touch-first does not remove keyboard, mouse, stylus or assistive navigation.</p><button class="btn" onclick="document.body.classList.toggle('focus')">Focus visibility</button></div>
+</div>
+</main>
+<script>
+let currentMode="Observation", currentRisk=1, declaredDevice="";
+const highTerms=["weapon","explosive","detonator","nerve agent","chemical weapon","biological weapon","toxin weapon","harm people","kill","poison people","bomb"];
+const medTerms=["high pressure","radiation","pathogen","toxic gas","high voltage","flammable","corrosive","reactor","hazardous synthesis","aerosolize"];
+function log(t){let a=document.getElementById("audit"),d=document.createElement("div");d.className="audit-item";d.textContent=new Date().toLocaleTimeString()+" · "+t;a.prepend(d)}
+function go(id){document.getElementById(id).scrollIntoView({behavior:"smooth"})}
+function home(){window.scrollTo({top:0,behavior:"smooth"})}
+function signin(){alert("Production authentication and qualified-role verification remain server-side. Public educational learning stays accessible without an account.")}
+function discover(){
+ let n=document.getElementById("deviceName").value.trim()||"Unnamed scientific device";
+ let c=document.getElementById("category").value, x=document.getElementById("connection").value;
+ declaredDevice=n;
+ document.getElementById("devices").innerHTML=`<div class="device"><div><strong>${escapeHtml(n)}</strong><small>${escapeHtml(c)} · ${escapeHtml(x)}</small></div><span class="badge green">Declared</span></div>`;
+ document.getElementById("console").textContent=`DEVICE DECLARED: ${n}\nCATEGORY: ${c}\nINTERFACE: ${x}\n\nPrototype state:\n• Compatibility discovery simulated.\n• Read-only access remains default.\n• Production adapter would verify vendor/device identity before data exchange.`;
+ log("Device declared: "+n+" · read-only discovery");
+ assess();
+}
+function setMode(el){
+ document.querySelectorAll(".mode").forEach(x=>x.classList.remove("active"));el.classList.add("active");currentMode=el.dataset.mode;
+ let badge=document.getElementById("accessBadge"), title=document.getElementById("consoleTitle");
+ title.textContent=currentMode+" console";
+ if(currentMode==="Observation"){badge.className="badge green";badge.textContent="READ ONLY"}
+ else if(currentMode==="Simulation"){badge.className="badge blue";badge.textContent="VIRTUAL"}
+ else if(currentMode==="Supervised testing"){badge.className="badge amber";badge.textContent="HUMAN CONFIRMATION"}
+ else {badge.className="badge red";badge.textContent="RESTRICTED"}
+ log("Mode requested: "+currentMode);
+ assess();
+}
+function assess(){
+ let t=(document.getElementById("experiment").value+" "+document.getElementById("purpose").value).toLowerCase();
+ let high=highTerms.some(k=>t.includes(k)), med=medTerms.some(k=>t.includes(k));
+ currentRisk=high?4:med?3:(currentMode==="Real-world control"?2:1);
+ let f=document.getElementById("riskfill"),b=document.getElementById("riskbadge"),m=document.getElementById("riskmsg");
+ f.style.width=({1:18,2:42,3:70,4:100})[currentRisk]+"%";
+ if(currentRisk===1){b.innerHTML='<span class="badge green">Level 1 · Educational / low risk</span>';m.className="alert low";m.textContent="Proceed with educational observation, measurement or simulation."}
+ if(currentRisk===2){b.innerHTML='<span class="badge blue">Level 2 · Controlled</span>';m.className="alert";m.textContent="Additional compatibility and authorization checks are required before any physical control."}
+ if(currentRisk===3){b.innerHTML='<span class="badge amber">Level 3 · Elevated risk</span>';m.className="alert medium";m.textContent="Physical execution is restricted. Continue with simulation, safety analysis, benign substitutes or qualified supervision."}
+ if(currentRisk===4){b.innerHTML='<span class="badge red">Level 4 · Hazardous trajectory</span>';m.className="alert high";m.textContent="GPSJ stops hazardous execution. Safe educational explanation, prevention, detection, mitigation and non-harmful simulation remain available."}
+}
+function action(a){
+ if(currentRisk>=4){document.getElementById("console").textContent="SAFETY HOLD\nHazardous execution is unavailable.\n\nAvailable pathway:\n• conceptual education\n• non-operational simulation\n• detection / mitigation\n• safety analysis\n• benign substitute experiment";log("Level 4 safeguard applied · "+a+" not executed");return}
+ if(currentRisk===3 && !a.includes("simulation") && !a.includes("Report")){document.getElementById("console").textContent="SUPERVISED / SIMULATION PATH REQUIRED\nThis experiment has elevated risk. Physical actuation is not available in this educational prototype.";log("Level 3 restriction applied");return}
+ document.getElementById("console").textContent=`${a.toUpperCase()}\nDevice: ${declaredDevice||"No physical device connected"}\nMode: ${currentMode}\nRisk level: ${currentRisk}\n\nEducational prototype action completed safely.\nNo physical instrument command was transmitted.`;
+ log(a+" · safe prototype action");
+}
+function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+assess();
+</script>
+
+<script id="gpsj-v49-home-script">
+(function(){
+  const home = document.getElementById('gpsjV49Home');
+  if(!home) return;
+  const allMainChildren = [...document.body.children].filter(el => el !== home && el.tagName !== 'SCRIPT' && el.tagName !== 'STYLE');
+  function findButton(label){
+    return [...document.querySelectorAll('button,a')].find(el => (el.textContent||'').trim().toLowerCase() === label.toLowerCase());
+  }
+  home.querySelectorAll('[data-v49-target]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const t=btn.dataset.v49Target;
+      if(t==='learn'){
+        const learn=findButton('Learn'); if(learn){learn.click();return;}
+      }
+      if(t==='language'){
+        const lang=[...document.querySelectorAll('button,a')].find(el=>(el.textContent||'').includes('Language'));
+        if(lang){lang.click();return;}
+      }
+      if(t==='lab'){
+        const lab=[...document.querySelectorAll('button,a')].find(el=>/screen lab|instrument lab|laboratory/i.test(el.textContent||''));
+        if(lab){lab.click();return;}
+      }
+      alert('GPSJ '+t.replace(/^\w/,c=>c.toUpperCase())+' workspace — architecture preserved for the next functional block.');
+    });
+  });
+})();
+</script>
+
+</body></html>
