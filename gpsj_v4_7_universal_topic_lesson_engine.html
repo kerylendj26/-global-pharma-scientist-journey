@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Global Pharma Scientist Journey — Universal Topic & Lesson Engine v4.7</title>
+<style>
+:root{--nav:#0e224d;--blue:#2f58e9;--purple:#7645e7;--bg:#f3f6fb;--card:#fff;--text:#13213e;--muted:#66728c;--line:#d9e2f2;--green:#0f8d62;--shadow:0 10px 30px rgba(17,40,85,.12)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}button{cursor:pointer}
+.topbar{position:sticky;top:0;z-index:30;background:linear-gradient(135deg,var(--nav),#101f43);color:#fff;padding:14px 20px 10px}.brand{display:flex;gap:12px;align-items:center}.logo{width:48px;height:48px;border-radius:15px;background:linear-gradient(135deg,var(--blue),var(--purple));display:grid;place-items:center;font-weight:900}.brand h1{font-size:22px;margin:0}.brand p{margin:2px 0;color:#c7d4f3;font-size:13px}.nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.nav button{border:0;border-radius:11px;padding:9px 13px;background:rgba(255,255,255,.08);color:#fff;font-weight:800}.nav .accent{background:#fff;color:var(--nav)}
+main{max-width:1200px;margin:auto;padding:20px}.hero{padding:25px;border-radius:25px;color:#fff;background:linear-gradient(135deg,#143a93,#6e45df);box-shadow:var(--shadow)}.hero h2{font-size:38px;margin:6px 0 10px}.hero p{font-size:17px;line-height:1.55;max-width:900px}
+.chips{display:flex;gap:7px;flex-wrap:wrap}.chip{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.23);font-weight:800;font-size:12px}
+.section{margin-top:22px}.section h2{font-size:30px;margin:0 0 7px}.lead{color:var(--muted);margin-top:0}.search{display:flex;gap:8px;margin:14px 0}.search input{flex:1;padding:12px;border:1px solid var(--line);border-radius:12px}.btn{border:0;border-radius:12px;padding:11px 15px;font-weight:850;background:#edf3ff;color:#23499a}.btn.primary{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff}.btn.secondary{background:#fff;border:1px solid var(--line)}
+.fields{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.field{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;text-align:left;min-height:145px;color:var(--text)}.field.active{border:2px solid var(--purple)}.field .ico{font-size:27px}.field strong{display:block;font-size:18px;margin:7px 0}.field small{color:var(--muted);line-height:1.4}
+.route{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:21px;padding:18px}.crumb{font-size:13px;color:var(--muted);margin-bottom:6px}.domains,.topics,.related{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:13px}.domain,.topic,.related button{border:1px solid var(--line);background:#f9fbff;border-radius:14px;padding:13px;text-align:left;color:var(--text)}.domain strong,.topic strong{display:block;margin-bottom:4px}.domain small,.topic small{color:var(--muted)}.domain.active,.topic.active{border:2px solid var(--blue);background:#f2f6ff}
+.lesson{display:none;margin-top:16px}.lesson.open{display:block}.lesson-head{padding:22px;border-radius:20px;background:linear-gradient(135deg,#102f69,#284ea7);color:#fff}.lesson-head h2{margin:3px 0 7px}.stages{display:flex;gap:8px;overflow-x:auto;margin:14px 0}.stage{white-space:nowrap;border:1px solid var(--line);background:#fff;color:#23499a;padding:9px 12px;border-radius:999px;font-weight:850}.stage.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}.panel h3{margin-top:0}.causal{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.node{flex:1 1 150px;padding:14px;border-radius:13px;background:#eef3ff;text-align:center;font-weight:850}.arrow{font-size:23px;color:var(--purple);font-weight:900}
+.visual{min-height:300px;border-radius:19px;background:radial-gradient(circle at 50% 45%,#315fd6 0 13%,#173b87 14% 31%,#081d43 32%);color:#fff;display:grid;place-items:center;padding:24px;text-align:center}.visual-core{width:min(430px,90%);padding:20px;border:1px solid rgba(255,255,255,.3);border-radius:20px;background:rgba(255,255,255,.1);backdrop-filter:blur(3px)}.visual-core strong{font-size:22px}
+.interact label{font-weight:800}.interact input{width:100%}.readout{padding:13px;border-radius:13px;background:#eef4ff;margin-top:12px;font-weight:750}.quiz button{display:block;width:100%;text-align:left;margin:8px 0}.feedback{margin-top:10px;padding:12px;background:#eef8f3;border-radius:12px;display:none}
+.related{margin-top:12px}.continue{margin-top:14px;padding:20px;border-radius:19px;background:linear-gradient(135deg,#132f6c,#6c43d8);color:#fff}.continue h3{margin-top:0}.signin{background:#fff;color:#24499c}
+.access{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.access div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px}.access strong{display:block;margin-bottom:5px}
+.low .visual{min-height:130px;background:#102f69}.large{font-size:118%}.focus button:focus,.focus input:focus{outline:4px solid #ffbf47;outline-offset:2px}
+@media(max-width:760px){main{padding:13px}.hero h2{font-size:31px}.fields,.domains,.topics,.related,.access{grid-template-columns:1fr}.brand h1{font-size:19px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+<div class="brand"><div class="logo">GPSJ</div><div><h1>Global Pharma Scientist Journey</h1><p>Universal Topic & Lesson Engine v4.7 · Learn. Understand. Create. Advance.</p></div></div>
+<div class="nav"><button onclick="home()">Home</button><button onclick="document.getElementById('directory').scrollIntoView()">Explore GPSJ</button><button onclick="document.getElementById('directory').scrollIntoView()">Learn</button><button class="accent">🌐 Language</button><button onclick="signin()">👤 Sign in</button><button onclick="home()">↩ Home</button></div>
+</header>
+<main>
+<section class="hero">
+<div class="chip">📘 Public GPSJ Learning Experience</div>
+<h2>Choose a field. Follow the science.</h2>
+<p>GPSJ now moves from an organized scientific directory into real topic routes and a focused lesson experience. Public visitors can learn without an account. Sign-in is requested only when they want the complete curriculum, adaptive depth, saved progress and a personalized journey.</p>
+<div class="chips"><span class="chip">Universal access</span><span class="chip">Field → domain → topic</span><span class="chip">Visual understanding</span><span class="chip">Interactive practice</span><span class="chip">Cross-disciplinary links</span></div>
+</section>
+
+<section class="section" id="directory">
+<h2>Universal scientific directory</h2><p class="lead">Select a field, then a domain. The page reveals the topic tree instead of repeating the public-learning introduction.</p>
+<div class="search"><input id="search" placeholder="Search pharmacology, anatomy, chromatography, botany, statistics…"><button class="btn primary" onclick="searchMap()">Search</button></div>
+<div class="fields" id="fields"></div>
+<div class="route" id="route"><div class="crumb">Science → choose a field</div><h2>Organized learning route</h2><p class="lead">Select a field above.</p></div>
+</section>
+
+<section class="lesson" id="lesson">
+<div class="lesson-head"><div class="crumb" id="lessonCrumb" style="color:#d7e3ff"></div><h2 id="lessonTitle"></h2><p id="lessonIntro"></p></div>
+<div class="stages" id="stages"></div><div class="panel" id="lessonPanel"></div>
+</section>
+
+<div class="access">
+<div><strong>📶 Adaptive delivery</strong><small>Low-bandwidth mode preserves the lesson structure while simplifying heavy visual presentation.</small><br><button class="btn" onclick="document.body.classList.toggle('low')">Toggle low bandwidth</button></div>
+<div><strong>♿ Accessibility</strong><small>Readable text, keyboard focus and device-native assistive technology remain first-class controls.</small><br><button class="btn" onclick="document.body.classList.toggle('large')">Larger text</button></div>
+<div><strong>⚖️ Regional layer</strong><small>Universal science stays separate from country-specific terminology, guidance and regulated workflows.</small><br><button class="btn" onclick="document.body.classList.toggle('focus')">Focus visibility</button></div>
+</div>
+</main>
+<script>
+const fields=[
+["💊","Pharmacy & Pharmaceutical Sciences","Pharmacology, pharmaceutics, pharmacotherapy, medicinal chemistry and medication safety.",["Foundations of pharmacy","Pharmacology","Pharmaceutics & formulation","Pharmacotherapy","Pharmacokinetics / pharmacodynamics","Medicinal chemistry","Pharmacogenomics","Medication safety & calculations"]],
+["🩺","Medicine & Clinical Sciences","Normal physiology → disease mechanism → diagnosis → intervention → monitoring.",["Anatomy & physiology","Pathophysiology","Clinical reasoning","Internal medicine","Emergency medicine","Pediatrics","Women's health","Specialty pathways"]],
+["🧪","Laboratory & Experimental Science","Experimental design, methods, instrumentation, quality and interpretation.",["Lab safety","Measurement science","Sample handling","Analytical methods","Cell & molecular methods","Microbiology methods","Quality systems","Research reproducibility"]],
+["🏭","Biotechnology & Biomanufacturing","Biologic systems, production, quality, scale-up and advanced therapies.",["Biotechnology foundations","Cell culture","Bioprocessing","Biologics","Gene & cell therapy","Quality by design","GMP concepts","Scale-up"]],
+["🧠","Neuroscience & Behavioral Science","Neural signaling, cognition, behavior, neurological and psychiatric science.",["Neuroanatomy","Neurophysiology","Neuropharmacology","Cognition","Neurologic disease","Psychiatric science","Pain science","Neurotechnology"]],
+["☣️","Toxicology & Environmental Health","Exposure → mechanism → organ effects → risk assessment → prevention.",["General toxicology","Clinical toxicology","Environmental toxicology","Occupational health","Toxicokinetics","Risk assessment","Organ toxicology","Ecotoxicology"]],
+["📊","Mathematics, Statistics & Data Science","Quantitative reasoning for science, experiments, clinical evidence and research.",["Scientific mathematics","Biostatistics","Probability","Experimental design","Epidemiology","Data visualization","Machine learning foundations","Reproducible analysis"]],
+["🌿","Pharmacognosy & Natural Products","Species and origin → compounds → evidence → biological activity → application.",["Botany & identification","Ethnopharmacology","Natural-product chemistry","Extraction & isolation","Phytochemistry","Bioactivity","Safety & toxicology","Evidence & translation"]]
+];
+const special={
+"Pharmacology":["Pharmacology foundations","Receptors & signaling","Pharmacokinetics","Pharmacodynamics","Autonomic pharmacology","Cardiovascular pharmacology","Anticoagulation & antiplatelets","Endocrine & diabetes","Anti-infective pharmacology","Neurologic pharmacology","Psychiatric pharmacology","Pain & inflammation","Respiratory pharmacology","Gastrointestinal pharmacology","Renal pharmacology","Immunopharmacology","Oncology pharmacology","Toxicology & antidotes","Pharmacogenomics","Integrated therapeutic reasoning"],
+"Anatomy & physiology":["Cell physiology","Cardiovascular system","Respiratory system","Renal system","Gastrointestinal system","Endocrine system","Nervous system","Musculoskeletal system"],
+"Analytical methods":["Spectroscopy","Chromatography","Mass spectrometry","Electrochemistry","Microscopy","Assay development","Method validation","Quality control"],
+"Botany & identification":["Plant morphology","Taxonomy","Species identification","Geographic distribution","Field observation","Voucher specimens","Digital species recognition","Conservation context"]
+};
+let selectedField=0, selectedDomain=null, selectedTopic=null, stage=0;
+function renderFields(){
+ fieldsEl=document.getElementById("fields");fieldsEl.innerHTML=fields.map((f,i)=>`<button class="field ${i===selectedField?'active':''}" onclick="chooseField(${i})"><span class="ico">${f[0]}</span><strong>${f[1]}</strong><small>${f[2]}</small></button>`).join("");
+}
+function chooseField(i){selectedField=i;selectedDomain=null;renderFields();renderRoute()}
+function renderRoute(){
+ const f=fields[selectedField],r=document.getElementById("route");
+ r.innerHTML=`<div class="crumb">Science → ${f[1]}</div><h2>${f[0]} ${f[1]}</h2><p class="lead">${f[2]}</p><div class="domains">${f[3].map((d,i)=>`<button class="domain" onclick="chooseDomain(${i})"><strong>${i+1}. ${d}</strong><small>Open organized topic route →</small></button>`).join("")}</div><div id="topics"></div>`;
+}
+function chooseDomain(i){
+ const f=fields[selectedField]; selectedDomain=f[3][i]; 
+ document.querySelectorAll(".domain").forEach((x,j)=>x.classList.toggle("active",j===i));
+ let topics=special[selectedDomain]||[`${selectedDomain} foundations`,`Core principles`,`Structure & function`,`Mechanisms`,`Methods & measurement`,`Applications`,`Safety & limitations`,`Advanced integration`];
+ document.getElementById("topics").innerHTML=`<h2 style="margin-top:22px">${selectedDomain}: topic tree</h2><p class="lead">Choose a topic to enter the focused lesson engine.</p><div class="topics">${topics.map((t,j)=>`<button class="topic" onclick='openLesson(${JSON.stringify(t)})'><strong>${j+1}. ${t}</strong><small>Principle → visual → interact → practice → related fields → continue</small></button>`).join("")}</div>`;
+ document.getElementById("topics").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function openLesson(t){selectedTopic=t;stage=0;document.getElementById("lesson").classList.add("open");document.getElementById("lessonTitle").textContent=t;document.getElementById("lessonIntro").textContent="Understand the relationship first, then visualize it, manipulate it, test yourself and connect it to neighboring sciences.";document.getElementById("lessonCrumb").textContent=`Science → ${fields[selectedField][1]} → ${selectedDomain} → ${t}`;renderLesson();document.getElementById("lesson").scrollIntoView({behavior:"smooth"})}
+const names=["1. Principle","2. Visual","3. Interact","4. Practice","5. Related fields","6. Continue"];
+function renderLesson(){
+ document.getElementById("stages").innerHTML=names.map((n,i)=>`<button class="stage ${i===stage?'active':''}" onclick="stage=${i};renderLesson()">${n}</button>`).join("");
+ let p=document.getElementById("lessonPanel"),topic=selectedTopic;
+ if(stage===0)p.innerHTML=`<h3>Understand the causal relationship</h3><p>GPSJ starts with a scientific relationship rather than isolated memorization.</p><div class="causal"><div class="node">System / structure</div><div class="arrow">→</div><div class="node">Mechanism / interaction</div><div class="arrow">→</div><div class="node">Response / measurement</div><div class="arrow">→</div><div class="node">Meaning / application</div></div><p><strong>${topic}</strong> is placed inside this chain so the learner can explain why an observation or intervention produces its consequence.</p>`;
+ if(stage===1)p.innerHTML=`<h3>Visual understanding</h3><div class="visual"><div class="visual-core"><strong>${topic}</strong><p>Interactive scientific visual layer</p><div class="causal"><div class="node">Input</div><div class="arrow">→</div><div class="node">Mechanism</div><div class="arrow">→</div><div class="node">Outcome</div></div><p>Production version can replace this schematic with verified diagrams, molecular/anatomical views, maps, images or video appropriate to the topic and connection quality.</p></div></div>`;
+ if(stage===2)p.innerHTML=`<h3>Interact with the relationship</h3><div class="interact"><label>Change system intensity</label><input type="range" min="0" max="100" value="50" oninput="document.getElementById('read').textContent='Model response: '+this.value+'% — changing the input changes the predicted response.'"><div class="readout" id="read">Model response: 50% — manipulate the control to see the relationship change.</div></div><p class="lead">This is a safe conceptual interaction layer; domain-specific simulations can replace it as validated models are added.</p>`;
+ if(stage===3)p.innerHTML=`<h3>Knowledge check</h3><p>Which sequence best represents the GPSJ scientific-learning method?</p><div class="quiz"><button class="btn secondary" onclick="answer(false)">Outcome → unrelated fact → memorization</button><button class="btn secondary" onclick="answer(true)">Structure/system → mechanism → response → meaning/application</button><button class="btn secondary" onclick="answer(false)">Definition → repetition → finish</button><div class="feedback" id="feedback"></div></div>`;
+ if(stage===4)p.innerHTML=`<h3>Connect neighboring sciences</h3><p>${topic} does not exist in isolation. GPSJ surfaces useful cross-disciplinary routes without forcing the learner to leave the current lesson.</p><div class="related"><button onclick="jump('Medicine & Clinical Sciences')">🩺 Clinical connection</button><button onclick="jump('Laboratory & Experimental Science')">🧪 Measurement connection</button><button onclick="jump('Mathematics, Statistics & Data Science')">📊 Evidence & data connection</button><button onclick="jump('Pharmacy & Pharmaceutical Sciences')">💊 Therapeutic connection</button></div>`;
+ if(stage===5)p.innerHTML=`<h3>Continue your journey</h3><div class="continue"><h3>You learned before creating an account.</h3><p>Public learning remains available worldwide. Sign in when you want the complete curriculum, adaptive depth, saved progress, multilingual/audio recall, personalized practice and professional tools.</p><button class="btn signin" onclick="signin()">👤 Sign in to continue deeper</button> <button class="btn signin" onclick="stage=0;renderLesson()">↻ Review this lesson</button></div>`;
+}
+function answer(ok){let f=document.getElementById("feedback");f.style.display="block";f.innerHTML=ok?"<strong>Correct ✓</strong> GPSJ links structure or system context to mechanism, response and scientific meaning.":"<strong>Not quite.</strong> Return to the causal chain: structure/system → mechanism → response → meaning/application."}
+function jump(name){let i=fields.findIndex(f=>f[1]===name);if(i>=0){chooseField(i);document.getElementById("directory").scrollIntoView({behavior:"smooth"})}}
+function searchMap(){let q=document.getElementById("search").value.toLowerCase().trim();if(!q)return;for(let i=0;i<fields.length;i++){let f=fields[i];for(let j=0;j<f[3].length;j++){let d=f[3][j];let ts=special[d]||[];if(f[1].toLowerCase().includes(q)||d.toLowerCase().includes(q)||ts.some(t=>t.toLowerCase().includes(q))){chooseField(i);chooseDomain(j);return}}}alert("No mapped topic yet. GPSJ can expand this universal directory without changing the lesson architecture.")}
+function signin(){alert("GPSJ sign-in handoff: production authentication, identity verification and role-specific workspace remain server-side. Public Learn stays accessible without an account.")}
+function home(){window.scrollTo({top:0,behavior:"smooth"})}
+renderFields();renderRoute();
+</script>
+</body></html>
