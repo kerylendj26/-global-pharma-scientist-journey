@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Global Pharma Scientist Journey — Adaptive Lesson Intelligence v3.9</title>
+<style>
+:root{
+  --nav:#0e224d; --nav2:#173b87; --blue:#2f58e9; --purple:#7645e7;
+  --bg:#f3f6fb; --card:#fff; --text:#13213e; --muted:#66728c; --line:#d9e2f2;
+  --green:#0f8d62; --warn:#9b6a00; --soft:#edf3ff; --shadow:0 10px 30px rgba(17,40,85,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text)}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+#app{min-height:100vh}
+.topbar{position:sticky;top:0;z-index:50;background:linear-gradient(135deg,var(--nav),#101f43);color:#fff;padding:14px 18px 10px;box-shadow:0 4px 18px rgba(0,0,0,.12)}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,var(--blue),var(--purple));display:grid;place-items:center;font-weight:800}
+.brand h1{font-size:22px;margin:0}
+.brand p{margin:2px 0 0;color:#c7d4f3;font-size:13px}
+.navrow{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px;scrollbar-width:none}
+.navrow::-webkit-scrollbar{display:none}
+.navbtn,.utility-btn{border:0;color:white;background:transparent;padding:10px 14px;border-radius:12px;font-weight:700;white-space:nowrap}
+.navbtn.active{background:rgba(255,255,255,.14)}
+.utility-row{display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap}
+.utility-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);padding:8px 12px}
+.utility-btn.accent{background:#fff;color:var(--nav)}
+.main{max-width:1200px;margin:0 auto;padding:22px}
+.view{display:none}
+.view.active{display:block}
+.hero{border-radius:28px;padding:28px;color:#fff;background:linear-gradient(135deg,#143a93,#6e45df);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero h2{font-size:40px;line-height:1.05;margin:0 0 14px}
+.hero p{max-width:760px;font-size:18px;line-height:1.5;margin:0}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center}
+.hero-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:18px;border-radius:20px}
+.section{margin-top:24px}
+.section h2{font-size:32px;margin:0 0 8px}
+.section p.lead{color:var(--muted);font-size:17px;margin:0 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 2px 8px rgba(17,40,85,.03)}
+.grid{display:grid;gap:16px}
+.grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.topic-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.topic-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.2s;min-height:220px}
+.topic-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.topic-img{height:130px;background-size:cover;background-position:center}
+.topic-body{padding:16px}
+.topic-body h3{margin:0 0 8px;font-size:20px}
+.topic-body p{margin:0 0 14px;color:var(--muted);line-height:1.45}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:800;background:var(--soft);color:#23499a}
+.btn.primary{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff}
+.btn.secondary{background:#fff;border:1px solid var(--line);color:#23499a}
+.btn.danger{background:#fff0f0;color:#a22}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:8px 11px;border-radius:999px;background:var(--soft);color:#284c98;border:1px solid #dce6fb;font-weight:700;font-size:13px}
+.searchbar{display:flex;gap:10px;margin-bottom:16px}
+.searchbar input{flex:1;border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:16px}
+.panel-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.panel-title h3{margin:0;font-size:22px}
+.backstrip{position:fixed;left:12px;bottom:18px;z-index:80;display:flex;gap:8px}
+.backstrip button{width:46px;height:46px;border-radius:50%;border:0;box-shadow:var(--shadow);background:#fff;color:var(--nav);font-size:20px}
+.breadcrumb{font-size:13px;color:var(--muted);margin-bottom:10px}
+.lesson-shell{display:grid;grid-template-columns:250px 1fr;gap:18px}
+.lesson-sidebar{position:sticky;top:170px;align-self:start}
+.lesson-sidebar .btn{width:100%;text-align:left;margin-bottom:8px}
+.lesson-main{min-width:0}
+.lesson-header{padding:24px;border-radius:22px;color:#fff;background:linear-gradient(135deg,#12336e,#27499b)}
+.lesson-header h2{margin:0 0 8px;font-size:32px}
+.lesson-steps{display:flex;gap:8px;overflow-x:auto;margin:14px 0}
+.lesson-step{white-space:nowrap;border:1px solid var(--line);background:#fff;color:#23499a;padding:9px 12px;border-radius:999px;font-weight:800}
+.lesson-step.active{background:var(--blue);color:#fff;border-color:transparent}
+.content-box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;margin-top:14px}
+.content-box h3{margin-top:0}
+.visual-wrap{display:grid;grid-template-columns:1fr 320px;gap:18px}
+.visual-stage{border-radius:20px;overflow:hidden;background:#081d43;min-height:420px;position:relative}
+.visual-stage img,.visual-stage video{width:100%;height:100%;min-height:420px;object-fit:cover;display:block}
+.visual-overlay{position:absolute;left:0;right:0;bottom:0;padding:22px;background:linear-gradient(transparent,rgba(3,13,36,.92));color:#fff}
+.visual-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.range-row{display:grid;grid-template-columns:160px 1fr 50px;gap:10px;align-items:center;margin:12px 0}
+.range-row input{width:100%}
+.audio-controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.speed-row{display:flex;gap:8px;flex-wrap:wrap}
+.speed{border:1px solid var(--line);background:#fff;color:#23499a;border-radius:999px;padding:7px 10px;font-weight:800}
+.speed.active{background:var(--blue);color:#fff}
+.creator-output{min-height:220px;white-space:pre-wrap;border:1px solid var(--line);border-radius:14px;padding:16px;background:#fbfcff}
+.market-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.market-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}
+.market-card h3{margin:0 0 6px}
+.status{font-size:12px;font-weight:800;padding:5px 8px;border-radius:999px;background:#eaf8f2;color:#147658;display:inline-block}
+.notice{background:#fff8e8;border:1px solid #f0d78d;color:#7d5a00;padding:14px;border-radius:14px}
+.lang-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.lang-card{border:1px solid var(--line);border-radius:16px;padding:14px;background:#fff}
+.mastery-bar{height:10px;background:#e7edf9;border-radius:999px;overflow:hidden}.mastery-bar span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--purple))}.depth-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.depth-btn{border:1px solid var(--line);background:#fff;color:#23499a;border-radius:999px;padding:8px 11px;font-weight:800}.depth-btn.active{background:var(--blue);color:#fff;border-color:transparent}.module-meta{font-size:12px;color:var(--muted);margin-top:4px}.continue-card{background:linear-gradient(135deg,#eef4ff,#f5efff);border:1px solid #d8e2fb}.lesson-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.hidden{display:none!important}
+.modal{position:fixed;inset:0;z-index:100;background:rgba(5,16,40,.72);display:none;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.modal-card{width:min(1100px,96vw);max-height:92vh;overflow:auto;background:var(--bg);border-radius:24px;box-shadow:0 20px 70px rgba(0,0,0,.35)}
+.modal-head{position:sticky;top:0;z-index:2;background:linear-gradient(135deg,var(--nav2),var(--purple));color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+.modal-head button{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:8px 12px}
+.modal-body{padding:20px}
+.stack{display:flex;flex-direction:column;gap:12px}
+.field label{display:block;font-weight:800;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px}
+@media(max-width:900px){
+ .main{padding:14px}
+ .hero-grid,.visual-wrap,.grid.cols-2,.grid.cols-3,.topic-grid,.market-grid,.lang-grid{grid-template-columns:1fr}
+ .hero h2{font-size:32px}
+ .lesson-shell{grid-template-columns:1fr}
+ .lesson-sidebar{position:static}
+ .lesson-sidebar .stack{display:grid;grid-template-columns:repeat(2,1fr)}
+ .range-row{grid-template-columns:1fr}
+}
+
+/* v3.9 — Adaptive Lesson Intelligence */
+.adaptive-intel{
+  margin-top:16px;padding:18px;border:1px solid #d7e1f4;border-radius:18px;
+  background:linear-gradient(135deg,#f7faff,#f6f1ff)
+}
+.adaptive-intel h3{margin:0 0 6px}
+.adaptive-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+.adaptive-card{padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.adaptive-card strong{display:block;margin-bottom:6px}
+.adaptive-control-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.adaptive-control{
+  border:1px solid var(--line);background:#fff;color:#23499a;border-radius:999px;
+  padding:8px 11px;font-weight:800
+}
+.adaptive-control.active{background:var(--blue);color:#fff;border-color:transparent}
+.subtopic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.subtopic-btn{
+  text-align:left;border:1px solid var(--line);background:#fff;color:#23499a;
+  border-radius:12px;padding:11px;font-weight:750
+}
+.subtopic-btn.active{background:#edf3ff;border-color:#9db6ff}
+.next-recommendation{
+  margin-top:12px;padding:14px;border-radius:14px;background:#122f68;color:#fff
+}
+.next-recommendation small{display:block;color:#cbd8f8;margin-top:6px}
+.confidence-meter{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}
+.confidence-dot{
+  width:38px;height:38px;border-radius:50%;border:1px solid var(--line);
+  background:#fff;color:#23499a;font-weight:800
+}
+.confidence-dot.active{background:var(--purple);color:#fff;border-color:transparent}
+.adaptive-trail{margin-top:10px;display:flex;gap:7px;overflow-x:auto;padding-bottom:4px}
+.adaptive-trail span{white-space:nowrap;font-size:12px;background:#eef3ff;padding:7px 9px;border-radius:999px;color:#31519b}
+@media(max-width:760px){
+  .adaptive-grid,.subtopic-grid{grid-template-columns:1fr}
+}
+
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">GPSJ</div>
+      <div>
+        <h1>Global Pharma Scientist Journey</h1>
+        <p>Adaptive Lesson Intelligence v3.9 · Deep Adaptive Curriculum, Mastery Tracking & Connected Workflows</p>
+      </div>
+    </div>
+    <nav class="navrow" id="navrow">
+      <button class="navbtn active" data-view="home">Home</button>
+      <button class="navbtn" data-view="identity">Identity & Profile</button>
+      <button class="navbtn" data-view="journey">My Journey</button>
+      <button class="navbtn" data-view="intelligence">My Intelligence</button>
+      <button class="navbtn" data-view="projects">Projects</button>
+      <button class="navbtn" data-view="learn">Learn</button>
+      <button class="navbtn" data-view="practice">Practice</button>
+      <button class="navbtn" data-view="research">Research</button>
+      <button class="navbtn" data-view="build">Build</button>
+      <button class="navbtn" data-view="marketplace">Marketplace</button>
+      <button class="navbtn" data-view="career">Career</button>
+      <button class="navbtn" data-view="create">Create</button>
+    </nav>
+    <div class="utility-row">
+      <button class="utility-btn accent" id="languageBtn">Language Center</button>
+      <button class="utility-btn" id="employeeBtn">👤 Employee</button>
+      <button class="utility-btn" id="homeBackupBtn">↩ Backup / Home</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <section id="view-home" class="view active">
+      <div class="hero">
+        <div class="hero-grid">
+          <div>
+            <div class="chip" style="background:rgba(255,255,255,.14);color:white;border-color:rgba(255,255,255,.25)">🌍 One verified identity · lifelong scientific intelligence</div>
+            <h2>Your scientific world, shaped around what you are becoming.</h2>
+            <p>GPSJ connects learning, professional practice, research, building, creation, commerce and career intelligence while adapting depth, language, security and regulatory context to the user.</p>
+            <div class="chips" style="margin-top:18px">
+              <span class="chip">Jurisdiction-aware</span><span class="chip">Science-first education</span><span class="chip">Adaptive security</span><span class="chip">Multilingual audio</span>
+            </div>
+          </div>
+          <div class="hero-card">
+            <h3 style="margin-top:0">Context Engine</h3>
+            <p style="font-size:15px">Geography + profession + education + project + permissions → a different GPSJ for each verified user.</p>
+            <button class="btn primary" style="margin-top:14px" data-goto="learn">Enter learning engine</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Quick launch</h2>
+        <p class="lead">Open only what you requested. Navigation no longer jumps the page to unrelated sections.</p>
+        <div class="grid cols-3">
+          <div class="card"><h3>Learn</h3><p>Browse all fields, search any topic, then adapt from broad → specific.</p><button class="btn primary" data-goto="learn">Open Learn</button></div>
+          <div class="card"><h3>Create</h3><p>Generate real editable drafts, reports, presentations, research maps and translations.</p><button class="btn primary" data-goto="create">Open Creator Studio</button></div>
+          <div class="card"><h3>Marketplace</h3><p>Browse accessible science tools first, then reveal regulated categories only when permitted.</p><button class="btn primary" data-goto="marketplace">Open Marketplace</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-learn" class="view">
+      <div class="section" style="margin-top:0">
+        <div class="panel-title"><div><h2>Learning Library</h2><p class="lead">Choose a field or search any subject. GPSJ narrows from broad → domain → topic → lesson → practice.</p></div></div>
+        <div class="searchbar">
+          <input id="learnSearch" placeholder="Search anything: pharmacology, organic chemistry, toxicology, microbiology, statistics, formulation..." />
+          <button class="btn primary" id="searchLearnBtn">Search</button>
+        </div>
+        <div class="chips" style="margin-bottom:16px">
+          <span class="chip">Medicine</span><span class="chip">Pharmacy</span><span class="chip">Biology</span><span class="chip">Chemistry</span><span class="chip">Biotechnology</span><span class="chip">Toxicology</span><span class="chip">Public health</span><span class="chip">Engineering</span><span class="chip">Research methods</span>
+        </div>
+        <div id="continueLearning" class="card continue-card" style="margin-bottom:16px;display:none"></div>
+        <div id="topicGrid" class="topic-grid"></div>
+      </div>
+    </section>
+
+    <section id="view-create" class="view">
+      <div class="section" style="margin-top:0">
+        <h2>Scientific Creator Studio</h2>
+        <p class="lead">The buttons below now open working creator tools instead of dead placeholders.</p>
+        <div class="grid cols-2">
+          <div class="card">
+            <div class="panel-title"><h3>📄 Report Builder</h3><button class="btn primary creator-open" data-type="Report">Open</button></div>
+            <p>Structure scientific and professional reports from an active topic or project.</p>
+          </div>
+          <div class="card">
+            <div class="panel-title"><h3>📊 Presentation Studio</h3><button class="btn primary creator-open" data-type="Presentation">Open</button></div>
+            <p>Build lecture, research, project, business or educational presentation outlines.</p>
+          </div>
+          <div class="card">
+            <div class="panel-title"><h3>🗺️ Research Map Studio</h3><button class="btn primary creator-open" data-type="Research Map">Open</button></div>
+            <p>Turn evidence, regions, institutions and project questions into a structured map brief.</p>
+          </div>
+          <div class="card">
+            <div class="panel-title"><h3>🌐 Translation Center</h3><button class="btn primary creator-open" data-type="Translation">Open</button></div>
+            <p>Prepare multilingual scientific material with domain-specific terminology.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-marketplace" class="view">
+      <div class="section" style="margin-top:0">
+        <h2>Scientific Marketplace</h2>
+        <p class="lead">This prototype is no longer blocked: accessible categories can be inspected immediately. Higher-risk categories show why access is gated.</p>
+        <div class="chips" id="marketTabs" style="margin-bottom:16px">
+          <button class="btn primary market-tab" data-market="accessible">Accessible</button>
+          <button class="btn secondary market-tab" data-market="laboratory">Laboratory</button>
+          <button class="btn secondary market-tab" data-market="clinical">Clinical</button>
+          <button class="btn secondary market-tab" data-market="institutional">Institutional</button>
+        </div>
+        <div id="marketGrid" class="market-grid"></div>
+        <div class="notice" style="margin-top:18px">Production transactions still require current supplier, jurisdiction, credential, shipping, installation and safety checks. Discovery is open where lawful; regulated execution remains gated.</div>
+      </div>
+    </section>
+
+    <section id="view-identity" class="view"><div class="card"><h2>Identity & Profile</h2><p>Profile shell retained. Security depth should adapt to the action: low-risk learning uses basic session assurance; employee, regulated, financial, identity and institutional actions require progressively stronger verification.</p></div></section>
+    <section id="view-journey" class="view"><div class="card"><h2>My Journey</h2><p>Progress, credentials, projects, goals and learning history can live here.</p></div></section>
+    <section id="view-intelligence" class="view"><div class="card"><h2>My Intelligence</h2><p>Context-aware discoveries, recent research, recommendations and project signals can live here.</p></div></section>
+    <section id="view-projects" class="view"><div class="card"><h2>Projects</h2><p>Active project persistence and hand-offs to Research, Create and Build.</p></div></section>
+    <section id="view-practice" class="view"><div class="card"><h2>Practice</h2><p>Adaptive knowledge checks can be launched from each lesson and saved to the user profile.</p></div></section>
+    <section id="view-research" class="view"><div class="card"><h2>Research</h2><p>Research workspace ready for evidence retrieval, synthesis, project linking and freshness checks once live services are connected.</p></div></section>
+    <section id="view-build" class="view"><div class="card"><h2>Build</h2><p>Facilities, laboratories, workflows, utilities and prototypes can be generated from a project brief.</p></div></section>
+    <section id="view-career" class="view"><div class="card"><h2>Career</h2><p>Role discovery, credential pathways, skill gaps and jurisdiction-aware career planning.</p></div></section>
+  </main>
+
+  <div class="backstrip">
+    <button id="backBtn" title="Back">←</button>
+    <button id="forwardBtn" title="Forward">→</button>
+  </div>
+
+  <div id="lessonModal" class="modal">
+    <div class="modal-card">
+      <div class="modal-head"><div><strong id="lessonModalTitle">Lesson</strong></div><button id="closeLesson">✕ Close</button></div>
+      <div class="modal-body">
+        <div class="lesson-shell">
+          <aside class="lesson-sidebar card">
+            <h3 style="margin-top:0">Lesson path</h3>
+            <div class="stack" id="lessonModuleList"></div>
+          </aside>
+          <div class="lesson-main">
+            <div class="lesson-header">
+              <div class="breadcrumb" id="lessonBreadcrumb" style="color:#cdd9fa"></div>
+              <h2 id="lessonTitle"></h2>
+              <p id="lessonSubtitle" style="margin:0;color:#dfe8ff"></p>
+            </div>
+            <div class="lesson-steps" id="lessonSteps">
+              <button class="lesson-step active" data-step="principle">1. Principle</button>
+              <button class="lesson-step" data-step="visual">2. Visual</button>
+              <button class="lesson-step" data-step="explain">3. Explain</button>
+              <button class="lesson-step" data-step="practice">4. Practice</button>
+              <button class="lesson-step" data-step="regional">5. Regional</button>
+            </div>
+            <div class="depth-row" id="lessonDepthRow">
+              <button class="depth-btn" data-depth="foundation">Foundation</button><button class="depth-btn active" data-depth="clinical">Clinical</button><button class="depth-btn" data-depth="advanced">Advanced</button><button class="depth-btn" data-depth="scientist">Scientist</button>
+            </div>
+            <div id="lessonContent"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="creatorModal" class="modal">
+    <div class="modal-card" style="width:min(900px,96vw)">
+      <div class="modal-head"><strong id="creatorTitle">Creator</strong><button id="closeCreator">✕ Close</button></div>
+      <div class="modal-body">
+        <div class="grid cols-2">
+          <div class="card stack">
+            <div class="field"><label>Purpose</label><input id="creatorPurpose" placeholder="What should GPSJ create?" /></div>
+            <div class="field"><label>Audience</label><input id="creatorAudience" placeholder="Students, scientists, investors, regulators..." /></div>
+            <div class="field"><label>Scientific field</label><input id="creatorField" placeholder="Pharmacology, toxicology, chemistry..." /></div>
+            <div class="field"><label>Depth</label><select id="creatorDepth"><option>Foundation</option><option>Clinical</option><option>Advanced</option><option>Scientist</option></select></div>
+            <button class="btn primary" id="generateCreator">Generate working draft</button>
+          </div>
+          <div class="card">
+            <div class="panel-title"><h3>Editable draft</h3><div><button class="btn secondary" id="copyDraft">Copy</button></div></div>
+            <div id="creatorOutput" class="creator-output">Nothing generated yet.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="languageModal" class="modal">
+    <div class="modal-card" style="width:min(900px,96vw)">
+      <div class="modal-head"><strong>Language & Scientific Speech Center</strong><button id="closeLanguage">✕ Close</button></div>
+      <div class="modal-body">
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>Spoken language</h3>
+            <select id="languageSelect" style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--line)">
+              <option value="en-US">English — United States</option><option value="en-GB">English — United Kingdom</option><option value="fr-FR">Français — France</option><option value="fr-CA">Français — Canada</option><option value="es-ES">Español</option><option value="de-DE">Deutsch</option><option value="pt-PT">Português</option><option value="ar-SA">العربية</option>
+            </select>
+            <h3 style="margin-top:18px">Scientific proficiency / exams</h3>
+            <div id="examList" class="lang-grid"></div>
+          </div>
+          <div class="card">
+            <h3>Pronunciation behavior</h3>
+            <p>Opening speed defaults to <strong>0.75×</strong>, but the learner can choose any supported speed from very slow to fast.</p>
+            <div class="speed-row" id="globalSpeedRow"></div>
+            <p style="margin-top:18px">Speech reads scientific symbols by meaning. Example: √x → “square root of x” in English and “racine carrée de x” in French.</p>
+            <div class="notice">Automatic correction from facial expressions such as a frown would require explicit camera permission and a production privacy/consent design. Voice correction can be enabled when the user explicitly repeats or corrects a term.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const state = {
+  view:'home',
+  history:['home'],
+  historyIndex:0,
+  currentTopic:null,
+  currentModule:0,
+  currentStep:'principle',
+  speechRate:0.75,
+  language:'en-US',
+  currentMarket:'accessible',
+  depth:'clinical',
+  mastery: JSON.parse(localStorage.getItem('gpsjMastery')||'{}'),
+  learningGoal: localStorage.getItem('gpsjLearningGoal') || 'understand',
+  confidence: +(localStorage.getItem('gpsjConfidence') || 3),
+  selectedSubtopic: localStorage.getItem('gpsjSelectedSubtopic') || '',
+  adaptiveTrail: JSON.parse(localStorage.getItem('gpsjAdaptiveTrail') || '[]')
+};
+
+const topicData = [
+ {id:'pharmacology',title:'Pharmacology',desc:'Physiology → target → drug → response → adverse effects → monitoring.',img:'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=900&q=80',modules:['Foundations of pharmacodynamics','Receptors, enzymes and transporters','Dose-response, potency and efficacy','Pharmacokinetics: ADME','Bioavailability and first-pass effect','Volume of distribution and protein binding','Clearance, half-life and steady state','Therapeutic index and drug monitoring','Autonomic pharmacology','Cardiovascular pharmacology','Central nervous system pharmacology','Endocrine pharmacology','Pain and inflammation','Anticoagulation and hematology','Anti-infective pharmacology','Oncology pharmacology','Drug interactions and cytochrome enzymes','Adverse drug reactions and toxicology','Pharmacogenomics and precision medicine','Integrated clinical pharmacology']},
+ {id:'calculations',title:'Clinical & Laboratory Calculations',desc:'Dose, concentration, infusion, dilution, units and verification.',img:'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=900&q=80',modules:['Units, dimensional analysis and estimation','Dose, concentration and volume','Weight-based dosing','Body-surface-area dosing','Infusion rate and time','IV drip rates and drop factors','Dilution and concentration','Percent, ratio and strength','Alligation and mixtures','Electrolyte and milliequivalent calculations','Osmolarity and osmolality','Renal dosing concepts','Pharmacokinetic calculations','Laboratory measurements and uncertainty','Integrated calculation safety']},
+ {id:'microbiology',title:'Microbiology & Anti-infectives',desc:'Organism → structure → susceptibility → antimicrobial target → exposure.',img:'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=900&q=80',modules:['Microbial cell structure and selective toxicity','Bacterial classification and staining','Culture, identification and susceptibility testing','Antimicrobial targets','PK/PD and antimicrobial exposure','Resistance mechanisms','Beta-lactams and cell-wall agents','Protein-synthesis inhibitors','DNA/RNA and metabolic inhibitors','Mycobacteria','Fungi','Viruses','Parasites','Biofilms and device-associated infection','Stewardship and resistance ecology','Integrated anti-infective reasoning']},
+ {id:'chemistry',title:'Chemistry, Biotechnology & Pharmaceutical Science',desc:'Structure → reaction → system → formulation → application.',img:'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=900&q=80',modules:['Atomic structure and periodic behavior','Chemical bonding and intermolecular forces','Stoichiometry and reaction quantities','Acids, bases, buffers and pH','Thermodynamics and equilibrium','Reaction kinetics','Organic functional groups','Stereochemistry','Medicinal chemistry foundations','Analytical chemistry','Spectroscopy and chromatography','Solubility and partitioning','Dosage-form design','Formulation and excipients','Stability and degradation','Biotechnology systems','Biologics and macromolecules','Manufacturing science and quality']},
+ {id:'physiology',title:'Medicine & Clinical Sciences',desc:'Normal state → disturbance → mechanism → diagnosis → intervention.',img:'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80',modules:['Cell physiology and homeostasis','Cardiovascular physiology','Respiratory physiology','Renal physiology','Gastrointestinal physiology','Endocrine physiology','Neurologic physiology','Hematology and immunity','Pathophysiology foundations','Clinical reasoning and differential thinking','Diagnostics and laboratory interpretation','Monitoring and therapeutic response']},
+ {id:'research',title:'Research & Experimental Science',desc:'Question → hypothesis → experiment → instrument → data → inference.',img:'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=900&q=80',modules:['Research question and hypothesis','Literature discovery and evidence hierarchy','Study designs','Experimental controls and bias','Sampling and measurement','Laboratory methods','Data quality and reproducibility','Descriptive statistics','Inferential statistics','Regression and modeling','Visualization and scientific communication','Ethics and research governance','Protocol development','Manuscript and peer review','Translation from bench to application']},
+ {id:'toxicology',title:'Toxicology',desc:'Exposure → dose → target organ → mechanism → risk → monitoring.',img:'https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=900&q=80',modules:['Dose-response and toxicologic principles','Absorption, distribution and toxicokinetics','Biotransformation and reactive metabolites','Oxidative stress and cellular injury','Hepatotoxicity','Nephrotoxicity','Neurotoxicity','Cardiotoxicity','Pulmonary toxicity','Reproductive and developmental toxicity','Genotoxicity and carcinogenesis','Environmental and occupational toxicology','Clinical toxicology and antidotal principles','Risk assessment and exposure limits']},
+ {id:'publichealth',title:'Public Health',desc:'Population → determinant → surveillance → intervention → evaluation.',img:'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80',modules:['Epidemiology foundations','Measures of disease frequency','Study design and causal inference','Screening and diagnostic performance','Surveillance systems','Outbreak investigation','Vaccination and prevention','Environmental health','Occupational health','Global health systems','Health equity and social determinants','Program evaluation','Emergency preparedness and response','Health policy and implementation']},
+ {id:'engineering',title:'Scientific Engineering & Build',desc:'Need → system → specification → prototype → validation → operations.',img:'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=900&q=80',modules:['Requirements and systems thinking','Facility programming','Laboratory layout and workflows','Utilities and critical infrastructure','Water purification systems','HVAC and environmental control','Cleanroom and contamination control','Cold chain and storage','Instrumentation and automation','Digital systems and data integrity','Safety and emergency systems','Procurement and lifecycle planning','Prototype design','Commissioning, qualification and validation','Operations, maintenance and resilience']}
+]
+
+const marketData = {
+ accessible:[
+  ['Digital thermometer','Measurement','Generally accessible'],
+  ['Laboratory notebook','Documentation','Educational / professional'],
+  ['Pipette training kit','Learning equipment','Educational use'],
+  ['Microscope teaching slides','Learning aid','Generally accessible']
+ ],
+ laboratory:[
+  ['Micropipette','Liquid handling','Laboratory context'],
+  ['Benchtop centrifuge','Sample processing','Institutional specifications matter'],
+  ['pH meter','Analytical measurement','Calibration required'],
+  ['Cold-storage monitor','Quality system','Use-case aware']
+ ],
+ clinical:[
+  ['Infusion training pump','Simulation / education','Training use accessible; clinical use regulated'],
+  ['Point-of-care simulator','Clinical education','Institution-specific'],
+  ['Diagnostic device class','Clinical device','Regulatory verification required']
+ ],
+ institutional:[
+  ['Biosafety cabinet','Containment equipment','Facility + certification requirements'],
+  ['Ultra-low freezer','Research infrastructure','Installation / power / monitoring'],
+  ['Water purification system','Facility infrastructure','Specification and validation required']
+ ]
+};
+
+function setView(view, push=true){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  const el=document.getElementById('view-'+view);
+  if(el) el.classList.add('active');
+  document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.view===view));
+  state.view=view;
+  if(push){
+    state.history=state.history.slice(0,state.historyIndex+1);
+    state.history.push(view); state.historyIndex++;
+  }
+  window.scrollTo({top:0,behavior:'instant'});
+}
+document.querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>setView(b.dataset.goto));
+document.querySelectorAll('.navbtn').forEach(b=>b.onclick=()=>setView(b.dataset.view));
+
+document.getElementById('backBtn').onclick=()=>{
+  if(state.historyIndex>0){state.historyIndex--;setView(state.history[state.historyIndex],false);}
+};
+document.getElementById('forwardBtn').onclick=()=>{
+  if(state.historyIndex<state.history.length-1){state.historyIndex++;setView(state.history[state.historyIndex],false);}
+};
+document.getElementById('homeBackupBtn').onclick=()=>setView('home');
+
+function topicMastery(topicId){ const t=topicData.find(x=>x.id===topicId); if(!t)return 0; let done=0; t.modules.forEach((_,i)=>{if(state.mastery[topicId+':'+i]>=1)done++}); return Math.round(done/t.modules.length*100); }
+function saveMastery(){localStorage.setItem('gpsjMastery',JSON.stringify(state.mastery)); renderContinue();}
+function renderContinue(){const box=document.getElementById('continueLearning'); const raw=localStorage.getItem('gpsjLastLesson'); if(!raw){box.style.display='none';return;} try{const x=JSON.parse(raw),t=topicData.find(v=>v.id===x.topic); if(!t)return; box.style.display='block'; box.innerHTML=`<div class="panel-title"><div><h3 style="margin:0">Continue learning</h3><div class="module-meta">${t.title} · Module ${x.module+1} of ${t.modules.length}</div></div><button class="btn primary" id="continueBtn">Resume</button></div><strong>${t.modules[x.module]}</strong><div class="mastery-bar" style="margin-top:12px"><span style="width:${topicMastery(t.id)}%"></span></div>`; document.getElementById('continueBtn').onclick=()=>openLesson(x.topic,x.module,x.step||'principle');}catch(e){box.style.display='none'}}
+function renderTopics(filter=''){
+  const grid=document.getElementById('topicGrid');
+  const q=filter.trim().toLowerCase();
+  const data=topicData.filter(t=>!q || (t.title+' '+t.desc+' '+t.modules.join(' ')).toLowerCase().includes(q));
+  grid.innerHTML=data.map(t=>`
+    <article class="topic-card">
+      <div class="topic-img" style="background-image:url('${t.img}')"></div>
+      <div class="topic-body">
+        <h3>${t.title}</h3><p>${t.desc}</p><div class="module-meta">${t.modules.length} modules · adapts to ${state.depth} depth</div><div class="mastery-bar" style="margin:10px 0"><span style="width:${topicMastery(t.id)}%"></span></div>
+        <button class="btn primary open-topic" data-topic="${t.id}">Explore</button>
+      </div>
+    </article>`).join('') || '<div class="card">No exact match. Try a broader scientific term.</div>';
+  document.querySelectorAll('.open-topic').forEach(b=>b.onclick=()=>openLesson(b.dataset.topic,0,'principle'));
+}
+renderTopics();
+renderContinue();
+document.getElementById('searchLearnBtn').onclick=()=>renderTopics(document.getElementById('learnSearch').value);
+document.getElementById('learnSearch').addEventListener('keydown',e=>{if(e.key==='Enter')renderTopics(e.target.value)});
+
+function principleText(topic,module){
+ const map={
+  pharmacology:['Drug effect begins with interaction at a biological target.','Exposure determines how much drug reaches the target over time.','Adverse effects are mechanistic consequences of target and off-target actions.'],
+  calculations:['Volume required = ordered dose ÷ concentration.','Infusion rate links total volume to delivery time.','Dilution preserves amount of solute while concentration changes.','Percent strength is a ratio that must be translated into units.','Measurements are only useful when units, precision and calibration are verified.'],
+  microbiology:['Antimicrobial effect depends on target susceptibility and adequate exposure.','Response depends on exposure relative to organism susceptibility.','Effective therapy requires the correct organism class, susceptible target and adequate exposure.'],
+  chemistry:['Structure determines chemical behavior and potential interactions.','Reaction progress depends on reactants, activation conditions and competing pathways.','Formulation performance depends on composition, environment and stability.','Biotechnology systems connect biological machinery to measurable products.'],
+  physiology:['Normal physiology provides the baseline for understanding disturbance.','Disease changes a normal system through a mechanism.','Clinical reasoning connects findings to mechanism before intervention.'],
+  research:['A research question must be specific enough to test.','Methods determine whether measurements can answer the question.','Inference depends on data quality, design and uncertainty.'],
+  toxicology:['Toxic response depends on dose, route, duration and susceptibility.','Target-organ toxicity reflects exposure plus tissue-specific vulnerability.','Risk assessment separates hazard from real-world exposure.'],
+  publichealth:['Population outcomes emerge from interacting determinants.','Health systems convert information into coordinated action.','Prevention must be measured against population outcomes.'],
+  engineering:['A useful system begins with explicit requirements.','A prototype should make assumptions testable.','Validation links expected performance to measured evidence.']
+ };
+ return (map[topic]||['Learn the relationship first.'])[module] || 'Learn the relationship first.';
+}
+
+function visualConfig(topic){
+ const configs={
+  pharmacology:{title:'Receptor / target interaction',img:'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=1200&q=80',caption:'AI-adapted visual context: molecules and target interaction.',labels:['Drug concentration','Target sensitivity','Competing signal']},
+  calculations:{title:'Dose & measurement context',img:'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80',caption:'AI-adapted visual context: laboratory measurement and concentration.',labels:['Ordered dose','Available concentration','Volume / time']},
+  microbiology:{title:'Microbial response',img:'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&q=80',caption:'AI-adapted visual context: microorganism and susceptibility.',labels:['Exposure','Susceptibility','Resistance pressure']},
+  chemistry:{title:'Reaction system',img:'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80',caption:'AI-adapted visual context: chemical reaction environment.',labels:['Reactant concentration','Activation support','Competing pathway']},
+  physiology:{title:'Physiological system',img:'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1200&q=80',caption:'AI-adapted visual context: organ/system response.',labels:['Baseline function','Disturbance','Compensation']},
+  research:{title:'Experimental system',img:'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80',caption:'AI-adapted visual context: experimental measurement.',labels:['Independent variable','Measurement sensitivity','Noise']},
+  toxicology:{title:'Exposure and toxicity',img:'https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1200&q=80',caption:'AI-adapted visual context: exposure-to-response reasoning.',labels:['Dose','Duration','Susceptibility']},
+  publichealth:{title:'Population system',img:'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=80',caption:'AI-adapted visual context: population and health-system response.',labels:['Exposure prevalence','Intervention coverage','System capacity']},
+  engineering:{title:'Prototype system',img:'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=80',caption:'AI-adapted visual context: engineered scientific system.',labels:['Input load','System efficiency','Failure pressure']}
+ };
+ return configs[topic]||configs.research;
+}
+
+function openLesson(topicId,moduleIndex=0,step='principle'){
+ state.currentTopic=topicId; state.currentModule=moduleIndex; state.currentStep=step; localStorage.setItem('gpsjLastLesson',JSON.stringify({topic:topicId,module:moduleIndex,step}));
+ const topic=topicData.find(t=>t.id===topicId);
+ document.getElementById('lessonModal').classList.add('open');
+ document.getElementById('lessonModalTitle').textContent=topic.title;
+ document.getElementById('lessonTitle').textContent=topic.modules[moduleIndex];
+ document.getElementById('lessonSubtitle').textContent='Learn the relationship first, then see it, manipulate it, explain it and verify understanding.';
+ document.getElementById('lessonBreadcrumb').textContent=`${topic.title} · Module ${moduleIndex+1} of ${topic.modules.length}`;
+ document.getElementById('lessonModuleList').innerHTML=topic.modules.map((m,i)=>`<button class="btn ${i===moduleIndex?'primary':''} lesson-module" data-i="${i}">${i+1}. ${m}</button>`).join('');
+ document.querySelectorAll('.lesson-module').forEach(b=>b.onclick=()=>openLesson(topicId,+b.dataset.i,'principle'));
+ document.querySelectorAll('.lesson-step').forEach(b=>b.classList.toggle('active',b.dataset.step===step));
+ document.querySelectorAll('.depth-btn').forEach(x=>x.classList.toggle('active',x.dataset.depth===state.depth));
+ renderLessonStep();
+}
+function renderLessonStep(){
+ const topic=topicData.find(t=>t.id===state.currentTopic);
+ const module=topic.modules[state.currentModule];
+ const box=document.getElementById('lessonContent');
+ document.querySelectorAll('.lesson-step').forEach(b=>b.classList.toggle('active',b.dataset.step===state.currentStep));
+ if(state.currentStep==='principle'){
+   box.innerHTML=`<div class="content-box"><h3>Scientific principle first</h3><div style="font-size:24px;font-weight:800;background:var(--soft);padding:18px;border-radius:14px">${principleText(topic.id,state.currentModule)}</div><p style="color:var(--muted)">GPSJ should explain the relationship before asking the learner to memorize a procedure.</p><button class="btn primary next-step">See it visually →</button></div>`;
+ } else if(state.currentStep==='visual'){
+   const v=visualConfig(topic.id);
+   box.innerHTML=`<div class="visual-wrap">
+     <div class="visual-stage">
+       <img src="${v.img}" alt="${v.title}">
+       <div class="visual-overlay"><h3 style="margin:0 0 6px">${v.title}</h3><div>${v.caption}</div><div id="visualResult" style="margin-top:8px;font-weight:800">Current response index: 50%</div></div>
+     </div>
+     <div class="card">
+       <h3>Manipulate this topic</h3>
+       ${v.labels.map((l,i)=>`<div class="range-row"><label>${l}</label><input class="visual-range" type="range" min="0" max="100" value="${[55,60,25][i]||50}"><span class="range-value">${[55,60,25][i]||50}</span></div>`).join('')}
+       <div class="visual-controls"><button class="btn primary" id="playVisual">▶ Animate</button><button class="btn secondary" id="explainVisual">Ask GPSJ why</button></div>
+       <div id="visualExplanation" style="margin-top:12px;color:var(--muted)">Adjust values to change the simulated response.</div>
+     </div>
+   </div>`;
+   wireVisual();
+ } else if(state.currentStep==='explain'){
+   box.innerHTML=`<div class="content-box"><h3>Explain the mechanism</h3><p>${principleText(topic.id,state.currentModule)} The explanation layer connects cause → system change → measurable consequence. Current adaptive depth: <strong>${state.depth}</strong>.</p><textarea id="lessonQuestion" style="width:100%;min-height:100px;border:1px solid var(--line);border-radius:12px;padding:12px" placeholder="Ask GPSJ about this lesson..."></textarea><button class="btn primary" id="lessonExplainBtn" style="margin-top:10px">Explain</button><div id="lessonAnswer" class="notice" style="margin-top:12px;display:none"></div></div>`;
+   document.getElementById('lessonExplainBtn').onclick=()=>{const q=document.getElementById('lessonQuestion').value||'Explain this mechanism'; const a=document.getElementById('lessonAnswer');a.style.display='block';a.textContent=`Prototype explanation for “${q}”: ${principleText(topic.id,state.currentModule)} In production this answer would come from the connected AI service with the user’s current depth, language and jurisdiction context.`}
+ } else if(state.currentStep==='practice'){
+   box.innerHTML=`<div class="content-box"><h3>Adaptive practice</h3><p><strong>Question:</strong> Which approach best matches this lesson?</p><div class="stack"><button class="btn secondary answer" data-ok="1">Understand the relationship and variables before memorizing the procedure.</button><button class="btn secondary answer" data-ok="0">Memorize isolated terms without connecting the mechanism.</button></div><div id="practiceFeedback" style="margin-top:12px"></div></div>`;
+   document.querySelectorAll('.answer').forEach(b=>b.onclick=()=>{
+     const ok=b.dataset.ok==='1';
+     document.getElementById('practiceFeedback').innerHTML=ok?'<div class="notice" style="background:#eaf8f2;color:#147658;border-color:#b8e6d3">Correct. GPSJ can now increase depth or move to the next mechanism.</div>':'<div class="notice">Review the principle first. The system should reduce depth and re-explain visually.</div>';
+     state.confidence = ok ? Math.min(5,state.confidence+1) : Math.max(1,state.confidence-1);
+     if(typeof addAdaptiveTrail==='function') addAdaptiveTrail(ok?'Practice success → confidence increased':'Practice miss → confidence reduced');
+     if(typeof renderAdaptiveIntelligence==='function') renderAdaptiveIntelligence();
+   });
+ } else if(state.currentStep==='regional'){
+   box.innerHTML=`<div class="content-box"><h3>Regional layer</h3><p>Universal science remains separate from jurisdiction-specific rules. Before showing regulated practice, GPSJ should verify the learner’s location, credential level, institution and applicable rules.</p><div class="notice">Current prototype: educational context only. Production regional guidance must be verified from current authoritative sources.</div></div>`;
+ }
+ box.insertAdjacentHTML('beforeend',`<div class="lesson-actions"><button class="btn primary" id="markMastered">✓ I understand this module</button><button class="btn secondary" id="saveLessonProgress">Save progress</button><span class="chip">Depth: ${state.depth}</span></div>`);
+ document.getElementById('markMastered').onclick=()=>{state.mastery[topic.id+':'+state.currentModule]=1;saveMastery();document.getElementById('markMastered').textContent='✓ Mastery saved';};
+ document.getElementById('saveLessonProgress').onclick=()=>{localStorage.setItem('gpsjLastLesson',JSON.stringify({topic:topic.id,module:state.currentModule,step:state.currentStep}));document.getElementById('saveLessonProgress').textContent='Saved';};
+ const n=document.querySelector('.next-step'); if(n)n.onclick=()=>{state.currentStep='visual';localStorage.setItem('gpsjLastLesson',JSON.stringify({topic:topic.id,module:state.currentModule,step:'visual'}));renderLessonStep();}
+}
+document.querySelectorAll('.lesson-step').forEach(b=>b.onclick=()=>{state.currentStep=b.dataset.step;renderLessonStep()});
+document.querySelectorAll('.depth-btn').forEach(b=>b.onclick=()=>{state.depth=b.dataset.depth;document.querySelectorAll('.depth-btn').forEach(x=>x.classList.toggle('active',x.dataset.depth===state.depth));renderLessonStep();});
+document.getElementById('closeLesson').onclick=()=>{document.getElementById('lessonModal').classList.remove('open');renderTopics(document.getElementById('learnSearch').value);renderContinue();};
+
+function wireVisual(){
+ const ranges=[...document.querySelectorAll('.visual-range')];
+ function update(){
+  ranges.forEach(r=>r.parentElement.querySelector('.range-value').textContent=r.value);
+  const vals=ranges.map(r=>+r.value);
+  const score=Math.max(0,Math.min(100, Math.round((vals[0]*0.5 + vals[1]*0.35 + (100-vals[2])*0.15))));
+  document.getElementById('visualResult').textContent=`Current response index: ${score}%`;
+ }
+ ranges.forEach(r=>r.oninput=update);
+ document.getElementById('playVisual').onclick=()=>{
+   let i=0; const timer=setInterval(()=>{i++; ranges[0].value=Math.min(100,+ranges[0].value+2);update();if(i>12)clearInterval(timer)},80);
+ };
+ document.getElementById('explainVisual').onclick=()=>{
+   document.getElementById('visualExplanation').textContent='The simulated response changes because the first two variables increase system drive while the competing pathway reduces effective response. Production GPSJ would generate a topic-specific explanation from the connected AI service.';
+ };
+}
+
+
+// ---------- v3.9 Adaptive Lesson Intelligence ----------
+const adaptiveSubtopics = {
+  pharmacology:{
+    0:['Ligand–target interaction','Affinity and occupancy','Agonism vs antagonism','Efficacy vs potency','Dose–response curves','Therapeutic window'],
+    1:['Receptor families','Enzyme inhibition','Transporter modulation','Second messengers','Desensitization','Target selectivity'],
+    2:['EC50 and potency','Emax and efficacy','Partial agonism','Competitive antagonism','Noncompetitive antagonism','Population variability'],
+    3:['Absorption','Distribution','Metabolism','Excretion','Bioavailability','Exposure over time'],
+    8:['Sympathetic pathways','Parasympathetic pathways','Adrenergic receptors','Cholinergic receptors','Autonomic drugs','Organ responses'],
+    9:['Blood pressure regulation','Renin–angiotensin system','Cardiac electrophysiology','Heart failure mechanisms','Antianginal mechanisms','Lipid pharmacology'],
+    10:['Neurotransmitters','Synaptic signaling','Depression pharmacology','Psychosis pharmacology','Seizure pharmacology','Parkinson disease mechanisms'],
+    14:['Microbial targets','PK/PD relationships','Resistance','Spectrum','Toxicity','Stewardship']
+  },
+  calculations:{
+    0:['Units and prefixes','Dimensional analysis','Significant figures','Estimation','Unit cancellation','Magnitude check'],
+    1:['Ordered dose','Stock concentration','Required volume','Strength conversion','Unit matching','Reasonableness check'],
+    4:['Dose per time','Volume per time','Infusion duration','Pump rate','Rate conversion','Safety check'],
+    6:['C1V1 = C2V2','Stock solution','Target concentration','Final volume','Diluent volume','Verification']
+  },
+  microbiology:{
+    0:['Cell wall','Cell membrane','Ribosome','Nucleic acid synthesis','Metabolic pathways','Selective toxicity'],
+    4:['MIC','Time above MIC','Cmax/MIC','AUC/MIC','Exposure profile','Response'],
+    5:['Enzyme destruction','Target modification','Efflux','Reduced permeability','Biofilm states','Selection pressure']
+  },
+  chemistry:{
+    3:['Acid strength','Base strength','pKa','Buffer systems','Henderson–Hasselbalch','Physiologic pH'],
+    5:['Reaction rate','Activation energy','Catalysis','Temperature','Concentration','Rate law'],
+    11:['Solubility','Partition coefficient','Ionization','Polarity','Dissolution','Formulation implications']
+  },
+  toxicology:{
+    0:['Dose','Route','Duration','Susceptibility','Threshold','Dose–response curve'],
+    4:['Reactive metabolites','Cellular stress','Biomarkers','Liver injury patterns','Risk factors','Monitoring'],
+    8:['Inhaled exposure','Airway injury','Alveolar injury','Oxidative stress','Fibrosis','Exposure monitoring']
+  },
+  research:{
+    0:['Research question','Hypothesis','Variables','Operational definitions','Feasibility','Scientific significance'],
+    2:['Experimental study','Cohort','Case-control','Cross-sectional','Randomization','Causal inference'],
+    6:['Reproducibility','Validity','Reliability','Missing data','Protocol deviations','Audit trail']
+  },
+  engineering:{
+    0:['User need','System boundary','Functional requirement','Constraint','Risk','Verification criterion'],
+    2:['Personnel flow','Material flow','Specimen flow','Clean/dirty separation','Adjacency','Bottlenecks'],
+    4:['Source water','Pretreatment','Purification','Storage','Distribution','Monitoring'],
+    5:['Air changes','Temperature','Humidity','Pressure cascade','Filtration','Alarm strategy'],
+    13:['URS','DQ','IQ','OQ','PQ','Change control']
+  }
+};
+
+function getAdaptiveSubtopics(topicId,moduleIndex){
+  const specific = adaptiveSubtopics[topicId] && adaptiveSubtopics[topicId][moduleIndex];
+  if(specific) return specific;
+  const t = topicData.find(x=>x.id===topicId);
+  const m = t?.modules[moduleIndex] || 'Current module';
+  return [
+    `${m}: core concept`,
+    `${m}: mechanism`,
+    `${m}: variables`,
+    `${m}: measurement`,
+    `${m}: application`,
+    `${m}: common errors`
+  ];
+}
+
+function saveAdaptiveState(){
+  localStorage.setItem('gpsjLearningGoal',state.learningGoal);
+  localStorage.setItem('gpsjConfidence',String(state.confidence));
+  localStorage.setItem('gpsjSelectedSubtopic',state.selectedSubtopic || '');
+  localStorage.setItem('gpsjAdaptiveTrail',JSON.stringify(state.adaptiveTrail.slice(-20)));
+}
+
+function addAdaptiveTrail(label){
+  const now = new Date();
+  state.adaptiveTrail.push(`${now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})} · ${label}`);
+  state.adaptiveTrail = state.adaptiveTrail.slice(-20);
+  saveAdaptiveState();
+}
+
+function adaptiveRecommendation(){
+  const topic = topicData.find(x=>x.id===state.currentTopic);
+  const mastery = state.mastery[state.currentTopic+':'+state.currentModule] || 0;
+  const confidence = state.confidence;
+
+  if(confidence <= 2){
+    return {
+      title:'Rebuild the concept visually',
+      reason:'Confidence is low, so GPSJ should reduce cognitive load, return to the principle and show the mechanism before increasing complexity.',
+      action:'visual',
+      depth: state.depth==='scientist' ? 'advanced' : (state.depth==='advanced' ? 'clinical' : state.depth)
+    };
+  }
+  if(confidence === 3 && !mastery){
+    return {
+      title:'Explain, then test one mechanism',
+      reason:'Confidence is moderate but mastery is not yet saved. GPSJ should connect the visual to a causal explanation and then ask a focused question.',
+      action:'explain',
+      depth:state.depth
+    };
+  }
+  if(confidence >= 4 && mastery && state.currentModule < topic.modules.length-1){
+    return {
+      title:`Advance to Module ${state.currentModule+2}`,
+      reason:'Current mastery is saved and confidence is high, so the next best action is to continue the curriculum while preserving the current depth.',
+      action:'next-module',
+      depth:state.depth
+    };
+  }
+  if(confidence >= 4){
+    return {
+      title:'Challenge this concept',
+      reason:'Confidence is high. GPSJ should test transfer, edge cases and application rather than repeat the same explanation.',
+      action:'practice',
+      depth: state.depth==='foundation' ? 'clinical' : (state.depth==='clinical' ? 'advanced' : state.depth)
+    };
+  }
+  return {
+    title:'Continue through the learning loop',
+    reason:'The current state supports another focused step without changing difficulty.',
+    action:'practice',
+    depth:state.depth
+  };
+}
+
+function renderAdaptiveIntelligence(){
+  const box = document.getElementById('lessonContent');
+  if(!box || !state.currentTopic) return;
+
+  const topic = topicData.find(x=>x.id===state.currentTopic);
+  const subtopics = getAdaptiveSubtopics(state.currentTopic,state.currentModule);
+  if(!state.selectedSubtopic || !subtopics.includes(state.selectedSubtopic)){
+    state.selectedSubtopic = subtopics[0];
+  }
+  const rec = adaptiveRecommendation();
+
+  const existing = document.getElementById('adaptiveIntel');
+  if(existing) existing.remove();
+
+  box.insertAdjacentHTML('beforeend',`
+    <section id="adaptiveIntel" class="adaptive-intel">
+      <div class="panel-title">
+        <div>
+          <h3>🧠 Adaptive Lesson Intelligence</h3>
+          <div class="module-meta">GPSJ uses your goal, confidence, mastery and current lesson behavior to choose the next learning move.</div>
+        </div>
+        <span class="chip">Live prototype</span>
+      </div>
+
+      <div class="adaptive-grid">
+        <div class="adaptive-card">
+          <strong>What is your goal right now?</strong>
+          <div class="adaptive-control-row" id="goalRow">
+            ${[
+              ['understand','Understand'],
+              ['exam','Prepare for exam'],
+              ['research','Research depth'],
+              ['apply','Apply professionally']
+            ].map(([v,l])=>`<button class="adaptive-control ${state.learningGoal===v?'active':''}" data-goal="${v}">${l}</button>`).join('')}
+          </div>
+        </div>
+
+        <div class="adaptive-card">
+          <strong>How confident do you feel?</strong>
+          <div class="confidence-meter" id="confidenceMeter">
+            ${[1,2,3,4,5].map(n=>`<button class="confidence-dot ${state.confidence===n?'active':''}" data-confidence="${n}">${n}</button>`).join('')}
+          </div>
+          <div class="module-meta">1 = confused · 3 = developing · 5 = ready to transfer</div>
+        </div>
+      </div>
+
+      <div class="adaptive-card" style="margin-top:12px">
+        <strong>Explore this module from broad → specific</strong>
+        <div class="subtopic-grid" id="subtopicGrid">
+          ${subtopics.map(s=>`<button class="subtopic-btn ${state.selectedSubtopic===s?'active':''}" data-subtopic="${s.replace(/"/g,'&quot;')}">${s}</button>`).join('')}
+        </div>
+        <div id="subtopicContext" class="notice" style="margin-top:10px">
+          Active focus: <strong>${state.selectedSubtopic}</strong>. GPSJ will keep the parent module visible while explanations and practice narrow to this concept.
+        </div>
+      </div>
+
+      <div class="next-recommendation" id="nextRecommendation">
+        <strong>Recommended next: ${rec.title}</strong>
+        <small>${rec.reason}</small>
+        <div class="adaptive-control-row">
+          <button class="btn primary" id="followRecommendation">Follow recommendation</button>
+          <button class="btn secondary" id="imConfused">I’m confused</button>
+          <button class="btn secondary" id="challengeMe">Challenge me</button>
+        </div>
+      </div>
+
+      <div class="adaptive-card" style="margin-top:12px">
+        <strong>Adaptive activity trail</strong>
+        <div class="adaptive-trail" id="adaptiveTrail">
+          ${(state.adaptiveTrail.length?state.adaptiveTrail:['No adaptive decisions recorded yet.']).map(x=>`<span>${x}</span>`).join('')}
+        </div>
+      </div>
+    </section>
+  `);
+
+  document.querySelectorAll('#goalRow [data-goal]').forEach(b=>b.onclick=()=>{
+    state.learningGoal=b.dataset.goal;
+    addAdaptiveTrail(`Goal → ${b.textContent}`);
+    renderAdaptiveIntelligence();
+  });
+
+  document.querySelectorAll('#confidenceMeter [data-confidence]').forEach(b=>b.onclick=()=>{
+    state.confidence=+b.dataset.confidence;
+    addAdaptiveTrail(`Confidence → ${state.confidence}/5`);
+    renderAdaptiveIntelligence();
+  });
+
+  document.querySelectorAll('#subtopicGrid [data-subtopic]').forEach(b=>b.onclick=()=>{
+    state.selectedSubtopic=b.dataset.subtopic;
+    addAdaptiveTrail(`Focus → ${state.selectedSubtopic}`);
+    document.querySelectorAll('#subtopicGrid .subtopic-btn').forEach(x=>x.classList.toggle('active',x===b));
+    document.getElementById('subtopicContext').innerHTML=`Active focus: <strong>${state.selectedSubtopic}</strong>. GPSJ will now adapt explanation, visuals and questions around this concept while keeping the parent module context.`;
+    saveAdaptiveState();
+  });
+
+  document.getElementById('imConfused').onclick=()=>{
+    state.confidence=1;
+    if(state.depth==='scientist')state.depth='advanced';
+    else if(state.depth==='advanced')state.depth='clinical';
+    else if(state.depth==='clinical')state.depth='foundation';
+    state.currentStep='visual';
+    addAdaptiveTrail('Confusion signal → visual review + reduced depth');
+    document.querySelectorAll('.depth-btn').forEach(x=>x.classList.toggle('active',x.dataset.depth===state.depth));
+    renderLessonStep();
+  };
+
+  document.getElementById('challengeMe').onclick=()=>{
+    state.confidence=5;
+    if(state.depth==='foundation')state.depth='clinical';
+    else if(state.depth==='clinical')state.depth='advanced';
+    else if(state.depth==='advanced')state.depth='scientist';
+    state.currentStep='practice';
+    addAdaptiveTrail('Challenge signal → harder practice + increased depth');
+    document.querySelectorAll('.depth-btn').forEach(x=>x.classList.toggle('active',x.dataset.depth===state.depth));
+    renderLessonStep();
+  };
+
+  document.getElementById('followRecommendation').onclick=()=>{
+    const r=adaptiveRecommendation();
+    state.depth=r.depth;
+    if(r.action==='next-module'){
+      const next=Math.min(topic.modules.length-1,state.currentModule+1);
+      addAdaptiveTrail(`Advanced → Module ${next+1}`);
+      openLesson(topic.id,next,'principle');
+      return;
+    }
+    state.currentStep=r.action;
+    addAdaptiveTrail(`Recommended step → ${r.title}`);
+    document.querySelectorAll('.depth-btn').forEach(x=>x.classList.toggle('active',x.dataset.depth===state.depth));
+    renderLessonStep();
+  });
+}
+
+// Wrap the existing lesson renderer so every lesson gets the v3.9 intelligence layer.
+const renderLessonStepV38 = renderLessonStep;
+renderLessonStep = function(){
+  renderLessonStepV38();
+  renderAdaptiveIntelligence();
+};
+
+// Record module changes and restore adaptive focus.
+const openLessonV38 = openLesson;
+openLesson = function(topicId,moduleIndex=0,step='principle'){
+  const changed = state.currentTopic!==topicId || state.currentModule!==moduleIndex;
+  openLessonV38(topicId,moduleIndex,step);
+  if(changed){
+    const t=topicData.find(x=>x.id===topicId);
+    state.selectedSubtopic='';
+    addAdaptiveTrail(`${t?.title||topicId} → Module ${moduleIndex+1}`);
+  }
+  renderAdaptiveIntelligence();
+};
+
+let creatorType='Report';
+document.querySelectorAll('.creator-open').forEach(b=>b.onclick=()=>{
+ creatorType=b.dataset.type; document.getElementById('creatorTitle').textContent=creatorType+' Studio'; document.getElementById('creatorModal').classList.add('open');
+});
+document.getElementById('closeCreator').onclick=()=>document.getElementById('creatorModal').classList.remove('open');
+document.getElementById('generateCreator').onclick=()=>{
+ const p=document.getElementById('creatorPurpose').value||'Develop a scientific topic';
+ const a=document.getElementById('creatorAudience').value||'scientific audience';
+ const f=document.getElementById('creatorField').value||'pharmaceutical sciences';
+ const d=document.getElementById('creatorDepth').value;
+ const templates={
+  'Report':`TITLE\n${p}\n\n1. Purpose\n2. Scientific background\n3. Key question\n4. Evidence / methods\n5. Analysis\n6. Limitations\n7. Regional or regulatory layer\n8. Recommendations\n\nAudience: ${a}\nField: ${f}\nDepth: ${d}`,
+  'Presentation':`PRESENTATION OUTLINE — ${p}\n\nSlide 1: Why this matters\nSlide 2: Scientific principle\nSlide 3: Mechanism / visual\nSlide 4: Evidence\nSlide 5: Application\nSlide 6: Risks / limitations\nSlide 7: Regional context\nSlide 8: Next actions\n\nAudience: ${a}\nField: ${f}\nDepth: ${d}`,
+  'Research Map':`RESEARCH MAP — ${p}\n\nCore question → subquestions → evidence sources → methods → institutions → geographic context → gaps → next experiment / decision.\n\nAudience: ${a}\nField: ${f}\nDepth: ${d}`,
+  'Translation':`TRANSLATION BRIEF — ${p}\n\nSource language: detect / user-selected\nTarget audience: ${a}\nScientific field: ${f}\nDepth: ${d}\n\nRules:\n• preserve scientific meaning\n• use domain-accurate terminology\n• localize equations and spoken jargon\n• do not read punctuation aloud\n• separate universal science from country-specific regulation`
+ };
+ document.getElementById('creatorOutput').textContent=templates[creatorType];
+};
+document.getElementById('copyDraft').onclick=async()=>{await navigator.clipboard.writeText(document.getElementById('creatorOutput').textContent)};
+
+function renderMarket(cat='accessible'){
+ state.currentMarket=cat;
+ document.querySelectorAll('.market-tab').forEach(b=>{b.classList.toggle('primary',b.dataset.market===cat);b.classList.toggle('secondary',b.dataset.market!==cat)});
+ document.getElementById('marketGrid').innerHTML=marketData[cat].map((x,i)=>`<div class="market-card"><span class="status">${cat==='accessible'?'Open discovery':'Context check'}</span><h3>${x[0]}</h3><p style="color:var(--muted)">${x[1]}<br>${x[2]}</p><button class="btn ${cat==='accessible'?'primary':'secondary'} market-inspect" data-name="${x[0]}">Inspect</button></div>`).join('');
+ document.querySelectorAll('.market-inspect').forEach(b=>b.onclick=()=>alert(`${b.dataset.name}\n\nPrototype access is working. Production details would include verified suppliers, specifications, current jurisdiction rules, credential checks and purchasing eligibility.`));
+}
+renderMarket();
+document.querySelectorAll('.market-tab').forEach(b=>b.onclick=()=>renderMarket(b.dataset.market));
+
+const speeds=[0.25,0.35,0.5,0.75,1,1.25,1.5,2,3];
+function renderSpeeds(){
+ const row=document.getElementById('globalSpeedRow');
+ row.innerHTML=speeds.map(s=>`<button class="speed ${s===state.speechRate?'active':''}" data-speed="${s}">${s}×</button>`).join('');
+ row.querySelectorAll('.speed').forEach(b=>b.onclick=()=>{state.speechRate=+b.dataset.speed;renderSpeeds();});
+}
+renderSpeeds();
+const exams={
+ 'en-US':['TOEFL iBT','IELTS Academic','Duolingo English Test','OET where applicable'],
+ 'en-GB':['IELTS Academic','OET where applicable','Cambridge English'],
+ 'fr-FR':['DELF / DALF','TCF','TEF'],
+ 'fr-CA':['TEF Canada','TCF Canada','IELTS / CELPIP for English pathways'],
+ 'es-ES':['DELE','SIELE'],
+ 'de-DE':['TestDaF','Goethe-Zertifikat'],
+ 'pt-PT':['CAPLE'],
+ 'ar-SA':['Institution-specific Arabic proficiency assessment']
+};
+function renderExams(){
+ const lang=document.getElementById('languageSelect').value; state.language=lang;
+ document.getElementById('examList').innerHTML=(exams[lang]||[]).map(x=>`<div class="lang-card"><strong>${x}</strong><div style="color:var(--muted);font-size:13px;margin-top:4px">Availability depends on destination, institution and professional requirement.</div></div>`).join('');
+}
+document.getElementById('languageBtn').onclick=()=>{document.getElementById('languageModal').classList.add('open');renderExams()};
+document.getElementById('closeLanguage').onclick=()=>document.getElementById('languageModal').classList.remove('open');
+document.getElementById('languageSelect').onchange=renderExams;
+document.getElementById('employeeBtn').onclick=()=>alert('Employee access prototype. Production should require stronger assurance according to role, privilege and action risk.');
+
+window.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open'));}});
+</script>
+</body>
+</html>
