@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>GPSJ v4.12 — Global Advancement Engine</title>
+<style>
+:root{--navy:#102653;--blue:#174a98;--violet:#7142ef;--bg:#f4f7fd;--card:#fff;--ink:#14213d;--muted:#687895;--line:#d7e1f2;--soft:#edf3ff;--good:#eaf8ef;--warn:#fff7dc;--shadow:0 10px 30px rgba(20,45,95,.08)}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
+button,input,select{font:inherit} button{cursor:pointer}
+header{position:sticky;top:0;z-index:20;background:var(--navy);color:#fff;padding:14px 24px;box-shadow:0 3px 14px rgba(0,0,0,.14)}
+.brand{display:flex;gap:14px;align-items:center}.logo{width:58px;height:58px;border-radius:17px;background:linear-gradient(135deg,#3569ff,#7c3ff2);display:grid;place-items:center;font-weight:900;font-size:20px}
+.brand h1{margin:0;font-size:27px}.brand p{margin:3px 0 0;color:#bdc9df}
+nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}nav button{border:0;color:#fff;background:#203a6b;padding:11px 17px;border-radius:13px;font-weight:800}nav button.active{background:#fff;color:var(--navy)}
+main{max-width:1180px;margin:auto;padding:25px}
+.hero{padding:32px;border-radius:28px;color:#fff;background:linear-gradient(125deg,#174b9c,#7041ed);box-shadow:var(--shadow)}
+.hero .eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.32);padding:7px 13px;border-radius:999px;font-weight:800}.hero h2{font-size:43px;line-height:1.08;margin:16px 0 12px}.hero p{font-size:19px;line-height:1.55;max-width:930px}.chips{display:flex;gap:9px;flex-wrap:wrap}.chip{padding:7px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.3);font-weight:750}
+.section{margin-top:24px}.section h2{font-size:32px;margin:0 0 8px}.section>p{color:var(--muted);font-size:17px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.card{background:var(--card);border:1px solid var(--line);border-radius:21px;padding:20px;box-shadow:var(--shadow)}.card h3{margin:0 0 8px;font-size:20px}.card p{color:var(--muted);line-height:1.5}
+.formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.field label{display:block;font-weight:800;margin-bottom:6px}.field input,.field select{width:100%;padding:14px;border:1px solid var(--line);border-radius:13px;background:#fff;color:var(--ink)}
+.primary{border:0;border-radius:13px;background:linear-gradient(120deg,#275cff,#7540ed);color:#fff;padding:14px 20px;font-weight:900}.secondary{border:1px solid var(--line);border-radius:13px;background:var(--soft);color:#17458f;padding:12px 17px;font-weight:850}
+.ladder{display:grid;gap:16px}.stage{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden}.stagehead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px;background:#f8faff}.stagehead h3{margin:0;font-size:23px}.stagebody{padding:18px 20px}.qual{display:grid;grid-template-columns:1.35fr .85fr .8fr;gap:12px;border-top:1px solid var(--line);padding:15px 0}.qual:first-child{border-top:0}.badge{display:inline-block;padding:5px 9px;border-radius:999px;background:var(--soft);font-size:13px;font-weight:850}.required{background:#ffe9e9}.useful{background:#e8f2ff}.academic{background:#eee9ff}.prestige{background:#fff4d8}
+.small{font-size:14px;color:var(--muted)}.unlock{background:var(--good);padding:10px 12px;border-radius:12px}.notice{background:var(--warn);border:1px solid #f0d77d;border-radius:16px;padding:14px 16px;line-height:1.45}.hidden{display:none}
+.pathline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0}.node{padding:9px 12px;border-radius:12px;background:var(--soft);font-weight:800}.arrow{font-weight:900;color:#6b45e8}
+.verify{display:flex;gap:9px;align-items:center;color:#2d6943;font-weight:800}.dot{width:10px;height:10px;background:#2fa765;border-radius:50%}
+@media(max-width:800px){header{padding:12px 15px}.brand h1{font-size:20px}.brand p{font-size:13px}.logo{width:48px;height:48px}.hero{padding:23px}.hero h2{font-size:34px}.grid,.formgrid{grid-template-columns:1fr}.qual{grid-template-columns:1fr}.section h2{font-size:27px}main{padding:16px}nav{overflow-x:auto;flex-wrap:nowrap;padding-bottom:3px}nav button{white-space:nowrap;min-height:48px}.card,.stage,button,input,select{touch-action:manipulation}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand"><div class="logo">GPSJ</div><div><h1>Global Pharma Scientist Journey</h1><p>Global science, learning & career ecosystem v4.12</p></div></div>
+ <nav>
+  <button onclick="show('home',this)">Home</button>
+  <button onclick="show('learn',this)">📚 Learn</button>
+  <button onclick="show('lab',this)">🧪 Screen Lab</button>
+  <button class="active" onclick="show('career',this)">🚀 Advancement</button>
+  <button onclick="show('safety',this)">🛡 Safety</button>
+  <button>🌐 Language</button><button>👤 Sign in</button>
+ </nav>
+</header>
+<main>
+<section id="career">
+ <div class="hero">
+  <span class="eyebrow">🚀 GPSJ Global Advancement Engine</span>
+  <h2>See what qualifies you for the next stage.</h2>
+  <p>GPSJ maps career advancement from the user's current position to country, regional/continental and worldwide opportunities. The engine is designed to use current requirements from actual universities, regulators, professional bodies, credentialing organizations and employers — not generic certificate lists.</p>
+  <div class="chips"><span class="chip">Country</span><span class="chip">Region / continent</span><span class="chip">Worldwide</span><span class="chip">Institution-aware</span><span class="chip">Recognition-aware</span><span class="chip">Adaptive progression</span></div>
+ </div>
+
+ <div class="section card">
+  <h2>Build my advancement route</h2>
+  <p>Start with the user's actual position. GPSJ can progressively ask for more detail only when it changes the pathway.</p>
+  <div class="formgrid">
+   <div class="field"><label>Country / jurisdiction</label><select id="country"><option>United States</option><option>Gabon</option><option>Canada</option><option>France</option><option>United Kingdom</option><option>Other / detect from profile</option></select></div>
+   <div class="field"><label>Current stage</label><select id="level"><option>Student / learner</option><option>Pharmacy technician</option><option>Pharmacy student</option><option>Pharmacist</option><option>Graduate student</option><option>Researcher / scientist</option><option>Laboratory professional</option><option>Faculty / educator</option><option>Industry professional</option></select></div>
+   <div class="field"><label>Field</label><select id="field"><option>Pharmacy & Pharmaceutical Sciences</option><option>Medicine & Clinical Sciences</option><option>Laboratory & Experimental Science</option><option>Biotechnology & Biomanufacturing</option><option>Neuroscience & Behavioral Science</option><option>Toxicology & Environmental Health</option><option>Pharmacognosy & Natural Products</option><option>Data Science / Biostatistics</option></select></div>
+   <div class="field"><label>Career goal</label><input id="goal" placeholder="e.g., licensed practice, research scientist, PhD, laboratory leadership"/></div>
+  </div>
+  <div style="margin-top:15px"><button class="primary" onclick="buildRoute()">Generate staged pathway</button></div>
+ </div>
+
+ <div id="results" class="section hidden">
+  <h2>Your upward qualification map</h2>
+  <p id="routeIntro"></p>
+  <div class="pathline"><span class="node">Current verified position</span><span class="arrow">→</span><span class="node">Country qualification</span><span class="arrow">→</span><span class="node">Regional mobility</span><span class="arrow">→</span><span class="node">Worldwide advancement</span></div>
+  <div class="notice"><b>Live verification rule:</b> before GPSJ labels a qualification “current,” it should verify the issuing institution/body, eligibility rules, recognition scope, official source and effective date. Requirements that cannot be verified remain marked <b>Needs verification</b>.</div>
+  <div class="ladder" style="margin-top:16px">
+   <div class="stage">
+    <div class="stagehead"><h3>🇺🇸 Stage 1 — Country / jurisdiction</h3><span class="badge required">Closest applicable requirements</span></div>
+    <div class="stagebody">
+     <div class="qual"><div><b>Licensure & regulated credentials</b><p class="small">Show credentials legally required for the selected profession and jurisdiction.</p><span class="badge required">Legally required</span></div><div><b>Source class</b><p class="small">Government regulator / licensing board</p><div class="verify"><span class="dot"></span> Official-source priority</div></div><div class="unlock"><b>Unlocks</b><br/>Legal scope of practice or eligibility for the next regulated stage.</div></div>
+     <div class="qual"><div><b>Professional certification</b><p class="small">Rank nationally recognized credentials by relevance to the user's target.</p><span class="badge useful">Professionally useful</span></div><div><b>Source class</b><p class="small">Accredited credentialing body / professional society</p></div><div class="unlock"><b>Why it matters</b><br/>Specialization, employer recognition, responsibility or compensation potential.</div></div>
+     <div class="qual"><div><b>Academic progression</b><p class="small">Surface eligible degrees, residencies, fellowships and research training at actual institutions.</p><span class="badge academic">Academically valuable</span></div><div><b>Source class</b><p class="small">University / accredited program</p></div><div class="unlock"><b>Why it matters</b><br/>Research access, advanced study and qualification for higher-level roles.</div></div>
+    </div>
+   </div>
+
+   <div class="stage">
+    <div class="stagehead"><h3>🌍 Stage 2 — Region / continent</h3><span class="badge">Mobility + recognition</span></div>
+    <div class="stagebody">
+     <div class="qual"><div><b>Cross-border recognition pathways</b><p class="small">Map equivalency, regional frameworks, professional mobility and credential-transfer requirements.</p><span class="badge useful">Mobility</span></div><div><b>GPSJ checks</b><p class="small">Recognition territory • prerequisites • language • exams • experience</p></div><div class="unlock"><b>Unlocks</b><br/>A wider geographic employment, academic or research market.</div></div>
+     <div class="qual"><div><b>Regional institutions & societies</b><p class="small">Prioritize institutions with recognized programs relevant to the user's field and stage.</p><span class="badge academic">Regional advancement</span></div><div><b>GPSJ ranks by</b><p class="small">Eligibility → recognition → fit → proximity → cost/time</p></div><div class="unlock"><b>Why it matters</b><br/>Avoids recommending impressive credentials that do not transfer or advance the user's goal.</div></div>
+    </div>
+   </div>
+
+   <div class="stage">
+    <div class="stagehead"><h3>🌐 Stage 3 — Worldwide</h3><span class="badge prestige">Global opportunity layer</span></div>
+    <div class="stagebody">
+     <div class="qual"><div><b>International qualifications & fellowships</b><p class="small">Surface globally relevant advanced training, scientific societies, fellowships and recognized programs.</p><span class="badge useful">Global professional</span></div><div><b>GPSJ checks</b><p class="small">Actual eligibility • recognition • international access • application cycle</p></div><div class="unlock"><b>Unlocks</b><br/>International research, collaboration, leadership and mobility opportunities.</div></div>
+     <div class="qual"><div><b>Optional distinction / prestige layer</b><p class="small">Shown separately so users can distinguish career necessities from reputation-building credentials.</p><span class="badge prestige">Optional prestige</span></div><div><b>Never presented as</b><p class="small">A legal requirement unless the official authority says it is.</p></div><div class="unlock"><b>Why it matters</b><br/>Prevents unnecessary spending while preserving ambitious global pathways.</div></div>
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <div class="section grid">
+  <div class="card"><h3>🔄 Adaptive progression</h3><p>When a credential, degree or experience milestone is completed, GPSJ recalculates the next eligible stage instead of showing a static career checklist.</p></div>
+  <div class="card"><h3>🏛 Institution intelligence</h3><p>Every recommendation can carry issuer, accreditation/authority, jurisdiction, recognition range, prerequisites, official source, application timing and verification date.</p></div>
+  <div class="card"><h3>💡 “Why this matters”</h3><p>Each qualification explains what it can actually unlock: legal scope, specialization, salary potential, mobility, research access, leadership or advanced study.</p></div>
+ </div>
+</section>
+
+<section id="home" class="hidden"><div class="hero"><span class="eyebrow">🌎 GPSJ Public Ecosystem</span><h2>Your science. Your learning. Your journey.</h2><p>The public entrance remains uncluttered. Learning, laboratory work and career advancement open as dedicated workspaces.</p></div></section>
+<section id="learn" class="hidden"><div class="hero"><span class="eyebrow">📚 Universal Learning Engine</span><h2>Field → domain → topic → understanding.</h2><p>The scientific directory and adaptive lesson engine remain a dedicated Learn workspace.</p></div></section>
+<section id="lab" class="hidden"><div class="hero"><span class="eyebrow">🧪 Scientific Screen Lab</span><h2>Observe, simulate and test safely.</h2><p>The advanced touch-first laboratory remains separated from Home and Career, with instrument discovery, educational simulation, supervised testing and risk-aware controls.</p></div></section>
+<section id="safety" class="hidden"><div class="hero"><span class="eyebrow">🛡 GPSJ Safety Layer</span><h2>Advance science without turning education into harmful capability.</h2><p>Instrument and experimental workflows remain education-focused and risk-aware. Escalating hazards can trigger warnings, restricted control modes and safer teaching alternatives.</p></div></section>
+</main>
+<script>
+function show(id,btn){
+ document.querySelectorAll('main>section').forEach(x=>x.classList.add('hidden'));
+ document.getElementById(id).classList.remove('hidden');
+ document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));
+ if(btn)btn.classList.add('active'); window.scrollTo({top:0,behavior:'smooth'});
+}
+function buildRoute(){
+ const country=document.getElementById('country').value;
+ const level=document.getElementById('level').value;
+ const field=document.getElementById('field').value;
+ const goal=document.getElementById('goal').value||'the next appropriate professional stage';
+ document.getElementById('routeIntro').textContent=`GPSJ pathway for ${level} in ${field}, starting in ${country}, targeting ${goal}. Institution-level recommendations should be populated only after current official requirements are verified.`;
+ document.getElementById('results').classList.remove('hidden');
+ document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
+}
+</script>
+</body></html>
