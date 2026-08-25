@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0e224d">
+<title>GPSJ v4.22 — Deep Functional Ecosystem</title>
+<style>
+:root{
+  --nav:#0e224d;--blue:#3158e8;--purple:#7446e8;--bg:#f3f6fb;--card:#fff;
+  --text:#13213e;--muted:#68748d;--line:#d8e2f2;--green:#0d8b61;--amber:#9a6000;
+  --red:#b42318;--shadow:0 12px 32px rgba(20,45,95,.10)
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.45}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;touch-action:manipulation}
+header{position:sticky;top:0;z-index:50;background:linear-gradient(135deg,var(--nav),#101f43);color:#fff;padding:calc(12px + env(safe-area-inset-top)) 20px 11px}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:50px;height:50px;border-radius:15px;background:linear-gradient(135deg,var(--blue),var(--purple));display:grid;place-items:center;font-weight:950}
+.brand h1{font-size:22px;margin:0}.brand p{margin:2px 0;color:#c8d5f2;font-size:13px}
+.nav{display:flex;gap:8px;flex-wrap:wrap;overflow:visible;padding-top:11px}
+.nav button{min-height:48px;border:0;border-radius:13px;padding:10px 15px;background:rgba(255,255,255,.09);color:#fff;font-weight:850;white-space:nowrap}
+.nav button.active,.nav button.light{background:#fff;color:var(--nav)}
+.view{display:none}.view.active{display:block}
+main{max-width:1200px;margin:auto;padding:22px}
+.hero{padding:36px;border-radius:28px;color:#fff;background:linear-gradient(135deg,#153d86,#2856af 54%,#6840e7);box-shadow:var(--shadow)}
+.hero h2{font-size:clamp(2.1rem,5vw,4rem);line-height:1.04;margin:10px 0 14px}.hero p{font-size:clamp(1rem,2vw,1.22rem);max-width:920px}
+.kicker,.chip,.pill{display:inline-flex;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:850}
+.kicker{border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1)}
+.chips,.toolbar,.context{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.23)}
+.section{margin-top:28px}.section h2{font-size:clamp(1.8rem,3vw,2.55rem);margin:0 0 7px}.lead{color:var(--muted);margin:0 0 18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:19px;box-shadow:0 3px 14px rgba(28,57,115,.035)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.eco-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.eco{min-height:210px;display:flex;flex-direction:column}.eco .ico{font-size:30px}.eco h3{font-size:20px;margin:9px 0 7px}.eco p{color:var(--muted);margin:0 0 17px}.eco button{margin-top:auto;align-self:flex-start}
+.btn{min-height:48px;border:0;border-radius:13px;padding:11px 15px;font-weight:850;background:#eef3ff;color:#23499a}
+.btn.primary{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff}.btn.white{background:#fff;color:#20488f}.btn.danger{background:#fff0ef;color:#8f1e17}
+.fields{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.field{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;text-align:left;min-height:140px;color:var(--text)}
+.field.active{border:2px solid var(--purple)}.field .ico{font-size:27px}.field strong{display:block;font-size:18px;margin:7px 0}.field small{color:var(--muted)}
+.search{display:flex;gap:8px;margin:14px 0}.search input{flex:1;min-height:50px;border:1px solid var(--line);border-radius:13px;padding:11px}
+.route{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:21px;padding:18px}
+.crumb{font-size:13px;color:var(--muted);margin-bottom:7px}
+.domains,.topics{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:13px}
+.tile{border:1px solid var(--line);background:#f9fbff;border-radius:14px;padding:13px;text-align:left;color:var(--text)}
+.tile.active{border:2px solid var(--blue);background:#f1f5ff}.tile strong{display:block;margin-bottom:4px}.tile small{color:var(--muted)}
+.lesson{display:none;margin-top:18px}.lesson.open{display:block}
+.lesson-head{padding:22px;border-radius:20px;background:linear-gradient(135deg,#102f69,#2851ae);color:#fff}
+.lesson-head h2{margin:3px 0 7px}
+.stages{display:flex;gap:8px;overflow-x:auto;margin:14px 0}
+.stage{white-space:nowrap;border:1px solid var(--line);background:#fff;color:#23499a;padding:9px 12px;border-radius:999px;font-weight:850}
+.stage.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
+.lesson-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}
+.media-stage{background:linear-gradient(145deg,#061b40,#1d459b 58%,#633bdd);min-height:420px;border-radius:20px;color:#fff;padding:18px;position:relative;overflow:hidden}
+.media-head{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.media-canvas{min-height:300px;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px}
+.media-placeholder{max-width:620px;border:1px solid rgba(255,255,255,.3);border-radius:18px;padding:24px;background:rgba(255,255,255,.09)}
+.viewer-controls{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.viewer-controls button{border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.11);color:#fff;border-radius:12px;padding:10px;font-weight:800;min-height:48px}
+.side-stack{display:grid;gap:12px}.vpanel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px}.vpanel h3,.vpanel h4{margin-top:0}.vpanel p{color:var(--muted)}
+.pill{background:#eef3ff;color:#24499a}.pill.green{background:#e9f7f1;color:#08704e}.pill.amber{background:#fff4de;color:#8a5a00}.pill.red{background:#ffeded;color:#a12520}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.fieldbox{display:grid;gap:6px}.fieldbox label{font-weight:850}
+.fieldbox input,.fieldbox select,.fieldbox textarea{width:100%;min-height:50px;border:1px solid var(--line);border-radius:12px;padding:11px;background:#fff}.fieldbox textarea{min-height:100px}
+.capture-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.capture-card{border:1px solid var(--line);border-radius:16px;background:#f8faff;padding:15px;text-align:center;min-height:118px}.capture-card b{display:block;margin-top:7px}
+.result{margin-top:14px;padding:15px;border-radius:15px;background:#f6f9ff;border:1px solid var(--line)}
+.context span{padding:7px 10px;border-radius:999px;background:#eef3ff;color:#24499a;font-weight:800;font-size:12px}
+.pipeline{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.pipeline div{padding:12px;border-radius:13px;background:#eef3ff;text-align:center;font-weight:800;color:#24499a}
+.risk-meter{height:12px;background:#e9edf5;border-radius:999px;overflow:hidden}.risk-meter span{display:block;height:100%;width:15%;background:linear-gradient(90deg,#1ba871,#e0a321,#cf352b);transition:.2s}
+.alert{padding:13px;border-radius:13px;background:#eaf8f2;color:#086c4c}.alert.med{background:#fff6e7;color:#7c4b00}.alert.high{background:#fff0ef;color:#8f1e17}
+.modal-backdrop{position:fixed;inset:0;background:rgba(4,16,43,.72);display:none;align-items:center;justify-content:center;padding:18px;z-index:1000}.modal-backdrop.open{display:flex}
+.modal{width:min(900px,100%);max-height:88vh;overflow:auto;background:#fff;border-radius:24px}.modal-head{position:sticky;top:0;background:linear-gradient(120deg,#1d4aa1,#7142ef);color:#fff;padding:18px 20px;display:flex;justify-content:space-between;align-items:center}.modal-body{padding:20px}
+.lang-grid,.role-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.choice{border:1px solid var(--line);border-radius:14px;padding:12px;background:#f9fbff;text-align:left;min-height:58px;color:var(--text);font-weight:800}.choice.active{border:2px solid var(--purple);background:#f3efff}
+.console{background:#071b40;color:#e8f0ff;border-radius:18px;padding:16px;min-height:220px}.console pre{white-space:pre-wrap;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}
+@media(pointer:coarse){button,.btn,input,select{min-height:52px}}
+@media(max-width:900px){.eco-grid,.fields{grid-template-columns:1fr 1fr}.lesson-layout{grid-template-columns:1fr}.capture-grid{grid-template-columns:1fr 1fr}.pipeline{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.nav{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}}@media(max-width:600px){header{padding-left:12px;padding-right:12px}.brand h1{font-size:18px}.brand p{font-size:11px}main{padding:13px}.hero{padding:28px 22px}.eco-grid,.fields,.domains,.topics,.grid,.form-grid,.capture-grid,.lang-grid,.role-grid{grid-template-columns:1fr}.viewer-controls{grid-template-columns:1fr 1fr}.pipeline{grid-template-columns:1fr 1fr}}
+
+.public-journey{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+.public-step{background:#fff;border:1px solid #dbe5f4;border-radius:20px;padding:18px;min-height:150px}
+.public-step .num{display:inline-flex;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;background:#edf2ff;color:#254ba0;font-weight:900;margin-bottom:10px}
+.public-step h3{margin:0 0 8px;font-size:20px}
+.public-step p{margin:0;color:#65738f;line-height:1.45}
+.guest-badge{display:inline-block;padding:7px 11px;border-radius:999px;background:#e9f8f0;color:#087654;font-weight:900;font-size:12px}
+.soft-signin{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 20px;border:1px solid #d9e4f6;border-radius:20px;background:linear-gradient(135deg,#f8fbff,#f2efff);margin-top:18px}
+.soft-signin h3{margin:0 0 4px}.soft-signin p{margin:0;color:#67748e}
+.try-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.try-card{border:1px solid #dbe5f4;background:#fff;border-radius:18px;padding:16px;text-align:left}
+.try-card b{display:block;margin:5px 0 6px}.try-card small{color:#6e7a93}
+@media(max-width:820px){.public-journey{grid-template-columns:1fr}.try-grid{grid-template-columns:repeat(2,1fr)}.soft-signin{align-items:flex-start;flex-direction:column}}
+@media(max-width:520px){.try-grid{grid-template-columns:1fr}}
+
+
+/* v4.22 deep functional layer */
+.deep-shell{margin-top:18px;padding:22px;border:1px solid #dbe5f4;border-radius:22px;background:#fff}
+.deep-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.deep-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.deep-tab{border:1px solid #d8e3f5;background:#f8fbff;border-radius:999px;padding:10px 14px;font-weight:800;color:#244990}
+.deep-tab.active{background:linear-gradient(135deg,#3159ef,#783df0);color:#fff;border-color:transparent}
+.deep-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.deep-card{border:1px solid #dbe5f4;border-radius:18px;padding:16px;background:#fbfdff}
+.deep-card h3{margin:0 0 8px}.deep-card p{margin:0;color:#65738f;line-height:1.45}
+.deep-result{margin-top:14px;border-radius:16px;padding:16px;background:#f5f8ff;border:1px solid #dae5f7;line-height:1.5}
+.deep-result strong{color:#15284f}
+.stepper{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.stepper .step{padding:12px;border-radius:14px;background:#eef3ff;text-align:center;font-weight:800;color:#31519a}
+.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.metric{padding:14px;border-radius:14px;background:#f7f9fd;border:1px solid #dce5f4}
+.metric b{display:block;font-size:18px;margin-bottom:4px}
+.functional-note{padding:12px 14px;border-radius:14px;background:#eefaf5;border:1px solid #cfeee0;color:#12674f;margin:12px 0}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field-row label{display:block;font-weight:800;margin-bottom:6px}
+.field-row input,.field-row select,.deep-shell input,.deep-shell select,.deep-shell textarea{width:100%;box-sizing:border-box;padding:12px;border:1px solid #d7e1f2;border-radius:12px;font:inherit;background:white}
+.deep-shell textarea{min-height:110px;resize:vertical}
+.taglist{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.tag{padding:7px 10px;border-radius:999px;background:#edf2ff;color:#244b9d;font-size:12px;font-weight:800}
+.preview-box{border:1px dashed #aebfdf;border-radius:18px;padding:22px;background:linear-gradient(135deg,#102a5a,#5444d9);color:white;text-align:center}
+.live-badge{display:inline-flex;padding:6px 9px;border-radius:999px;background:#eaf8f1;color:#08734f;font-size:12px;font-weight:900}
+.warn-badge{display:inline-flex;padding:6px 9px;border-radius:999px;background:#fff3df;color:#915d00;font-size:12px;font-weight:900}
+@media(max-width:760px){.deep-grid,.field-row{grid-template-columns:1fr}.stepper{grid-template-columns:repeat(2,1fr)}.metric-row{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<header>
+<div class="brand"><div class="logo">GPSJ</div><div><h1>Global Pharma Scientist Journey</h1><p>Adaptive Science Engine <span id="versionLabel">v4.19</span> · Deep science · Visual intelligence · Touch-first</p></div></div>
+<nav class="nav">
+<button data-view="home" class="active" onclick="showView('home',this)">Home</button>
+<button data-view="dashboard" onclick="showView('dashboard',this)">🧭 My GPSJ</button>
+<button data-view="learn" onclick="showView('learn',this)">📚 Learn</button>
+<button data-view="visual" onclick="showView('visual',this)">👁 Visual</button>
+<button data-view="research" onclick="showView('research',this)">🔬 Research</button>
+<button data-view="lab" onclick="showView('lab',this)">🧪 Screen Lab</button>
+<button data-view="advancement" onclick="showView('advancement',this)">🚀 Advancement</button>
+<button data-view="create" onclick="showView('create',this)">🎨 Create</button>
+<button data-view="marketplace" onclick="showView('marketplace',this)">🛍 Marketplace</button>
+<button data-view="institutions" onclick="showView('institutions',this)">🏛 Institutions</button>
+<button class="light" onclick="openLanguage()">🌐 Language</button>
+<button onclick="openSignin()">👤 Sign in</button>
+</nav>
+</header>
+
+<div id="workspaceStatus" style="background:#eaf0ff;border-bottom:1px solid #d8e2f2;padding:8px 20px;color:#24499a;font-weight:800;font-size:13px">
+🌍 Public visitor · explore freely · sign in only to save & personalize
+</div>
+
+
+<section id="view-home" class="view active"><main>
+<section class="hero">
+<span class="kicker">🌍 GPSJ — Global Platform for Science & Learning</span>
+<h2>Your science. Your learning. Your journey.</h2>
+<p>One connected scientific ecosystem for learning, evidence, observation, simulation, creation, professional advancement and responsible experimentation.</p>
+<div class="chips"><span class="chip">Public learning</span><span class="chip">Adaptive depth</span><span class="chip">Touch-first</span><span class="chip">Safety-aware</span><span class="chip">Global access</span></div>
+</section>
+<section class="section"><h2>Explore the GPSJ ecosystem</h2><p class="lead">The homepage stays simple. Deep scientific trees open inside Learn; visual discovery opens inside Visual Intelligence; instrument-aware work stays inside Screen Lab.</p>
+<div class="eco-grid">
+<article class="card eco"><div class="ico">📚</div><h3>Learn & Teach</h3><p>Discipline-specific topic trees, adaptive lessons, practice, audio and mastery.</p><button class="btn" onclick="showView('learn')">Open Learn</button></article>
+<article class="card eco"><div class="ico">👁</div><h3>Visual Intelligence</h3><p>Camera, image and video observation with scientific annotation, uncertainty and transfer to learning.</p><button class="btn" onclick="showView('visual')">Open Visual</button></article>
+<article class="card eco"><div class="ico">🔬</div><h3>Research & Evidence</h3><p>Questions, literature, study design, evidence interpretation and reproducibility.</p><button class="btn" onclick="showView('research')">Open Research</button></article>
+<article class="card eco"><div class="ico">🧪</div><h3>Scientific Screen Lab</h3><p>Connect what is physically around the user, then observe, measure, simulate and report safely.</p><button class="btn" onclick="showView('lab')">Open Screen Lab</button></article>
+<article class="card eco"><div class="ico">⚙️</div><h3>Engineering & Applied Systems</h3><p>Aerospace, naval, robotics, energy, computing, civil, sensing and other public-benefit engineering disciplines.</p><button class="btn" onclick="showView('learn');selectField('engineering')">Explore engineering</button></article>
+<article class="card eco"><div class="ico">🚀</div><h3>Advancement</h3><p>Country → regional/continental → worldwide progression using institution-aware qualification pathways.</p><button class="btn" onclick="showView('advancement')">Explore advancement</button></article>
+<article class="card eco"><div class="ico">🎨</div><h3>Create & Present</h3><p>Reports, presentations, scientific visuals, maps, translation and export workflows.</p><button class="btn" onclick="showView('create')">Open Create</button></article>
+<article class="card eco"><div class="ico">🛍️</div><h3>Scientific Marketplace</h3><p>Verified educational, laboratory and professional resources with role-aware access.</p><button class="btn" onclick="showView('marketplace')">Open Marketplace</button></article>
+<article class="card eco"><div class="ico">💾</div><h3>Backup & Restore</h3><p>Export or restore prototype context, preferences and saved workspace state on this device.</p><button class="btn" onclick="backupState()">Create backup</button></article>
+</div></section>
+</main></section>
+
+
+<section id="view-dashboard" class="view"><main>
+<section class="hero">
+<span class="kicker">🌍 Open GPSJ Experience</span>
+<h2>See the science. Try the platform. Sign in when you want to keep going.</h2>
+<p>GPSJ does not force a visitor to create an account before understanding the value. The public can explore learning, visual intelligence, research, safe simulation, institutions, advancement and public marketplace resources first.</p>
+<div class="chips"><span class="chip">No account to explore</span><span class="chip">Real scientific depth</span><span class="chip">Safe public access</span><span class="chip">Sign in to personalize</span></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+<button class="btn primary" onclick="showView('learn')">📚 Start exploring</button>
+<button class="btn" onclick="showView('visual')">👁 Try Visual</button>
+<button class="btn" onclick="openSignin()">👤 Sign in</button>
+</div>
+</section>
+
+<section class="section">
+<span class="guest-badge">PUBLIC VISITOR EXPERIENCE</span>
+<h2 style="margin-top:10px">See → Enjoy → Sign in</h2>
+<div class="public-journey">
+<div class="public-step"><span class="num">1</span><h3>See</h3><p>Visitors immediately see the breadth of GPSJ: science, engineering, careers, institutions, visual tools, research and marketplace discovery.</p></div>
+<div class="public-step"><span class="num">2</span><h3>Enjoy</h3><p>They can open topics, try safe tools, explore visuals, ask research questions and preview career pathways before any account requirement.</p></div>
+<div class="public-step"><span class="num">3</span><h3>Sign in</h3><p>After value is clear, sign-in offers a reason to continue: save progress, personalize depth, connect institutions, track qualifications and use verified role tools.</p></div>
+</div>
+</section>
+
+<section class="section">
+<h2>Try GPSJ right now</h2>
+<p class="lead">Four low-friction public entry points make the platform feel alive before authentication.</p>
+<div class="try-grid">
+<button class="try-card" onclick="showView('learn')">📚<b>Open a science topic</b><small>Browse fields, domains and topic trees.</small></button>
+<button class="try-card" onclick="showView('visual')">👁<b>Analyze a visual</b><small>Camera, image, video and guided observation workflow.</small></button>
+<button class="try-card" onclick="showView('research')">🔬<b>Build a research question</b><small>Move from a question toward evidence.</small></button>
+<button class="try-card" onclick="showView('advancement')">🚀<b>Explore your next stage</b><small>Country, regional and worldwide progression.</small></button>
+</div>
+</section>
+
+<section class="section">
+<h2 id="dashTitle">Public scientific workspace</h2>
+<p class="lead" id="dashLead">Start anywhere. GPSJ will adapt after you choose a field, question, visual observation or career goal.</p>
+<div class="eco-grid" id="dashCards"></div>
+<div class="soft-signin">
+<div><h3>Want GPSJ to remember this journey?</h3><p>Sign in to save topics, observations, research context, career pathways and institution preferences.</p></div>
+<button class="btn primary" onclick="openSignin()">Sign in & personalize</button>
+</div>
+</section>
+<section class="section card">
+<h2>Optional workspace profile</h2><p class="lead">Public visitors can keep exploring without completing this. Use it only if you want GPSJ to adapt the experience before signing in.</p>
+<div class="form-grid">
+<div class="fieldbox"><label>Role</label>
+<select id="dashRole" onchange="applyDashboardProfile()">
+<option value="public">Public visitor</option>
+<option value="learner">Learner / Student</option>
+<option value="scientist">Practitioner / Scientist</option>
+<option value="educator">Educator</option>
+<option value="institution">Institution</option>
+<option value="supplier">Supplier</option>
+<option value="operator">Employee / Operator</option>
+<option value="founder">Executive / Founder</option>
+</select></div>
+<div class="fieldbox"><label>Country / jurisdiction</label><input id="dashCountry" value="United States" onchange="applyDashboardProfile()"></div>
+<div class="fieldbox"><label>Primary scientific field</label>
+<select id="dashField" onchange="applyDashboardProfile()">
+<option>Pharmacy & Pharmaceutical Sciences</option>
+<option>Medicine & Clinical Sciences</option>
+<option>Laboratory & Experimental Science</option>
+<option>Pharmacognosy & Natural Products</option>
+<option>Engineering, Technology & Applied Systems</option>
+</select></div>
+<div class="fieldbox"><label>Current objective</label><input id="dashGoal" placeholder="learn, research, qualify, teach, build, test…" onchange="applyDashboardProfile()"></div>
+</div>
+<button class="btn primary" onclick="saveProfile()">Save workspace profile</button>
+<div id="profileResult" class="result">Public mode is active. Nothing is required before learning.</div>
+</section>
+</main></section>
+
+<section id="view-learn" class="view"><main>
+<section class="hero"><span class="kicker">📚 Deep Scientific Learning Engine</span><h2>Field → domain → real topic tree → understanding.</h2><p>Each discipline now carries its own scientific hierarchy. The repeated generic eight-topic template is removed from the domains implemented in this build.</p></section>
+<section class="section">
+<h2>Universal scientific directory</h2><p class="lead">Select a field, domain and real topic.</p>
+<div class="search"><input id="searchBox" placeholder="Search pharmacology, extraction, chromatography, anatomy, aircraft, robotics…"><button class="btn primary" onclick="searchTopics()">Search</button></div>
+<div class="fields" id="fields"></div>
+<div class="route" id="route"></div>
+<div class="lesson" id="lesson">
+<div class="lesson-head"><div class="crumb" id="lessonCrumb" style="color:#d7e3ff"></div><h2 id="lessonTitle"></h2><p id="lessonSub">Concept → visual → explore → interact → practice → assess → connect → continue.</p></div>
+<div class="stages" id="stages"></div>
+<div class="panel" id="lessonPanel"></div>
+</div>
+</section>
+
+<section class="section" id="deepLearnHost">
+<div class="deep-shell">
+<span class="live-badge">DEEP LEARNING ENGINE</span>
+<h2>Open a real topic route</h2>
+<p class="lead">Select any domain above, then continue into principle → visual → interact → practice → related fields → continue. Topic context follows you across GPSJ.</p>
+<div class="functional-note">v4.22 adds a persistent topic lesson shell instead of ending at the topic tree.</div>
+</div>
+</section>
+</main></section>
+
+<section id="view-visual" class="view"><main>
+<section class="hero"><span class="kicker">👁 GPSJ Visual Intelligence</span><h2>See something. Study it scientifically.</h2><p>Use a camera, upload an image or video, or start a live observation. GPSJ preserves uncertainty, asks for confirmation when needed and connects observations to Learn, Research and Screen Lab.</p><div class="chips"><span class="chip">Camera-ready</span><span class="chip">Image/video</span><span class="chip">Confidence-aware</span><span class="chip">Touch annotation</span></div></section>
+<section class="section">
+<div class="capture-grid">
+<button class="capture-card" onclick="visualSource('camera')">📷<b>Camera</b><small>Capture a specimen/object</small></button>
+<label class="capture-card">🖼️<b>Upload image</b><small>Analyze a still image</small><input id="imageInput" type="file" accept="image/*" hidden onchange="handleVisualFile(this,'image')"></label>
+<label class="capture-card">🎥<b>Upload video</b><small>Review frames and motion</small><input id="videoInput" type="file" accept="video/*" hidden onchange="handleVisualFile(this,'video')"></label>
+<button class="capture-card" onclick="visualSource('live')">🔴<b>Live observation</b><small>Guided observation mode</small></button>
+</div>
+<div class="lesson-layout" style="margin-top:14px">
+<div class="media-stage">
+<div class="media-head"><strong id="visualTitle">Visual canvas</strong><span class="pill green" id="confidencePill">Awaiting source</span></div>
+<div class="media-canvas" id="visualCanvas"><div class="media-placeholder"><h3>Visual intelligence ready</h3><p>Add an image/video or choose camera/live observation. Production GPSJ can connect verified recognition services; this prototype demonstrates the workflow and uncertainty layer.</p></div></div>
+<div class="viewer-controls">
+<button onclick="visualTool('Zoom')">🔎 Zoom</button><button onclick="visualTool('Rotate')">↻ Rotate</button><button onclick="visualTool('Labels')">🏷 Labels</button><button onclick="visualTool('Measure')">📏 Measure</button>
+<button onclick="visualTool('Compare')">⇄ Compare</button><button onclick="visualTool('Layers')">🧩 Layers</button><button onclick="visualTool('Annotate')">✍ Annotate</button><button onclick="visualTool('Narrate')">🔊 Narrate</button>
+</div>
+</div>
+<div class="side-stack">
+<div class="vpanel"><h3>Scientific interpretation</h3><p id="visualInterpretation">No observation yet.</p></div>
+<div class="vpanel"><h4>Confidence & uncertainty</h4><div class="context"><span id="certainty1">Identity: unknown</span><span id="certainty2">Context: unknown</span><span id="certainty3">Human confirmation: required</span></div></div>
+<div class="vpanel"><h4>Send this context</h4><div class="toolbar"><button class="btn" onclick="transferVisual('learn')">📚 Learn</button><button class="btn" onclick="transferVisual('research')">🔬 Research</button><button class="btn" onclick="transferVisual('lab')">🧪 Screen Lab</button></div></div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="deep-shell">
+<h2>Functional visual intake</h2>
+<div class="field-row">
+<div><label>Upload image</label><input type="file" accept="image/*" onchange="visualFile(this,'image')"></div>
+<div><label>Upload video</label><input type="file" accept="video/*" onchange="visualFile(this,'video')"></div>
+</div>
+<div class="deep-toolbar">
+<button class="btn" onclick="visualUse('camera')">📷 Camera workflow</button>
+<button class="btn" onclick="visualUse('live')">🔴 Live observation</button>
+</div>
+<div id="visualPreview" class="preview-box">Visual source preview</div>
+<div id="deepVisualResult" class="deep-result">Choose a source to begin.</div>
+</div>
+</section>
+</main></section>
+
+<section id="view-research" class="view"><main>
+<section class="hero"><span class="kicker">🔬 Research & Evidence</span><h2>From question to defensible evidence.</h2><p>Carry the active scientific context into question formulation, evidence discovery, study design, measurement, analysis and reproducibility.</p></section>
+<section class="section"><div class="grid">
+<div class="card"><h3>1. Research question</h3><p class="lead">Define system/population, exposure/intervention, comparator and outcome where relevant.</p><button class="btn" onclick="researchAction('Question builder')">Open builder</button></div>
+<div class="card"><h3>2. Evidence discovery</h3><p class="lead">Map literature, evidence hierarchy, source quality and uncertainty.</p><button class="btn" onclick="researchAction('Evidence map')">Open map</button></div>
+<div class="card"><h3>3. Study design</h3><p class="lead">Compare observational, experimental and translational designs.</p><button class="btn" onclick="researchAction('Study design')">Design study</button></div>
+<div class="card"><h3>4. Methods & measurement</h3><p class="lead">Connect variables to assays, instruments, calibration, sampling and validation.</p><button class="btn" onclick="showView('lab')">Connect to Screen Lab</button></div>
+</div><div id="researchOutput" class="result">Active context will appear here.</div></section>
+
+<section class="section">
+<div class="deep-shell">
+<h2>Research question builder</h2>
+<div class="field-row">
+<div><label>Research question</label><textarea id="deepResearchQuestion" placeholder="What do you want to investigate?"></textarea></div>
+<div><label>Population / system</label><input id="deepResearchPopulation" placeholder="Patients, cells, ecosystem, device, material..."><label style="margin-top:10px">Primary outcome</label><input id="deepResearchOutcome" placeholder="What will be measured?"></div>
+</div>
+<div class="deep-toolbar"><button class="btn primary" onclick="runResearchBuilder()">Build evidence-ready frame</button></div>
+<div id="deepResearchResult" class="deep-result">Your structured research frame will appear here.</div>
+</div>
+</section>
+</main></section>
+
+<section id="view-lab" class="view"><main>
+<section class="hero"><span class="kicker">🧪 Scientific Screen Lab</span><h2>Observe, simulate and test safely.</h2><p>GPSJ first asks what the user actually has nearby. Read-only observation is the default. Higher-consequence control requires verified authorization and remains blocked when the risk classifier detects harmful intent or unsafe execution.</p></section>
+<section class="section card">
+<h2>1. What do you have around you?</h2>
+<div class="form-grid">
+<div class="fieldbox"><label>Device / creation</label><input id="deviceName" placeholder="microscope, balance, sensor, custom prototype"></div>
+<div class="fieldbox"><label>Category</label><select id="deviceCategory"><option>Microscope / imaging</option><option>Balance / measurement</option><option>Sensor / data acquisition</option><option>Chromatography / analytical</option><option>Engineering prototype</option><option>Other</option></select></div>
+<div class="fieldbox"><label>Connection</label><select id="deviceConnection"><option>Not sure — help me identify it</option><option>USB</option><option>Bluetooth</option><option>Wi-Fi / network</option><option>Serial</option><option>Camera only</option><option>Manual observation only</option></select></div>
+<div class="fieldbox"><label>Educational / research goal</label><textarea id="deviceGoal" placeholder="What are you trying to learn, observe, measure or test?"></textarea></div>
+</div>
+<button class="btn primary" onclick="analyzeCompatibility()">Analyze compatibility</button>
+<div id="compatibilityResult" class="result">No device declared yet.</div>
+</section>
+<section class="section card">
+<h2>2. Safe experiment planner</h2>
+<div class="fieldbox"><label>Experiment / test</label><textarea id="experimentText" placeholder="Describe what you want to observe, measure, compare or test."></textarea></div>
+<div class="risk-meter"><span id="riskFill"></span></div>
+<div class="context"><span class="pill green" id="riskLevel">Level 1 · educational / low risk</span></div>
+<div id="riskAlert" class="alert">Proceed with observation, measurement or benign simulation.</div>
+<button class="btn" onclick="classifyExperiment()">Assess experiment</button>
+</section>
+<section class="section card">
+<h2>3. Touch instrument console</h2>
+<div class="console"><strong id="consoleMode">Observation console · READ ONLY</strong><pre id="consoleText">GPSJ LAB READY
+• Waiting for a declared instrument or prototype.
+• Safety classifier active.
+• Read-only is the default connection state.
+• No hazardous execution is enabled.</pre></div>
+<div class="capture-grid" style="margin-top:12px">
+<button class="capture-card" onclick="labTool('Capture')">📸<b>Capture</b></button><button class="capture-card" onclick="labTool('Measure')">📈<b>Measure</b></button><button class="capture-card" onclick="labTool('Annotate')">✍<b>Annotate</b></button><button class="capture-card" onclick="labTool('Simulate')">🧠<b>Simulate</b></button>
+</div>
+</section>
+</main></section>
+
+<section id="view-advancement" class="view"><main>
+<section class="hero"><span class="kicker">🚀 Global Advancement Engine</span><h2>See what qualifies you for the next stage.</h2><p>Map progression from the user's current position through country, regional/continental and worldwide pathways. Production results should rely on current requirements from real universities, regulators, professional bodies, credentialing organizations and employers.</p></section>
+<section class="section card">
+<div class="form-grid">
+<div class="fieldbox"><label>Country / jurisdiction</label><input id="advCountry" value="United States"></div>
+<div class="fieldbox"><label>Current stage</label><select id="advStage"><option>Student / learner</option><option>Technician / operator</option><option>Practitioner / scientist</option><option>Educator</option><option>Researcher</option></select></div>
+<div class="fieldbox"><label>Field</label><select id="advField"><option>Pharmacy & Pharmaceutical Sciences</option><option>Medicine & Clinical Sciences</option><option>Engineering, Technology & Applied Systems</option><option>Laboratory & Experimental Science</option><option>Biotechnology & Biomanufacturing</option></select></div>
+<div class="fieldbox"><label>Career goal</label><input id="advGoal" placeholder="licensed practice, research scientist, PhD, aerospace engineer…"></div>
+</div>
+<button class="btn primary" onclick="buildAdvancement()">Generate staged pathway</button>
+<div id="advOutput" class="result">Enter a goal to generate the staged structure. Live institutional verification is a production integration.</div>
+</section>
+
+<section class="section">
+<div class="deep-shell">
+<h2>Deeper advancement route</h2>
+<div class="field-row">
+<div><label>Country / jurisdiction</label><input id="deepAdvCountry" value="United States"><label style="margin-top:10px">Current stage</label><select id="deepAdvStage"><option>Student / learner</option><option>Practitioner / scientist</option><option>Educator</option><option>Employee / operator</option></select></div>
+<div><label>Field</label><select id="deepAdvField"><option>Pharmacy & Pharmaceutical Sciences</option><option>Medicine & Clinical Sciences</option><option>Engineering, Technology & Applied Systems</option><option>Laboratory & Experimental Science</option></select><label style="margin-top:10px">Career goal</label><input id="deepAdvGoal" placeholder="licensed practice, scientist, PhD, engineer..."></div>
+</div>
+<div class="deep-toolbar"><button class="btn primary" onclick="buildAdvancementDeep()">Generate staged route</button></div>
+<div id="deepAdvResult" class="deep-result">Your staged route will appear here.</div>
+</div>
+</section>
+</main></section>
+
+<section id="view-create" class="view"><main>
+<section class="hero"><span class="kicker">🎨 Scientific Creator Studio</span><h2>Turn knowledge into something useful.</h2><p>Create scientific reports, presentations, teaching resources, visual explanations, maps and multilingual material from the active scientific context.</p></section>
+<section class="section"><div class="grid">
+<div class="card"><h3>📄 Report Builder</h3><button class="btn" onclick="creator('Report Builder')">Open</button></div>
+<div class="card"><h3>📊 Presentation Studio</h3><button class="btn" onclick="creator('Presentation Studio')">Open</button></div>
+<div class="card"><h3>🗺 Research Map Studio</h3><button class="btn" onclick="creator('Research Map Studio')">Open</button></div>
+<div class="card"><h3>🧬 Visual Explanation Studio</h3><button class="btn" onclick="creator('Visual Explanation Studio')">Open</button></div>
+<div class="card"><h3>🌐 Translation Center</h3><button class="btn" onclick="openLanguage()">Open</button></div>
+<div class="card"><h3>📤 Export Center</h3><button class="btn" onclick="creator('Export Center')">Open</button></div>
+</div><div id="createOutput" class="result">Select a creator tool.</div></section>
+
+<section class="section">
+<div class="deep-shell">
+<h2>Functional creator workspace</h2>
+<div class="field-row">
+<div><label>Working title / question</label><input id="deepCreateTitle" placeholder="Enter title or objective"></div>
+<div><label>Output type</label><select id="deepCreateType"><option>Report</option><option>Presentation</option><option>Visual explanation</option><option>Research map</option><option>Teaching resource</option></select></div>
+</div>
+<label style="display:block;font-weight:800;margin:10px 0 6px">Scientific notes</label>
+<textarea id="deepCreateNotes" placeholder="Evidence, observations, variables, assumptions or key points..."></textarea>
+<div class="deep-toolbar"><button class="btn primary" onclick="runCreateDeep()">Generate working structure</button></div>
+<div id="deepCreateResult" class="deep-result">Your creation structure will appear here.</div>
+</div>
+</section>
+</main></section>
+
+
+<section id="view-institutions" class="view"><main>
+<section class="hero">
+<span class="kicker">🏛 Institutions & Facilities</span>
+<h2>Find where science can be learned, practiced, tested or advanced.</h2>
+<p>GPSJ separates educational discovery from verified institutional participation. Public users can explore institutions. Verified institutions can later expose authorized programs, laboratories, equipment, training, collaboration opportunities and procurement workflows.</p>
+<div class="chips"><span class="chip">Universities</span><span class="chip">Research centers</span><span class="chip">Hospitals</span><span class="chip">Laboratories</span><span class="chip">Training facilities</span></div>
+</section>
+<section class="section card">
+<h2>Institution explorer</h2>
+<div class="form-grid">
+<div class="fieldbox"><label>Country / region</label><input id="instRegion" value="United States"></div>
+<div class="fieldbox"><label>Institution type</label><select id="instType"><option>Any institution</option><option>University</option><option>Hospital / academic medical center</option><option>Research institute</option><option>Laboratory</option><option>Technical / engineering center</option><option>Credentialing body</option></select></div>
+<div class="fieldbox"><label>Scientific field</label><select id="instField"><option>Any field</option><option>Pharmacy & Pharmaceutical Sciences</option><option>Medicine & Clinical Sciences</option><option>Engineering & Applied Systems</option><option>Laboratory Science</option><option>Natural Products</option></select></div>
+<div class="fieldbox"><label>Goal</label><select id="instGoal"><option>Study / degree</option><option>Research collaboration</option><option>Laboratory access</option><option>Certification / training</option><option>Career opportunity</option><option>Facility / equipment access</option></select></div>
+</div>
+<button class="btn primary" onclick="exploreInstitutions()">Build institution map</button>
+<div id="instOutput" class="result">Choose the type of institution and objective. Production GPSJ should verify results against live institutional sources.</div>
+</section>
+<section class="section"><h2>Institution participation model</h2><div class="grid">
+<div class="card"><span class="pill">Public directory</span><h3>Discover</h3><p class="lead">Programs, facilities, research areas and public contact points.</p></div>
+<div class="card"><span class="pill green">Verified institution</span><h3>Connect</h3><p class="lead">Authorized laboratories, training, projects, equipment and institutional services.</p></div>
+<div class="card"><span class="pill amber">Restricted workflows</span><h3>Authorize</h3><p class="lead">Role, credential, safety, jurisdiction and facility authorization before sensitive or connected actions.</p></div>
+<div class="card"><span class="pill">Global recognition</span><h3>Advance</h3><p class="lead">Compare qualifications across countries, regions and worldwide pathways.</p></div>
+</div></section>
+
+<section class="section">
+<div class="deep-shell">
+<h2>Functional institution map builder</h2>
+<div class="field-row">
+<div><label>Country / region</label><input id="deepInstCountry" value="United States"><label style="margin-top:10px">Scientific field</label><select id="deepInstField"><option>Any field</option><option>Pharmacy & Pharmaceutical Sciences</option><option>Medicine & Clinical Sciences</option><option>Engineering, Technology & Applied Systems</option></select></div>
+<div><label>Institution type</label><select id="deepInstType"><option>Any institution</option><option>University</option><option>Research center</option><option>Hospital</option><option>Laboratory</option><option>Training facility</option></select><label style="margin-top:10px">Goal</label><select id="deepInstGoal"><option>Study / degree</option><option>Research collaboration</option><option>Training</option><option>Facility / equipment</option><option>Career</option></select></div>
+</div>
+<div class="deep-toolbar"><button class="btn primary" onclick="institutionDeep()">Build institution map</button></div>
+<div id="deepInstResult" class="deep-result">Choose criteria to build an institution map.</div>
+</div>
+</section>
+</main></section>
+
+<section id="view-marketplace" class="view"><main>
+<section class="hero"><span class="kicker">🛍 Scientific Marketplace</span><h2>Verified resources, not an open free-for-all.</h2><p>Prototype marketplace routing for educational resources, laboratory supplies, services, institutions and professional tools. Restricted items and hazardous capabilities require stronger controls or remain unavailable.</p></section>
+<section class="section"><div class="grid">
+<div class="card"><h3>📚 Educational resources</h3><p class="lead">Courses, books, models and teaching resources.</p><button class="btn" onclick="marketAction('Educational resources')">Explore</button></div>
+<div class="card"><h3>🔬 Laboratory resources</h3><p class="lead">Verified benign laboratory supplies and services.</p><button class="btn" onclick="marketAction('Laboratory resources')">Explore</button></div>
+<div class="card"><h3>🏛 Institutions & facilities</h3><p class="lead">Universities, laboratories and research facilities.</p><button class="btn" onclick="marketAction('Institutions & facilities')">Explore</button></div>
+<div class="card"><h3>🧭 Professional services</h3><p class="lead">Credentialing, career and scientific services.</p><button class="btn" onclick="marketAction('Professional services')">Explore</button></div>
+</div><div id="marketOutput" class="result">Marketplace navigation is active in this prototype.</div>
+<div class="section card">
+<h2>Marketplace access model</h2>
+<div class="grid">
+<div class="card"><span class="pill green">Public</span><h3>Educational</h3><p class="lead">Books, courses, benign learning models, public datasets and scientific media.</p></div>
+<div class="card"><span class="pill">Verified professional</span><h3>Professional</h3><p class="lead">Institution-approved services, certifications and qualified scientific tools.</p></div>
+<div class="card"><span class="pill amber">Institutional</span><h3>Procurement</h3><p class="lead">Facilities and organizations may manage approved suppliers and equipment catalogs.</p></div>
+<div class="card"><span class="pill red">Restricted</span><h3>Controlled categories</h3><p class="lead">Items or capabilities requiring legal, credential, safety or organizational authorization are not exposed as ordinary public shopping.</p></div>
+</div>
+</div></section>
+
+<section class="section">
+<div class="deep-shell">
+<h2>Marketplace discovery engine</h2>
+<p class="lead">The public can browse. Verified roles can later connect purchasing, credentialing and institutional workflows.</p>
+<div class="deep-toolbar">
+<button class="btn" onclick="marketplaceExploreDeep('education')">📚 Educational</button>
+<button class="btn" onclick="marketplaceExploreDeep('laboratory')">🔬 Laboratory</button>
+<button class="btn" onclick="marketplaceExploreDeep('institutions')">🏛 Institutions</button>
+<button class="btn" onclick="marketplaceExploreDeep('professional')">🧭 Professional</button>
+</div>
+<div id="deepMarketResult" class="deep-result">Choose a marketplace category.</div>
+</div>
+</section>
+</main></section>
+
+<div id="languageModal" class="modal-backdrop"><div class="modal"><div class="modal-head"><h2>🌐 Language & Global Access</h2><button onclick="closeModal('languageModal')">Close</button></div><div class="modal-body">
+<p>Choose interface/scientific language. Production GPSJ can adapt scientific terminology, narration and regional language conventions.</p>
+<div class="lang-grid" id="langGrid"></div>
+</div></div></div>
+
+<div id="signinModal" class="modal-backdrop"><div class="modal"><div class="modal-head"><h2>👤 GPSJ Identity & Workspace</h2><button onclick="closeModal('signinModal')">Close</button></div><div class="modal-body">
+<p>One sign-in, personalized workspace by verified role. Public visitors do not need an account to learn. Sign-in adds saved progress, personalization, verified roles, institution links and authorized professional capabilities.</p>
+<div class="result"><b>Public access remains open:</b> Learn, Visual Intelligence, Research discovery, safe Screen Lab observation/simulation, Advancement discovery and public Marketplace exploration remain available without an account.</div><div class="result" style="margin-top:10px"><b>Why sign in?</b> Save your journey, resume where you stopped, personalize scientific depth, connect recognized institutions, track advancement and unlock verified role-based tools.</div>
+<div class="form-grid"><div class="fieldbox"><label>Email / username</label><input id="signinEmail" placeholder="name@example.com"></div><div class="fieldbox"><label>Password</label><input type="password" placeholder="Password"></div></div>
+<h3>Preview workspace role</h3><div class="role-grid" id="roleGrid"></div>
+<button class="btn primary" onclick="demoSignin()">Continue to personalized workspace</button>
+<button class="btn" onclick="closeModal('signinModal')">Continue as public visitor</button>
+<div id="signinStatus" class="result">Functional prototype: navigation, local state, learning flows, builders and previews work client-side. Production authentication, live institutional data, external recognition services and verified device control require backend integrations.</div>
+</div></div></div>
+
+<script>
+const APP_VERSION='4.22';
+const state={view:'home',field:'pharmacy',domain:null,topic:null,stage:0,language:'English',role:'public',visual:null};
+const fields={
+ pharmacy:{icon:'💊',name:'Pharmacy & Pharmaceutical Sciences',domains:{
+  foundations:['History & professional foundations','Medication systems','Dosage forms & routes','Prescription interpretation','Medication-use process','Quality & ethics'],
+  pharmacology:['Receptors & signaling','Pharmacodynamics','Dose-response relationships','Autonomic pharmacology','Cardiovascular pharmacology','Neuropharmacology','Anti-infective pharmacology','Endocrine pharmacology','Cancer pharmacology','Immunopharmacology'],
+  pharmaceutics:['Physical pharmacy','Dosage-form design','Solubility & dissolution','Stability','Modified release','Sterile products','Biopharmaceutics','Manufacturing principles'],
+  pharmacotherapy:['Patient assessment','Evidence-based therapeutics','Cardiovascular disorders','Infectious diseases','Endocrine disorders','Neurologic disorders','Renal disorders','Pulmonary disorders','Oncology supportive care','Special populations'],
+  pkpd:['Absorption','Distribution','Metabolism','Excretion','Compartment models','Clearance','Half-life','Bioavailability','Steady state','Therapeutic drug monitoring'],
+  medchem:['Chemical structure & properties','Functional groups','Stereochemistry','Structure-activity relationships','Ionization & pKa','Lipophilicity','Drug metabolism chemistry','Molecular interactions'],
+  genomics:['Genetic variation','Pharmacogenes','Metabolizer phenotypes','Genotype-to-phenotype','Clinical implementation','Evidence levels','Ethics & equity'],
+  safety:['Medication errors','High-alert medications','Calculations','Compatibility','Storage','Adverse-event reporting','Quality improvement','Risk communication']
+ }},
+ natural:{icon:'🌿',name:'Pharmacognosy & Natural Products',domains:{
+  botany:['Plant morphology','Taxonomy & nomenclature','Field identification','Microscopy','Voucher specimens','Digital identification','Uncertainty & look-alikes','Ethnobotanical documentation'],
+  ethnopharm:['Traditional-use documentation','Cultural context','Evidence translation','Benefit-risk interpretation','Community ethics','Intellectual property','Biocultural conservation'],
+  chemistry:['Primary vs secondary metabolites','Alkaloids','Terpenoids','Phenolics','Glycosides','Saponins','Volatile compounds','Chemotaxonomy'],
+  extraction:['Sample preparation','Extraction principles','Solvent & polarity selection','Maceration & percolation','Infusion & decoction','Soxhlet extraction','Ultrasound-assisted extraction','Liquid-liquid partitioning','Chromatographic separation','Purification','Yield & recovery','Scale-up & quality'],
+  phyto:['Qualitative screening','TLC profiling','HPLC principles','GC principles','Spectroscopy overview','Fingerprinting','Marker compounds','Quantitation','Method validation'],
+  bioactivity:['Assay selection','Biological targets','Positive & negative controls','Concentration-response','Potency vs efficacy','Screening strategy','Orthogonal validation','Cytotoxicity context','Statistics & uncertainty','Mechanistic follow-up','Translation limits'],
+  tox:['Hazard identification','Dose & exposure','In vitro toxicity','Organ toxicity','Interactions','Contaminants & adulterants','Risk communication','Regulatory context'],
+  evidence:['Source quality','Traditional evidence','Preclinical evidence','Clinical evidence','Causality','Reproducibility','Evidence grading','Translation to application']
+ }},
+ lab:{icon:'🧪',name:'Laboratory & Experimental Science',domains:{
+  safety:['Hazard recognition','PPE & containment','Chemical hygiene','Biological safety','Waste segregation','Emergency response','Incident reporting','Safety culture'],
+  measurement:['SI units','Accuracy & precision','Calibration','Traceability','Uncertainty','Significant figures','Limits of detection','Quality control'],
+  samples:['Sampling plans','Labeling & chain of custody','Storage','Aliquoting','Contamination control','Preparation','Retention','Disposal'],
+  analytical:['Spectroscopy','Chromatography','Electrochemistry','Mass analysis','Microscopy','Method development','Validation','Troubleshooting'],
+  molecular:['Pipetting','Nucleic-acid workflows','Protein methods','Electrophoresis','Immunoassays','Cell culture concepts','Imaging','Quantitation'],
+  microbiology:['Aseptic technique','Culture principles','Microscopy','Identification','Susceptibility concepts','Enumeration','Contamination control','Biosafety'],
+  quality:['SOPs','Documentation','Deviation handling','CAPA concepts','Equipment qualification','Calibration systems','Data integrity','Audit readiness'],
+  reproducibility:['Protocol versioning','Controls','Replication','Randomization','Blinding','Data provenance','Deviation logs','Reproducible analysis']
+ }},
+ medicine:{icon:'🩺',name:'Medicine & Clinical Sciences',domains:{
+  anatomy:['Body organization','Cells & tissues','Musculoskeletal system','Cardiovascular anatomy','Respiratory anatomy','GI anatomy','Renal anatomy','Nervous system','Endocrine system','Reproductive anatomy'],
+  physiology:['Homeostasis','Membrane physiology','Cardiovascular physiology','Respiratory physiology','Renal physiology','GI physiology','Neurophysiology','Endocrine physiology'],
+  pathophys:['Cell injury','Inflammation','Hemodynamics','Immune dysfunction','Neoplasia','Organ failure','Metabolic disease','Genetic disease'],
+  reasoning:['History & examination','Problem representation','Differential diagnosis','Testing strategy','Probability','Clinical decision thresholds','Monitoring','Communication'],
+  internal:['Cardiology','Pulmonology','Gastroenterology','Nephrology','Endocrinology','Hematology','Infectious disease','Rheumatology'],
+  emergency:['Triage','Airway/breathing/circulation','Shock concepts','Acute neurologic syndromes','Trauma principles','Toxicologic emergencies','Resuscitation systems'],
+  pediatrics:['Growth & development','Pediatric physiology','Common pediatric syndromes','Medication dosing concepts','Vaccination principles','Safety','Family-centered care'],
+  specialty:['Women’s health','Geriatrics','Dermatology','Neurology','Psychiatry','Oncology','Critical care','Perioperative medicine']
+ }},
+ engineering:{icon:'⚙️',name:'Engineering, Technology & Applied Systems',domains:{
+  aerospace:['Aerodynamics','Aircraft structures','Propulsion principles','Flight mechanics','Avionics','Control systems','Aircraft performance','Safety & certification','Space systems foundations'],
+  naval:['Hydrostatics','Hydrodynamics','Hull form','Marine structures','Propulsion','Ship stability','Marine systems','Navigation systems','Offshore structures','Safety & regulation'],
+  mechanical:['Statics','Dynamics','Mechanics of materials','Thermodynamics','Fluid mechanics','Heat transfer','Machine design','Manufacturing','Mechatronics'],
+  electrical:['Circuits','Signals','Electronics','Digital systems','Power electronics','Control','Instrumentation','Electromagnetics','Embedded hardware'],
+  civil:['Structural analysis','Materials','Geotechnical engineering','Transportation','Water resources','Construction systems','Infrastructure resilience','Codes & safety'],
+  robotics:['Kinematics','Dynamics','Sensors','Actuators','Control','Perception','Planning','Human-robot interaction','Industrial automation','Safe autonomy'],
+  computing:['Computer architecture','Embedded systems','Operating systems','Networking','Software systems','Data acquisition','Edge computing','Cyber-physical systems'],
+  telecom:['Signals','Communication channels','Modulation','Antennas','Wireless networks','Optical communication','Network design','Reliability'],
+  energy:['Energy conversion','Power generation','Grid systems','Energy storage','Renewable systems','Power quality','Efficiency','Safety'],
+  materials:['Structure of materials','Mechanical properties','Thermal properties','Electrical properties','Polymers','Ceramics','Metals','Composites','Failure analysis'],
+  manufacturing:['Process planning','Machining','Additive manufacturing','Automation','Quality engineering','Lean systems','Supply chain','Industrial safety'],
+  transport:['Vehicle dynamics','Traffic systems','Rail systems','Aviation systems','Marine transport','Logistics','Human factors','Safety engineering'],
+  environment:['Water treatment','Wastewater','Air quality','Hydrology','Environmental monitoring','Sustainable systems','Resource recovery','Risk assessment'],
+  sensing:['Sensor principles','Measurement chains','Signal conditioning','Imaging systems','Remote sensing','Environmental monitoring','Industrial monitoring','Privacy-preserving security systems']
+ }}
+};
+const domainLabels={
+ foundations:'Foundations of pharmacy',pharmacology:'Pharmacology',pharmaceutics:'Pharmaceutics & formulation',pharmacotherapy:'Pharmacotherapy',pkpd:'Pharmacokinetics / pharmacodynamics',medchem:'Medicinal chemistry',genomics:'Pharmacogenomics',safety:'Safety & limitations',
+ botany:'Botany & identification',ethnopharm:'Ethnopharmacology',chemistry:'Natural-product chemistry',extraction:'Extraction & isolation',phyto:'Phytochemistry',bioactivity:'Bioactivity',tox:'Safety & toxicology',evidence:'Evidence & translation',
+ measurement:'Measurement science',samples:'Sample handling',analytical:'Analytical methods',molecular:'Cell & molecular methods',microbiology:'Microbiology methods',quality:'Quality systems',reproducibility:'Research reproducibility',
+ anatomy:'Anatomy',physiology:'Physiology',pathophys:'Pathophysiology',reasoning:'Clinical reasoning',internal:'Internal medicine',emergency:'Emergency medicine',pediatrics:'Pediatrics',specialty:'Specialty pathways',
+ aerospace:'Aerospace & aeronautical engineering',naval:'Naval architecture & marine engineering',mechanical:'Mechanical engineering',electrical:'Electrical & electronics engineering',civil:'Civil & structural engineering',robotics:'Robotics & automation',computing:'Computer engineering & embedded systems',telecom:'Telecommunications & networks',energy:'Energy & power systems',materials:'Materials science & engineering',manufacturing:'Manufacturing & industrial systems',transport:'Transportation systems',environment:'Environmental & water engineering',sensing:'Sensing, monitoring & security systems'
+};
+function showView(name,btn){
+ document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+ const el=document.getElementById('view-'+name); if(el) el.classList.add('active');
+ document.querySelectorAll('.nav button[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===name));
+ state.view=name; saveContext(); window.scrollTo({top:0,behavior:'smooth'});
+}
+function renderFields(){
+ const root=document.getElementById('fields'); root.innerHTML='';
+ Object.entries(fields).forEach(([id,f])=>{
+  const b=document.createElement('button');b.className='field'+(state.field===id?' active':'');
+  b.innerHTML=`<span class="ico">${f.icon}</span><strong>${f.name}</strong><small>${Object.keys(f.domains).length} scientific domains</small>`;
+  b.onclick=()=>selectField(id);root.appendChild(b);
+ });
+ renderRoute();
+}
+function selectField(id){state.field=id;state.domain=null;state.topic=null;renderFields();document.getElementById('route').scrollIntoView({behavior:'smooth',block:'start'});}
+function renderRoute(){
+ const f=fields[state.field];const route=document.getElementById('route'); if(!f)return;
+ let html=`<div class="crumb">Science → ${f.name}</div><h2>${f.icon} ${f.name}</h2><div class="domains">`;
+ Object.keys(f.domains).forEach(d=>{html+=`<button class="tile ${state.domain===d?'active':''}" onclick="selectDomain('${d}')"><strong>${domainLabels[d]||d}</strong><small>${f.domains[d].length} real topics →</small></button>`});
+ html+='</div>';
+ if(state.domain){
+  html+=`<h2 style="margin-top:20px">${domainLabels[state.domain]}: topic tree</h2><div class="topics">`;
+  f.domains[state.domain].forEach((t,i)=>{html+=`<button class="tile ${state.topic===t?'active':''}" onclick="openTopic(${i})"><strong>${i+1}. ${t}</strong><small>Open focused lesson →</small></button>`});
+  html+='</div>';
+ }
+ route.innerHTML=html;
+}
+function selectDomain(d){state.domain=d;state.topic=null;renderRoute();saveContext();}
+const stageNames=['1. Concept','2. Visual','3. Explore','4. Interact','5. Practice','6. Assess','7. Related','8. Continue'];
+function openTopic(i){const f=fields[state.field];state.topic=f.domains[state.domain][i];state.stage=0;document.getElementById('lesson').classList.add('open');document.getElementById('lessonCrumb').textContent=`Science → ${f.name} → ${domainLabels[state.domain]} → ${state.topic}`;document.getElementById('lessonTitle').textContent=state.topic;renderStages();renderLesson();saveContext();document.getElementById('lesson').scrollIntoView({behavior:'smooth',block:'start'});}
+function renderStages(){document.getElementById('stages').innerHTML=stageNames.map((s,i)=>`<button class="stage ${state.stage===i?'active':''}" onclick="setStage(${i})">${s}</button>`).join('');}
+function setStage(i){state.stage=i;renderStages();renderLesson();saveContext();}
+function lessonConcept(){
+ const d=domainLabels[state.domain]||state.domain,t=state.topic||'Topic';
+ return `<h3>${t}: scientific foundation</h3><p>GPSJ begins with the governing scientific idea, the relevant system or structure, the variables that matter and the observable consequence. This prototype provides a domain-aware learning frame; production content should be validated against authoritative sources for each discipline.</p><div class="pipeline"><div>Structure / system</div><div>Variable</div><div>Mechanism</div><div>Response</div><div>Evidence</div><div>Application</div></div><p><b>Current domain:</b> ${d}</p>`;
+}
+function lessonVisual(){
+ return `<div class="lesson-layout"><div class="media-stage"><div class="media-head"><strong>${state.topic}</strong><span class="pill green">Adaptive visual</span></div><div class="media-canvas"><div class="media-placeholder"><h3>${state.topic}</h3><p>Production visual media can be selected by topic: verified diagrams, molecular views, anatomy, microscopy, plots, maps, engineering schematics, field imagery or video.</p></div></div><div class="viewer-controls"><button>🔎 Zoom</button><button>↻ Rotate</button><button>🏷 Labels</button><button>📏 Measure</button><button>⇄ Compare</button><button>🧩 Layers</button><button>✍ Annotate</button><button onclick="showView('visual')">👁 Open Visual Lab</button></div></div><div class="side-stack"><div class="vpanel"><h3>Why this view?</h3><p>The viewer adapts the representation to the science instead of showing the same schematic for every topic.</p></div><div class="vpanel"><h4>Touch-first</h4><p>Large controls, pinch/zoom-ready layout, stylus-friendly annotation and keyboard fallback.</p></div></div></div>`;
+}
+function lessonInteract(){return `<h3>Interact with ${state.topic}</h3><p>Manipulate a safe conceptual variable and observe the response. Production simulations should use validated models appropriate to the discipline.</p><label><b>System intensity</b></label><input type="range" min="0" max="100" value="50" oninput="document.getElementById('interactionReadout').textContent='Model response: '+this.value+'%'"><div id="interactionReadout" class="result">Model response: 50%</div>`}
+function renderLesson(){
+ let html='';
+ switch(state.stage){
+  case 0:html=lessonConcept();break;
+  case 1:html=lessonVisual();break;
+  case 2:html=`<h3>Explore the scientific neighborhood</h3><p>GPSJ links ${state.topic} to prerequisite concepts, measurement methods, evidence and applications without forcing the learner out of the lesson.</p><div class="context"><span>Prerequisites</span><span>Methods</span><span>Evidence</span><span>Applications</span><span>Cross-disciplinary links</span></div>`;break;
+  case 3:html=lessonInteract();break;
+  case 4:html=`<h3>Practice</h3><p>Apply the concept to a new scenario.</p><button class="btn" onclick="quizFeedback('Try to identify the governing variable before choosing the outcome.')">Scenario A</button> <button class="btn" onclick="quizFeedback('Compare mechanism, measurement and result.')">Scenario B</button><div id="quizFeedback" class="result">Choose a scenario.</div>`;break;
+  case 5:html=`<h3>Assess understanding</h3><p>Which sequence best matches the GPSJ scientific-learning method?</p><button class="btn" onclick="quizFeedback('Not quite. Memorization alone is not the target.')">Outcome → unrelated fact → memorization</button> <button class="btn primary" onclick="quizFeedback('Correct: connect structure/system → mechanism → response → meaning/application.')">Structure/system → mechanism → response → application</button><div id="quizFeedback" class="result">Select an answer.</div>`;break;
+  case 6:html=`<h3>Related scientific fields</h3><div class="grid"><div class="card"><b>🔬 Measurement connection</b><p class="lead">How would this be measured or validated?</p></div><div class="card"><b>📊 Evidence connection</b><p class="lead">What evidence supports the interpretation?</p></div><div class="card"><b>🧪 Experimental connection</b><p class="lead">What safe experiment could illustrate the concept?</p></div><div class="card"><b>⚙️ Applied connection</b><p class="lead">Where does the same principle appear elsewhere?</p></div></div>`;break;
+  case 7:html=`<h3>Continue your journey</h3><p>Keep the current context while moving to another workspace.</p><div class="toolbar"><button class="btn" onclick="showView('research')">🔬 Research it</button><button class="btn" onclick="showView('visual')">👁 Inspect visually</button><button class="btn" onclick="showView('lab')">🧪 Open Screen Lab</button><button class="btn" onclick="showView('create')">🎨 Create from it</button></div>`;break;
+ }
+ document.getElementById('lessonPanel').innerHTML=html;
+}
+function quizFeedback(x){const e=document.getElementById('quizFeedback');if(e)e.textContent=x;}
+function searchTopics(){const q=document.getElementById('searchBox').value.trim().toLowerCase();if(!q)return;for(const [fid,f] of Object.entries(fields)){for(const [d,ts] of Object.entries(f.domains)){const ix=ts.findIndex(t=>t.toLowerCase().includes(q));if(ix>=0 || f.name.toLowerCase().includes(q) || (domainLabels[d]||d).toLowerCase().includes(q)){state.field=fid;state.domain=d;renderFields();if(ix>=0)openTopic(ix);return;}}}alert('No matching prototype topic yet.');}
+function visualSource(type){state.visual={type,name:type==='camera'?'Camera observation':'Live observation'};document.getElementById('visualTitle').textContent=state.visual.name;document.getElementById('confidencePill').textContent='Identity not inferred';document.getElementById('visualInterpretation').textContent='Source selected. Production GPSJ would request explicit device permission, then analyze visible scientific features while preserving uncertainty and asking for confirmation.';saveContext();}
+function handleVisualFile(input,type){const f=input.files&&input.files[0];if(!f)return;state.visual={type,name:f.name};document.getElementById('visualTitle').textContent=f.name;document.getElementById('confidencePill').textContent='User-provided source';document.getElementById('visualInterpretation').textContent=`${type==='image'?'Image':'Video'} loaded locally for workflow demonstration. No identity claim is made by this static prototype.`;document.getElementById('certainty1').textContent='Identity: unverified';document.getElementById('certainty2').textContent='Source: user supplied';document.getElementById('certainty3').textContent='Human confirmation: required';if(type==='image'){const url=URL.createObjectURL(f);document.getElementById('visualCanvas').innerHTML=`<img src="${url}" alt="Uploaded scientific observation" style="max-width:100%;max-height:310px;border-radius:15px">`;}else{const url=URL.createObjectURL(f);document.getElementById('visualCanvas').innerHTML=`<video controls src="${url}" style="max-width:100%;max-height:310px;border-radius:15px"></video>`;}saveContext();}
+function visualTool(name){document.getElementById('visualInterpretation').textContent=`${name} tool selected. Production implementation applies this operation to the current visual source while preserving the scientific observation record.`;}
+function transferVisual(target){if(state.visual){localStorage.setItem('gpsjVisualTransfer',JSON.stringify(state.visual));}showView(target);}
+function researchAction(name){document.getElementById('researchOutput').innerHTML=`<b>${name}</b><p>Active context: ${state.field?fields[state.field].name:'none'}${state.topic?' → '+state.topic:''}. The workflow is ready for evidence-backed production integration.</p>`;}
+function analyzeCompatibility(){const name=document.getElementById('deviceName').value.trim()||'Unnamed device';const cat=document.getElementById('deviceCategory').value;const conn=document.getElementById('deviceConnection').value;document.getElementById('compatibilityResult').innerHTML=`<b>${name}</b><p>Category: ${cat}. Declared connection: ${conn}.</p><p><b>Default state:</b> read-only observation. GPSJ should discover capabilities only after the user confirms the exact instrument/model and available interface. Physical control remains authorization-gated.</p>`;document.getElementById('consoleText').textContent=`GPSJ LAB READY\n• Declared: ${name}\n• Category: ${cat}\n• Connection: ${conn}\n• Read-only default active.\n• Safety classifier active.`;}
+function classifyExperiment(){const t=document.getElementById('experimentText').value.toLowerCase();let level=1,msg='Proceed with observation, measurement or benign simulation.',w=18,cls='alert',pill='pill green';const high=['weapon','explosive','bomb','poison','toxin production','chemical weapon','biological weapon','harm people','kill'];const med=['high voltage','high pressure','pathogen','dangerous chemical','human subject','animal experiment','real-world control'];if(high.some(x=>t.includes(x))){level=4;msg='Execution blocked. Keep the activity at a safe educational, conceptual or non-harmful simulation level.';w=100;cls='alert high';pill='pill red';}else if(med.some(x=>t.includes(x))){level=3;msg='Elevated-risk activity: use a supervised, authorized environment or a benign simulation/substitute.';w=70;cls='alert med';pill='pill amber';}document.getElementById('riskFill').style.width=w+'%';const r=document.getElementById('riskLevel');r.className=pill;r.textContent=`Level ${level} · ${level===1?'educational / low risk':level===3?'restricted / supervised':'stop execution'}`;const a=document.getElementById('riskAlert');a.className=cls;a.textContent=msg;}
+function labTool(name){document.getElementById('consoleText').textContent+=`\n• ${name} selected in safe prototype mode.`;}
+function buildAdvancement(){const country=document.getElementById('advCountry').value,stage=document.getElementById('advStage').value,field=document.getElementById('advField').value,goal=document.getElementById('advGoal').value.trim()||'next professional stage';document.getElementById('advOutput').innerHTML=`<h3>${goal}</h3><div class="grid"><div class="card"><span class="pill">Country</span><h4>${country}</h4><p>Identify current credential/education status, regulator or accreditor, prerequisite gaps and the next locally recognized stage.</p></div><div class="card"><span class="pill">Region / continent</span><h4>Cross-border recognition</h4><p>Compare recognition, mobility, equivalency and regionally relevant institutions.</p></div><div class="card"><span class="pill">Worldwide</span><h4>Global pathway</h4><p>Surface internationally competitive programs, certifications, employers and research pathways.</p></div><div class="card"><span class="pill green">Institution-aware</span><h4>Verification layer</h4><p>Production recommendations must cite current requirements from actual institutions and regulators before being presented as eligibility guidance.</p></div></div><p><b>Starting profile:</b> ${stage} · ${field}</p>`;}
+function creator(name){document.getElementById('createOutput').innerHTML=`<b>${name}</b><p>Loaded with active context: ${state.topic||fields[state.field]?.name||'general science'}. In production, the tool would create an editable artifact while preserving sources and provenance.</p>`;}
+function marketAction(name){document.getElementById('marketOutput').innerHTML=`<b>${name}</b><p>Prototype route opened. Production marketplace results should distinguish public educational resources from verified professional/institutional procurement and restricted categories.</p>`;}
+const languages=['English','Français','Español','Português','Deutsch','العربية','中文','日本語','हिन्दी','Kiswahili'];
+function openLanguage(){document.getElementById('languageModal').classList.add('open');renderLanguages();}
+function renderLanguages(){document.getElementById('langGrid').innerHTML=languages.map(x=>`<button class="choice ${state.language===x?'active':''}" onclick="setLanguage('${x.replace(/'/g,"\\'")}')">${x}</button>`).join('');}
+function setLanguage(x){state.language=x;renderLanguages();saveContext();}
+const roles=[['learner','🎓 Learner / Student'],['scientist','🩺 Practitioner / Scientist'],['educator','🏫 Educator'],['institution','🏥 Institution'],['supplier','📦 Supplier'],['operator','👷 Employee / Operator'],['founder','🔐 Executive / Founder']];
+function openSignin(){document.getElementById('signinModal').classList.add('open');document.getElementById('roleGrid').innerHTML=roles.map(r=>`<button class="choice ${state.role===r[0]?'active':''}" onclick="setRole('${r[0]}')">${r[1]}</button>`).join('');}
+function setRole(r){state.role=r;openSignin();saveContext();}
+function demoSignin(){const email=document.getElementById('signinEmail').value.trim()||'prototype user';document.getElementById('signinStatus').innerHTML=`<b>Workspace preview active</b><p>${email} · role: ${state.role}. This does not authenticate against a real backend.</p>`;saveContext();}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+function backupState(){const payload={version:APP_VERSION,savedAt:new Date().toISOString(),state};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='gpsj_backup_v'+APP_VERSION.replace('.','_')+'.json';a.click();URL.revokeObjectURL(a.href);}
+function saveContext(){try{localStorage.setItem('gpsj_v422_state',JSON.stringify(state));}catch(e){}}
+function restoreContext(){try{const x=JSON.parse(localStorage.getItem('gpsj_v422_state')||'null');if(x)Object.assign(state,x);}catch(e){}}
+
+
+function inviteSignin(reason){
+ if((state.role||'public')!=='public') return;
+ let box=document.getElementById('publicSigninNudge');
+ if(!box){
+   box=document.createElement('div');
+   box.id='publicSigninNudge';
+   box.style.cssText='position:fixed;right:18px;bottom:18px;max-width:340px;background:white;border:1px solid #d8e3f5;border-radius:18px;padding:16px;box-shadow:0 14px 40px rgba(18,39,82,.18);z-index:80';
+   document.body.appendChild(box);
+ }
+ box.innerHTML=`<div style="font-weight:900;margin-bottom:5px">Enjoying GPSJ?</div><div style="color:#68758e;font-size:14px;margin-bottom:10px">${reason||'Sign in to save this journey and personalize what comes next.'}</div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" onclick="openSignin();document.getElementById('publicSigninNudge')?.remove()">Sign in</button><button class="btn" onclick="document.getElementById('publicSigninNudge')?.remove()">Keep exploring</button></div>`;
+}
+
+
+const deepData={
+  fields:{
+    "Pharmacy & Pharmaceutical Sciences":["Foundations of pharmacy","Pharmacology","Pharmaceutics","Medicinal chemistry","Pharmacokinetics","Clinical pharmacy","Regulatory science","Pharmaceutical biotechnology"],
+    "Pharmacognosy & Natural Products":["Botany & identification","Ethnopharmacology","Natural-product chemistry","Extraction & isolation","Phytochemistry","Bioactivity","Safety & toxicology","Evidence & translation"],
+    "Laboratory & Experimental Science":["Lab safety","Measurement science","Sample handling","Analytical methods","Cell & molecular methods","Microbiology methods","Quality systems","Research reproducibility"],
+    "Medicine & Clinical Sciences":["Anatomy & physiology","Pathophysiology","Diagnostics","Therapeutics","Epidemiology","Public health","Clinical research","Precision medicine"],
+    "Engineering, Technology & Applied Systems":["Aerospace & aeronautical engineering","Naval architecture & marine engineering","Mechanical engineering","Electrical & electronics engineering","Civil & structural engineering","Robotics & automation","Computer engineering & embedded systems","Telecommunications & networks","Energy & power systems","Materials science & engineering","Manufacturing & industrial systems","Transportation systems","Environmental & water engineering","Sensing, monitoring & security systems"]
+  }
+};
+function deepEnsure(){
+  if(!state.deep) state.deep={history:[],saved:[],language:'English',visual:null,research:null,advancement:null};
+}
+function deepSave(){
+  deepEnsure(); saveState();
+}
+function setDeepResult(id,html){
+  const el=document.getElementById(id); if(el) el.innerHTML=html;
+}
+function deepAction(label,detail){
+  deepEnsure();
+  state.deep.history.unshift({label,detail,t:new Date().toISOString()});
+  state.deep.history=state.deep.history.slice(0,25);
+  deepSave();
+}
+function nudgeSave(reason){
+  if((state.role||'public')==='public') setTimeout(()=>inviteSignin(reason),250);
+}
+function openDeepTopic(field,domain,topic){
+  state.activeField=field; state.activeDomain=domain; state.activeTopic=topic;
+  deepAction('Opened topic',`${field} → ${domain} → ${topic}`);
+  showView('learn');
+  setTimeout(()=>{
+    const host=document.getElementById('deepLearnHost');
+    if(host){
+      host.innerHTML=`<div class="deep-shell"><span class="live-badge">ACTIVE TOPIC</span><h2>${topic}</h2>
+      <p class="lead">${field} → ${domain}</p>
+      <div class="deep-tabs">
+       <button class="deep-tab active" onclick="deepLessonTab(this,'principle')">1. Principle</button>
+       <button class="deep-tab" onclick="deepLessonTab(this,'visual')">2. Visual</button>
+       <button class="deep-tab" onclick="deepLessonTab(this,'interact')">3. Interact</button>
+       <button class="deep-tab" onclick="deepLessonTab(this,'practice')">4. Practice</button>
+       <button class="deep-tab" onclick="deepLessonTab(this,'related')">5. Related fields</button>
+       <button class="deep-tab" onclick="deepLessonTab(this,'continue')">6. Continue</button>
+      </div>
+      <div id="deepLessonContent" class="deep-result"></div></div>`;
+      deepLessonTab(host.querySelector('.deep-tab'),'principle');
+      host.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  },50);
+}
+function deepLessonTab(btn,key){
+  document.querySelectorAll('#deepLearnHost .deep-tab').forEach(x=>x.classList.remove('active')); if(btn) btn.classList.add('active');
+  const t=state.activeTopic||'Current topic', d=state.activeDomain||'Selected domain';
+  const map={
+    principle:`<strong>${t}: core principle</strong><br>Start with the governing concepts, terminology, system boundaries and the relationship between structure, mechanism and observable outcome. This prototype now keeps this topic context across Learn, Visual, Research, Screen Lab and Create.`,
+    visual:`<strong>Visualize ${t}</strong><br><div class="preview-box">Adaptive visual canvas for <b>${t}</b><br><small>Use Visual to attach an image/video/live observation, then return here with labels, measurements and annotations.</small></div><div class="deep-toolbar"><button class="btn primary" onclick="showView('visual')">Open Visual</button></div>`,
+    interact:`<strong>Interact</strong><br>Manipulate variables conceptually, compare states and trace causal links. The interaction is educational and does not execute restricted real-world actions.<div class="metric-row"><div class="metric"><b>Input</b>Choose a variable</div><div class="metric"><b>Relation</b>Observe dependency</div><div class="metric"><b>Output</b>Interpret the effect</div></div>`,
+    practice:`<strong>Practice</strong><br><p>Quick check: Which statement best captures the main relationship in <b>${t}</b>?</p><div class="deep-toolbar"><button class="btn" onclick="setDeepResult('deepPracticeFeedback','Correct approach: identify the governing mechanism first, then connect it to measurable consequences.');deepAction('Practice completed','${t}')">Reveal reasoning</button></div><div id="deepPracticeFeedback"></div>`,
+    related:`<strong>Related fields</strong><br>${d} connects to research design, measurement science, statistics, visualization and professional applications. GPSJ can carry the same topic into those workspaces without restarting context.`,
+    continue:`<strong>Continue the journey</strong><br><div class="deep-toolbar"><button class="btn" onclick="showView('research')">Research it</button><button class="btn" onclick="showView('screenlab')">Simulate / observe</button><button class="btn" onclick="showView('create')">Create from it</button><button class="btn primary" onclick="deepAction('Topic saved','${t}');nudgeSave('Sign in to keep this topic, your practice history and cross-workspace context.')">Save progress</button></div>`
+  };
+  setDeepResult('deepLessonContent',map[key]||map.principle);
+}
+function visualUse(kind){
+  deepEnsure(); state.deep.visual={kind,ts:new Date().toISOString(),status:'ready'};
+  deepAction('Visual source selected',kind);
+  const msg={
+   camera:'Camera workflow ready. On a production build this would request camera permission and stream frames.',
+   image:'Image analysis workflow ready. Select a local image to preview it in the prototype.',
+   video:'Video review workflow ready. Select a local video to preserve source context.',
+   live:'Guided live observation started in read-only educational mode.'
+  }[kind];
+  setDeepResult('deepVisualResult',`<strong>${msg}</strong><br>Recognition remains confidence-aware; uncertain findings should be confirmed before being treated as scientific identification.`);
+}
+function visualFile(input,kind){
+  const f=input.files&&input.files[0]; if(!f) return;
+  deepEnsure(); state.deep.visual={kind,name:f.name,size:f.size,type:f.type,ts:new Date().toISOString()};
+  deepAction('Visual file loaded',f.name);
+  const canvas=document.getElementById('visualPreview');
+  if(canvas){
+    const url=URL.createObjectURL(f);
+    canvas.innerHTML = kind==='image'
+      ? `<img src="${url}" alt="Uploaded visual" style="max-width:100%;max-height:420px;border-radius:16px">`
+      : `<video src="${url}" controls style="max-width:100%;max-height:420px;border-radius:16px"></video>`;
+  }
+  setDeepResult('deepVisualResult',`<strong>Source loaded:</strong> ${f.name}<br>Ready for labels, comparison, measurement planning, annotation and scientific interpretation.`);
+  nudgeSave('Sign in to preserve this visual observation and reconnect it to your science topics later.');
+}
+function runResearchBuilder(){
+ const q=document.getElementById('deepResearchQuestion')?.value.trim();
+ const pop=document.getElementById('deepResearchPopulation')?.value.trim();
+ const out=document.getElementById('deepResearchOutcome')?.value.trim();
+ if(!q){setDeepResult('deepResearchResult','Enter a research question first.');return;}
+ state.deep.research={q,pop,out,ts:new Date().toISOString()}; deepAction('Research question built',q);
+ setDeepResult('deepResearchResult',`<strong>Research frame</strong><br><b>Question:</b> ${q}<br><b>Population/system:</b> ${pop||'Not yet specified'}<br><b>Primary outcome:</b> ${out||'Not yet specified'}<br><br><b>Next:</b> identify evidence sources, define variables, choose a design, document assumptions and plan reproducibility.`);
+ nudgeSave('Sign in to save this research question, evidence map and study-design decisions.');
+}
+function assessExperimentDeep(){
+ const x=document.getElementById('deepExperiment')?.value.trim();
+ if(!x){setDeepResult('deepExperimentResult','Describe an observation, measurement, comparison or test.');return;}
+ const low=/observe|measure|compare|image|microscope|temperature|mass|ph|color|spectr/i.test(x);
+ const level=low?'Level 1 · educational / low risk':'Needs review · keep in simulation/read-only mode until context is verified';
+ setDeepResult('deepExperimentResult',`<strong>${level}</strong><br>${low?'Proceed with observation, measurement planning or benign simulation.':'GPSJ should ask for purpose, environment, materials, device state and qualified-role context before any connected action.'}`);
+ deepAction('Experiment assessed',x);
+}
+function screenActionDeep(action){
+ setDeepResult('deepScreenResult',`<strong>${action}</strong> selected.<br>${action==='Simulate'?'Virtual educational simulation is available.': 'This prototype keeps the action read-only unless a verified production connector and authorization are present.'}`);
+ deepAction('Screen Lab action',action);
+}
+function buildAdvancementDeep(){
+ const country=document.getElementById('deepAdvCountry')?.value||'United States';
+ const stage=document.getElementById('deepAdvStage')?.value||'Student / learner';
+ const field=document.getElementById('deepAdvField')?.value||'Pharmacy & Pharmaceutical Sciences';
+ const goal=document.getElementById('deepAdvGoal')?.value.trim()||'professional advancement';
+ state.deep.advancement={country,stage,field,goal}; deepAction('Advancement route built',goal);
+ setDeepResult('deepAdvResult',`<strong>${stage} → ${goal}</strong><div class="stepper"><div class="step">1. Verify current position</div><div class="step">2. Identify local requirements</div><div class="step">3. Compare regional/global recognition</div><div class="step">4. Track evidence & milestones</div></div><p style="margin-top:12px">Production GPSJ should verify live regulator, university, credentialing-body and employer requirements before presenting a route as current.</p>`);
+ nudgeSave('Sign in to track this qualification route and receive updated institution-aware milestones.');
+}
+function runCreateDeep(){
+ const title=document.getElementById('deepCreateTitle')?.value.trim()||state.activeTopic||'Untitled scientific project';
+ const type=document.getElementById('deepCreateType')?.value||'Report';
+ const notes=document.getElementById('deepCreateNotes')?.value.trim()||'No notes added yet.';
+ deepAction('Creator workspace generated',`${type}: ${title}`);
+ setDeepResult('deepCreateResult',`<strong>${type} structure generated</strong><br><b>Title:</b> ${title}<br><b>Context:</b> ${state.activeField||'General science'} → ${state.activeDomain||'Open workspace'}<br><b>Notes:</b> ${notes}<br><br>Suggested structure: objective → background → evidence/observations → method/logic → findings → limitations → references/next steps.`);
+ nudgeSave('Sign in to save this creator workspace and export it later.');
+}
+function marketplaceExploreDeep(kind){
+ const items={
+  education:['Open courses','Scientific textbooks','Interactive models','Public datasets'],
+  laboratory:['Microscopy consumables','Measurement accessories','Benign teaching kits','Calibration services'],
+  institutions:['Universities','Research centers','Teaching hospitals','Laboratory facilities'],
+  professional:['Credential evaluation','Continuing education','Career services','Scientific consulting']
+ }[kind]||[];
+ setDeepResult('deepMarketResult',`<strong>${kind[0].toUpperCase()+kind.slice(1)} resources</strong><div class="taglist">${items.map(x=>`<span class="tag">${x}</span>`).join('')}</div><p style="margin-top:12px">Prototype discovery is active. Production results should come from verified providers, preserve jurisdiction rules and separate public resources from controlled procurement.</p>`);
+ deepAction('Marketplace explored',kind);
+}
+function institutionDeep(){
+ const c=document.getElementById('deepInstCountry')?.value.trim()||'United States';
+ const t=document.getElementById('deepInstType')?.value||'Any institution';
+ const f=document.getElementById('deepInstField')?.value||'Any field';
+ const g=document.getElementById('deepInstGoal')?.value||'Study / degree';
+ setDeepResult('deepInstResult',`<strong>Institution map criteria</strong><br>${c} · ${t} · ${f} · ${g}<br><br>Production GPSJ should return verified institutions with program/facility details, public contact points, recognition status and source timestamps.`);
+ deepAction('Institution map built',`${c} · ${g}`);
+ nudgeSave('Sign in to save institution comparisons and connect them to your advancement route.');
+}
+function setLanguageDeep(lang){
+ deepEnsure(); state.deep.language=lang; deepSave();
+ document.documentElement.lang=({'Français':'fr','Español':'es','Português':'pt','Deutsch':'de','العربية':'ar','中文':'zh','日本語':'ja','हिन्दी':'hi','Kiswahili':'sw'}[lang]||'en');
+ if(lang==='العربية') document.documentElement.dir='rtl'; else document.documentElement.dir='ltr';
+ const s=document.getElementById('statusBar'); if(s) s.textContent=`🌐 ${lang} selected · scientific terminology adaptation preview`;
+ closeModal('languageModal');
+ deepAction('Language selected',lang);
+}
+function renderMyGpsjDeep(){
+ deepEnsure();
+ const host=document.getElementById('deepMyGpsj');
+ if(!host) return;
+ const h=state.deep.history||[];
+ host.innerHTML=`<div class="deep-shell"><h2>Your recent GPSJ activity</h2>${h.length?`<div class="deep-grid">${h.slice(0,6).map(x=>`<div class="deep-card"><h3>${x.label}</h3><p>${x.detail||''}</p></div>`).join('')}</div>`:'<div class="deep-result">Start exploring. Your recent topics, observations, research and routes will appear here on this device.</div>'}</div>`;
+}
+
+const dashboardRoleCards={
+ public:[
+  ['📚','Learn anything','Open the universal scientific directory without an account.','learn'],
+  ['👁','Observe the world','Use image/video/live observation and connect it to science.','visual'],
+  ['🔬','Investigate evidence','Build questions and evidence maps.','research'],
+  ['🧪','Experiment safely','Use benign simulation and read-only observation.','lab'],
+  ['🚀','Explore advancement','See staged career and qualification pathways.','advancement'],
+  ['🛍','Browse public resources','Explore educational and public scientific resources.','marketplace']
+ ],
+ learner:[
+  ['📚','My learning path','Adaptive depth, practice and saved mastery.','learn'],
+  ['👁','Visual learning','Use visual observations inside the current topic.','visual'],
+  ['📝','Assignments & creation','Create reports, presentations and study artifacts.','create'],
+  ['🚀','Next qualification','Map the next recognized academic or professional stage.','advancement'],
+  ['🏛','Institutions','Compare universities, programs and training centers.','institutions'],
+  ['🔬','Research starter','Turn learning questions into research workflows.','research']
+ ],
+ scientist:[
+  ['🔬','Research workspace','Evidence, methods, reproducibility and collaboration.','research'],
+  ['🧪','Instrument workspace','Declare equipment and begin read-only or supervised workflows.','lab'],
+  ['👁','Scientific imaging','Interpret, compare and annotate scientific visuals.','visual'],
+  ['🎨','Scientific communication','Build reports and presentations from active context.','create'],
+  ['🚀','Professional advancement','Credential and research-career pathways.','advancement'],
+  ['🏛','Institution connections','Facilities, collaborators and programs.','institutions']
+ ],
+ educator:[
+  ['📚','Teach & organize','Create adaptive learning routes.','learn'],
+  ['🎨','Build teaching resources','Reports, visuals and presentations.','create'],
+  ['🔬','Research & evidence','Create evidence-based teaching and projects.','research'],
+  ['🧪','Safe lab learning','Design safe classroom or laboratory simulations.','lab'],
+  ['🏛','Institution workspace','Programs, facilities and education administration.','institutions'],
+  ['🚀','Faculty advancement','Professional and academic progression.','advancement']
+ ],
+ institution:[
+  ['🏛','Institution command','Programs, facilities, authorized workspaces and services.','institutions'],
+  ['📚','Education programs','Structured learning and training.','learn'],
+  ['🔬','Research programs','Evidence, projects and collaboration.','research'],
+  ['🧪','Laboratory access','Role-gated instrument and facility workflows.','lab'],
+  ['🛍','Procurement','Verified supplier and resource workflows.','marketplace'],
+  ['🚀','Competency systems','Institution-defined progression and qualifications.','advancement']
+ ],
+ supplier:[
+  ['🛍','Verified catalog','Public and institution-approved scientific resources.','marketplace'],
+  ['🏛','Institution connections','Manage verified customer/institution relationships.','institutions'],
+  ['📚','Product education','Safe educational content and documentation.','learn'],
+  ['🎨','Technical materials','Create scientific product communication.','create']
+ ],
+ operator:[
+  ['🧪','Assigned operations','Role-limited instrument tasks and observations.','lab'],
+  ['📚','Required learning','Competency-linked instruction.','learn'],
+  ['🚀','Qualification path','See the next authorized competency stage.','advancement'],
+  ['🏛','Employer / facility','Institution-specific workspace.','institutions']
+ ],
+ founder:[
+  ['🧭','Executive overview','Portfolio view across education, research, facilities and services.','dashboard'],
+  ['🏛','Institution network','Organizations, facilities and strategic partnerships.','institutions'],
+  ['🔬','Research portfolio','Projects, evidence and reproducibility.','research'],
+  ['🛍','Marketplace strategy','Verified ecosystem and procurement structures.','marketplace'],
+  ['🚀','Global expansion','Country, continental and worldwide pathways.','advancement'],
+  ['🎨','Communication','Reports, presentations and institutional narratives.','create']
+ ]
+};
+function renderDashboard(){
+ const role=state.role||'public';
+ const labels={public:'Public scientific workspace',learner:'Learner / Student workspace',scientist:'Practitioner / Scientist workspace',educator:'Educator workspace',institution:'Institution workspace',supplier:'Supplier workspace',operator:'Employee / Operator workspace',founder:'Executive / Founder workspace'};
+ document.getElementById('dashTitle').textContent=labels[role]||labels.public;
+ document.getElementById('dashLead').textContent=role==='public'
+  ?'No sign-in required. Start with learning, observation, evidence, safe simulation or career exploration.'
+  :'GPSJ is adapting the workspace to the selected role while keeping the scientific core connected.';
+ const cards=dashboardRoleCards[role]||dashboardRoleCards.public;
+ document.getElementById('dashCards').innerHTML=cards.map(c=>`<article class="card eco"><div class="ico">${c[0]}</div><h3>${c[1]}</h3><p>${c[2]}</p><button class="btn" onclick="showView('${c[3]}')">Open</button></article>`).join('');
+ const sel=document.getElementById('dashRole'); if(sel) sel.value=role;
+ updateWorkspaceStatus();
+}
+function applyDashboardProfile(){
+ const r=document.getElementById('dashRole').value; state.role=r;
+ const c=document.getElementById('dashCountry').value.trim(); if(c) state.country=c;
+ state.primaryField=document.getElementById('dashField').value;
+ state.goal=document.getElementById('dashGoal').value.trim();
+ renderDashboard(); saveContext();
+}
+function saveProfile(){applyDashboardProfile();document.getElementById('profileResult').innerHTML=`<b>Workspace profile saved on this device.</b><p>${state.role} · ${state.country||'country not set'} · ${state.primaryField||'field not set'}${state.goal?' · '+state.goal:''}</p>`;}
+function updateWorkspaceStatus(){
+ const bar=document.getElementById('workspaceStatus'); if(!bar)return;
+ const names={public:'Public visitor',learner:'Learner / Student',scientist:'Practitioner / Scientist',educator:'Educator',institution:'Institution',supplier:'Supplier',operator:'Employee / Operator',founder:'Executive / Founder'};
+ if((state.role||'public')==='public') bar.textContent='🌍 Public visitor · explore freely · sign in only to save & personalize';
+ else bar.textContent=`👤 ${names[state.role]||state.role} · personalized workspace preview · ${state.country||'global context'}`;
+}
+function exploreInstitutions(){setTimeout(()=>inviteSignin('Save institution comparisons and build a personalized advancement route.'),300);
+ const region=document.getElementById('instRegion').value.trim()||'selected region';
+ const type=document.getElementById('instType').value;
+ const field=document.getElementById('instField').value;
+ const goal=document.getElementById('instGoal').value;
+ document.getElementById('instOutput').innerHTML=`<h3>Institution discovery plan</h3><div class="pipeline"><div>Location<br><small>${region}</small></div><div>Type<br><small>${type}</small></div><div>Field<br><small>${field}</small></div><div>Goal<br><small>${goal}</small></div><div>Verify<br><small>official source</small></div><div>Compare<br><small>eligibility & fit</small></div></div><p>Production GPSJ should query current official institutional and regulatory sources, then show source date, recognition/accreditation, eligibility, contact route and uncertainty.</p>`;
+}
+const oldSetRole=setRole;
+setRole=function(r){state.role=r;document.getElementById('roleGrid').innerHTML=roles.map(x=>`<button class="choice ${state.role===x[0]?'active':''}" onclick="setRole('${x[0]}')">${x[1]}</button>`).join('');updateWorkspaceStatus();renderDashboard();saveContext();}
+const oldDemoSignin=demoSignin;
+demoSignin=function(){const email=document.getElementById('signinEmail').value.trim()||'prototype user';document.getElementById('signinStatus').innerHTML=`<b>Personalized workspace preview active</b><p>${email} · role: ${state.role}. Production authentication is not implemented in this static prototype.</p>`;updateWorkspaceStatus();renderDashboard();saveContext();}
+
+restoreContext();document.getElementById('versionLabel').textContent='v'+APP_VERSION;renderFields();renderDashboard();updateWorkspaceStatus();
+
+document.addEventListener('click',function(e){
+ const card=e.target.closest('.topic-card,.domain-card');
+ if(!card) return;
+ const txt=(card.innerText||'').trim();
+ if(!txt) return;
+ if(card.dataset.deepBound) return;
+});
+
+
+document.addEventListener('click',e=>{
+ const t=e.target.closest('[onclick]');
+ if(t && /showView\(['"]mygpsj['"]\)/.test(t.getAttribute('onclick')||'')) setTimeout(renderMyGpsjDeep,60);
+});
+
+</script>
+
+<div style="max-width:1200px;margin:28px auto;padding:0 24px 40px">
+<div class="functional-note"><b>v4.22 functional boundary:</b> GPSJ now has working client-side flows across public discovery, Learn, Visual, Research, Screen Lab, Advancement, Create, Marketplace, Institutions, Language and local journey history. Live authentication, external APIs, verified institutional catalogs, real-time recognition services, cloud accounts and physical device control still require production services and cannot be made real by a standalone HTML file.</div>
+</div>
+
+</body>
+</html>
