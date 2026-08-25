@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Global Pharma Scientist Journey — Global Trust & Command v4.0</title>
+<style>
+:root{
+  --nav:#0e224d; --nav2:#173b87; --blue:#2f58e9; --purple:#7645e7;
+  --bg:#f3f6fb; --card:#fff; --text:#13213e; --muted:#66728c; --line:#d9e2f2;
+  --green:#0f8d62; --warn:#9b6a00; --soft:#edf3ff; --shadow:0 10px 30px rgba(17,40,85,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text)}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+#app{min-height:100vh}
+.topbar{position:sticky;top:0;z-index:50;background:linear-gradient(135deg,var(--nav),#101f43);color:#fff;padding:14px 18px 10px;box-shadow:0 4px 18px rgba(0,0,0,.12)}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,var(--blue),var(--purple));display:grid;place-items:center;font-weight:800}
+.brand h1{font-size:22px;margin:0}
+.brand p{margin:2px 0 0;color:#c7d4f3;font-size:13px}
+.navrow{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px;scrollbar-width:none}
+.navrow::-webkit-scrollbar{display:none}
+.navbtn,.utility-btn{border:0;color:white;background:transparent;padding:10px 14px;border-radius:12px;font-weight:700;white-space:nowrap}
+.navbtn.active{background:rgba(255,255,255,.14)}
+.utility-row{display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap}
+.utility-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);padding:8px 12px}
+.utility-btn.accent{background:#fff;color:var(--nav)}
+.main{max-width:1200px;margin:0 auto;padding:22px}
+.view{display:none}
+.view.active{display:block}
+.hero{border-radius:28px;padding:28px;color:#fff;background:linear-gradient(135deg,#143a93,#6e45df);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero h2{font-size:40px;line-height:1.05;margin:0 0 14px}
+.hero p{max-width:760px;font-size:18px;line-height:1.5;margin:0}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center}
+.hero-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:18px;border-radius:20px}
+.section{margin-top:24px}
+.section h2{font-size:32px;margin:0 0 8px}
+.section p.lead{color:var(--muted);font-size:17px;margin:0 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 2px 8px rgba(17,40,85,.03)}
+.grid{display:grid;gap:16px}
+.grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.topic-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.topic-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.2s;min-height:220px}
+.topic-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.topic-img{height:130px;background-size:cover;background-position:center}
+.topic-body{padding:16px}
+.topic-body h3{margin:0 0 8px;font-size:20px}
+.topic-body p{margin:0 0 14px;color:var(--muted);line-height:1.45}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:800;background:var(--soft);color:#23499a}
+.btn.primary{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff}
+.btn.secondary{background:#fff;border:1px solid var(--line);color:#23499a}
+.btn.danger{background:#fff0f0;color:#a22}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:8px 11px;border-radius:999px;background:var(--soft);color:#284c98;border:1px solid #dce6fb;font-weight:700;font-size:13px}
+.searchbar{display:flex;gap:10px;margin-bottom:16px}
+.searchbar input{flex:1;border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:16px}
+.panel-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.panel-title h3{margin:0;font-size:22px}
+.backstrip{position:fixed;left:12px;bottom:18px;z-index:80;display:flex;gap:8px}
+.backstrip button{width:46px;height:46px;border-radius:50%;border:0;box-shadow:var(--shadow);background:#fff;color:var(--nav);font-size:20px}
+.breadcrumb{font-size:13px;color:var(--muted);margin-bottom:10px}
+.lesson-shell{display:grid;grid-template-columns:250px 1fr;gap:18px}
+.lesson-sidebar{position:sticky;top:170px;align-self:start}
+.lesson-sidebar .btn{width:100%;text-align:left;margin-bottom:8px}
+.lesson-main{min-width:0}
+.lesson-header{padding:24px;border-radius:22px;color:#fff;background:linear-gradient(135deg,#12336e,#27499b)}
+.lesson-header h2{margin:0 0 8px;font-size:32px}
+.lesson-steps{display:flex;gap:8px;overflow-x:auto;margin:14px 0}
+.lesson-step{white-space:nowrap;border:1px solid var(--line);background:#fff;color:#23499a;padding:9px 12px;border-radius:999px;font-weight:800}
+.lesson-step.active{background:var(--blue);color:#fff;border-color:transparent}
+.content-box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;margin-top:14px}
+.content-box h3{margin-top:0}
+.visual-wrap{display:grid;grid-template-columns:1fr 320px;gap:18px}
+.visual-stage{border-radius:20px;overflow:hidden;background:#081d43;min-height:420px;position:relative}
+.visual-stage img,.visual-stage video{width:100%;height:100%;min-height:420px;object-fit:cover;display:block}
+.visual-overlay{position:absolute;left:0;right:0;bottom:0;padding:22px;background:linear-gradient(transparent,rgba(3,13,36,.92));color:#fff}
+.visual-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.range-row{display:grid;grid-template-columns:160px 1fr 50px;gap:10px;align-items:center;margin:12px 0}
+.range-row input{width:100%}
+.audio-controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.speed-row{display:flex;gap:8px;flex-wrap:wrap}
+.speed{border:1px solid var(--line);background:#fff;color:#23499a;border-radius:999px;padding:7px 10px;font-weight:800}
+.speed.active{background:var(--blue);color:#fff}
+.creator-output{min-height:220px;white-space:pre-wrap;border:1px solid var(--line);border-radius:14px;padding:16px;background:#fbfcff}
+.market-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.market-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}
+.market-card h3{margin:0 0 6px}
+.status{font-size:12px;font-weight:800;padding:5px 8px;border-radius:999px;background:#eaf8f2;color:#147658;display:inline-block}
+.notice{background:#fff8e8;border:1px solid #f0d78d;color:#7d5a00;padding:14px;border-radius:14px}
+.lang-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.lang-card{border:1px solid var(--line);border-radius:16px;padding:14px;background:#fff}
+.mastery-bar{height:10px;background:#e7edf9;border-radius:999px;overflow:hidden}.mastery-bar span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--purple))}.depth-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.depth-btn{border:1px solid var(--line);background:#fff;color:#23499a;border-radius:999px;padding:8px 11px;font-weight:800}.depth-btn.active{background:var(--blue);color:#fff;border-color:transparent}.module-meta{font-size:12px;color:var(--muted);margin-top:4px}.continue-card{background:linear-gradient(135deg,#eef4ff,#f5efff);border:1px solid #d8e2fb}.lesson-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.hidden{display:none!important}
+.modal{position:fixed;inset:0;z-index:100;background:rgba(5,16,40,.72);display:none;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.modal-card{width:min(1100px,96vw);max-height:92vh;overflow:auto;background:var(--bg);border-radius:24px;box-shadow:0 20px 70px rgba(0,0,0,.35)}
+.modal-head{position:sticky;top:0;z-index:2;background:linear-gradient(135deg,var(--nav2),var(--purple));color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+.modal-head button{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:8px 12px}
+.modal-body{padding:20px}
+.stack{display:flex;flex-direction:column;gap:12px}
+.field label{display:block;font-weight:800;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px}
+@media(max-width:900px){
+ .main{padding:14px}
+ .hero-grid,.visual-wrap,.grid.cols-2,.grid.cols-3,.topic-grid,.market-grid,.lang-grid{grid-template-columns:1fr}
+ .hero h2{font-size:32px}
+ .lesson-shell{grid-template-columns:1fr}
+ .lesson-sidebar{position:static}
+ .lesson-sidebar .stack{display:grid;grid-template-columns:repeat(2,1fr)}
+ .range-row{grid-template-columns:1fr}
+}
+
+/* v3.9 — Adaptive Lesson Intelligence */
+.adaptive-intel{
+  margin-top:16px;padding:18px;border:1px solid #d7e1f4;border-radius:18px;
+  background:linear-gradient(135deg,#f7faff,#f6f1ff)
+}
+.adaptive-intel h3{margin:0 0 6px}
+.adaptive-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+.adaptive-card{padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.adaptive-card strong{display:block;margin-bottom:6px}
+.adaptive-control-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.adaptive-control{
+  border:1px solid var(--line);background:#fff;color:#23499a;border-radius:999px;
+  padding:8px 11px;font-weight:800
+}
+.adaptive-control.active{background:var(--blue);color:#fff;border-color:transparent}
+.subtopic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.subtopic-btn{
+  text-align:left;border:1px solid var(--line);background:#fff;color:#23499a;
+  border-radius:12px;padding:11px;font-weight:750
+}
+.subtopic-btn.active{background:#edf3ff;border-color:#9db6ff}
+.next-recommendation{
+  margin-top:12px;padding:14px;border-radius:14px;background:#122f68;color:#fff
+}
+.next-recommendation small{display:block;color:#cbd8f8;margin-top:6px}
+.confidence-meter{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}
+.confidence-dot{
+  width:38px;height:38px;border-radius:50%;border:1px solid var(--line);
+  background:#fff;color:#23499a;font-weight:800
+}
+.confidence-dot.active{background:var(--purple);color:#fff;border-color:transparent}
+.adaptive-trail{margin-top:10px;display:flex;gap:7px;overflow-x:auto;padding-bottom:4px}
+.adaptive-trail span{white-space:nowrap;font-size:12px;background:#eef3ff;padding:7px 9px;border-radius:999px;color:#31519b}
+@media(max-width:760px){
+  .adaptive-grid,.subtopic-grid{grid-template-columns:1fr}
+}
+
+</style>
+
+<style id="gpsj-v41-identity-ui">
+.personal-nav{display:contents}
+.nav-divider{width:1px;background:rgba(255,255,255,.25);margin:7px 4px;flex:0 0 1px}
+.profile-pill{display:inline-flex;align-items:center;gap:7px}
+.explore-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.explore-card{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;min-height:230px;box-shadow:0 2px 10px rgba(17,40,85,.04)}
+.explore-card .explore-icon{font-size:34px;margin-bottom:10px}
+.explore-card h3{margin:0 0 8px;font-size:21px}
+.explore-card p{color:var(--muted);line-height:1.5;margin:0 0 14px}
+.explore-card .who{font-size:12px;font-weight:800;color:#3352a0;background:#eef3ff;border-radius:999px;padding:6px 9px;display:inline-block}
+.explore-card .lock-note{margin-top:12px;font-size:12px;color:#7a8395}
+.platform-map{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px}
+.platform-map div{border:1px solid #dfe6f3;background:#f8faff;border-radius:14px;padding:12px;text-align:center;font-weight:800;color:#233a8b}
+.auth-banner{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:16px 18px;border:1px solid #dfe6f3;background:linear-gradient(135deg,#f8faff,#f6f1ff);border-radius:18px;margin-top:16px}
+.auth-banner p{margin:4px 0;color:var(--muted)}
+.role-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.role-choice{border:1px solid var(--line);border-radius:16px;padding:14px;background:#fff;cursor:pointer;text-align:left}
+.role-choice:hover,.role-choice.selected{border-color:#6d49cf;box-shadow:0 0 0 2px rgba(109,73,207,.12)}
+.role-choice strong{display:block;margin-bottom:4px}
+.role-choice small{color:var(--muted)}
+.workspace-summary{border:1px solid #dce6f5;background:#f8fbff;border-radius:16px;padding:14px;margin-top:12px}
+.founder-seal{display:inline-flex;align-items:center;gap:6px;background:#fff4dc;color:#7b5000;border:1px solid #ead09a;border-radius:999px;padding:6px 9px;font-size:11px;font-weight:900}
+.command-hidden-note{font-size:12px;color:var(--muted)}
+@media(max-width:900px){
+  .explore-grid{grid-template-columns:1fr 1fr}
+  .platform-map{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .explore-grid,.role-grid{grid-template-columns:1fr}
+  .auth-banner{align-items:flex-start;flex-direction:column}
+}
+</style>
+
+<style id="gpsj-v42-facility-assessment">
+.facility-launch{display:grid;grid-template-columns:1fr 1fr;gap:14px}.facility-card,.assessment-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px}.facility-upload-zone{border:2px dashed #b9c9ea;border-radius:16px;padding:18px;text-align:center;background:#f9fbff}.scan-stage{min-height:230px;border-radius:18px;background:linear-gradient(135deg,#0b224f,#355ee9);color:#fff;padding:18px}.analysis-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.analysis-box{padding:13px;border-radius:14px;border:1px solid #dfe6f3;background:#fff}.analysis-box strong{display:block;color:#24499c}.facility-result{margin-top:12px;display:grid;gap:10px}.facility-result .recommendation{padding:14px;border:1px solid #dfe6f3;border-radius:15px;background:#fff}.requirement-tag{display:inline-block;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:900;margin-right:5px}.tag-standard{background:#fff8e8;color:#805a00}.tag-best{background:#eef8ff;color:#24598d}.tag-ai{background:#f5efff;color:#6b3cb4}.edu-switch{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.assessment-blueprint{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.assessment-blueprint input,.assessment-blueprint select{width:100%;margin-top:6px;padding:10px;border:1px solid var(--line);border-radius:11px}.secure-banner{padding:14px;border-radius:14px;background:#102f69;color:#fff}.item-list{display:grid;gap:9px;margin-top:12px}.item-card{border:1px solid #dfe6f3;border-radius:14px;padding:12px;background:#fff}.student-safe{background:#effaf5;border-color:#c9e7d9}.teacher-secure{background:#fff8ed;border-color:#efd7aa}.integrity-map{display:flex;gap:7px;flex-wrap:wrap;align-items:center}.integrity-node{padding:8px 10px;border-radius:11px;background:#f5f7ff;border:1px solid #dce4f4;font-weight:800}.integrity-arrow{color:#6d49cf;font-weight:900}@media(max-width:900px){.facility-launch{grid-template-columns:1fr}.analysis-grid{grid-template-columns:1fr 1fr}.assessment-blueprint{grid-template-columns:1fr 1fr}}@media(max-width:560px){.analysis-grid,.assessment-blueprint{grid-template-columns:1fr}}</style>
+
+<style id="gpsj-v43-global-learning">
+.edu-first-banner{background:linear-gradient(135deg,#132d68,#5d3ac8);color:white;border-radius:22px;padding:22px;margin-bottom:18px}
+.edu-first-banner h2{font-size:32px;margin:4px 0 8px}
+.edu-first-banner p{max-width:850px;line-height:1.55}
+.ecosystem-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.eco-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;min-height:170px}
+.eco-card .ico{font-size:30px}.eco-card h3{margin:8px 0}.eco-card p{color:var(--muted);line-height:1.45}
+.connection-meter{height:10px;border-radius:999px;background:#e6ebf4;overflow:hidden;margin:9px 0}
+.connection-meter span{display:block;height:100%;width:65%;background:linear-gradient(90deg,#5d3ac8,#2c6be8)}
+.invention-flow{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.invention-flow span{padding:8px 10px;border:1px solid #dce4f4;background:#f8faff;border-radius:11px;font-weight:800}
+.prototype-box{border:1px solid #dfe6f3;background:#fff;border-radius:17px;padding:15px}
+.sector-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sector-card{border:1px solid #dfe6f3;background:#fff;border-radius:15px;padding:14px}
+.pay-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.pay-node{padding:12px;text-align:center;border:1px solid #dce4f4;background:#f8faff;border-radius:13px;font-weight:800}
+.guardrail{padding:12px;border-left:4px solid #5d3ac8;background:#f8f6ff;border-radius:10px;margin-top:10px}
+@media(max-width:900px){.ecosystem-grid{grid-template-columns:1fr 1fr}.sector-grid{grid-template-columns:1fr 1fr}.pay-flow{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.ecosystem-grid,.sector-grid,.pay-flow{grid-template-columns:1fr}}
+</style>
+
+
+<style id="gpsj-v44-critical-security">
+.security-hero{background:linear-gradient(135deg,#0d224d,#2d4fc1 55%,#6f42d8);color:#fff;border-radius:24px;padding:24px}
+.security-hero h2{font-size:34px;margin:6px 0 10px}.security-hero p{max-width:850px;line-height:1.55}
+.security-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.security-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:17px}
+.security-card h3{margin:6px 0 8px}.security-card p{color:var(--muted);line-height:1.45}
+.risk-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.risk-box{padding:12px;border-radius:14px;border:1px solid var(--line);background:#fff;text-align:center}
+.risk-box strong{display:block;margin-bottom:4px}
+.risk-normal{border-color:#c8e8d8;background:#f2fbf6}.risk-sensitive{border-color:#d6e3ff;background:#f6f9ff}.risk-critical{border-color:#efd5a4;background:#fff8e8}.risk-extreme{border-color:#efb7b7;background:#fff2f2}
+.approval-chain{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.approver{padding:9px 11px;border-radius:12px;background:#f7f9ff;border:1px solid #dce5f6;font-weight:800}
+.arrow{color:#7047d3;font-weight:900}
+.duress-panel{border:1px solid #efc4c4;background:linear-gradient(135deg,#fff7f7,#fff);border-radius:18px;padding:18px}
+.duress-status{display:inline-block;padding:6px 9px;border-radius:999px;background:#fff0f0;color:#9e2828;font-weight:900;font-size:12px}
+.txn-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.txn-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}
+.security-step{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.security-step span{padding:8px 10px;border-radius:10px;background:#f7f9ff;border:1px solid #dce5f6;font-weight:750}
+.client-policy{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.policy-card{border:1px solid var(--line);background:#fff;border-radius:15px;padding:14px}
+.audit-list{display:grid;gap:8px}
+.audit-event{padding:12px;border:1px solid #dfe6f3;border-radius:13px;background:#fff}
+.audit-event small{color:var(--muted)}
+.security-badge{display:inline-block;padding:5px 8px;border-radius:999px;background:#eef3ff;color:#2b4c9c;font-size:11px;font-weight:900}
+@media(max-width:900px){.security-grid,.client-policy{grid-template-columns:1fr 1fr}.risk-strip{grid-template-columns:1fr 1fr}.txn-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.security-grid,.client-policy,.risk-strip{grid-template-columns:1fr}}
+</style>
+
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">GPSJ</div>
+      <div>
+        <h1>Global Pharma Scientist Journey</h1>
+        <p>Critical Action & Duress Protection v4.4 · Learn. Understand. Create. Advance.</p>
+      </div>
+    </div>
+    
+<nav class="navrow" id="navrow" aria-label="GPSJ navigation">
+  <button class="navbtn active public-nav" data-view="home">Home</button>
+  <button class="navbtn public-nav" data-view="explore">Explore GPSJ</button>
+  <span id="personalNav" class="personal-nav" aria-live="polite"></span>
+</nav>
+<div class="utility-row">
+  <button class="utility-btn accent" id="languageBtn">🌐 Language</button>
+  <button class="utility-btn" id="loginProfileBtn">👤 Sign in</button>
+  <button class="utility-btn" id="homeBackupBtn">↩ Home</button>
+</div>
+
+  </header>
+
+  <main class="main">
+    <section id="view-home" class="view active">
+      <div class="hero">
+        <div class="hero-grid">
+          <div>
+            <div class="chip" style="background:rgba(255,255,255,.14);color:white;border-color:rgba(255,255,255,.25)">🌍 One verified identity · lifelong scientific intelligence</div>
+            <h2>Your scientific world, shaped around what you are becoming.</h2>
+            <p>GPSJ connects learning, professional practice, research, building, creation, commerce and career intelligence while adapting depth, language, security and regulatory context to the user.</p>
+            <div class="chips" style="margin-top:18px">
+              <span class="chip">Jurisdiction-aware</span><span class="chip">Science-first education</span><span class="chip">Adaptive security</span><span class="chip">Multilingual audio</span>
+            </div>
+          </div>
+          <div class="hero-card">
+            <h3 style="margin-top:0">Context Engine</h3>
+            <p style="font-size:15px">Geography + profession + education + project + permissions → a different GPSJ for each verified user.</p>
+            <button class="btn primary" style="margin-top:14px" data-goto="explore">Explore the GPSJ ecosystem</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Start with the whole picture</h2>
+        <p class="lead">Explore the complete GPSJ capability map. Sign in only when you are ready to activate a personalized working environment.</p>
+        <div class="grid cols-3">
+          <div class="card"><h3>Learn</h3><p>Browse all fields, search any topic, then adapt from broad → specific.</p><button class="btn primary" data-goto="learn">Open Learn</button></div>
+          <div class="card"><h3>Create</h3><p>Generate real editable drafts, reports, presentations, research maps and translations.</p><button class="btn primary" data-goto="create">Open Creator Studio</button></div>
+          <div class="card"><h3>Marketplace</h3><p>Browse accessible science tools first, then reveal regulated categories only when permitted.</p><button class="btn primary" data-goto="marketplace">Open Marketplace</button></div>
+        </div>
+      </div>
+    </section>
+
+<section id="view-explore" class="view">
+  <div class="section" style="margin-top:0">
+    <div class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="chip" style="background:rgba(255,255,255,.14);color:white;border-color:rgba(255,255,255,.25)">🧭 Universal capability map</div>
+          <h2>One platform. Different professional worlds.</h2>
+          <p>Everyone can understand what GPSJ can do. After sign-in, the interface activates only the tools appropriate to the verified user's role, jurisdiction, institution, permissions and goals.</p>
+        </div>
+        <div class="hero-card">
+          <h3 style="margin-top:0">Personalize access, not scientific truth</h3>
+          <p style="font-size:15px">Presentation and workflow adapt. Scientific foundations, evidence rules, safety, ethics, regulatory boundaries and verification standards remain fixed.</p>
+          <button class="btn primary" id="exploreSignInBtn" style="margin-top:12px">Sign in to personalize GPSJ</button>
+        </div>
+      </div>
+    </div>
+
+    
+<div class="section">
+  <div class="edu-first-banner">
+    <div class="chip" style="background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.25)">GPSJ · Global Platform for Science & Learning</div>
+    <h2>Learn. Understand. Create. Advance.</h2>
+    <p>Education is the front door. GPSJ then helps people apply knowledge through professional practice, research, invention, institutions, commerce and global connection—without overwhelming each user with irrelevant controls.</p>
+  </div>
+  <div class="ecosystem-grid">
+    <div class="eco-card"><div class="ico">📘</div><h3>Learn</h3><p>Adaptive education, teachers, assessments, languages and lifelong development.</p></div>
+    <div class="eco-card"><div class="ico">🧠</div><h3>Understand</h3><p>Scientific reasoning, visual intelligence, evidence and contextual explanation.</p></div>
+    <div class="eco-card"><div class="ico">🛠️</div><h3>Create</h3><p>Research, writing, engineering, invention, facilities and prototypes.</p></div>
+    <div class="eco-card"><div class="ico">🚀</div><h3>Advance</h3><p>Verified competence, careers, institutions, entrepreneurship and economic progress.</p></div>
+  </div>
+</div>
+
+<div class="section">
+      <h2>Explore what GPSJ can do</h2>
+      <p class="lead">This directory is visible to everyone. Operational controls appear only after authentication and authorization.</p>
+      <div class="explore-grid">
+        <article class="explore-card"><div class="explore-icon">🧠</div><h3>Learn & Teach</h3><p>Adaptive science and medical education, visual-first lessons, audio recall, quizzes, exams, online laboratory activities and educator tools.</p><span class="who">Students · professionals · educators</span><div class="lock-note">Working tools personalize after sign-in.</div></article>
+        <article class="explore-card"><div class="explore-icon">📚</div><h3>Scientific & Medical Library</h3><p>Connected knowledge from natural origin and molecular science through physiology, disease, interventions, safety, evidence and translation.</p><span class="who">All scientific users</span><div class="lock-note">Depth adapts to verified context.</div></article>
+        <article class="explore-card"><div class="explore-icon">🩺</div><h3>Practice Intelligence</h3><p>Professional reasoning, competency development, workflow improvement, resident/intern support and standards-oriented practice tools.</p><span class="who">Practitioners · institutions</span><div class="lock-note">Regulated functions require eligibility.</div></article>
+        <article class="explore-card"><div class="explore-icon">🔬</div><h3>Research & Discovery</h3><p>Research design, scientific maps, pharmacognosy, pharmacogenomics, evidence interpretation, collaboration and translation.</p><span class="who">Researchers · schools · labs</span></article>
+        <article class="explore-card"><div class="explore-icon">📝</div><h3>Create</h3><p>Scientific reports, manuscripts, presentations, educational visuals, research maps, translations and jurisdiction-aware writing support.</p><span class="who">Learners · professionals · institutions</span></article>
+        <article class="explore-card"><div class="explore-icon">📐</div><h3>Facility Intelligence</h3><p>Authorized institutional leaders can upload plans/equipment files or scan their facility to build a current-state digital model and receive constructive improvement pathways.</p><span class="who">Owners · CEOs · facility leaders</span></article><article class="explore-card"><div class="explore-icon">🧾</div><h3>Secure Assessments</h3><p>Teachers create protected quizzes/finals while students receive equivalent but distinct questions at the same competency level.</p><span class="who">Schools · universities · educators</span></article><article class="explore-card"><div class="explore-icon">🏥</div><h3>Build Facilities & Laboratories</h3><p>Plan and improve hospitals, pharmacies, laboratories, research facilities and workflows using scientific, engineering and regulatory layers.</p><span class="who">Institutions · project teams</span></article>
+        <article class="explore-card"><div class="explore-icon">🎯</div><h3>Career & Competence</h3><p>Verify competency claims, identify missing competencies, build recognized development pathways and connect qualified people to opportunities.</p><span class="who">Students · professionals · employers</span></article>
+        <article class="explore-card"><div class="explore-icon">🌍</div><h3>Language & Global Mobility</h3><p>Multilingual scientific interfaces, professional language development, exam preparation and country/jurisdiction-aware orientation.</p><span class="who">International users</span></article>
+        <article class="explore-card"><div class="explore-icon">🛒</div><h3>Medical Marketplace</h3><p>Need-first access to medical devices, laboratory and imaging equipment, electronics, institutional infrastructure and verified supplier pathways.</p><span class="who">Individuals · institutions · suppliers</span></article>
+        <article class="explore-card"><div class="explore-icon">🚑</div><h3>Emergency & Logistics</h3><p>Ambulance, air-medical, drone and global shipping concepts with appropriate regulatory, customs, cold-chain and traceability controls.</p><span class="who">Institutions · verified suppliers</span></article>
+        <article class="explore-card"><div class="explore-icon">🏫</div><h3>Institutional Solutions</h3><p>Universities, schools, hospitals, pharmacies and laboratories can manage learning, quality, projects, procurement and verified professional ecosystems.</p><span class="who">Organizations</span></article>
+        <article class="explore-card"><div class="explore-icon">🤝</div><h3>Supplier & Procurement Exchange</h3><p>Verified suppliers can match genuine customer and institutional needs, respond to RFQs/RFPs and manage fulfillment without buying scientific ranking.</p><span class="who">Verified commercial members</span></article>
+      </div>
+
+      
+<article class="explore-card"><div class="explore-icon">🧪</div><h3>Engineering & Invention Studio</h3><p>Learn the science behind a problem, develop new equipment/process concepts, simulate, prototype, test and improve them.</p><span class="who">Professionals · inventors · institutions</span></article>
+<article class="explore-card"><div class="explore-icon">📡</div><h3>Beyond Connectivity</h3><p>Connection-aware learning and work modes designed for strong, moderate, low-bandwidth and intermittent networks.</p><span class="who">Worldwide access</span></article>
+<article class="explore-card"><div class="explore-icon">🌐</div><h3>Future Global Services</h3><p>Regulated payment architecture and privacy-separated global communications can extend how people apply and share knowledge.</p><span class="who">Future service layer</span></article>
+
+
+<article class="explore-card"><div class="explore-icon">🔐</div><h3>Critical Action Protection</h3><p>Authorized organizations can apply risk-based step-up authentication, independent approvals, transaction holds and duress-aware safeguards to high-consequence actions.</p><span class="who">Institutions · critical operators</span></article>
+
+<div class="auth-banner">
+        <div><strong>Your working menu appears after sign-in.</strong><p>GPSJ uses verified identity, role, organization and permissions to show only the tools you are authorized to operate.</p></div>
+        <button class="btn primary" id="directorySignInBtn">👤 Sign in</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>How the platform stays organized</h2>
+      <p class="lead">Everyone can see the ecosystem. Nobody receives every control.</p>
+      <div class="platform-map">
+        <div>Explore</div><div>Verify identity</div><div>Activate role workspace</div><div>Apply jurisdiction & permissions</div><div>Adapt over time</div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <h3>Trust rule</h3>
+        <p>Claimed competencies remain claims until supported by appropriate evidence. Qualified people and services are ranked primarily by verified proficiency and exact relevance. Proximity, availability and legitimate preferences come afterward. Popularity, friendship or affinity do not establish competence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <section id="view-learn" class="view">
+      <div class="section" style="margin-top:0">
+        <div class="panel-title"><div><h2>Learning Library</h2><p class="lead">Choose a field or search any subject. GPSJ narrows from broad → domain → topic → lesson → practice.</p></div></div>
+        <div class="searchbar">
+          <input id="learnSearch" placeholder="Search anything: pharmacology, organic chemistry, toxicology, microbiology, statistics, formulation..." />
+          <button class="btn primary" id="searchLearnBtn">Search</button>
+        </div>
+        <div class="chips" style="margin-bottom:16px">
+          <span class="chip">Medicine</span><span class="chip">Pharmacy</span><span class="chip">Biology</span><span class="chip">Chemistry</span><span class="chip">Biotechnology</span><span class="chip">Toxicology</span><span class="chip">Public health</span><span class="chip">Engineering</span><span class="chip">Research methods</span>
+        </div>
+        <div id="continueLearning" class="card continue-card" style="margin-bottom:16px;display:none"></div>
+        <div id="topicGrid" class="topic-grid"></div>
+      </div>
+    </section>
+
+    <section id="view-create" class="view">
+      <div class="section" style="margin-top:0">
+        <h2>Scientific Creator Studio</h2>
+        <p class="lead">The buttons below now open working creator tools instead of dead placeholders.</p>
+        <div class="grid cols-2">
+          <div class="card">
+            <div class="panel-title"><h3>📄 Report Builder</h3><button class="btn primary creator-open" data-type="Report">Open</button></div>
+            <p>Structure scientific and professional reports from an active topic or project.</p>
+          </div>
+          <div class="card">
+            <div class="panel-title"><h3>📊 Presentation Studio</h3><button class="btn primary creator-open" data-type="Presentation">Open</button></div>
+            <p>Build lecture, research, project, business or educational presentation outlines.</p>
+          </div>
+          <div class="card">
+            <div class="panel-title"><h3>🗺️ Research Map Studio</h3><button class="btn primary creator-open" data-type="Research Map">Open</button></div>
+            <p>Turn evidence, regions, institutions and project questions into a structured map brief.</p>
+          </div>
+          <div class="card">
+            <div class="panel-title"><h3>🌐 Translation Center</h3><button class="btn primary creator-open" data-type="Translation">Open</button></div>
+            <p>Prepare multilingual scientific material with domain-specific terminology.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-marketplace" class="view">
+      <div class="section" style="margin-top:0">
+        <h2>Scientific Marketplace</h2>
+        <p class="lead">This prototype is no longer blocked: accessible categories can be inspected immediately. Higher-risk categories show why access is gated.</p>
+        <div class="chips" id="marketTabs" style="margin-bottom:16px">
+          <button class="btn primary market-tab" data-market="accessible">Accessible</button>
+          <button class="btn secondary market-tab" data-market="laboratory">Laboratory</button>
+          <button class="btn secondary market-tab" data-market="clinical">Clinical</button>
+          <button class="btn secondary market-tab" data-market="institutional">Institutional</button>
+        </div>
+        <div id="marketGrid" class="market-grid"></div>
+        <div class="notice" style="margin-top:18px">Production transactions still require current supplier, jurisdiction, credential, shipping, installation and safety checks. Discovery is open where lawful; regulated execution remains gated.</div>
+      </div>
+    </section>
+
+    <section id="view-identity" class="view"><div class="card"><h2>Identity & Profile</h2><p>Profile shell retained. Security depth should adapt to the action: low-risk learning uses basic session assurance; employee, regulated, financial, identity and institutional actions require progressively stronger verification.</p></div></section>
+    <section id="view-journey" class="view"><div class="card"><h2>My Journey</h2><p>Progress, credentials, projects, goals and learning history can live here.</p></div></section>
+    <section id="view-intelligence" class="view"><div class="card"><h2>My Intelligence</h2><p>Context-aware discoveries, recent research, recommendations and project signals can live here.</p></div></section>
+    <section id="view-projects" class="view"><div class="card"><h2>Projects</h2><p>Active project persistence and hand-offs to Research, Create and Build.</p></div></section>
+    <section id="view-practice" class="view"><div class="card"><h2>Practice</h2><p>Adaptive knowledge checks can be launched from each lesson and saved to the user profile.</p></div></section>
+    <section id="view-research" class="view"><div class="card"><h2>Research</h2><p>Research workspace ready for evidence retrieval, synthesis, project linking and freshness checks once live services are connected.</p></div></section>
+    <section id="view-build" class="view"><div class="card"><h2>Build</h2><p>Facilities, laboratories, workflows, utilities and prototypes can be generated from a project brief.</p></div></section>
+    <section id="view-career" class="view"><div class="card"><h2>Career</h2><p>Role discovery, credential pathways, skill gaps and jurisdiction-aware career planning.</p></div></section>
+
+    <section id="view-trust" class="view"><div class="section" style="margin-top:0"><h2>International Trust & Competence</h2><p class="lead">Claims remain claims until independently supported. GPSJ separates identity, credentials, demonstrated proficiency and jurisdictional eligibility.</p><div class="grid cols-3"><div class="card"><h3>Competency Passport</h3><p><b>Status:</b> Evidence required</p><div class="chips"><span class="chip">Self-declared</span><span class="chip">Institution verified</span><span class="chip">Board / regulator verified</span><span class="chip">GPSJ demonstrated</span></div><button class="btn primary" onclick="alert('Verification workflow: claim → evidence → authoritative issuer → scope/status → competency assessment → reverification.')">Verify a competency</button></div><div class="card"><h3>Objective Matching</h3><p>Verified proficiency → exact relevance → legal eligibility → demonstrated performance → recency → proximity → availability.</p><div class="notice">Affinity, friendship, popularity and personal connections do not establish competence.</div></div><div class="card"><h3>Close a Gap</h3><p>Missing or expired competencies trigger a development pathway instead of a dead end.</p><button class="btn primary" onclick="alert('GPSJ pathway: identify gap → explain why it matters → recognized training/supervision → assessment → authoritative verification → opportunities unlocked.')">Build development path</button></div></div></div></section>
+
+    <section id="view-supplier" class="view"><div class="section" style="margin-top:0"><h2>Supplier Business Workspace</h2><p class="lead">Verified suppliers connect to genuine user and institutional needs without buying scientific credibility or ranking.</p><div class="grid cols-3"><div class="card"><h3>Supplier Trust</h3><p>Legal entity · authorization · manufacturer relationship · activity continuity · recalls · fulfillment.</p><span class="status">Evidence separated by source</span></div><div class="card"><h3>Recent Activity</h3><p>Where lawfully verifiable, GPSJ distinguishes regulator records, independent evidence, GPSJ-observed fulfillment and supplier claims.</p><button class="btn secondary" onclick="alert('No confidential customer or banking data is exposed. High-risk anomalies trigger enhanced due diligence.')">Inspect activity logic</button></div><div class="card"><h3>Opportunity Matching</h3><p>Need/specification first → jurisdiction gate → qualified product/capability → logistics → service → price.</p><button class="btn primary" onclick="alert('Institutional RFQ/RFP room opened in prototype mode. Production requires verified identities, permissions and transaction services.')">Open procurement room</button></div></div><div class="card" style="margin-top:16px"><h3>Supplier workflow</h3><div class="chips"><span class="chip">Catalog</span><span class="chip">RFQ / RFP</span><span class="chip">Proposal</span><span class="chip">Secure messaging</span><span class="chip">Orders</span><span class="chip">Shipping</span><span class="chip">Installation</span><span class="chip">Training</span><span class="chip">Maintenance</span><span class="chip">Performance history</span></div><div class="notice" style="margin-top:12px">Membership can unlock business tools, never a higher scientific/trust ranking.</div></div></div></section>
+
+    <section id="view-command" class="view"><div class="section" style="margin-top:0"><h2>Global Portfolio Command Center</h2><p class="lead">One secure executive plane for all companies. Routine work remains in role-limited operator workspaces.</p><div class="grid cols-3"><div class="card"><h3>Group Overview</h3><p><b>7</b> business-unit placeholders · <b>3</b> regions · <b>4</b> executive items</p><div class="mastery-bar"><span style="width:88%"></span></div><small>Prototype operating-health index</small></div><div class="card"><h3>Executive Action Required</h3><p>Major contract review · regulatory exception · capital project · security escalation</p><button class="btn primary" id="execReview">Review decisions</button></div><div class="card"><h3>Global Access Assurance</h3><p>Passkey/MFA · device/session risk · least privilege · step-up authentication · immutable audit trail · jurisdiction-aware authorization.</p><span class="status">Founder cannot bypass law/safety gates</span></div></div><div class="grid cols-2" style="margin-top:16px"><div class="card"><h3>Portfolio</h3><div class="stack"><button class="btn secondary">GPSJ Platform</button><button class="btn secondary">Education / University</button><button class="btn secondary">Research & Laboratories</button><button class="btn secondary">Medical Facilities</button><button class="btn secondary">Supply & Logistics</button><button class="btn secondary">Future Companies</button></div></div><div class="card"><h3>Governance by exception</h3><p>World → company → country → facility → department → project/transaction.</p><div class="notice">Routine actions execute under policy. High-impact financial, strategic, regulatory, safety, acquisition and security matters escalate to authorized humans.</div><button class="btn primary" style="margin-top:12px" onclick="alert('Prototype: approve / reject / return for correction / request independent review. Production actions require authorization and audit services.')">Open action console</button></div></div></div></section>
+  <section id="view-facility" class="view"><div class="section" style="margin-top:0"><div class="hero"><div class="hero-grid"><div><div class="chip" style="background:rgba(255,255,255,.14);color:white;border-color:rgba(255,255,255,.25)">🏥 Institutional Facility Intelligence</div><h2>Capture the current facility. Understand it scientifically. Improve it constructively.</h2><p>Authorized institutional leaders can upload plans and equipment documents or record the facility directly. GPSJ separates current state, scientific principles, applicable requirements, best practice and AI optimization hypotheses.</p></div><div class="hero-card"><h3 style="margin-top:0">Improvement, not blame</h3><p>GPSJ verifies location and context, explains why an improvement matters, and shows expected safety, quality, capacity and service benefits.</p></div></div></div><div class="section facility-launch"><div class="facility-card"><h3>📄 Upload facility documents</h3><p>Floor plans, equipment inventories, maintenance records, SOPs and workflow diagrams.</p><div class="facility-upload-zone"><strong>Choose PDF / image / inventory file</strong><input id="facilityFileInput" type="file" accept=".pdf,.png,.jpg,.jpeg,.csv,.txt"><div id="facilityFileStatus" class="module-meta">No file selected.</div></div></div><div class="facility-card"><h3>📱 Scan / record the facility</h3><div class="scan-stage"><h3>Guided capture prototype</h3><p>Room-by-room capture with user confirmation. Compatible hardware may later add AR/depth/LiDAR measurements.</p><div class="capture-controls"><button class="btn primary" id="startFacilityScan">Start guided scan</button><button class="btn secondary" id="addEquipmentCapture">Add equipment</button></div></div><div class="notice" style="margin-top:10px">Privacy mode should stop or blur capture when patients, staff identities, badges, screens or records are detected. Camera-derived dimensions remain estimates until validated.</div></div></div><div class="section"><h2>Current-state analysis</h2><div class="analysis-grid"><div class="analysis-box"><strong>Workflow</strong><span>People, specimens, medications, materials, clean/dirty movement.</span></div><div class="analysis-box"><strong>Equipment</strong><span>Presence, capacity, compatibility, maintenance and redundancy.</span></div><div class="analysis-box"><strong>Safety & quality</strong><span>Scientific principles, infection control, resilience and risk.</span></div><div class="analysis-box"><strong>Regulatory context</strong><span>Jurisdiction-sensitive requirements and validation gates.</span></div></div><button class="btn primary" id="analyzeFacilityBtn" style="margin-top:14px">Analyze current state</button><div id="facilityAnalysisResult" class="facility-result"></div></div></div></section>
+<section id="view-assessment" class="view"><div class="section" style="margin-top:0"><div class="hero"><div class="hero-grid"><div><div class="chip" style="background:rgba(255,255,255,.14);color:white;border-color:rgba(255,255,255,.25)">🎓 Secure Assessment Intelligence</div><h2>Same competency. Different questions. No exam leakage.</h2><p>Teachers define the competency blueprint and secure assessment. Students receive equivalent but distinct formulations matched to the same knowledge level.</p></div><div class="hero-card"><h3 style="margin-top:0">Understand, don't memorize leaked items</h3><p>GPSJ preserves learning objectives, difficulty and cognitive level while protecting instructor questions and answer keys.</p></div></div></div><div class="section"><div class="edu-switch"><button class="btn primary active" data-edu-mode="teacher">Teacher view</button><button class="btn secondary" data-edu-mode="student">Student view</button></div><div id="teacherAssessmentPane"><div class="assessment-card"><h3>Instructor assessment blueprint</h3><div class="assessment-blueprint"><div><label>Course / subject</label><input id="assessSubject" value="Pharmacology"></div><div><label>Assessment type</label><select id="assessType"><option>Quiz</option><option>Midterm</option><option>Final</option><option>Practical</option><option>Competency assessment</option></select></div><div><label>Difficulty</label><select id="assessDifficulty"><option>Foundation</option><option selected>Clinical</option><option>Advanced</option><option>Scientist</option></select></div><div><label>Question count</label><input id="assessCount" type="number" value="10"></div><div><label>Time limit</label><input id="assessTime" type="number" value="20"></div><div><label>Pass threshold</label><input id="assessPass" type="number" value="75"></div></div><div class="field" style="margin-top:12px"><label>Learning objectives / competencies</label><textarea id="assessObjectives" style="width:100%;min-height:100px;border:1px solid var(--line);border-radius:12px;padding:12px">Explain receptor pharmacodynamics; distinguish potency from efficacy; interpret dose-response relationships.</textarea></div><button class="btn primary" id="generateSecureAssessment" style="margin-top:12px">Generate secure blueprint</button></div><div id="teacherSecureItems" class="item-list"></div></div><div id="studentAssessmentPane" style="display:none"><div class="secure-banner"><strong>Student protection:</strong> the live teacher assessment and answer key are inaccessible. Practice is generated from the same learning objectives using distinct formulations.</div><div id="studentEquivalentItems" class="item-list"></div></div></div><div class="section"><h2>Assessment integrity architecture</h2><div class="integrity-map"><span class="integrity-node">Teacher objectives</span><span class="integrity-arrow">→</span><span class="integrity-node">Secure blueprint</span><span class="integrity-arrow">→</span><span class="integrity-node">Protected item bank</span><span class="integrity-arrow">→</span><span class="integrity-node">Equivalent student forms</span><span class="integrity-arrow">→</span><span class="integrity-node">Performance analysis</span><span class="integrity-arrow">→</span><span class="integrity-node">Remediation</span></div><div class="notice" style="margin-top:12px">High-stakes assessments should use instructor approval, versioning, access controls, audit logs and psychometric quality checks. Near-duplicate reformulations that reveal secure content should be avoided.</div></div></div></section>
+
+<section id="view-invent" class="view">
+  <div class="section" style="margin-top:0">
+    <div class="edu-first-banner">
+      <div class="chip" style="background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.25)">🧪 GPSJ Engineering & Invention Studio</div>
+      <h2>Learn the science. Design the solution. Build the prototype.</h2>
+      <p>Turn a real-world need into scientifically reasoned concepts, simulations, digital twins and safe prototype pathways. GPSJ teaches the principles while helping qualified users create.</p>
+    </div>
+    <div class="section">
+      <h2>Invention pathway</h2>
+      <div class="invention-flow">
+        <span>Problem</span><b>→</b><span>Science</span><b>→</b><span>Requirements</span><b>→</b><span>Concepts</span><b>→</b><span>Simulation</span><b>→</b><span>Safety</span><b>→</b><span>Prototype</span><b>→</b><span>Test</span><b>→</b><span>Improve</span>
+      </div>
+      <div class="sector-grid" style="margin-top:14px">
+        <div class="sector-card"><strong>⚡ Energy & electricity</strong><p>Generation, storage, efficiency, equipment improvement and infrastructure concepts.</p></div>
+        <div class="sector-card"><strong>💧 Water</strong><p>Source-water analysis, purification, treatment, pumping, storage and distribution concepts.</p></div>
+        <div class="sector-card"><strong>🔥 Gas & utilities</strong><p>Process/equipment improvement with safety, environmental and regulatory gates.</p></div>
+        <div class="sector-card"><strong>🧬 Medical & laboratory</strong><p>Scientific instruments, lab equipment and medical-device concept development with high-consequence review gates.</p></div>
+        <div class="sector-card"><strong>🏭 Manufacturing</strong><p>Machines, process optimization, materials, robotics and production concepts.</p></div>
+        <div class="sector-card"><strong>🌱 Global needs</strong><p>Agriculture, environment, accessibility and locally appropriate technology.</p></div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>Prototype & fabrication</h2>
+      <div class="grid cols-2">
+        <div class="prototype-box"><h3>🖨️ Fabricate</h3><p>Prepare validated concepts for compatible 3D printers, additive manufacturing, CNC or approved fabrication devices.</p><button class="btn primary" id="prototypeCheckBtn">Run fabrication readiness check</button></div>
+        <div class="prototype-box"><h3>🔁 Learn from the prototype</h3><p>Capture dimensions, test results, failures and observations, then return them to the design loop for another scientifically reasoned iteration.</p><button class="btn" id="prototypeResultBtn">Add prototype results</button></div>
+      </div>
+      <div id="prototypeStatus" class="guardrail">High-consequence physical systems remain behind appropriate engineering, safety, regulatory and professional validation.</div>
+    </div>
+  </div>
+</section>
+
+<section id="view-connectivity" class="view">
+  <div class="section" style="margin-top:0">
+    <div class="edu-first-banner"><div class="chip" style="background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.25)">🌍 GPSJ Beyond Connectivity</div><h2>Knowledge should travel farther than broadband.</h2><p>GPSJ adapts learning and professional tools to connection quality so users in low-coverage regions can continue progressing instead of facing a frozen interface.</p></div>
+    <div class="card">
+      <h3>Connection-aware experience</h3>
+      <div class="connection-meter"><span id="connectionBar"></span></div>
+      <p id="connectionText">Adaptive mode ready. GPSJ can reduce media weight, cache permitted learning content and resume synchronization when connectivity improves.</p>
+      <button class="btn primary" id="checkConnectionBtn">Check connection mode</button>
+    </div>
+    <div class="ecosystem-grid" style="margin-top:14px">
+      <div class="eco-card"><div class="ico">🎥</div><h3>Strong connection</h3><p>High-resolution video, 3D models, collaboration and compute-intensive tools.</p></div>
+      <div class="eco-card"><div class="ico">📱</div><h3>Moderate</h3><p>Adaptive media, compressed visuals and lighter interactive models.</p></div>
+      <div class="eco-card"><div class="ico">🎧</div><h3>Low bandwidth</h3><p>Text, diagrams, audio and reduced-computation learning.</p></div>
+      <div class="eco-card"><div class="ico">💾</div><h3>Intermittent</h3><p>Offline-first permitted content, resumable work and secure synchronization later.</p></div>
+    </div>
+    <div class="guardrail">Location must be confirmable/correctable by the user. Operations requiring current regulatory data, reliable secure synchronization or consequential remote computation pause safely when connectivity is insufficient.</div>
+  </div>
+</section>
+
+<section id="view-globalservices" class="view">
+  <div class="section" style="margin-top:0">
+    <div class="edu-first-banner"><div class="chip" style="background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.25)">🌐 Future Global Services</div><h2>Education remains first. Services help people apply what they learn.</h2><p>GPSJ can progressively connect legitimate commerce, communications and professional advancement while keeping scientific integrity, privacy and jurisdictional safeguards independent.</p></div>
+    <div class="grid cols-2">
+      <div class="card"><h3>💸 GPSJ Pay architecture</h3><p>International transfer and institutional payment experiences can be routed through licensed payment/remittance partners rather than GPSJ directly holding customer funds at launch.</p><div class="pay-flow"><div class="pay-node">User</div><div class="pay-node">GPSJ interface</div><div class="pay-node">Licensed rail</div><div class="pay-node">Recipient</div></div><div class="guardrail">KYC/KYB, AML, sanctions, fee/exchange-rate disclosures and country-specific requirements remain mandatory.</div></div>
+      <div class="card"><h3>📞 GPSJ Connect concept</h3><p>Future messaging, voice/video, communities, collaboration and lawful personal communication can exist as a privacy-separated layer.</p><div class="guardrail">Private social communications remain separated from employer, school, government and professional institutional records.</div></div>
+    </div>
+  </div>
+</section>
+
+
+<section id="view-criticalsecurity" class="view">
+  <div class="section" style="margin-top:0">
+    <div class="security-hero">
+      <div class="chip" style="background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.25)">🔐 GPSJ Critical Action Protection</div>
+      <h2>Ordinary work stays fast. Critical decisions become harder to coerce or hijack.</h2>
+      <p>GPSJ applies stronger verification only when risk justifies it: high-value transfers, strategic approvals, security changes, protected-data releases, acquisitions, major contracts and other consequential actions.</p>
+    </div>
+
+    <div class="section">
+      <h2>Risk-based authorization</h2>
+      <div class="risk-strip">
+        <div class="risk-box risk-normal"><strong>Normal</strong><span>Standard authenticated workflow</span></div>
+        <div class="risk-box risk-sensitive"><strong>Sensitive</strong><span>Step-up authentication / trusted device</span></div>
+        <div class="risk-box risk-critical"><strong>Critical</strong><span>Independent approver + contextual risk checks</span></div>
+        <div class="risk-box risk-extreme"><strong>Extreme</strong><span>Multi-party approval + hold/cooling controls</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Founder protection profile</h2>
+      <p class="lead">This is the strongest policy tier. It is visible only in founder-authorized access in production.</p>
+      <div class="security-grid">
+        <div class="security-card"><span class="security-badge">IDENTITY</span><h3>Double authentication</h3><p>Primary sign-in plus step-up passkey/security-key verification before high-consequence execution.</p></div>
+        <div class="security-card"><span class="security-badge">CONTEXT</span><h3>Environment risk check</h3><p>Trusted device/session, unusual location, sudden behavior changes, connectivity integrity and transaction context can increase risk without independently proving coercion.</p></div>
+        <div class="security-card"><span class="security-badge">OPTIONAL SIGNAL</span><h3>Wearable / activity context</h3><p>Opt-in physiological/activity signals may contribute to risk assessment, but never act as the sole authentication factor or a medical diagnosis.</p></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="duress-panel">
+        <span class="duress-status">DURESS PROTECTION</span>
+        <h2>Silent protected hold</h2>
+        <p>If a user invokes a configured lawful duress signal during a critical action, the interface can appear to proceed while the actual operation remains held, provided the connected payment/transaction system supports a real authorization hold.</p>
+        <div class="security-step"><span>User-facing: Processing</span><span>Actual state: HELD</span><span>Protected security escalation</span><span>Independent verification required</span></div>
+        <div class="notice" style="margin-top:12px">A visual “fake approval” alone is not sufficient. The underlying transaction rail must not release funds until the independent security condition is satisfied.</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Trusted approval chain</h2>
+      <p class="lead">Every trusted person uses their own identity and cryptographic credentials. Password sharing is never part of the design.</p>
+      <div class="approval-chain">
+        <span class="approver">Founder</span><span class="arrow">→</span>
+        <span class="approver">Independent co-authorized executive</span><span class="arrow">→</span>
+        <span class="approver">Trusted delegate A</span><span class="arrow">→</span>
+        <span class="approver">Trusted delegate B</span>
+      </div>
+      <div class="grid cols-2" style="margin-top:14px">
+        <div class="txn-card"><h3>Threshold example</h3><p><strong>Routine:</strong> automated under policy<br><strong>Significant:</strong> one authorized approver<br><strong>Critical:</strong> founder + independent approver<br><strong>Extreme:</strong> multi-party approval / delay</p></div>
+        <div class="txn-card"><h3>Security-rule changes</h3><p>Disabling duress, changing trusted approvers or lowering thresholds should itself require delayed, independently authorized change control.</p></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Client security constitution</h2>
+      <p class="lead">Hospitals, universities, utilities, laboratories, suppliers, governments and other organizations can configure a scaled version according to role, jurisdiction and risk.</p>
+      <div class="client-policy">
+        <div class="policy-card"><strong>Who may approve?</strong><p>Verified position, delegated authority and legal scope.</p></div>
+        <div class="policy-card"><strong>What requires step-up?</strong><p>Money, protected data, critical infrastructure, procurement, security controls and other defined actions.</p></div>
+        <div class="policy-card"><strong>How many approvers?</strong><p>One, dual, quorum or independent approval based on threshold and policy.</p></div>
+        <div class="policy-card"><strong>Who substitutes?</strong><p>Authorized succession when someone is unavailable.</p></div>
+        <div class="policy-card"><strong>When is a delay required?</strong><p>Cooling-off windows for extraordinary or suspicious actions.</p></div>
+        <div class="policy-card"><strong>What can never be overridden?</strong><p>Applicable law, non-waivable safety/security rules and required regulatory controls.</p></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Critical-action simulator</h2>
+      <div class="txn-grid">
+        <div class="txn-card">
+          <label for="criticalActionType"><strong>Action</strong></label>
+          <select id="criticalActionType" style="width:100%;margin-top:6px;padding:11px;border:1px solid var(--line);border-radius:11px">
+            <option>Large money transfer</option><option>Major acquisition approval</option><option>Security configuration change</option><option>Protected data release</option><option>High-value supplier payment</option><option>Strategic contract authorization</option>
+          </select>
+          <label for="criticalAmount" style="display:block;margin-top:12px"><strong>Value / exposure</strong></label>
+          <input id="criticalAmount" type="number" value="500000" style="width:100%;margin-top:6px;padding:11px;border:1px solid var(--line);border-radius:11px">
+          <div class="chips" style="margin-top:12px"><span class="chip">Trusted device</span><span class="chip">New location</span><span class="chip">Step-up required</span></div>
+        </div>
+        <div class="txn-card">
+          <h3>Decision state</h3>
+          <div id="criticalDecisionState" class="notice">No action evaluated yet.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+            <button class="btn primary" id="evaluateCriticalBtn">Evaluate action</button>
+            <button class="btn secondary" id="simulateDuressBtn">Simulate duress hold</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Tamper-evident audit trail</h2>
+      <div id="criticalAudit" class="audit-list">
+        <div class="audit-event"><strong>Security profile loaded</strong><br><small>Prototype event · production records require server-side immutable audit storage.</small></div>
+      </div>
+    </div>
+
+    <div class="notice"><strong>Production boundary:</strong> this browser prototype demonstrates policy and workflow only. Real authentication, duress handling, payment holds, device trust, multi-party approvals, evidence preservation and authorization must be enforced by secure server-side services and the connected regulated provider.</div>
+  </div>
+</section>
+
+</main>
+
+  <div class="backstrip">
+    <button id="backBtn" title="Back">←</button>
+    <button id="forwardBtn" title="Forward">→</button>
+  </div>
+
+  <div id="lessonModal" class="modal">
+    <div class="modal-card">
+      <div class="modal-head"><div><strong id="lessonModalTitle">Lesson</strong></div><button id="closeLesson">✕ Close</button></div>
+      <div class="modal-body">
+        <div class="lesson-shell">
+          <aside class="lesson-sidebar card">
+            <h3 style="margin-top:0">Lesson path</h3>
+            <div class="stack" id="lessonModuleList"></div>
+          </aside>
+          <div class="lesson-main">
+            <div class="lesson-header">
+              <div class="breadcrumb" id="lessonBreadcrumb" style="color:#cdd9fa"></div>
+              <h2 id="lessonTitle"></h2>
+              <p id="lessonSubtitle" style="margin:0;color:#dfe8ff"></p>
+            </div>
+            <div class="lesson-steps" id="lessonSteps">
+              <button class="lesson-step active" data-step="principle">1. Principle</button>
+              <button class="lesson-step" data-step="visual">2. Visual</button>
+              <button class="lesson-step" data-step="explain">3. Explain</button>
+              <button class="lesson-step" data-step="practice">4. Practice</button>
+              <button class="lesson-step" data-step="regional">5. Regional</button>
+            </div>
+            <div class="depth-row" id="lessonDepthRow">
+              <button class="depth-btn" data-depth="foundation">Foundation</button><button class="depth-btn active" data-depth="clinical">Clinical</button><button class="depth-btn" data-depth="advanced">Advanced</button><button class="depth-btn" data-depth="scientist">Scientist</button>
+            </div>
+            <div id="lessonContent"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="creatorModal" class="modal">
+    <div class="modal-card" style="width:min(900px,96vw)">
+      <div class="modal-head"><strong id="creatorTitle">Creator</strong><button id="closeCreator">✕ Close</button></div>
+      <div class="modal-body">
+        <div class="grid cols-2">
+          <div class="card stack">
+            <div class="field"><label>Purpose</label><input id="creatorPurpose" placeholder="What should GPSJ create?" /></div>
+            <div class="field"><label>Audience</label><input id="creatorAudience" placeholder="Students, scientists, investors, regulators..." /></div>
+            <div class="field"><label>Scientific field</label><input id="creatorField" placeholder="Pharmacology, toxicology, chemistry..." /></div>
+            <div class="field"><label>Depth</label><select id="creatorDepth"><option>Foundation</option><option>Clinical</option><option>Advanced</option><option>Scientist</option></select></div>
+            <button class="btn primary" id="generateCreator">Generate working draft</button>
+          </div>
+          <div class="card">
+            <div class="panel-title"><h3>Editable draft</h3><div><button class="btn secondary" id="copyDraft">Copy</button></div></div>
+            <div id="creatorOutput" class="creator-output">Nothing generated yet.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="languageModal" class="modal">
+    <div class="modal-card" style="width:min(900px,96vw)">
+      <div class="modal-head"><strong>Language & Scientific Speech Center</strong><button id="closeLanguage">✕ Close</button></div>
+      <div class="modal-body">
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>Spoken language</h3>
+            <select id="languageSelect" style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--line)">
+              <option value="en-US">English — United States</option><option value="en-GB">English — United Kingdom</option><option value="fr-FR">Français — France</option><option value="fr-CA">Français — Canada</option><option value="es-ES">Español</option><option value="de-DE">Deutsch</option><option value="pt-PT">Português</option><option value="ar-SA">العربية</option>
+            </select>
+            <h3 style="margin-top:18px">Scientific proficiency / exams</h3>
+            <div id="examList" class="lang-grid"></div>
+          </div>
+          <div class="card">
+            <h3>Pronunciation behavior</h3>
+            <p>Opening speed defaults to <strong>0.75×</strong>, but the learner can choose any supported speed from very slow to fast.</p>
+            <div class="speed-row" id="globalSpeedRow"></div>
+            <p style="margin-top:18px">Speech reads scientific symbols by meaning. Example: √x → “square root of x” in English and “racine carrée de x” in French.</p>
+            <div class="notice">Automatic correction from facial expressions such as a frown would require explicit camera permission and a production privacy/consent design. Voice correction can be enabled when the user explicitly repeats or corrects a term.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="trustWelcome" class="modal"><div class="modal-card" style="width:min(760px,96vw)"><div class="modal-head"><strong>How GPSJ builds trust</strong><button id="closeTrustWelcome">Continue</button></div><div class="modal-body"><div class="card"><h2 style="margin-top:0">Competence first. Evidence first.</h2><p>GPSJ treats claimed competencies as claims until appropriately verified. Where relevant, verification can use authoritative institutions, professional boards/regulators, recognized credentials and demonstrated proficiency.</p><p><b>Matching order:</b> verified proficiency → relevance → legal eligibility → performance evidence → recency → proximity → availability and legitimate preferences.</p><div class="notice">Popularity, friendship, affinity or personal connections do not determine professional competence. GPSJ recommends and explains; you choose.</div><button class="btn primary" id="trustLearnMore" style="margin-top:14px">See Trust & Competence</button></div></div></div></div>
+</div>
+
+<script>
+const state = {
+  view:'home',
+  history:['home'],
+  historyIndex:0,
+  currentTopic:null,
+  currentModule:0,
+  currentStep:'principle',
+  speechRate:0.75,
+  language:'en-US',
+  currentMarket:'accessible',
+  depth:'clinical',
+  mastery: JSON.parse(localStorage.getItem('gpsjMastery')||'{}'),
+  learningGoal: localStorage.getItem('gpsjLearningGoal') || 'understand',
+  confidence: +(localStorage.getItem('gpsjConfidence') || 3),
+  selectedSubtopic: localStorage.getItem('gpsjSelectedSubtopic') || '',
+  adaptiveTrail: JSON.parse(localStorage.getItem('gpsjAdaptiveTrail') || '[]')
+};
+
+const topicData = [
+ {id:'pharmacology',title:'Pharmacology',desc:'Physiology → target → drug → response → adverse effects → monitoring.',img:'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=900&q=80',modules:['Foundations of pharmacodynamics','Receptors, enzymes and transporters','Dose-response, potency and efficacy','Pharmacokinetics: ADME','Bioavailability and first-pass effect','Volume of distribution and protein binding','Clearance, half-life and steady state','Therapeutic index and drug monitoring','Autonomic pharmacology','Cardiovascular pharmacology','Central nervous system pharmacology','Endocrine pharmacology','Pain and inflammation','Anticoagulation and hematology','Anti-infective pharmacology','Oncology pharmacology','Drug interactions and cytochrome enzymes','Adverse drug reactions and toxicology','Pharmacogenomics and precision medicine','Integrated clinical pharmacology']},
+ {id:'calculations',title:'Clinical & Laboratory Calculations',desc:'Dose, concentration, infusion, dilution, units and verification.',img:'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=900&q=80',modules:['Units, dimensional analysis and estimation','Dose, concentration and volume','Weight-based dosing','Body-surface-area dosing','Infusion rate and time','IV drip rates and drop factors','Dilution and concentration','Percent, ratio and strength','Alligation and mixtures','Electrolyte and milliequivalent calculations','Osmolarity and osmolality','Renal dosing concepts','Pharmacokinetic calculations','Laboratory measurements and uncertainty','Integrated calculation safety']},
+ {id:'microbiology',title:'Microbiology & Anti-infectives',desc:'Organism → structure → susceptibility → antimicrobial target → exposure.',img:'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=900&q=80',modules:['Microbial cell structure and selective toxicity','Bacterial classification and staining','Culture, identification and susceptibility testing','Antimicrobial targets','PK/PD and antimicrobial exposure','Resistance mechanisms','Beta-lactams and cell-wall agents','Protein-synthesis inhibitors','DNA/RNA and metabolic inhibitors','Mycobacteria','Fungi','Viruses','Parasites','Biofilms and device-associated infection','Stewardship and resistance ecology','Integrated anti-infective reasoning']},
+ {id:'chemistry',title:'Chemistry, Biotechnology & Pharmaceutical Science',desc:'Structure → reaction → system → formulation → application.',img:'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=900&q=80',modules:['Atomic structure and periodic behavior','Chemical bonding and intermolecular forces','Stoichiometry and reaction quantities','Acids, bases, buffers and pH','Thermodynamics and equilibrium','Reaction kinetics','Organic functional groups','Stereochemistry','Medicinal chemistry foundations','Analytical chemistry','Spectroscopy and chromatography','Solubility and partitioning','Dosage-form design','Formulation and excipients','Stability and degradation','Biotechnology systems','Biologics and macromolecules','Manufacturing science and quality']},
+ {id:'physiology',title:'Medicine & Clinical Sciences',desc:'Normal state → disturbance → mechanism → diagnosis → intervention.',img:'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80',modules:['Cell physiology and homeostasis','Cardiovascular physiology','Respiratory physiology','Renal physiology','Gastrointestinal physiology','Endocrine physiology','Neurologic physiology','Hematology and immunity','Pathophysiology foundations','Clinical reasoning and differential thinking','Diagnostics and laboratory interpretation','Monitoring and therapeutic response']},
+ {id:'research',title:'Research & Experimental Science',desc:'Question → hypothesis → experiment → instrument → data → inference.',img:'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=900&q=80',modules:['Research question and hypothesis','Literature discovery and evidence hierarchy','Study designs','Experimental controls and bias','Sampling and measurement','Laboratory methods','Data quality and reproducibility','Descriptive statistics','Inferential statistics','Regression and modeling','Visualization and scientific communication','Ethics and research governance','Protocol development','Manuscript and peer review','Translation from bench to application']},
+ {id:'toxicology',title:'Toxicology',desc:'Exposure → dose → target organ → mechanism → risk → monitoring.',img:'https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=900&q=80',modules:['Dose-response and toxicologic principles','Absorption, distribution and toxicokinetics','Biotransformation and reactive metabolites','Oxidative stress and cellular injury','Hepatotoxicity','Nephrotoxicity','Neurotoxicity','Cardiotoxicity','Pulmonary toxicity','Reproductive and developmental toxicity','Genotoxicity and carcinogenesis','Environmental and occupational toxicology','Clinical toxicology and antidotal principles','Risk assessment and exposure limits']},
+ {id:'publichealth',title:'Public Health',desc:'Population → determinant → surveillance → intervention → evaluation.',img:'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80',modules:['Epidemiology foundations','Measures of disease frequency','Study design and causal inference','Screening and diagnostic performance','Surveillance systems','Outbreak investigation','Vaccination and prevention','Environmental health','Occupational health','Global health systems','Health equity and social determinants','Program evaluation','Emergency preparedness and response','Health policy and implementation']},
+ {id:'engineering',title:'Scientific Engineering & Build',desc:'Need → system → specification → prototype → validation → operations.',img:'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=900&q=80',modules:['Requirements and systems thinking','Facility programming','Laboratory layout and workflows','Utilities and critical infrastructure','Water purification systems','HVAC and environmental control','Cleanroom and contamination control','Cold chain and storage','Instrumentation and automation','Digital systems and data integrity','Safety and emergency systems','Procurement and lifecycle planning','Prototype design','Commissioning, qualification and validation','Operations, maintenance and resilience']}
+]
+
+const marketData = {
+ accessible:[
+  ['Digital thermometer','Measurement','Generally accessible'],
+  ['Laboratory notebook','Documentation','Educational / professional'],
+  ['Pipette training kit','Learning equipment','Educational use'],
+  ['Microscope teaching slides','Learning aid','Generally accessible']
+ ],
+ laboratory:[
+  ['Micropipette','Liquid handling','Laboratory context'],
+  ['Benchtop centrifuge','Sample processing','Institutional specifications matter'],
+  ['pH meter','Analytical measurement','Calibration required'],
+  ['Cold-storage monitor','Quality system','Use-case aware']
+ ],
+ clinical:[
+  ['Infusion training pump','Simulation / education','Training use accessible; clinical use regulated'],
+  ['Point-of-care simulator','Clinical education','Institution-specific'],
+  ['Diagnostic device class','Clinical device','Regulatory verification required']
+ ],
+ institutional:[
+  ['Biosafety cabinet','Containment equipment','Facility + certification requirements'],
+  ['Ultra-low freezer','Research infrastructure','Installation / power / monitoring'],
+  ['Water purification system','Facility infrastructure','Specification and validation required']
+ ]
+};
+
+
+const GPSJ_ACCESS = {
+  public: ['home','explore'],
+  learner: ['home','explore','identity','journey','intelligence','learn','practice','career','create','invent','connectivity','globalservices','trust','marketplace'],
+  practitioner: ['home','explore','identity','journey','intelligence','learn','practice','research','career','create','invent','connectivity','globalservices','trust','marketplace'],
+  educator: ['home','explore','identity','journey','projects','learn','practice','research','create','assessment','invent','connectivity','trust'],
+  institution: ['home','explore','identity','projects','learn','practice','research','build','facility','assessment','invent','connectivity','globalservices','criticalsecurity','marketplace','trust','supplier'],
+  supplier: ['home','explore','identity','projects','marketplace','supplier','invent','connectivity','globalservices','criticalsecurity','trust','career'],
+  operator: ['home','explore','identity','projects','practice','trust'],
+  founder: ['home','explore','identity','journey','intelligence','projects','learn','practice','research','build','facility','assessment','invent','connectivity','globalservices','criticalsecurity','marketplace','career','create','trust','supplier','command']
+};
+const GPSJ_LABELS = {
+  home:'Home', explore:'Explore GPSJ', identity:'Identity & Profile', journey:'My Journey',
+  intelligence:'My Intelligence', projects:'Projects', learn:'Learn', practice:'Practice',
+  research:'Research', build:'Build', marketplace:'Marketplace', career:'Career', create:'Create',
+  trust:'Trust & Competence', supplier:'Supplier Hub', facility:'Facility Intelligence', assessment:'Assessments', invent:'Invent & Engineer', connectivity:'Low-Connectivity', globalservices:'Global Services', criticalsecurity:'Critical Security', command:'Executive Command'
+};
+let gpsjSession = {authenticated:false,role:'public',name:''};
+try{
+  const saved=JSON.parse(sessionStorage.getItem('gpsjDemoSession')||'null');
+  if(saved && saved.authenticated && GPSJ_ACCESS[saved.role]) gpsjSession=saved;
+}catch(e){}
+
+function allowedViews(){
+  return GPSJ_ACCESS[gpsjSession.authenticated?gpsjSession.role:'public'] || GPSJ_ACCESS.public;
+}
+function isAllowed(view){ return allowedViews().includes(view); }
+
+function renderPersonalNav(){
+  const host=document.getElementById('personalNav');
+  if(!host)return;
+  host.innerHTML='';
+  if(!gpsjSession.authenticated)return;
+  const routes=allowedViews().filter(v=>!['home','explore'].includes(v));
+  routes.forEach(view=>{
+    // Executive Command only exists in the DOM/navigation for founder session.
+    if(view==='command' && gpsjSession.role!=='founder')return;
+    const b=document.createElement('button');
+    b.className='navbtn personalized-navbtn';
+    b.dataset.view=view;
+    b.textContent=GPSJ_LABELS[view]||view;
+    b.onclick=()=>setView(view);
+    host.appendChild(b);
+  });
+}
+function updateIdentityButton(){
+  const b=document.getElementById('loginProfileBtn');
+  if(!b)return;
+  b.innerHTML=gpsjSession.authenticated
+    ? `👤 ${gpsjSession.name||GPSJ_LABELS.identity}`
+    : '👤 Sign in';
+}
+function openIdentityAccess(){
+  const m=document.getElementById('identityAccessModal');
+  if(!m)return;
+  const out=document.getElementById('signedOutPane'), inside=document.getElementById('signedInPane');
+  out.style.display=gpsjSession.authenticated?'none':'block';
+  inside.style.display=gpsjSession.authenticated?'block':'none';
+  if(gpsjSession.authenticated){
+    const founder=gpsjSession.role==='founder'
+      ? '<div style="margin-top:8px"><span class="founder-seal">🔐 Founder authorization · Executive Command enabled</span></div>'
+      : '';
+    document.getElementById('currentAccessSummary').innerHTML=
+      `<strong>${gpsjSession.name||'Verified user'}</strong><br>Workspace: ${gpsjSession.role}<br>Authorized modules: ${allowedViews().filter(x=>!['home','explore'].includes(x)).map(x=>GPSJ_LABELS[x]).join(' · ')}${founder}`;
+  }
+  m.classList.add('open');m.setAttribute('aria-hidden','false');
+}
+function closeIdentityAccess(){
+  const m=document.getElementById('identityAccessModal'); if(m){m.classList.remove('open');m.setAttribute('aria-hidden','true');}
+}
+
+function setView(view, push=true){
+  if(!isAllowed(view)){
+    openIdentityAccess();
+    return;
+  }
+  // Founder command receives an additional local prototype gate.
+  if(view==='command' && (!gpsjSession.authenticated || gpsjSession.role!=='founder')){
+    openIdentityAccess();
+    return;
+  }
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  const el=document.getElementById('view-'+view);
+  if(el) el.classList.add('active');
+  document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.view===view));
+  state.view=view;
+  if(push){
+    state.history=state.history.slice(0,state.historyIndex+1);
+    state.history.push(view); state.historyIndex++;
+  }
+  window.scrollTo({top:0,behavior:'instant'});
+}
+document.querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>setView(b.dataset.goto));
+document.querySelectorAll('.public-nav').forEach(b=>b.onclick=()=>setView(b.dataset.view));
+document.getElementById('backBtn').onclick=()=>{
+  if(state.historyIndex>0){state.historyIndex--;const target=state.history[state.historyIndex]; if(isAllowed(target))setView(target,false); else setView('home',false);}
+};
+document.getElementById('forwardBtn').onclick=()=>{
+  if(state.historyIndex<state.history.length-1){state.historyIndex++;const target=state.history[state.historyIndex]; if(isAllowed(target))setView(target,false); else setView('home',false);}
+};
+document.getElementById('homeBackupBtn').onclick=()=>setView('home');
+
+renderPersonalNav();
+updateIdentityButton();
+
+
+function topicMastery(topicId){ const t=topicData.find(x=>x.id===topicId); if(!t)return 0; let done=0; t.modules.forEach((_,i)=>{if(state.mastery[topicId+':'+i]>=1)done++}); return Math.round(done/t.modules.length*100); }
+function saveMastery(){localStorage.setItem('gpsjMastery',JSON.stringify(state.mastery)); renderContinue();}
+function renderContinue(){const box=document.getElementById('continueLearning'); const raw=localStorage.getItem('gpsjLastLesson'); if(!raw){box.style.display='none';return;} try{const x=JSON.parse(raw),t=topicData.find(v=>v.id===x.topic); if(!t)return; box.style.display='block'; box.innerHTML=`<div class="panel-title"><div><h3 style="margin:0">Continue learning</h3><div class="module-meta">${t.title} · Module ${x.module+1} of ${t.modules.length}</div></div><button class="btn primary" id="continueBtn">Resume</button></div><strong>${t.modules[x.module]}</strong><div class="mastery-bar" style="margin-top:12px"><span style="width:${topicMastery(t.id)}%"></span></div>`; document.getElementById('continueBtn').onclick=()=>openLesson(x.topic,x.module,x.step||'principle');}catch(e){box.style.display='none'}}
+function renderTopics(filter=''){
+  const grid=document.getElementById('topicGrid');
+  const q=filter.trim().toLowerCase();
+  const data=topicData.filter(t=>!q || (t.title+' '+t.desc+' '+t.modules.join(' ')).toLowerCase().includes(q));
+  grid.innerHTML=data.map(t=>`
+    <article class="topic-card">
+      <div class="topic-img" style="background-image:url('${t.img}')"></div>
+      <div class="topic-body">
+        <h3>${t.title}</h3><p>${t.desc}</p><div class="module-meta">${t.modules.length} modules · adapts to ${state.depth} depth</div><div class="mastery-bar" style="margin:10px 0"><span style="width:${topicMastery(t.id)}%"></span></div>
+        <button class="btn primary open-topic" data-topic="${t.id}">Explore</button>
+      </div>
+    </article>`).join('') || '<div class="card">No exact match. Try a broader scientific term.</div>';
+  document.querySelectorAll('.open-topic').forEach(b=>b.onclick=()=>openLesson(b.dataset.topic,0,'principle'));
+}
+renderTopics();
+renderContinue();
+document.getElementById('searchLearnBtn').onclick=()=>renderTopics(document.getElementById('learnSearch').value);
+document.getElementById('learnSearch').addEventListener('keydown',e=>{if(e.key==='Enter')renderTopics(e.target.value)});
+
+function principleText(topic,module){
+ const map={
+  pharmacology:['Drug effect begins with interaction at a biological target.','Exposure determines how much drug reaches the target over time.','Adverse effects are mechanistic consequences of target and off-target actions.'],
+  calculations:['Volume required = ordered dose ÷ concentration.','Infusion rate links total volume to delivery time.','Dilution preserves amount of solute while concentration changes.','Percent strength is a ratio that must be translated into units.','Measurements are only useful when units, precision and calibration are verified.'],
+  microbiology:['Antimicrobial effect depends on target susceptibility and adequate exposure.','Response depends on exposure relative to organism susceptibility.','Effective therapy requires the correct organism class, susceptible target and adequate exposure.'],
+  chemistry:['Structure determines chemical behavior and potential interactions.','Reaction progress depends on reactants, activation conditions and competing pathways.','Formulation performance depends on composition, environment and stability.','Biotechnology systems connect biological machinery to measurable products.'],
+  physiology:['Normal physiology provides the baseline for understanding disturbance.','Disease changes a normal system through a mechanism.','Clinical reasoning connects findings to mechanism before intervention.'],
+  research:['A research question must be specific enough to test.','Methods determine whether measurements can answer the question.','Inference depends on data quality, design and uncertainty.'],
+  toxicology:['Toxic response depends on dose, route, duration and susceptibility.','Target-organ toxicity reflects exposure plus tissue-specific vulnerability.','Risk assessment separates hazard from real-world exposure.'],
+  publichealth:['Population outcomes emerge from interacting determinants.','Health systems convert information into coordinated action.','Prevention must be measured against population outcomes.'],
+  engineering:['A useful system begins with explicit requirements.','A prototype should make assumptions testable.','Validation links expected performance to measured evidence.']
+ };
+ return (map[topic]||['Learn the relationship first.'])[module] || 'Learn the relationship first.';
+}
+
+function visualConfig(topic){
+ const configs={
+  pharmacology:{title:'Receptor / target interaction',img:'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=1200&q=80',caption:'AI-adapted visual context: molecules and target interaction.',labels:['Drug concentration','Target sensitivity','Competing signal']},
+  calculations:{title:'Dose & measurement context',img:'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80',caption:'AI-adapted visual context: laboratory measurement and concentration.',labels:['Ordered dose','Available concentration','Volume / time']},
+  microbiology:{title:'Microbial response',img:'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&q=80',caption:'AI-adapted visual context: microorganism and susceptibility.',labels:['Exposure','Susceptibility','Resistance pressure']},
+  chemistry:{title:'Reaction system',img:'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80',caption:'AI-adapted visual context: chemical reaction environment.',labels:['Reactant concentration','Activation support','Competing pathway']},
+  physiology:{title:'Physiological system',img:'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1200&q=80',caption:'AI-adapted visual context: organ/system response.',labels:['Baseline function','Disturbance','Compensation']},
+  research:{title:'Experimental system',img:'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80',caption:'AI-adapted visual context: experimental measurement.',labels:['Independent variable','Measurement sensitivity','Noise']},
+  toxicology:{title:'Exposure and toxicity',img:'https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1200&q=80',caption:'AI-adapted visual context: exposure-to-response reasoning.',labels:['Dose','Duration','Susceptibility']},
+  publichealth:{title:'Population system',img:'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=80',caption:'AI-adapted visual context: population and health-system response.',labels:['Exposure prevalence','Intervention coverage','System capacity']},
+  engineering:{title:'Prototype system',img:'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=80',caption:'AI-adapted visual context: engineered scientific system.',labels:['Input load','System efficiency','Failure pressure']}
+ };
+ return configs[topic]||configs.research;
+}
+
+function openLesson(topicId,moduleIndex=0,step='principle'){
+ state.currentTopic=topicId; state.currentModule=moduleIndex; state.currentStep=step; localStorage.setItem('gpsjLastLesson',JSON.stringify({topic:topicId,module:moduleIndex,step}));
+ const topic=topicData.find(t=>t.id===topicId);
+ document.getElementById('lessonModal').classList.add('open');
+ document.getElementById('lessonModalTitle').textContent=topic.title;
+ document.getElementById('lessonTitle').textContent=topic.modules[moduleIndex];
+ document.getElementById('lessonSubtitle').textContent='Learn the relationship first, then see it, manipulate it, explain it and verify understanding.';
+ document.getElementById('lessonBreadcrumb').textContent=`${topic.title} · Module ${moduleIndex+1} of ${topic.modules.length}`;
+ document.getElementById('lessonModuleList').innerHTML=topic.modules.map((m,i)=>`<button class="btn ${i===moduleIndex?'primary':''} lesson-module" data-i="${i}">${i+1}. ${m}</button>`).join('');
+ document.querySelectorAll('.lesson-module').forEach(b=>b.onclick=()=>openLesson(topicId,+b.dataset.i,'principle'));
+ document.querySelectorAll('.lesson-step').forEach(b=>b.classList.toggle('active',b.dataset.step===step));
+ document.querySelectorAll('.depth-btn').forEach(x=>x.classList.toggle('active',x.dataset.depth===state.depth));
+ renderLessonStep();
+}
+function renderLessonStep(){
+ const topic=topicData.find(t=>t.id===state.currentTopic);
+ const module=topic.modules[state.currentModule];
+ const box=document.getElementById('lessonContent');
+ document.querySelectorAll('.lesson-step').forEach(b=>b.classList.toggle('active',b.dataset.step===state.currentStep));
+ if(state.currentStep==='principle'){
+   box.innerHTML=`<div class="content-box"><h3>Scientific principle first</h3><div style="font-size:24px;font-weight:800;background:var(--soft);padding:18px;border-radius:14px">${principleText(topic.id,state.currentModule)}</div><p style="color:var(--muted)">GPSJ should explain the relationship before asking the learner to memorize a procedure.</p><button class="btn primary next-step">See it visually →</button></div>`;
+ } else if(state.currentStep==='visual'){
+   const v=visualConfig(topic.id);
+   box.innerHTML=`<div class="visual-wrap">
+     <div class="visual-stage">
+       <img src="${v.img}" alt="${v.title}">
+       <div class="visual-overlay"><h3 style="margin:0 0 6px">${v.title}</h3><div>${v.caption}</div><div id="visualResult" style="margin-top:8px;font-weight:800">Current response index: 50%</div></div>
+     </div>
+     <div class="card">
+       <h3>Manipulate this topic</h3>
+       ${v.labels.map((l,i)=>`<div class="range-row"><label>${l}</label><input class="visual-range" type="range" min="0" max="100" value="${[55,60,25][i]||50}"><span class="range-value">${[55,60,25][i]||50}</span></div>`).join('')}
+       <div class="visual-controls"><button class="btn primary" id="playVisual">▶ Animate</button><button class="btn secondary" id="explainVisual">Ask GPSJ why</button></div>
+       <div id="visualExplanation" style="margin-top:12px;color:var(--muted)">Adjust values to change the simulated response.</div>
+     </div>
+   </div>`;
+   wireVisual();
+ } else if(state.currentStep==='explain'){
+   box.innerHTML=`<div class="content-box"><h3>Explain the mechanism</h3><p>${principleText(topic.id,state.currentModule)} The explanation layer connects cause → system change → measurable consequence. Current adaptive depth: <strong>${state.depth}</strong>.</p><textarea id="lessonQuestion" style="width:100%;min-height:100px;border:1px solid var(--line);border-radius:12px;padding:12px" placeholder="Ask GPSJ about this lesson..."></textarea><button class="btn primary" id="lessonExplainBtn" style="margin-top:10px">Explain</button><div id="lessonAnswer" class="notice" style="margin-top:12px;display:none"></div></div>`;
+   document.getElementById('lessonExplainBtn').onclick=()=>{const q=document.getElementById('lessonQuestion').value||'Explain this mechanism'; const a=document.getElementById('lessonAnswer');a.style.display='block';a.textContent=`Prototype explanation for “${q}”: ${principleText(topic.id,state.currentModule)} In production this answer would come from the connected AI service with the user’s current depth, language and jurisdiction context.`}
+ } else if(state.currentStep==='practice'){
+   box.innerHTML=`<div class="content-box"><h3>Adaptive practice</h3><p><strong>Question:</strong> Which approach best matches this lesson?</p><div class="stack"><button class="btn secondary answer" data-ok="1">Understand the relationship and variables before memorizing the procedure.</button><button class="btn secondary answer" data-ok="0">Memorize isolated terms without connecting the mechanism.</button></div><div id="practiceFeedback" style="margin-top:12px"></div></div>`;
+   document.querySelectorAll('.answer').forEach(b=>b.onclick=()=>{
+     const ok=b.dataset.ok==='1';
+     document.getElementById('practiceFeedback').innerHTML=ok?'<div class="notice" style="background:#eaf8f2;color:#147658;border-color:#b8e6d3">Correct. GPSJ can now increase depth or move to the next mechanism.</div>':'<div class="notice">Review the principle first. The system should reduce depth and re-explain visually.</div>';
+     state.confidence = ok ? Math.min(5,state.confidence+1) : Math.max(1,state.confidence-1);
+     if(typeof addAdaptiveTrail==='function') addAdaptiveTrail(ok?'Practice success → confidence increased':'Practice miss → confidence reduced');
+     if(typeof renderAdaptiveIntelligence==='function') renderAdaptiveIntelligence();
+   });
+ } else if(state.currentStep==='regional'){
+   box.innerHTML=`<div class="content-box"><h3>Regional layer</h3><p>Universal science remains separate from jurisdiction-specific rules. Before showing regulated practice, GPSJ should verify the learner’s location, credential level, institution and applicable rules.</p><div class="notice">Current prototype: educational context only. Production regional guidance must be verified from current authoritative sources.</div></div>`;
+ }
+ box.insertAdjacentHTML('beforeend',`<div class="lesson-actions"><button class="btn primary" id="markMastered">✓ I understand this module</button><button class="btn secondary" id="saveLessonProgress">Save progress</button><span class="chip">Depth: ${state.depth}</span></div>`);
+ document.getElementById('markMastered').onclick=()=>{state.mastery[topic.id+':'+state.currentModule]=1;saveMastery();document.getElementById('markMastered').textContent='✓ Mastery saved';};
+ document.getElementById('saveLessonProgress').onclick=()=>{localStorage.setItem('gpsjLastLesson',JSON.stringify({topic:topic.id,module:state.currentModule,step:state.currentStep}));document.getElementById('saveLessonProgress').textContent='Saved';};
+ const n=document.querySelector('.next-step'); if(n)n.onclick=()=>{state.currentStep='visual';localStorage.setItem('gpsjLastLesson',JSON.stringify({topic:topic.id,module:state.currentModule,step:'visual'}));renderLessonStep();}
+}
+document.querySelectorAll('.lesson-step').forEach(b=>b.onclick=()=>{state.currentStep=b.dataset.step;renderLessonStep()});
+document.querySelectorAll('.depth-btn').forEach(b=>b.onclick=()=>{state.depth=b.dataset.depth;document.querySelectorAll('.depth-btn').forEach(x=>x.classList.toggle('active',x.dataset.depth===state.depth));renderLessonStep();});
+document.getElementById('closeLesson').onclick=()=>{document.getElementById('lessonModal').classList.remove('open');renderTopics(document.getElementById('learnSearch').value);renderContinue();};
+
+function wireVisual(){
+ const ranges=[...document.querySelectorAll('.visual-range')];
+ function update(){
+  ranges.forEach(r=>r.parentElement.querySelector('.range-value').textContent=r.value);
+  const vals=ranges.map(r=>+r.value);
+  const score=Math.max(0,Math.min(100, Math.round((vals[0]*0.5 + vals[1]*0.35 + (100-vals[2])*0.15))));
+  document.getElementById('visualResult').textContent=`Current response index: ${score}%`;
+ }
+ ranges.forEach(r=>r.oninput=update);
+ document.getElementById('playVisual').onclick=()=>{
+   let i=0; const timer=setInterval(()=>{i++; ranges[0].value=Math.min(100,+ranges[0].value+2);update();if(i>12)clearInterval(timer)},80);
+ };
+ document.getElementById('explainVisual').onclick=()=>{
+   document.getElementById('visualExplanation').textContent='The simulated response changes because the first two variables increase system drive while the competing pathway reduces effective response. Production GPSJ would generate a topic-specific explanation from the connected AI service.';
+ };
+}
+
+
+// ---------- v3.9 Adaptive Lesson Intelligence ----------
+const adaptiveSubtopics = {
+  pharmacology:{
+    0:['Ligand–target interaction','Affinity and occupancy','Agonism vs antagonism','Efficacy vs potency','Dose–response curves','Therapeutic window'],
+    1:['Receptor families','Enzyme inhibition','Transporter modulation','Second messengers','Desensitization','Target selectivity'],
+    2:['EC50 and potency','Emax and efficacy','Partial agonism','Competitive antagonism','Noncompetitive antagonism','Population variability'],
+    3:['Absorption','Distribution','Metabolism','Excretion','Bioavailability','Exposure over time'],
+    8:['Sympathetic pathways','Parasympathetic pathways','Adrenergic receptors','Cholinergic receptors','Autonomic drugs','Organ responses'],
+    9:['Blood pressure regulation','Renin–angiotensin system','Cardiac electrophysiology','Heart failure mechanisms','Antianginal mechanisms','Lipid pharmacology'],
+    10:['Neurotransmitters','Synaptic signaling','Depression pharmacology','Psychosis pharmacology','Seizure pharmacology','Parkinson disease mechanisms'],
+    14:['Microbial targets','PK/PD relationships','Resistance','Spectrum','Toxicity','Stewardship']
+  },
+  calculations:{
+    0:['Units and prefixes','Dimensional analysis','Significant figures','Estimation','Unit cancellation','Magnitude check'],
+    1:['Ordered dose','Stock concentration','Required volume','Strength conversion','Unit matching','Reasonableness check'],
+    4:['Dose per time','Volume per time','Infusion duration','Pump rate','Rate conversion','Safety check'],
+    6:['C1V1 = C2V2','Stock solution','Target concentration','Final volume','Diluent volume','Verification']
+  },
+  microbiology:{
+    0:['Cell wall','Cell membrane','Ribosome','Nucleic acid synthesis','Metabolic pathways','Selective toxicity'],
+    4:['MIC','Time above MIC','Cmax/MIC','AUC/MIC','Exposure profile','Response'],
+    5:['Enzyme destruction','Target modification','Efflux','Reduced permeability','Biofilm states','Selection pressure']
+  },
+  chemistry:{
+    3:['Acid strength','Base strength','pKa','Buffer systems','Henderson–Hasselbalch','Physiologic pH'],
+    5:['Reaction rate','Activation energy','Catalysis','Temperature','Concentration','Rate law'],
+    11:['Solubility','Partition coefficient','Ionization','Polarity','Dissolution','Formulation implications']
+  },
+  toxicology:{
+    0:['Dose','Route','Duration','Susceptibility','Threshold','Dose–response curve'],
+    4:['Reactive metabolites','Cellular stress','Biomarkers','Liver injury patterns','Risk factors','Monitoring'],
+    8:['Inhaled exposure','Airway injury','Alveolar injury','Oxidative stress','Fibrosis','Exposure monitoring']
+  },
+  research:{
+    0:['Research question','Hypothesis','Variables','Operational definitions','Feasibility','Scientific significance'],
+    2:['Experimental study','Cohort','Case-control','Cross-sectional','Randomization','Causal inference'],
+    6:['Reproducibility','Validity','Reliability','Missing data','Protocol deviations','Audit trail']
+  },
+  engineering:{
+    0:['User need','System boundary','Functional requirement','Constraint','Risk','Verification criterion'],
+    2:['Personnel flow','Material flow','Specimen flow','Clean/dirty separation','Adjacency','Bottlenecks'],
+    4:['Source water','Pretreatment','Purification','Storage','Distribution','Monitoring'],
+    5:['Air changes','Temperature','Humidity','Pressure cascade','Filtration','Alarm strategy'],
+    13:['URS','DQ','IQ','OQ','PQ','Change control']
+  }
+};
+
+function getAdaptiveSubtopics(topicId,moduleIndex){
+  const specific = adaptiveSubtopics[topicId] && adaptiveSubtopics[topicId][moduleIndex];
+  if(specific) return specific;
+  const t = topicData.find(x=>x.id===topicId);
+  const m = t?.modules[moduleIndex] || 'Current module';
+  return [
+    `${m}: core concept`,
+    `${m}: mechanism`,
+    `${m}: variables`,
+    `${m}: measurement`,
+    `${m}: application`,
+    `${m}: common errors`
+  ];
+}
+
+function saveAdaptiveState(){
+  localStorage.setItem('gpsjLearningGoal',state.learningGoal);
+  localStorage.setItem('gpsjConfidence',String(state.confidence));
+  localStorage.setItem('gpsjSelectedSubtopic',state.selectedSubtopic || '');
+  localStorage.setItem('gpsjAdaptiveTrail',JSON.stringify(state.adaptiveTrail.slice(-20)));
+}
+
+function addAdaptiveTrail(label){
+  const now = new Date();
+  state.adaptiveTrail.push(`${now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})} · ${label}`);
+  state.adaptiveTrail = state.adaptiveTrail.slice(-20);
+  saveAdaptiveState();
+}
+
+function adaptiveRecommendation(){
+  const topic = topicData.find(x=>x.id===state.currentTopic);
+  const mastery = state.mastery[state.currentTopic+':'+state.currentModule] || 0;
+  const confidence = state.confidence;
+
+  if(confidence <= 2){
+    return {
+      title:'Rebuild the concept visually',
+      reason:'Confidence is low, so GPSJ should reduce cognitive load, return to the principle and show the mechanism before increasing complexity.',
+      action:'visual',
+      depth: state.depth==='scientist' ? 'advanced' : (state.depth==='advanced' ? 'clinical' : state.depth)
+    };
+  }
+  if(confidence === 3 && !mastery){
+    return {
+      title:'Explain, then test one mechanism',
+      reason:'Confidence is moderate but mastery is not yet saved. GPSJ should connect the visual to a causal explanation and then ask a focused question.',
+      action:'explain',
+      depth:state.depth
+    };
+  }
+  if(confidence >= 4 && mastery && state.currentModule < topic.modules.length-1){
+    return {
+      title:`Advance to Module ${state.currentModule+2}`,
+      reason:'Current mastery is saved and confidence is high, so the next best action is to continue the curriculum while preserving the current depth.',
+      action:'next-module',
+      depth:state.depth
+    };
+  }
+  if(confidence >= 4){
+    return {
+      title:'Challenge this concept',
+      reason:'Confidence is high. GPSJ should test transfer, edge cases and application rather than repeat the same explanation.',
+      action:'practice',
+      depth: state.depth==='foundation' ? 'clinical' : (state.depth==='clinical' ? 'advanced' : state.depth)
+    };
+  }
+  return {
+    title:'Continue through the learning loop',
+    reason:'The current state supports another focused step without changing difficulty.',
+    action:'practice',
+    depth:state.depth
+  };
+}
+
+function renderAdaptiveIntelligence(){
+  const box = document.getElementById('lessonContent');
+  if(!box || !state.currentTopic) return;
+
+  const topic = topicData.find(x=>x.id===state.currentTopic);
+  const subtopics = getAdaptiveSubtopics(state.currentTopic,state.currentModule);
+  if(!state.selectedSubtopic || !subtopics.includes(state.selectedSubtopic)){
+    state.selectedSubtopic = subtopics[0];
+  }
+  const rec = adaptiveRecommendation();
+
+  const existing = document.getElementById('adaptiveIntel');
+  if(existing) existing.remove();
+
+  box.insertAdjacentHTML('beforeend',`
+    <section id="adaptiveIntel" class="adaptive-intel">
+      <div class="panel-title">
+        <div>
+          <h3>🧠 Adaptive Lesson Intelligence</h3>
+          <div class="module-meta">GPSJ uses your goal, confidence, mastery and current lesson behavior to choose the next learning move.</div>
+        </div>
+        <span class="chip">Live prototype</span>
+      </div>
+
+      <div class="adaptive-grid">
+        <div class="adaptive-card">
+          <strong>What is your goal right now?</strong>
+          <div class="adaptive-control-row" id="goalRow">
+            ${[
+              ['understand','Understand'],
+              ['exam','Prepare for exam'],
+              ['research','Research depth'],
+              ['apply','Apply professionally']
+            ].map(([v,l])=>`<button class="adaptive-control ${state.learningGoal===v?'active':''}" data-goal="${v}">${l}</button>`).join('')}
+          </div>
+        </div>
+
+        <div class="adaptive-card">
+          <strong>How confident do you feel?</strong>
+          <div class="confidence-meter" id="confidenceMeter">
+            ${[1,2,3,4,5].map(n=>`<button class="confidence-dot ${state.confidence===n?'active':''}" data-confidence="${n}">${n}</button>`).join('')}
+          </div>
+          <div class="module-meta">1 = confused · 3 = developing · 5 = ready to transfer</div>
+        </div>
+      </div>
+
+      <div class="adaptive-card" style="margin-top:12px">
+        <strong>Explore this module from broad → specific</strong>
+        <div class="subtopic-grid" id="subtopicGrid">
+          ${subtopics.map(s=>`<button class="subtopic-btn ${state.selectedSubtopic===s?'active':''}" data-subtopic="${s.replace(/"/g,'&quot;')}">${s}</button>`).join('')}
+        </div>
+        <div id="subtopicContext" class="notice" style="margin-top:10px">
+          Active focus: <strong>${state.selectedSubtopic}</strong>. GPSJ will keep the parent module visible while explanations and practice narrow to this concept.
+        </div>
+      </div>
+
+      <div class="next-recommendation" id="nextRecommendation">
+        <strong>Recommended next: ${rec.title}</strong>
+        <small>${rec.reason}</small>
+        <div class="adaptive-control-row">
+          <button class="btn primary" id="followRecommendation">Follow recommendation</button>
+          <button class="btn secondary" id="imConfused">I’m confused</button>
+          <button class="btn secondary" id="challengeMe">Challenge me</button>
+        </div>
+      </div>
+
+      <div class="adaptive-card" style="margin-top:12px">
+        <strong>Adaptive activity trail</strong>
+        <div class="adaptive-trail" id="adaptiveTrail">
+          ${(state.adaptiveTrail.length?state.adaptiveTrail:['No adaptive decisions recorded yet.']).map(x=>`<span>${x}</span>`).join('')}
+        </div>
+      </div>
+    </section>
+  `);
+
+  document.querySelectorAll('#goalRow [data-goal]').forEach(b=>b.onclick=()=>{
+    state.learningGoal=b.dataset.goal;
+    addAdaptiveTrail(`Goal → ${b.textContent}`);
+    renderAdaptiveIntelligence();
+  });
+
+  document.querySelectorAll('#confidenceMeter [data-confidence]').forEach(b=>b.onclick=()=>{
+    state.confidence=+b.dataset.confidence;
+    addAdaptiveTrail(`Confidence → ${state.confidence}/5`);
+    renderAdaptiveIntelligence();
+  });
+
+  document.querySelectorAll('#subtopicGrid [data-subtopic]').forEach(b=>b.onclick=()=>{
+    state.selectedSubtopic=b.dataset.subtopic;
+    addAdaptiveTrail(`Focus → ${state.selectedSubtopic}`);
+    document.querySelectorAll('#subtopicGrid .subtopic-btn').forEach(x=>x.classList.toggle('active',x===b));
+    document.getElementById('subtopicContext').innerHTML=`Active focus: <strong>${state.selectedSubtopic}</strong>. GPSJ will now adapt explanation, visuals and questions around this concept while keeping the parent module context.`;
+    saveAdaptiveState();
+  });
+
+  document.getElementById('imConfused').onclick=()=>{
+    state.confidence=1;
+    if(state.depth==='scientist')state.depth='advanced';
+    else if(state.depth==='advanced')state.depth='clinical';
+    else if(state.depth==='clinical')state.depth='foundation';
+    state.currentStep='visual';
+    addAdaptiveTrail('Confusion signal → visual review + reduced depth');
+    document.querySelectorAll('.depth-btn').forEach(x=>x.classList.toggle('active',x.dataset.depth===state.depth));
+    renderLessonStep();
+  };
+
+  document.getElementById('challengeMe').onclick=()=>{
+    state.confidence=5;
+    if(state.depth==='foundation')state.depth='clinical';
+    else if(state.depth==='clinical')state.depth='advanced';
+    else if(state.depth==='advanced')state.depth='scientist';
+    state.currentStep='practice';
+    addAdaptiveTrail('Challenge signal → harder practice + increased depth');
+    document.querySelectorAll('.depth-btn').forEach(x=>x.classList.toggle('active',x.dataset.depth===state.depth));
+    renderLessonStep();
+  };
+
+  document.getElementById('followRecommendation').onclick=()=>{
+    const r=adaptiveRecommendation();
+    state.depth=r.depth;
+    if(r.action==='next-module'){
+      const next=Math.min(topic.modules.length-1,state.currentModule+1);
+      addAdaptiveTrail(`Advanced → Module ${next+1}`);
+      openLesson(topic.id,next,'principle');
+      return;
+    }
+    state.currentStep=r.action;
+    addAdaptiveTrail(`Recommended step → ${r.title}`);
+    document.querySelectorAll('.depth-btn').forEach(x=>x.classList.toggle('active',x.dataset.depth===state.depth));
+    renderLessonStep();
+    };
+}
+
+// Wrap the existing lesson renderer so every lesson gets the v3.9 intelligence layer.
+const renderLessonStepV38 = renderLessonStep;
+renderLessonStep = function(){
+  renderLessonStepV38();
+  renderAdaptiveIntelligence();
+};
+
+// Record module changes and restore adaptive focus.
+const openLessonV38 = openLesson;
+openLesson = function(topicId,moduleIndex=0,step='principle'){
+  const changed = state.currentTopic!==topicId || state.currentModule!==moduleIndex;
+  openLessonV38(topicId,moduleIndex,step);
+  if(changed){
+    const t=topicData.find(x=>x.id===topicId);
+    state.selectedSubtopic='';
+    addAdaptiveTrail(`${t?.title||topicId} → Module ${moduleIndex+1}`);
+  }
+  renderAdaptiveIntelligence();
+};
+
+let creatorType='Report';
+document.querySelectorAll('.creator-open').forEach(b=>b.onclick=()=>{
+ creatorType=b.dataset.type; document.getElementById('creatorTitle').textContent=creatorType+' Studio'; document.getElementById('creatorModal').classList.add('open');
+});
+document.getElementById('closeCreator').onclick=()=>document.getElementById('creatorModal').classList.remove('open');
+document.getElementById('generateCreator').onclick=()=>{
+ const p=document.getElementById('creatorPurpose').value||'Develop a scientific topic';
+ const a=document.getElementById('creatorAudience').value||'scientific audience';
+ const f=document.getElementById('creatorField').value||'pharmaceutical sciences';
+ const d=document.getElementById('creatorDepth').value;
+ const templates={
+  'Report':`TITLE\n${p}\n\n1. Purpose\n2. Scientific background\n3. Key question\n4. Evidence / methods\n5. Analysis\n6. Limitations\n7. Regional or regulatory layer\n8. Recommendations\n\nAudience: ${a}\nField: ${f}\nDepth: ${d}`,
+  'Presentation':`PRESENTATION OUTLINE — ${p}\n\nSlide 1: Why this matters\nSlide 2: Scientific principle\nSlide 3: Mechanism / visual\nSlide 4: Evidence\nSlide 5: Application\nSlide 6: Risks / limitations\nSlide 7: Regional context\nSlide 8: Next actions\n\nAudience: ${a}\nField: ${f}\nDepth: ${d}`,
+  'Research Map':`RESEARCH MAP — ${p}\n\nCore question → subquestions → evidence sources → methods → institutions → geographic context → gaps → next experiment / decision.\n\nAudience: ${a}\nField: ${f}\nDepth: ${d}`,
+  'Translation':`TRANSLATION BRIEF — ${p}\n\nSource language: detect / user-selected\nTarget audience: ${a}\nScientific field: ${f}\nDepth: ${d}\n\nRules:\n• preserve scientific meaning\n• use domain-accurate terminology\n• localize equations and spoken jargon\n• do not read punctuation aloud\n• separate universal science from country-specific regulation`
+ };
+ document.getElementById('creatorOutput').textContent=templates[creatorType];
+};
+document.getElementById('copyDraft').onclick=async()=>{await navigator.clipboard.writeText(document.getElementById('creatorOutput').textContent)};
+
+function renderMarket(cat='accessible'){
+ state.currentMarket=cat;
+ document.querySelectorAll('.market-tab').forEach(b=>{b.classList.toggle('primary',b.dataset.market===cat);b.classList.toggle('secondary',b.dataset.market!==cat)});
+ document.getElementById('marketGrid').innerHTML=marketData[cat].map((x,i)=>`<div class="market-card"><span class="status">${cat==='accessible'?'Open discovery':'Context check'}</span><h3>${x[0]}</h3><p style="color:var(--muted)">${x[1]}<br>${x[2]}</p><button class="btn ${cat==='accessible'?'primary':'secondary'} market-inspect" data-name="${x[0]}">Inspect</button></div>`).join('');
+ document.querySelectorAll('.market-inspect').forEach(b=>b.onclick=()=>alert(`${b.dataset.name}\n\nPrototype access is working. Production details would include verified suppliers, specifications, current jurisdiction rules, credential checks and purchasing eligibility.`));
+}
+renderMarket();
+document.querySelectorAll('.market-tab').forEach(b=>b.onclick=()=>renderMarket(b.dataset.market));
+
+const speeds=[0.25,0.35,0.5,0.75,1,1.25,1.5,2,3];
+function renderSpeeds(){
+ const row=document.getElementById('globalSpeedRow');
+ row.innerHTML=speeds.map(s=>`<button class="speed ${s===state.speechRate?'active':''}" data-speed="${s}">${s}×</button>`).join('');
+ row.querySelectorAll('.speed').forEach(b=>b.onclick=()=>{state.speechRate=+b.dataset.speed;renderSpeeds();});
+}
+renderSpeeds();
+const exams={
+ 'en-US':['TOEFL iBT','IELTS Academic','Duolingo English Test','OET where applicable'],
+ 'en-GB':['IELTS Academic','OET where applicable','Cambridge English'],
+ 'fr-FR':['DELF / DALF','TCF','TEF'],
+ 'fr-CA':['TEF Canada','TCF Canada','IELTS / CELPIP for English pathways'],
+ 'es-ES':['DELE','SIELE'],
+ 'de-DE':['TestDaF','Goethe-Zertifikat'],
+ 'pt-PT':['CAPLE'],
+ 'ar-SA':['Institution-specific Arabic proficiency assessment']
+};
+function renderExams(){
+ const lang=document.getElementById('languageSelect').value; state.language=lang;
+ document.getElementById('examList').innerHTML=(exams[lang]||[]).map(x=>`<div class="lang-card"><strong>${x}</strong><div style="color:var(--muted);font-size:13px;margin-top:4px">Availability depends on destination, institution and professional requirement.</div></div>`).join('');
+}
+document.getElementById('languageBtn').onclick=()=>{document.getElementById('languageModal').classList.add('open');renderExams()};
+document.getElementById('closeLanguage').onclick=()=>document.getElementById('languageModal').classList.remove('open');
+document.getElementById('languageSelect').onchange=renderExams;
+window.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open'));}});
+
+// v4.0 trust + command additions
+const trustSeen=localStorage.getItem('gpsjTrustIntroSeen');
+if(!trustSeen) document.getElementById('trustWelcome').classList.add('open');
+document.getElementById('closeTrustWelcome').onclick=()=>{localStorage.setItem('gpsjTrustIntroSeen','1');document.getElementById('trustWelcome').classList.remove('open');};
+document.getElementById('trustLearnMore').onclick=()=>{localStorage.setItem('gpsjTrustIntroSeen','1');document.getElementById('trustWelcome').classList.remove('open');setView('trust');};
+const exec=document.getElementById('execReview'); if(exec)exec.onclick=()=>alert('Executive queue\n\n1. Major institutional contract — review evidence\n2. Regulatory exception — independent validation required\n3. Capital project — finance + legal review\n4. Security escalation — restricted incident workflow\n\nNo action executes by prototype alert; production requires step-up authentication and auditable authorization.');
+</script>
+
+<div class="modal" id="identityAccessModal" aria-hidden="true">
+  <div class="modal-card" style="max-width:820px">
+    <div class="modal-head">
+      <div><strong>GPSJ Identity & Workspace</strong><div style="font-size:12px;opacity:.85">Prototype access simulator</div></div>
+      <button id="closeIdentityAccess">Close</button>
+    </div>
+    <div class="modal-body">
+      <div id="signedOutPane">
+        <h2 style="margin-top:0">Sign in to your personalized GPSJ</h2>
+        <p class="lead">In production, authentication, identity verification and permissions must be enforced server-side. This prototype lets you preview role-specific navigation.</p>
+        <div class="field"><label>Display name</label><input id="demoIdentityName" placeholder="Your name"></div>
+        <div class="field" style="margin-top:12px"><label>Preview role</label></div>
+        <div class="role-grid" id="roleChoices">
+          <button class="role-choice selected" data-role="learner"><strong>🎓 Learner / Student</strong><small>Learning, practice, career and creation.</small></button>
+          <button class="role-choice" data-role="practitioner"><strong>🩺 Practitioner / Scientist</strong><small>Professional science, practice, research and competence.</small></button>
+          <button class="role-choice" data-role="educator"><strong>🏫 Educator</strong><small>Teaching, assessments, labs, research and creation.</small></button>
+          <button class="role-choice" data-role="institution"><strong>🏥 Institution</strong><small>Projects, education, practice, facilities and procurement.</small></button>
+          <button class="role-choice" data-role="supplier"><strong>📦 Supplier</strong><small>Verified catalog, customer/institution connection and fulfillment.</small></button>
+          <button class="role-choice" data-role="operator"><strong>🧑‍💼 Employee / Operator</strong><small>Assigned operations under least privilege.</small></button>
+          <button class="role-choice" data-role="founder"><strong>🔐 Founder preview</strong><small>Private executive command demonstration.</small></button>
+        </div>
+        <div class="workspace-summary" id="rolePreviewText">Learner workspace: journey, learning, practice, career, creation and trust.</div>
+        <button class="btn primary" id="demoSignInBtn" style="margin-top:14px">Continue to personalized workspace</button>
+        <p class="command-hidden-note" style="margin-top:12px"><strong>Security:</strong> Executive Command is never advertised in the public capability directory and is only rendered for the founder authorization role.</p>
+      </div>
+      <div id="signedInPane" style="display:none">
+        <h2 style="margin-top:0">My GPSJ access</h2>
+        <div id="currentAccessSummary" class="workspace-summary"></div>
+        <div class="grid cols-2" style="margin-top:14px">
+          <button class="btn primary" id="openMyWorkspaceBtn">Open my workspace</button>
+          <button class="btn" id="demoSignOutBtn">Sign out</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script id="gpsj-v41-auth-ui">
+(function(){
+  let selectedRole='learner';
+  const roleDescriptions={
+    learner:'Learner workspace: journey, learning, practice, career, creation and trust.',
+    practitioner:'Practitioner/scientist workspace: professional learning, practice, research, competence, creation and eligible marketplace tools.',
+    educator:'Educator workspace: projects, teaching/learning, practice, research, creation and trust.',
+    institution:'Institution workspace: education, projects, practice, research, facility intelligence, procurement and authorized supplier connections.',
+    supplier:'Supplier workspace: verified identity, catalog/marketplace, customer and institution matching, supplier operations and trust.',
+    operator:'Operator workspace: only assigned operational modules under least-privilege access.',
+    founder:'Founder workspace: global portfolio governance plus all authorized GPSJ modules. Executive Command remains private.'
+  };
+  const modal=document.getElementById('identityAccessModal');
+  document.getElementById('loginProfileBtn').onclick=openIdentityAccess;
+  document.getElementById('exploreSignInBtn').onclick=openIdentityAccess;
+  document.getElementById('directorySignInBtn').onclick=openIdentityAccess;
+  document.getElementById('closeIdentityAccess').onclick=closeIdentityAccess;
+  if(modal) modal.addEventListener('click',e=>{if(e.target===modal)closeIdentityAccess();});
+
+  document.querySelectorAll('.role-choice').forEach(btn=>{
+    btn.onclick=()=>{
+      selectedRole=btn.dataset.role;
+      document.querySelectorAll('.role-choice').forEach(x=>x.classList.toggle('selected',x===btn));
+      document.getElementById('rolePreviewText').textContent=roleDescriptions[selectedRole]||'';
+    };
+  });
+
+  document.getElementById('demoSignInBtn').onclick=()=>{
+    const name=document.getElementById('demoIdentityName').value.trim()||'GPSJ User';
+    gpsjSession={authenticated:true,role:selectedRole,name};
+    try{sessionStorage.setItem('gpsjDemoSession',JSON.stringify(gpsjSession));}catch(e){}
+    renderPersonalNav();updateIdentityButton();closeIdentityAccess();
+    setView(selectedRole==='supplier'?'supplier':selectedRole==='institution'?'projects':selectedRole==='founder'?'command':'home');
+  };
+  document.getElementById('demoSignOutBtn').onclick=()=>{
+    gpsjSession={authenticated:false,role:'public',name:''};
+    try{sessionStorage.removeItem('gpsjDemoSession');}catch(e){}
+    renderPersonalNav();updateIdentityButton();closeIdentityAccess();setView('home');
+  };
+  document.getElementById('openMyWorkspaceBtn').onclick=()=>{
+    closeIdentityAccess();
+    const start=gpsjSession.role==='supplier'?'supplier':gpsjSession.role==='institution'?'projects':gpsjSession.role==='founder'?'command':'home';
+    setView(start);
+  };
+})();
+</script>
+
+
+<script id="gpsj-v41-initial-guard">
+window.addEventListener('DOMContentLoaded',()=>{
+  try{
+    renderPersonalNav();updateIdentityButton();
+    if(!gpsjSession.authenticated && !['home','explore'].includes(state.view)) setView('home',false);
+  }catch(e){}
+});
+</script>
+
+<script id="gpsj-v42-facility-assessment-script">(function(){const f=document.getElementById('facilityFileInput');if(f)f.addEventListener('change',()=>{const x=f.files&&f.files[0];document.getElementById('facilityFileStatus').textContent=x?`${x.name} · ${(x.size/1024).toFixed(1)} KB · queued for secure analysis`:'No file selected.'});const s=document.getElementById('startFacilityScan');if(s)s.onclick=()=>alert('Prototype: production GPSJ will request explicit camera permission, guide room-by-room capture, protect privacy, and ask users to confirm uncertain dimensions/equipment.');const e=document.getElementById('addEquipmentCapture');if(e)e.onclick=()=>alert('Equipment capture: image → candidate identity → user confirmation → specification record → verification status.');const a=document.getElementById('analyzeFacilityBtn');if(a)a.onclick=()=>{document.getElementById('facilityAnalysisResult').innerHTML=`<div class="recommendation"><span class="requirement-tag tag-best">Scientific best practice</span><strong>Separate high-traffic movement from sensitive workflow zones.</strong><p>Expected benefit: lower cross-traffic and improved process consistency. Site-specific advice requires real plan and local-standard verification.</p></div><div class="recommendation"><span class="requirement-tag tag-standard">Standard check</span><strong>Review maintenance and calibration traceability.</strong><p>Expected benefit: stronger measurement reliability, audit readiness and fewer service interruptions.</p></div><div class="recommendation"><span class="requirement-tag tag-ai">AI optimization hypothesis</span><strong>Evaluate equipment adjacency.</strong><p>Expected benefit: shorter task time and improved service flow; professional validation remains required.</p></div>`};const tp=document.getElementById('teacherAssessmentPane'),sp=document.getElementById('studentAssessmentPane');function student(){document.getElementById('studentEquivalentItems').innerHTML=`<div class="item-card student-safe"><strong>Equivalent practice 1</strong><p>Explain how changing receptor occupancy can alter response.</p><span class="status">Same objective · distinct formulation</span></div><div class="item-card student-safe"><strong>Equivalent practice 2</strong><p>Compare hypothetical dose-response curves for potency versus efficacy.</p><span class="status">Same difficulty · distinct scenario</span></div><div class="item-card student-safe"><strong>Equivalent practice 3</strong><p>Apply the pharmacodynamic principle to a new scenario and justify the reasoning.</p><span class="status">Transfer learning · no secure-item access</span></div>`}document.querySelectorAll('[data-edu-mode]').forEach(b=>b.onclick=()=>{const m=b.dataset.eduMode;tp.style.display=m==='teacher'?'block':'none';sp.style.display=m==='student'?'block':'none';if(m==='student')student()});const g=document.getElementById('generateSecureAssessment');if(g)g.onclick=()=>{const sub=document.getElementById('assessSubject').value||'Course',d=document.getElementById('assessDifficulty').value;document.getElementById('teacherSecureItems').innerHTML=`<div class="secure-banner"><strong>Instructor-only assessment generated.</strong> Exact items, keys and metadata stay behind instructor authorization.</div><div class="item-card teacher-secure"><strong>Secure item 1</strong><p>${sub}: mechanism-focused item aligned to the first competency.</p><span class="status">Instructor only</span></div><div class="item-card teacher-secure"><strong>Secure item 2</strong><p>${sub}: application item at ${d} depth.</p><span class="status">Instructor only</span></div><div class="item-card teacher-secure"><strong>Secure item 3</strong><p>${sub}: interpretation item using a distinct scenario.</p><span class="status">Instructor only</span></div>`;student()}})();</script>
+
+<script id="gpsj-v43-global-learning-script">
+(function(){
+  const pc=document.getElementById('prototypeCheckBtn');
+  if(pc)pc.onclick=()=>{
+    document.getElementById('prototypeStatus').innerHTML='<strong>Fabrication readiness:</strong> concept → geometry/material compatibility → printer/device capability → safety/regulatory/IP gates → qualified review where required → export. Prototype status remains “not production-certified” until validated.';
+  };
+  const pr=document.getElementById('prototypeResultBtn');
+  if(pr)pr.onclick=()=>alert('Prototype feedback loop: capture measurements, test conditions, failures and observations, then compare against the design requirements before the next iteration.');
+  const cc=document.getElementById('checkConnectionBtn');
+  if(cc)cc.onclick=()=>{
+    const c=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+    let text='Connection API unavailable on this browser. GPSJ would still use observed transfer performance and user-selected low-bandwidth mode.';
+    let width='50%';
+    if(c){
+      const type=c.effectiveType||c.type||'unknown';
+      const down=c.downlink?`${c.downlink} Mbps`:'unknown speed';
+      text=`Detected network profile: ${type} · ${down}. GPSJ would adapt media and synchronization requirements accordingly.`;
+      width=(type==='4g'?'90%':type==='3g'?'60%':type==='2g'?'30%':'50%');
+    }
+    document.getElementById('connectionText').textContent=text;
+    document.getElementById('connectionBar').style.width=width;
+  };
+})();
+</script>
+
+
+<script id="gpsj-v44-critical-security-script">
+(function(){
+  function addAudit(title, detail){
+    const host=document.getElementById('criticalAudit'); if(!host)return;
+    const d=document.createElement('div');
+    d.className='audit-event';
+    d.innerHTML=`<strong>${title}</strong><br><small>${detail}</small>`;
+    host.prepend(d);
+  }
+
+  const evalBtn=document.getElementById('evaluateCriticalBtn');
+  if(evalBtn)evalBtn.onclick=()=>{
+    const type=document.getElementById('criticalActionType').value;
+    const amount=Number(document.getElementById('criticalAmount').value||0);
+    let level='Sensitive', rule='Step-up authentication + trusted device check';
+    if(amount>=1000000){level='Extreme';rule='Multi-party approval + cooling/hold policy + independent review';}
+    else if(amount>=100000){level='Critical';rule='Step-up authentication + independent approver + context risk check';}
+    const box=document.getElementById('criticalDecisionState');
+    box.innerHTML=`<strong>${level} action</strong><br>${type} · exposure ${amount.toLocaleString()}<br>Required: ${rule}.`;
+    addAudit('Critical action evaluated', `${type} · ${level} · ${new Date().toLocaleString()}`);
+  };
+
+  const duressBtn=document.getElementById('simulateDuressBtn');
+  if(duressBtn)duressBtn.onclick=()=>{
+    const box=document.getElementById('criticalDecisionState');
+    box.innerHTML='<strong>Visible status:</strong> Authorization received — processing.<br><strong>Protected actual state:</strong> HELD · no execution · independent security verification required.';
+    addAudit('Protected duress hold triggered', `Simulation only · ${new Date().toLocaleString()} · production requires real server/provider-side hold.`);
+  };
+})();
+</script>
+
+</body>
+</html>
