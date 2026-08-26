@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>GPSJ v4.41 — Deep Visual Intelligence Navigation</title>
+<style>
+:root{
+  --navy:#112957; --navy2:#1b3972; --ink:#12203d; --muted:#6d7b99;
+  --bg:#f3f6fb; --card:#fff; --line:#d8e1ef; --soft:#eef3fb;
+  --blue:#3158f5; --purple:#7c35ee; --green:#0d7b59; --greenbg:#e9f7f1;
+}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select,textarea{font:inherit}
+header{background:var(--navy);color:#fff;padding:18px 24px 14px;position:sticky;top:0;z-index:20;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.brand{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brandleft{display:flex;align-items:center;gap:14px}.logo{width:62px;height:62px;border-radius:18px;background:linear-gradient(135deg,#3d67ff,#7635eb);display:grid;place-items:center;font-weight:900;font-size:20px}
+h1{font-size:28px;margin:0}.sub{opacity:.76;margin-top:3px;font-size:15px}
+.rightbase{display:flex;align-items:center;gap:10px}.basepill{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);border-radius:999px;padding:9px 13px;font-weight:700}.aibadge{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#4e67f8,#8c3eed);font-weight:900}
+.nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.nav button{border:0;color:#fff;background:rgba(255,255,255,.09);border-radius:14px;padding:14px 18px;font-weight:800}.nav button.active{background:white;color:var(--ink)}
+.notice{margin-top:12px;background:#e9f0fb;color:#204d94;border:1px solid #d4e0f2;padding:12px 16px;font-weight:800}
+main{max-width:1180px;margin:0 auto;padding:22px}
+.shell{background:white;border:1px solid var(--line);border-radius:24px;overflow:hidden;min-height:620px}
+.topbar{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.kicker{display:inline-block;background:var(--greenbg);color:var(--green);border-radius:999px;padding:6px 10px;font-size:12px;font-weight:900;letter-spacing:.03em}
+.title{font-size:28px;font-weight:900;margin:7px 0 0}.muted{color:var(--muted)}
+.controls{display:flex;gap:9px;flex-wrap:wrap}.btn{border:1px solid var(--line);border-radius:13px;background:var(--soft);color:#204d94;padding:11px 15px;font-weight:800}.btn.primary{background:linear-gradient(135deg,var(--blue),var(--purple));color:white;border-color:transparent}
+.content{padding:20px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{border:1px solid var(--line);border-radius:18px;padding:18px;background:#fff}.card h3{margin:0 0 7px;font-size:20px}.card p{margin:0;color:var(--muted);line-height:1.5}.card .btn{margin-top:14px}
+.crumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.crumb{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 10px;font-size:13px}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{display:flex;flex-direction:column;gap:7px}.field label{font-weight:800}.field input,.field select,.field textarea{border:1px solid var(--line);border-radius:13px;padding:12px;background:#fff;color:var(--ink)}.field textarea{min-height:110px;resize:vertical}
+.result{margin-top:14px;border-left:4px solid var(--blue);background:var(--soft);padding:14px;border-radius:12px;line-height:1.5}
+.route{display:grid;gap:9px}.routeitem{padding:13px;border:1px solid var(--line);border-radius:14px;background:#fff}.routeitem strong{display:block;margin-bottom:3px}
+.advisory{margin-top:18px;border:1px solid var(--line);border-radius:18px;padding:16px;background:#fbfcff}.advisory h3{margin:0 0 10px}.advisorygrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.console{background:#0e2856;color:#fff;border-radius:18px;padding:18px;min-height:180px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;line-height:1.6}
+.small{font-size:13px}
+@media(max-width:760px){h1{font-size:22px}.logo{width:52px;height:52px}.grid,.formgrid,.advisorygrid{grid-template-columns:1fr}.nav button{flex:1 1 40%;padding:12px}.basepill{display:none}main{padding:12px}.title{font-size:24px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="brandleft">
+      <div class="logo">GPSJ</div>
+      <div>
+        <h1>Global Pharma Scientist Journey</h1>
+        <div class="sub">Adaptive Science Engine v4.41 · Deep visual science · Focused workspaces · Decision-aware · Touch-first</div>
+      </div>
+    </div>
+    <div class="rightbase"><div class="basepill">🌐 GPSJ United States</div><div class="aibadge">AI</div></div>
+  </div>
+  <div class="nav" id="nav">
+    <button data-area="home" class="active">Home</button>
+    <button data-area="my">🧭 My GPSJ</button>
+    <button data-area="learn">📚 Learn</button>
+    <button data-area="visual">👁 Visual</button>
+    <button data-area="research">🔬 Research</button>
+    <button data-area="lab">🧪 Screen Lab</button>
+    <button data-area="advance">🚀 Advancement</button>
+    <button data-area="create">🎨 Create</button>
+    <button data-area="market">🛍 Marketplace</button>
+    <button data-area="institutions">🏛 Institutions</button>
+    <button data-area="language">🌐 Language</button>
+    <button data-area="signin">👤 Sign in</button>
+  </div>
+  <div class="notice">🌍 Public GPSJ access remains visible for everyone · sign in only to save, personalize and use role-based tools</div>
+</header>
+
+<main>
+<section class="shell">
+  <div class="topbar">
+    <div>
+      <span class="kicker" id="kicker">FOCUSED WORKSPACE ROUTER</span>
+      <div class="title" id="title">Choose what you want to do</div>
+      <div class="muted" id="subtitle">GPSJ opens only the requested workspace. Long stacked pages are removed from the primary experience.</div>
+      <div class="crumbs" id="crumbs"></div>
+    </div>
+    <div class="controls">
+      <button class="btn" id="back" disabled>← Back</button>
+      <button class="btn" id="root">Workspace home</button>
+    </div>
+  </div>
+  <div class="content" id="content"></div>
+</section>
+</main>
+
+<script>
+const content=document.getElementById('content'), title=document.getElementById('title'),
+subtitle=document.getElementById('subtitle'), kicker=document.getElementById('kicker'),
+crumbs=document.getElementById('crumbs'), back=document.getElementById('back');
+let area='home', stack=[];
+
+const labels={home:'Home',my:'My GPSJ',learn:'Learn',visual:'Visual Intelligence',research:'Research',
+lab:'Screen Lab',advance:'Advancement',create:'Create',market:'Marketplace',institutions:'Institutions',
+language:'Language',signin:'Sign in'};
+
+function card(t,d,fn,cta='Open'){
+  const el=document.createElement('div'); el.className='card';
+  el.innerHTML=`<h3>${t}</h3><p>${d}</p>`;
+  if(fn){const b=document.createElement('button');b.className='btn';b.textContent=cta;b.onclick=fn;el.appendChild(b)}
+  return el;
+}
+function grid(items){const g=document.createElement('div');g.className='grid';items.forEach(x=>g.appendChild(x));return g}
+function push(name,fn){stack.push({name,fn});render()}
+function setArea(a){area=a;stack=[];document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.area===a));render()}
+function render(){
+  content.innerHTML=''; crumbs.innerHTML='';
+  title.textContent=labels[area]; kicker.textContent='FOCUSED WORKSPACE';
+  subtitle.textContent='Only the selected request is displayed. Related tools remain available through explicit actions.';
+  const base=document.createElement('span');base.className='crumb';base.textContent=labels[area];crumbs.appendChild(base);
+  stack.forEach(s=>{const c=document.createElement('span');c.className='crumb';c.textContent=s.name;crumbs.appendChild(c)});
+  back.disabled=!stack.length;
+  (stack.length?stack[stack.length-1].fn:homeForArea)();
+}
+function homeForArea(){
+ const map={
+ home:[
+  ['Start learning','Open a field → domain → topic → adaptive lesson.',()=>setArea('learn')],
+  ['Observe something','Use camera, image, video or guided live observation.',()=>setArea('visual')],
+  ['Investigate evidence','Start from a scientific question and build defensible evidence.',()=>setArea('research')],
+  ['Use Screen Lab','Declare equipment first, then expose compatible safe workflows.',()=>setArea('lab')],
+  ['Explore advancement','Open qualification and professional progression pathways.',()=>setArea('advance')],
+  ['Find institutions','Discover programs, laboratories, facilities and verified institutional participation.',()=>setArea('institutions')]
+ ],
+ my:[
+  ['Resume learning','Continue the most recent mastery route.',()=>push('Recent learning',lesson)],
+  ['Latest observation','Reopen the latest saved visual context.',()=>setArea('visual')],
+  ['Active research','Continue the current evidence notebook.',()=>setArea('research')],
+  ['Screen Lab sessions','Return to saved equipment or simulation sessions.',()=>setArea('lab')]
+ ],
+ learn:[
+  ['Choose a field','Browse scientific fields without opening a long page.',()=>push('Pharmacy & Pharmaceutical Sciences',domains)],
+  ['Continue active topic','Resume the current lesson context immediately.',()=>push('Renal disorders',lesson)]
+ ],
+ visual:[
+  ['Microscopy & cellular imaging','Inspect cells, tissues, slides, stains, morphology, scale and comparative structures.',()=>push('Microscopy & cellular imaging',visualMicroscopy)],
+  ['Medication & dosage-form recognition','Analyze tablets, capsules, packaging, labels, dosage forms and visible pharmaceutical features.',()=>push('Medication & dosage-form recognition',visualMedication)],
+  ['Botany & organism identification','Assess plants, leaves, flowers, fungi, animals or field specimens using visible traits and context.',()=>push('Botany & organism identification',visualNature)],
+  ['Laboratory equipment recognition','Identify instruments, sensors, glassware, devices and laboratory setups, then connect to Screen Lab.',()=>push('Laboratory equipment recognition',visualEquipment)],
+  ['Chemical structure & molecular visualization','Inspect molecular drawings, functional groups, stereochemistry, interactions and structure-property relationships.',()=>push('Molecular visualization',visualMolecule)],
+  ['Radiology & biomedical image learning','Educational inspection of X-ray, CT, MRI, ultrasound and pathology-style imagery with uncertainty labels.',()=>push('Biomedical imaging',visualBiomedical)],
+  ['Materials & engineering inspection','Compare surfaces, fractures, dimensions, components, manufacturing defects and technical objects.',()=>push('Materials inspection',visualMaterials)],
+  ['Scientific measurement & annotation','Calibrate scale, mark regions, compare samples, measure visible dimensions and preserve annotations.',()=>push('Measurement & annotation',visualMeasure)]
+ ],
+ research:[
+  ['Start from a question','Question → evidence → design → analysis → interpretation.',()=>push('Research question',research)],
+  ['Evidence notebook','Continue claims, sources, confidence and reproducibility.',()=>push('Evidence notebook',research)]
+ ],
+ lab:[
+  ['Build My Environment','Identify nearby instruments, sensors, tools and prototypes.',()=>push('Environment',lab)],
+  ['Instrument console','Open read-only observation and simulation controls.',()=>push('Console',console)]
+ ],
+ advance:[
+  ['Qualification map','Build a country-aware staged pathway toward a target role.',()=>push('Qualification map',advance)],
+  ['Compare recognition','Compare qualification requirements across jurisdictions.',()=>push('Recognition',advance)]
+ ],
+ create:[
+  ['Report Builder','Turn active scientific context into a structured report.',()=>push('Report Builder',create)],
+  ['Presentation Studio','Create presentation structure from the active scientific context.',()=>push('Presentation Studio',create)],
+  ['Visual Explanation Studio','Build a scientific visual explanation.',()=>push('Visual Explanation',create)],
+  ['Research Map Studio','Map evidence, claims and relationships.',()=>push('Research Map',create)]
+ ],
+ market:[
+  ['Educational','Courses, books and public scientific resources.',()=>push('Educational resources',market)],
+  ['Laboratory','Equipment, services and facilities shown only after interest is expressed.',()=>push('Laboratory resources',market)],
+  ['Professional','Training, credentialing and verified expertise.',()=>push('Professional resources',market)]
+ ],
+ institutions:[
+  ['Institution explorer','Find universities, hospitals, laboratories, research centers and training facilities.',()=>push('Explorer',institutions)],
+  ['Institution comparison','Compare institutions against a selected scientific goal.',()=>push('Comparison',institutions)],
+  ['Verified participation','Authorized programs, facilities, training and institutional services.',()=>push('Verified participation',institutions)]
+ ],
+ language:[
+  ['Interface language','Adapt interface and scientific terminology without changing layout.',()=>push('Language',language)]
+ ],
+ signin:[
+  ['Personal workspace','Sign in to save progress, role verification, institution links and personalized access.',()=>push('Identity & Workspace',signin)]
+ ]
+ };
+ content.appendChild(grid(map[area].map(x=>card(...x))));
+}
+function domains(){
+ content.appendChild(grid([
+  card('Foundations of pharmacy','History, professional roles, dosage forms, interpretation, systems and practice foundations.',()=>push('Foundations of pharmacy',topics)),
+  card('Pharmacology','Drug targets, mechanisms, therapeutic effects, adverse effects and monitoring.',()=>push('Pharmacology',topics)),
+  card('Pharmaceutics','Formulation, dosage forms, stability and delivery systems.',()=>push('Pharmaceutics',topics)),
+  card('Medicinal chemistry','Structure, physicochemical properties and molecular basis of drug action.',()=>push('Medicinal chemistry',topics))
+ ]));
+}
+function topics(){
+ content.appendChild(grid(['Cardiovascular pharmacology','Renal disorders','Anti-infectives','Endocrine pharmacology'].map(t=>card(t,'Open as a real adaptive lesson.',()=>push(t,lesson)))));
+}
+function lesson(){
+ content.innerHTML=`<div class="formgrid">
+ <div class="field"><label>Learning depth</label><select><option>Foundation</option><option>Intermediate</option><option>Advanced</option><option selected>Expert / professional</option></select></div>
+ <div class="field"><label>Lesson stage</label><select><option>Concept</option><option>Visual reasoning</option><option>Guided application</option><option>Independent practice</option><option>Assessment</option><option>Cross-domain transfer</option></select></div>
+ <div class="field"><label>What do you already know?</label><textarea placeholder="Optional"></textarea></div>
+ <div class="field"><label>Where are you stuck?</label><textarea placeholder="Optional"></textarea></div>
+ </div>
+ <div class="controls" style="margin-top:14px"><button class="btn primary" onclick="lessonNext()">Build my next learning step</button><button class="btn" onclick="showAdvisory('learning')">Why this route?</button></div>
+ <div id="result"></div>`;
+}
+function lessonNext(){document.getElementById('result').innerHTML='<div class="result"><b>Next adaptive step</b><br>Prerequisite check → mechanistic visual → guided example → independent check → transfer to a related scientific context.</div>'}
+function visual(){
+ content.innerHTML=`<div class="formgrid">
+ <div class="field"><label>Source</label><select><option>Camera / live observation</option><option>Upload image</option><option>Upload video</option></select></div>
+ <div class="field"><label>Observation goal</label><select><option>Identify candidates</option><option>Compare</option><option>Measure</option><option>Annotate</option><option>Narrate</option></select></div>
+ </div>
+ <div class="result"><b>High-fidelity visual canvas ready.</b><br>Production GPSJ can adapt resolution and scientific imagery to bandwidth while preserving source, confidence and uncertainty.</div>`;
+}
+
+function visualBase(titleText, sourceOpts, goalOpts, detailHtml=''){
+  content.innerHTML=`<div class="formgrid">
+    <div class="field"><label>Scientific source</label><select>${sourceOpts.map(x=>`<option>${x}</option>`).join('')}</select></div>
+    <div class="field"><label>Scientific objective</label><select>${goalOpts.map(x=>`<option>${x}</option>`).join('')}</select></div>
+  </div>
+  ${detailHtml}
+  <div class="controls" style="margin-top:14px">
+    <button class="btn primary" onclick="visualRun('${titleText.replaceAll("'","")}')">Analyze visually</button>
+    <button class="btn" onclick="showAdvisory('visual')">DPSJ explanation</button>
+  </div>
+  <div id="result"></div>`;
+}
+function visualRun(mode){
+  document.getElementById('result').innerHTML=`<div class="result"><b>${mode} workflow ready.</b><br>
+  Production GPSJ should return visible findings, confidence, uncertainty, comparison candidates, measurement context and a clear distinction between observation and inference.</div>`;
+}
+function visualMicroscopy(){
+  visualBase('Microscopy & cellular imaging',
+    ['Phone-through-microscope image','Digital microscope image','Histology / pathology-style image','Cell culture image','Live microscope feed'],
+    ['Identify visible structures','Compare morphology','Annotate cells / regions','Estimate dimensions','Compare stains / fields'],
+    `<div class="grid" style="margin-top:14px">
+      ${[
+        ['Cell & tissue morphology','Shape, boundaries, organization, density, visible abnormalities and comparative morphology.'],
+        ['Scale & calibration','Use declared magnification, scale bars or calibration references before reporting dimensions.'],
+        ['Stain-aware review','Record stain type, preparation context and uncertainty rather than forcing identity.'],
+        ['Field comparison','Compare multiple fields, specimens or time points while preserving provenance.']
+      ].map(x=>`<div class="card"><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join('')}
+    </div>`);
+}
+function visualMedication(){
+  visualBase('Medication & dosage-form recognition',
+    ['Tablet / capsule image','Medication package / bottle','Prescription label','Blister pack','Multi-angle medication capture'],
+    ['Classify visible dosage form','Read visible label information','Compare candidate products','Inspect imprint / markings','Send to Learn'],
+    `<div class="grid" style="margin-top:14px">
+      ${[
+        ['Dosage-form analysis','Tablet, capsule, solution, suspension, topical, inhaled and device-based forms.'],
+        ['Visible marking capture','Imprint, shape, scoring, color and packaging cues remain evidence, not certainty by themselves.'],
+        ['Label understanding','Extract visible strength, route, manufacturer or warnings when legible and user-authorized.'],
+        ['Learning bridge','Move from visual recognition into pharmacology, pharmaceutics or medication-safety learning.']
+      ].map(x=>`<div class="card"><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join('')}
+    </div>`);
+}
+function visualNature(){
+  visualBase('Botany & organism identification',
+    ['Leaf / flower image','Whole plant image','Animal / organism image','Field video','Macro specimen image'],
+    ['Generate identification candidates','Compare morphology','Record habitat/context','Annotate structures','Send to Research'],
+    `<div class="grid" style="margin-top:14px">
+      ${[
+        ['Morphology','Leaf arrangement, venation, margins, flower structure, body form, color pattern and visible anatomy.'],
+        ['Context','Location, habitat, season, scale and environmental clues can refine candidate identification.'],
+        ['Uncertainty-aware candidates','Present ranked possibilities with differentiating features instead of a forced single answer.'],
+        ['Scientific handoff','Transfer a selected candidate to Learn, Research or a field observation notebook.']
+      ].map(x=>`<div class="card"><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join('')}
+    </div>`);
+}
+function visualEquipment(){
+  visualBase('Laboratory equipment recognition',
+    ['Instrument photo','Control panel image','Equipment label / nameplate','Laboratory bench image','Live camera inspection'],
+    ['Identify equipment class','Find controls / interfaces','Recognize model cues','Assess connection readiness','Send to Screen Lab'],
+    `<div class="grid" style="margin-top:14px">
+      ${[
+        ['Instrument identity','Microscopes, balances, chromatographs, spectrometers, sensors, pumps, robots and fabrication tools.'],
+        ['Interface mapping','Visible ports, screens, controls and modules can be mapped before any connection is attempted.'],
+        ['Capability envelope','Separate observation, simulation, supervised testing and real-world control.'],
+        ['Screen Lab bridge','Send confirmed equipment identity to Build My Environment with safety classification active.']
+      ].map(x=>`<div class="card"><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join('')}
+    </div>`);
+}
+function visualMolecule(){
+  visualBase('Chemical structure & molecular visualization',
+    ['2D chemical structure','Reaction scheme image','Protein-ligand diagram','Molecular rendering','Hand-drawn structure'],
+    ['Identify functional groups','Explain stereochemistry','Relate structure to properties','Compare analogs','Send to medicinal chemistry'],
+    `<div class="grid" style="margin-top:14px">
+      ${[
+        ['Functional-group mapping','Highlight pharmacophores, ionizable groups, hydrogen-bond donors/acceptors and lipophilic regions.'],
+        ['Stereochemical reasoning','Inspect chirality, geometric isomerism and spatial relationships where visible.'],
+        ['Structure-property bridge','Relate visible structural features to solubility, permeability, metabolism and target interactions.'],
+        ['Comparison','Overlay or compare related molecular structures and explain meaningful differences.']
+      ].map(x=>`<div class="card"><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join('')}
+    </div>`);
+}
+function visualBiomedical(){
+  visualBase('Radiology & biomedical image learning',
+    ['X-ray','CT image','MRI image','Ultrasound image','Pathology-style image'],
+    ['Identify visible anatomy','Compare patterns','Annotate regions','Explain imaging principles','Send to Learn'],
+    `<div class="result"><b>Educational mode.</b><br>This workspace is for scientific learning and image understanding. It should preserve uncertainty and avoid presenting itself as a clinical diagnosis service.</div>`);
+}
+function visualMaterials(){
+  visualBase('Materials & engineering inspection',
+    ['Surface / fracture image','Component image','Manufacturing sample','Prototype image','Microscopic material image'],
+    ['Compare surfaces','Identify visible defect classes','Measure dimensions','Annotate components','Send to Research'],
+    `<div class="grid" style="margin-top:14px">
+      ${[
+        ['Surface inspection','Texture, cracks, corrosion, delamination, wear and other visible surface features.'],
+        ['Component understanding','Recognize assemblies, interfaces and visible manufacturing features.'],
+        ['Dimensional analysis','Use scale references and calibration before reporting measurements.'],
+        ['Prototype bridge','Transfer safe observations to Screen Lab or Research for further analysis.']
+      ].map(x=>`<div class="card"><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join('')}
+    </div>`);
+}
+function visualMeasure(){
+  visualBase('Scientific measurement & annotation',
+    ['Still image','Video frame','Live camera','Microscope image','Technical diagram'],
+    ['Measure distance','Measure area','Count objects','Annotate regions','Compare samples'],
+    `<div class="grid" style="margin-top:14px">
+      ${[
+        ['Calibration first','Ask for a scale bar, known reference or instrument calibration when quantitative measurement is required.'],
+        ['Annotation layers','Preserve labels, regions, arrows, notes and measurement overlays as reversible layers.'],
+        ['Comparison sets','Place multiple samples side-by-side with consistent scale and metadata.'],
+        ['Export context','Send measurements and annotations to Research, Create or Screen Lab without losing provenance.']
+      ].map(x=>`<div class="card"><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join('')}
+    </div>`);
+}
+
+function research(){
+ content.innerHTML=`<div class="formgrid">
+ <div class="field"><label>Research question</label><textarea placeholder="What do you want to investigate?"></textarea></div>
+ <div class="field"><label>Population / system</label><input placeholder="Patients, cells, ecosystem, device, material..."><label style="margin-top:10px">Primary outcome</label><input placeholder="What will be measured?"></div>
+ </div>
+ <div class="controls" style="margin-top:14px"><button class="btn primary" onclick="researchBuild()">Build evidence-ready frame</button><button class="btn" onclick="showAdvisory('research')">DPSJ advisory</button></div><div id="result"></div>`;
+}
+function researchBuild(){document.getElementById('result').innerHTML='<div class="result"><b>Evidence-ready frame</b><br>Question → source classes → uncertainty → study design → measurement → analysis → interpretation → reproducibility.</div>'}
+function lab(){
+ content.innerHTML=`<div class="formgrid">
+ <div class="field"><label>Profession / environment</label><select><option>Scientific laboratory</option><option>Academic laboratory</option><option>Clinical environment</option><option>Engineering workspace</option><option>Field science</option></select><label style="margin-top:10px">Equipment category</label><select><option>Microscope / imaging</option><option>Analytical system</option><option>Sensor / measurement</option><option>Robot / automation</option><option>User-created prototype</option></select></div>
+ <div class="field"><label>Device / tool</label><input placeholder="Microscope, HPLC, camera, balance..."><label style="margin-top:10px">Model / identifier</label><input placeholder="Model, approved identifier or label"></div>
+ </div>
+ <div class="controls" style="margin-top:14px"><button class="btn primary" onclick="labAssess()">Identify & register</button><button class="btn" onclick="showAdvisory('lab')">Explain permitted pathway</button></div><div id="result"></div>`;
+}
+function labAssess(){document.getElementById('result').innerHTML='<div class="result"><b>Environment assessment started.</b><br>GPSJ will separate read-only observation, simulation, supervised testing and real-world control before exposing compatible workflows.</div>'}
+function console(){
+ content.innerHTML=`<div class="console"><b>GPSJ_LAB_READY — READ ONLY</b><br>• Waiting for a declared instrument or prototype.<br>• Safety classifier active.<br>• Read-only is the default connection state.<br>• Hazardous execution is not enabled.</div>
+ <div class="grid" style="margin-top:14px">${['📷 Capture','📈 Measure','✍️ Annotate','🧠 Simulate'].map(x=>`<div class="card"><h3>${x}</h3><p>Focused instrument action.</p></div>`).join('')}</div>
+ <div class="controls" style="margin-top:14px"><button class="btn" onclick="showAdvisory('lab')">DPSJ decision explanation</button></div>`;
+}
+function advance(){content.innerHTML='<div class="formgrid"><div class="field"><label>Country / jurisdiction</label><input value="United States"></div><div class="field"><label>Target role / qualification</label><input placeholder="Pharmacist, research scientist, PhD, engineer..."></div></div><div class="controls" style="margin-top:14px"><button class="btn primary">Generate staged pathway</button></div>'}
+function create(){content.innerHTML='<div class="formgrid"><div class="field"><label>Working title / question</label><input placeholder="Enter title or objective"></div><div class="field"><label>Output type</label><select><option>Report</option><option>Presentation</option><option>Research map</option><option>Visual explanation</option></select></div><div class="field" style="grid-column:1/-1"><label>Scientific notes</label><textarea placeholder="Evidence, observations, variables, assumptions or key points..."></textarea></div></div><div class="controls" style="margin-top:14px"><button class="btn primary">Generate working structure</button></div>'}
+function market(){content.innerHTML='<div class="result"><b>Interest-first marketplace.</b><br>No price is displayed until the user indicates interest. Production GPSJ can then show location-aware availability, supplier terms, affiliated shipping options and the user’s financial responsibilities.</div><div class="controls" style="margin-top:14px"><button class="btn primary">I am interested</button></div>'}
+function institutions(){content.innerHTML='<div class="formgrid"><div class="field"><label>Country / region</label><input value="United States"></div><div class="field"><label>Institution type</label><select><option>Any institution</option><option>University</option><option>Hospital</option><option>Research center</option><option>Laboratory</option><option>Training facility</option></select></div><div class="field"><label>Scientific field</label><input placeholder="Any field"></div><div class="field"><label>Goal</label><select><option>Study / degree</option><option>Research</option><option>Training</option><option>Facility access</option><option>Collaboration</option></select></div></div><div class="controls" style="margin-top:14px"><button class="btn primary">Build institution map</button></div>'}
+function language(){content.innerHTML='<div class="grid">'+['English','Français','Español','Português','Deutsch','العربية','中文','日本語','हिन्दी','Kiswahili'].map(x=>`<button class="btn">${x}</button>`).join('')+'</div>'}
+function signin(){content.innerHTML='<div class="formgrid"><div class="field"><label>Email / username</label><input placeholder="name@example.com"></div><div class="field"><label>Password</label><input type="password" placeholder="Password"></div></div><div class="result"><b>Public access remains open.</b><br>Sign-in is used to save, personalize, verify roles and connect authorized institutional capabilities.</div><div class="controls" style="margin-top:14px"><button class="btn primary">Continue to personalized workspace</button><button class="btn">Continue as public visitor</button></div>'}
+function showAdvisory(mode){
+ let rec='Proceed with the selected educational workflow and escalate only when evidence, risk, jurisdiction or authorization thresholds require it.';
+ let auth='GPSJ / DPSJ is advisory. The responsible user or authorized role retains decision authority.';
+ if(mode==='lab'){rec='Remain in read-only or simulation mode until equipment identity, safety class and authorization are established.';auth='Real-world device control requires verified responsible authority and applicable permissions.'}
+ if(mode==='visual'){rec='Distinguish visible observation, measurement, candidate classification and inference. Preserve confidence and uncertainty before transferring results to another workspace.';auth='Visual Intelligence can support scientific interpretation, but regulated or professional decisions remain with the appropriate responsible role.'}
+ const old=document.getElementById('advisory'); if(old)old.remove();
+ const a=document.createElement('div');a.id='advisory';a.className='advisory';a.innerHTML=`<span class="kicker">DPSJ DECISION ADVISORY</span><h3>Decision explanation</h3><div class="advisorygrid">
+ <div class="card"><h3>Recommendation</h3><p>${rec}</p></div>
+ <div class="card"><h3>Authority</h3><p>${auth}</p></div>
+ <div class="card"><h3>Basis</h3><p>Scientific context → evidence quality → safety → role → jurisdiction → authorization level.</p></div>
+ <div class="card"><h3>Traceability</h3><p>Recommendation, evidence class, uncertainty, policy/standard version, responsible role and follow-up remain recorded separately from commands.</p></div></div>`;
+ content.appendChild(a);
+}
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>setArea(b.dataset.area));
+back.onclick=()=>{if(stack.length){stack.pop();render()}};
+document.getElementById('root').onclick=()=>{stack=[];render()};
+render();
+</script>
+</body>
+</html>
