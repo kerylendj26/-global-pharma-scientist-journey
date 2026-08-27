@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>GPSJ v4.60 — AI Environment First</title>
+<style>
+:root{
+  --navy:#10295a;--navy2:#173b78;--ink:#13213d;--muted:#687796;
+  --bg:#f2f6fc;--panel:#ffffff;--line:#d9e3f1;--soft:#edf3fb;
+  --blue:#315cf4;--violet:#7d38ee;--green:#138260;--gold:#b88415;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+header{
+  background:linear-gradient(145deg,#10295a,#173b78);
+  color:#fff;padding:18px 24px 16px;position:sticky;top:0;z-index:20;
+  box-shadow:0 6px 20px #10295a20
+}
+.brand{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.logo{width:56px;height:56px;border-radius:17px;background:linear-gradient(135deg,var(--blue),var(--violet));display:grid;place-items:center;font-weight:900}
+.brand h1{margin:0;font-size:27px;line-height:1.05}
+.brand .sub{opacity:.8;margin-top:4px}
+.region{margin-left:auto;border:1px solid #ffffff33;background:#ffffff10;padding:9px 13px;border-radius:999px;font-weight:800}
+.ai-orb{border:0;width:48px;height:48px;border-radius:50%;font-weight:900;color:#fff;background:linear-gradient(135deg,#5570ff,#8b3ff0)}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+.nav button{border:0;border-radius:13px;padding:11px 14px;background:#ffffff14;color:white;font-weight:850;min-height:44px}
+.nav button.active{background:#fff;color:var(--ink)}
+.notice{margin-top:12px;background:#eef4ff;color:#23519d;padding:9px 13px;font-weight:800}
+main{max-width:1240px;margin:auto;padding:20px}
+.hero{display:grid;gap:14px;margin-bottom:14px}
+.hero-row{display:flex;justify-content:space-between;gap:14px;align-items:end;flex-wrap:wrap}
+.eyebrow{font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
+h2{font-size:30px;margin:4px 0 0}
+.lead{color:var(--muted);margin:5px 0 0;max-width:820px;line-height:1.5}
+.ai-chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:800}
+.portal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.portal{
+  position:relative;min-height:260px;border:1px solid var(--line);border-radius:24px;overflow:hidden;
+  background:#fff;text-align:left;padding:0;box-shadow:0 8px 28px #19376f0b;transition:.18s transform,.18s border-color
+}
+.portal:focus-visible{outline:3px solid #315cf444;outline-offset:2px}
+@media(hover:hover) and (pointer:fine){.portal:hover{transform:translateY(-3px);border-color:#91aaf3}}
+.scene{position:absolute;inset:0;overflow:hidden;background:linear-gradient(160deg,#eaf1fb,#dfe8f7)}
+.scene:after{content:"";position:absolute;inset:auto 0 0;height:38%;background:linear-gradient(to top,#0e214b75,transparent)}
+.scene svg{width:100%;height:100%;display:block}
+.portal-copy{position:absolute;z-index:2;left:16px;right:16px;bottom:15px;color:#fff;text-shadow:0 1px 2px #0008}
+.portal-copy .name{font-size:21px;font-weight:900}
+.portal-copy .hint{font-size:13px;line-height:1.35;margin-top:4px;opacity:.95}
+.portal-tag{position:absolute;z-index:3;top:13px;left:13px;background:#ffffffdd;color:#18345f;border-radius:999px;padding:6px 9px;font-size:11px;font-weight:900}
+.stage{display:none;border:1px solid var(--line);background:#fff;border-radius:24px;overflow:hidden;margin-top:18px}
+.stage.show{display:block}
+.stage-head{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.stage-head h3{margin:0;font-size:24px}
+.back{border:1px solid var(--line);background:var(--soft);color:#254e93;border-radius:12px;padding:10px 13px;font-weight:850}
+.world{display:grid;grid-template-columns:1.45fr .8fr;min-height:430px}
+.world-scene{position:relative;min-height:430px;background:#d9e6f7;overflow:hidden}
+.world-scene svg{width:100%;height:100%;display:block}
+.world-panel{padding:18px;background:#fff}
+.world-panel h4{margin:0 0 8px;font-size:20px}
+.world-panel p{color:var(--muted);line-height:1.5}
+.path{display:grid;gap:9px;margin-top:14px}
+.path button{width:100%;text-align:left;border:1px solid var(--line);background:#f9fbff;border-radius:14px;padding:12px 13px;font-weight:850}
+.path button small{display:block;color:var(--muted);font-weight:600;margin-top:3px}
+.ai-dock{display:none;border:1px solid var(--line);background:#fff;border-radius:24px;padding:18px;margin-bottom:16px}
+.ai-dock.show{display:block}
+.ai-dock textarea{width:100%;min-height:86px;border:1px solid var(--line);border-radius:14px;padding:13px;font-size:16px;resize:vertical}
+.ai-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.primary{border:0;border-radius:12px;padding:11px 14px;color:#fff;font-weight:900;background:linear-gradient(135deg,var(--blue),var(--violet))}
+.secondary{border:1px solid var(--line);border-radius:12px;padding:11px 14px;background:#fff;color:#244c90;font-weight:850}
+.ai-suggestions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.ai-suggestions button{border:1px solid var(--line);background:#f7faff;border-radius:999px;padding:8px 10px}
+.adapt-banner{margin-top:14px;border-left:4px solid var(--blue);background:#edf3ff;border-radius:12px;padding:12px 14px;line-height:1.5}
+@media(max-width:920px){.portal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.world{grid-template-columns:1fr}.world-scene{min-height:360px}}
+@media(max-width:620px){
+  header{padding:14px 13px}.brand h1{font-size:21px}.region{margin-left:0}.nav button{flex:1 1 42%}
+  main{padding:12px}.portal-grid{grid-template-columns:1fr}.portal{min-height:245px}h2{font-size:26px}
+  .world-scene{min-height:315px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="logo">GPSJ</div>
+    <div><h1>Global Pharma Scientist Journey</h1><div class="sub">Adaptive Science Engine v4.60 · AI environment-first navigation</div></div>
+    <div class="region">🌐 GPSJ United States</div>
+    <button class="ai-orb" id="aiMode" aria-label="Open AI interface">AI</button>
+  </div>
+  <div class="nav" id="nav"></div>
+  <div class="notice">🌍 Public exploration stays open · sign in only to save, personalize, connect roles and manage authorized activity</div>
+</header>
+
+<main>
+  <section id="aiDock" class="ai-dock">
+    <div class="eyebrow">AI interface</div>
+    <h2 style="font-size:25px">Tell GPSJ what you want to learn, create, manage, investigate or become.</h2>
+    <p class="lead">The AI interprets your intent, then opens the closest living environment instead of sending you through category forms.</p>
+    <textarea id="aiPrompt" placeholder="Example: I want to understand how my genes can change my response to medicines…"></textarea>
+    <div class="ai-actions"><button class="primary" id="aiGo">Enter my world</button><button class="secondary" id="aiClose">Close AI</button></div>
+    <div class="ai-suggestions">
+      <button data-q="I want to learn pharmacogenomics">🧬 Pharmacogenomics</button>
+      <button data-q="I want to identify a plant in nature">🌿 Identify a plant</button>
+      <button data-q="I want to create and manage a boutique">🏪 Build a boutique</button>
+      <button data-q="I want to find a university and laboratory">🏛 Find an institution</button>
+    </div>
+  </section>
+
+  <section class="hero">
+    <div class="hero-row">
+      <div>
+        <div class="eyebrow" id="eyebrow">AI-curated entry</div>
+        <h2 id="screenTitle">What pulls your curiosity today?</h2>
+        <p class="lead" id="screenLead">The screen is the interface. Each choice is already a preview of the environment behind it.</p>
+      </div>
+      <span class="ai-chip" id="adaptChip">AI is arranging this screen around your current context</span>
+    </div>
+  </section>
+
+  <section id="portals" class="portal-grid"></section>
+
+  <section id="stage" class="stage">
+    <div class="stage-head"><div><div class="eyebrow" id="stagePath">Selected world</div><h3 id="stageTitle">Environment</h3></div><button class="back" id="stageBack">← Back to portals</button></div>
+    <div class="world">
+      <div class="world-scene" id="worldScene"></div>
+      <aside class="world-panel">
+        <h4 id="worldHeadline">The environment is now active.</h4>
+        <p id="worldText"></p>
+        <div class="path" id="worldActions"></div>
+        <div class="adapt-banner" id="adaptBanner"><b>AI continuity:</b> the world becomes more specific as the user moves deeper. It does not reset to a generic workspace.</div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<script>
+const NAV={
+ home:'Home',my:'🧭 My GPSJ',learn:'📚 Learn',visual:'👁 Visual',research:'🔬 Research',
+ lab:'🧪 Screen Lab',advance:'🚀 Advancement',create:'🎨 Create',market:'🛍 Marketplace',
+ institutions:'🏛 Institutions',language:'🌐 Language',signin:'👤 Sign in'
+};
+let area='home';
+
+const sceneSVG={
+ pharmacogenomics:()=>`<svg viewBox="0 0 900 520" aria-label="Pharmacogenomics environment">
+ <defs><linearGradient id="g1" x1="0" x2="1"><stop stop-color="#11295c"/><stop offset="1" stop-color="#3158a6"/></linearGradient></defs>
+ <rect width="900" height="520" fill="url(#g1)"/><circle cx="720" cy="110" r="95" fill="#7555cf" opacity=".35"/>
+ <path d="M120 70 C220 120 220 200 120 250 C20 300 20 380 120 440" fill="none" stroke="#e9f0ff" stroke-width="18"/>
+ <path d="M220 70 C120 120 120 200 220 250 C320 300 320 380 220 440" fill="none" stroke="#76d3ff" stroke-width="18"/>
+ ${[100,150,200,250,300,350,400].map(y=>`<line x1="125" y1="${y}" x2="215" y2="${y}" stroke="#fff" stroke-width="5" opacity=".8"/>`).join('')}
+ <rect x="390" y="90" width="180" height="120" rx="22" fill="#fff" opacity=".94"/><text x="480" y="140" text-anchor="middle" font-size="28" font-weight="800" fill="#13213d">CYP2C19</text><text x="480" y="176" text-anchor="middle" font-size="18" fill="#566781">variant → activity</text>
+ <path d="M575 150 H680" stroke="#fff" stroke-width="7"/><polygon points="680,150 655,135 655,165" fill="#fff"/>
+ <rect x="700" y="105" width="130" height="90" rx="18" fill="#e8f2ff"/><text x="765" y="145" text-anchor="middle" font-size="26">💊</text><text x="765" y="175" text-anchor="middle" font-size="16" fill="#1b315e">drug response</text>
+ <rect x="380" y="300" width="400" height="130" rx="24" fill="#ffffff18" stroke="#ffffff55"/><text x="580" y="345" text-anchor="middle" font-size="21" fill="#fff" font-weight="700">DNA → enzyme activity → exposure → effect</text><text x="580" y="385" text-anchor="middle" font-size="18" fill="#eaf1ff">the same world deepens into testing, evidence and therapy</text>
+ </svg>`,
+ plant:()=>`<svg viewBox="0 0 900 520"><defs><linearGradient id="pbg" x1="0" y1="1" x2="1"><stop stop-color="#143c2d"/><stop offset="1" stop-color="#4e8a55"/></linearGradient></defs><rect width="900" height="520" fill="url(#pbg)"/><circle cx="720" cy="85" r="55" fill="#ffe6a6" opacity=".9"/><path d="M0 390 Q150 310 300 380 T600 365 T900 350 V520 H0Z" fill="#1a5b37"/><path d="M460 430 C455 330 450 220 470 120" stroke="#d7f1bd" stroke-width="16"/><ellipse cx="390" cy="245" rx="100" ry="42" transform="rotate(-25 390 245)" fill="#70bc65"/><ellipse cx="535" cy="205" rx="110" ry="46" transform="rotate(22 535 205)" fill="#8ed477"/><ellipse cx="405" cy="335" rx="95" ry="40" transform="rotate(-20 405 335)" fill="#5fab5d"/><rect x="65" y="75" width="250" height="105" rx="20" fill="#ffffffdd"/><text x="190" y="118" text-anchor="middle" font-size="24" font-weight="800" fill="#153622">Observe the living plant</text><text x="190" y="150" text-anchor="middle" font-size="17" fill="#41634c">shape • habitat • leaf • flower</text><circle cx="690" cy="315" r="85" fill="#eaf8f2"/><circle cx="690" cy="315" r="43" fill="none" stroke="#3158a6" stroke-width="8"/><line x1="750" y1="375" x2="810" y2="435" stroke="#3158a6" stroke-width="16"/></svg>`,
+ boutique:()=>`<svg viewBox="0 0 900 520"><defs><linearGradient id="sky" x1="0" y1="1"><stop stop-color="#dcecff"/><stop offset="1" stop-color="#f7f8ff"/></linearGradient></defs><rect width="900" height="520" fill="url(#sky)"/><rect y="390" width="900" height="130" fill="#6d7380"/><rect y="372" width="900" height="22" fill="#ddd5c7"/><rect x="115" y="80" width="670" height="300" rx="8" fill="#f7eee3" stroke="#c8b9a6" stroke-width="5"/><rect x="175" y="155" width="205" height="185" rx="6" fill="#b8dded"/><rect x="520" y="155" width="205" height="185" rx="6" fill="#b8dded"/><rect x="400" y="160" width="100" height="220" fill="#65473b"/><text x="450" y="125" text-anchor="middle" font-size="34" font-weight="900" fill="#4b3942">YOUR BOUTIQUE</text><text x="278" y="230" text-anchor="middle" font-size="72">👗</text><text x="625" y="230" text-anchor="middle" font-size="70">👜</text><rect x="30" y="420" width="180" height="60" rx="14" fill="#ffffffdd"/><text x="120" y="455" text-anchor="middle" font-size="18" font-weight="800" fill="#263653">street • parking • customers</text><rect x="675" y="420" width="195" height="60" rx="14" fill="#ffffffdd"/><text x="772" y="455" text-anchor="middle" font-size="18" font-weight="800" fill="#263653">enter → operate → grow</text></svg>`,
+ institution:()=>`<svg viewBox="0 0 900 520"><rect width="900" height="520" fill="#dce9fb"/><rect y="390" width="900" height="130" fill="#aac896"/><path d="M60 390 Q450 300 840 390" fill="#cfd8df"/><rect x="155" y="165" width="590" height="225" fill="#f7f8fa" stroke="#a6b4c9" stroke-width="5"/><polygon points="120,170 450,45 780,170" fill="#264e8b"/><rect x="205" y="195" width="55" height="195" fill="#d6dfeb"/><rect x="315" y="195" width="55" height="195" fill="#d6dfeb"/><rect x="530" y="195" width="55" height="195" fill="#d6dfeb"/><rect x="640" y="195" width="55" height="195" fill="#d6dfeb"/><rect x="415" y="250" width="75" height="140" fill="#304e72"/><text x="450" y="120" text-anchor="middle" font-size="28" font-weight="900" fill="#fff">UNIVERSITY • LABORATORY • INSTITUTE</text></svg>`,
+ research:()=>`<svg viewBox="0 0 900 520"><rect width="900" height="520" fill="#11295b"/><rect x="60" y="65" width="780" height="390" rx="22" fill="#ffffff0f" stroke="#ffffff33"/><circle cx="250" cy="245" r="105" fill="#e7f1ff"/><circle cx="250" cy="245" r="50" fill="none" stroke="#3a67c8" stroke-width="10"/><line x1="320" y1="320" x2="390" y2="390" stroke="#3a67c8" stroke-width="18"/><rect x="470" y="120" width="280" height="38" rx="10" fill="#e9f0ff"/><rect x="470" y="185" width="220" height="30" rx="8" fill="#8fb0ea"/><rect x="470" y="240" width="300" height="30" rx="8" fill="#8fb0ea"/><rect x="470" y="295" width="250" height="30" rx="8" fill="#8fb0ea"/><text x="610" y="380" text-anchor="middle" font-size="23" fill="#fff" font-weight="800">question → evidence → interpretation</text></svg>`,
+ lab:()=>`<svg viewBox="0 0 900 520"><rect width="900" height="520" fill="#d8e6f6"/><rect y="350" width="900" height="170" fill="#aebbc9"/><rect x="80" y="250" width="740" height="120" fill="#f8fbff" stroke="#8397ac" stroke-width="5"/><rect x="120" y="120" width="180" height="145" rx="15" fill="#eef5fb" stroke="#4f7194" stroke-width="6"/><rect x="355" y="95" width="190" height="175" rx="16" fill="#eef5fb" stroke="#4f7194" stroke-width="6"/><rect x="600" y="135" width="150" height="130" rx="15" fill="#eef5fb" stroke="#4f7194" stroke-width="6"/><text x="210" y="195" text-anchor="middle" font-size="48">🔬</text><text x="450" y="185" text-anchor="middle" font-size="44">📈</text><text x="675" y="200" text-anchor="middle" font-size="44">🧪</text><text x="450" y="430" text-anchor="middle" font-size="24" fill="#18345b" font-weight="800">instrument → observation → simulation → evidence</text></svg>`,
+ career:()=>`<svg viewBox="0 0 900 520"><rect width="900" height="520" fill="#e8eef8"/><path d="M80 430 C210 380 270 330 350 275 S520 190 650 130 S770 80 840 60" fill="none" stroke="#315cf4" stroke-width="24" stroke-linecap="round"/><circle cx="110" cy="420" r="35" fill="#fff"/><circle cx="350" cy="275" r="35" fill="#fff"/><circle cx="650" cy="130" r="35" fill="#fff"/><text x="110" y="430" text-anchor="middle" font-size="28">📚</text><text x="350" y="285" text-anchor="middle" font-size="28">🎓</text><text x="650" y="140" text-anchor="middle" font-size="28">🧑‍🔬</text><rect x="80" y="70" width="300" height="95" rx="18" fill="#fff"/><text x="230" y="110" text-anchor="middle" font-size="24" font-weight="900" fill="#1c3154">Your path becomes visible</text><text x="230" y="140" text-anchor="middle" font-size="16" fill="#60708d">skills → qualification → profession</text></svg>`,
+ language:()=>`<svg viewBox="0 0 900 520"><rect width="900" height="520" fill="#eef2fb"/><circle cx="450" cy="260" r="155" fill="#3158a6"/><path d="M300 260h300M450 105c-70 90-70 220 0 310M450 105c70 90 70 220 0 310" fill="none" stroke="#fff" stroke-width="8"/><ellipse cx="450" cy="260" rx="155" ry="70" fill="none" stroke="#fff" stroke-width="8"/><rect x="70" y="80" width="210" height="80" rx="18" fill="#fff"/><text x="175" y="128" text-anchor="middle" font-size="23" font-weight="800" fill="#263653">Science in your language</text><rect x="620" y="355" width="210" height="80" rx="18" fill="#fff"/><text x="725" y="402" text-anchor="middle" font-size="22" font-weight="800" fill="#263653">Meaning preserved</text></svg>`,
+ marketplace:()=>`<svg viewBox="0 0 900 520"><rect width="900" height="520" fill="#e9edf5"/><rect y="400" width="900" height="120" fill="#707683"/><rect x="80" y="120" width="740" height="280" rx="8" fill="#f8f8fb"/><rect x="120" y="185" width="175" height="170" fill="#c6e3ef"/><rect x="360" y="185" width="175" height="170" fill="#c6e3ef"/><rect x="600" y="185" width="175" height="170" fill="#c6e3ef"/><text x="450" y="165" text-anchor="middle" font-size="30" font-weight="900" fill="#27334a">GPSJ MARKETPLACE</text><text x="208" y="275" text-anchor="middle" font-size="55">🔬</text><text x="448" y="275" text-anchor="middle" font-size="55">📚</text><text x="688" y="275" text-anchor="middle" font-size="55">🧪</text><text x="450" y="450" text-anchor="middle" font-size="22" fill="#fff" font-weight="800">resources appear inside the user’s active journey</text></svg>`,
+ visual:()=>`<svg viewBox="0 0 900 520"><rect width="900" height="520" fill="#0f2858"/><rect x="75" y="65" width="750" height="390" rx="24" fill="#173c78" stroke="#ffffff33"/><circle cx="360" cy="260" r="125" fill="#80c7cf"/><circle cx="325" cy="225" r="25" fill="#2a6a6f"/><circle cx="410" cy="285" r="35" fill="#2a6a6f"/><circle cx="390" cy="205" r="18" fill="#2a6a6f"/><path d="M510 325 L620 400" stroke="#fff" stroke-width="20" stroke-linecap="round"/><circle cx="460" cy="275" r="95" fill="none" stroke="#fff" stroke-width="12"/><text x="450" y="105" text-anchor="middle" font-size="25" fill="#fff" font-weight="800">camera • specimen • image • environment</text></svg>`
+};
+
+function genericScene(icon,title,subtitle){
+ return `<svg viewBox="0 0 900 520"><rect width="900" height="520" fill="#dde8f6"/><circle cx="450" cy="235" r="145" fill="#fff"/><text x="450" y="255" text-anchor="middle" font-size="110">${icon}</text><text x="450" y="420" text-anchor="middle" font-size="30" font-weight="900" fill="#1b3157">${title}</text><text x="450" y="458" text-anchor="middle" font-size="18" fill="#5d6c87">${subtitle}</text></svg>`;
+}
+
+const DATA={
+ home:{
+  eyebrow:'AI-curated entry',title:'What pulls your curiosity today?',lead:'Do not choose a department first. Enter a world that looks interesting; GPSJ reveals the knowledge, activity or pathway behind it.',
+  portals:[
+   ['learn','🧬','Understand medicines & genes','See DNA, enzymes, medicines and biological response unfold.','pharmacogenomics'],
+   ['visual','🌿','Look closer at the living world','Plants, specimens, medications and structures become observable.','plant'],
+   ['create','🏪','Turn an idea into an activity','A project or business becomes the environment you operate inside.','boutique'],
+   ['research','🔎','Investigate a question','Evidence, data and uncertainty become part of the scene.','research'],
+   ['institutions','🏛','Enter institutions','Explore universities, laboratories, museums and organizations as places.','institution'],
+   ['advance','🚀','Move toward a profession','See the pathway from learning to qualification and professional work.','career']
+  ]
+ },
+ learn:{
+  eyebrow:'Learn through worlds',title:'Choose what you want to understand',lead:'Each portal previews the phenomenon first. The names and deeper structure unfold after you enter.',
+  portals:[
+   ['learn','🧬','Genes changing medicine response','DNA → enzyme activity → drug exposure → clinical effect.','pharmacogenomics'],
+   ['learn','💊','Follow a medicine through the body','Dose → absorption → target → therapeutic and adverse effects.','pharmacogenomics'],
+   ['learn','🌿','Discover what a plant contains','Species → structure → compounds → evidence.','plant'],
+   ['learn','🔬','Enter the microscopic world','Specimen → lens → cell or microorganism → interpretation.','visual'],
+   ['learn','🧠','Follow a neural signal','Neuron → receptor → response → therapy.','visual'],
+   ['learn','⚛️','Watch matter transform','Molecule → interaction → reaction → measurement.','lab']
+  ]
+ },
+ visual:{
+  eyebrow:'Visual intelligence',title:'Start from what you can see',lead:'The image, specimen or physical environment is the entry point; interpretation grows around it.',
+  portals:[
+   ['visual','🌿','Plant in nature','Observe morphology, habitat and candidate identity.','plant'],
+   ['visual','🔬','Microscopy view','Move from specimen to structures and uncertainty.','visual'],
+   ['visual','💊','Medication or dosage form','Inspect imprint, form, packaging and visible features.','visual'],
+   ['visual','🧬','Molecular / biological structure','Move from visible model to function and consequence.','pharmacogenomics'],
+   ['visual','🧪','Equipment or instrument','Recognize parts, purpose and observable outputs.','lab'],
+   ['visual','🎥','Scientific image or video','Annotate a process while preserving uncertainty.','visual']
+  ]
+ },
+ research:{
+  eyebrow:'Research environment',title:'Enter the question, then follow the evidence',lead:'Research is presented as an investigative world, not a blank form.',
+  portals:[
+   ['research','🔎','Ask why something happens','Question → hypothesis → evidence → interpretation.','research'],
+   ['research','📄','Read a new discovery','Study design, result, limits and relevance appear together.','research'],
+   ['research','📊','Understand scientific data','Measurements become patterns, uncertainty and conclusions.','research'],
+   ['research','🧪','Design an experiment','Variables, methods, instruments and evidence become visible.','lab'],
+   ['research','🧬','Investigate a mechanism','Molecular pathway → observation → competing explanations.','pharmacogenomics'],
+   ['research','🌍','Observe a real-world system','Environment → data source → change → evidence.','research']
+  ]
+ },
+ lab:{
+  eyebrow:'Screen Lab',title:'What do you want to observe, simulate or connect?',lead:'The laboratory appears as instruments and processes first. Authorization determines what becomes controllable.',
+  portals:[
+   ['lab','🔬','Microscope station','Specimen, optics, image and interpretation.','lab'],
+   ['lab','📈','Analytical instrument','Sample → signal → chromatogram or spectrum → result.','lab'],
+   ['lab','⚖️','Measurement bench','Balance, sensor, calibration and uncertainty.','lab'],
+   ['lab','🧪','Virtual experiment','Manipulate a safe simulation before real-world testing.','lab'],
+   ['lab','🤖','Prototype / device','Observe, simulate and test connected hardware appropriately.','lab'],
+   ['lab','🏭','Professional installation','The environment grows into field-specific equipment and workflow.','lab']
+  ]
+ },
+ advance:{
+  eyebrow:'Advancement',title:'See the next environment you are growing toward',lead:'The pathway is visual: learning, qualification, institution, workplace and professional progression.',
+  portals:[
+   ['advance','🎓','Earn a qualification','See the competencies and environment the credential unlocks.','career'],
+   ['advance','🧑‍🔬','Become a scientist','Move from learner to laboratory and research responsibility.','career'],
+   ['advance','💼','Move into professional practice','Skills, authorization and workplace context evolve together.','career'],
+   ['advance','📈','Increase earning potential','Compare pathways by readiness, time, credential and opportunity.','career'],
+   ['advance','🏛','Find the right institution','Programs and facilities appear in the context of your goal.','institution'],
+   ['advance','🧭','Plan a long journey','Milestones become a continuous visual route.','career']
+  ]
+ },
+ create:{
+  eyebrow:'Create',title:'What are you trying to bring into the real world?',lead:'A creation becomes its operating environment. GPSJ changes around the activity rather than leaving you in a generic creator page.',
+  portals:[
+   ['create','🏪','Create & manage a boutique','Storefront → interior → inventory → checkout → customers → growth.','boutique'],
+   ['create','🧪','Build a laboratory activity','Space → instruments → workflow → safety → evidence.','lab'],
+   ['create','🎨','Create a studio or service','Clients, workspace, materials and project flow become visible.','generic'],
+   ['create','📚','Build a learning program','Audience, lessons, practice and outcomes become an environment.','generic'],
+   ['create','🔬','Develop a scientific project','Question → design → prototype → testing → evidence.','research'],
+   ['create','🏢','Create an organization','People, operations, resources and goals unfold together.','generic']
+  ]
+ },
+ market:{
+  eyebrow:'Marketplace',title:'Enter a resource marketplace connected to your journey',lead:'Resources appear as places and objects relevant to what the user is already doing—not as an isolated generic catalog.',
+  portals:[
+   ['market','🔬','Scientific instruments','Browse equipment in the context of the work it supports.','marketplace'],
+   ['market','📚','Courses & learning resources','See what each resource unlocks in the journey.','marketplace'],
+   ['market','🧪','Laboratory supplies','Supplies appear around compatible workflows and authorization.','marketplace'],
+   ['market','💻','Scientific software & services','Tools appear beside the task they help accomplish.','marketplace'],
+   ['market','🧑‍🏫','Expert support','Mentors, training and professional services fit the current goal.','marketplace'],
+   ['market','🏪','Business resources','Operational resources can enter an activity environment such as a boutique.','marketplace']
+  ]
+ },
+ institutions:{
+  eyebrow:'Institutions',title:'Enter the institution before reading about it',lead:'Universities, laboratories, museums and organizations should feel like places with programs, people, facilities and opportunities.',
+  portals:[
+   ['institutions','🏛','University campus','Programs, departments, laboratories and pathways unfold inside the campus context.','institution'],
+   ['institutions','🔬','Research institute','Enter facilities, teams, instruments and active research areas.','institution'],
+   ['institutions','🏥','Clinical institution','See care, research, education and professional roles in context.','institution'],
+   ['institutions','🏛️','Museum & knowledge institution','Collections, evidence, history and learning become explorable.','institution'],
+   ['institutions','🏭','Industry & technical organization','Facilities, roles, technologies and standards appear together.','institution'],
+   ['institutions','🌍','Local opportunities','AI can prioritize institutions relevant to the user’s goals and location.','institution']
+  ]
+ },
+ language:{
+  eyebrow:'Language',title:'Move through science without losing meaning',lead:'The same scientific world remains visible while terminology, explanation and communication adapt to language.',
+  portals:[
+   ['language','🌐','Understand in another language','Terminology is translated while scientific meaning is preserved.','language'],
+   ['language','🗣','Practice professional communication','Enter realistic scientific and professional conversations.','language'],
+   ['language','📄','Read scientific material','Original meaning, technical terms and explanation remain connected.','language'],
+   ['language','🎧','Listen and learn','Turn the current lesson or world into a listening experience.','language'],
+   ['language','✍️','Write scientifically','Draft within the active scientific context.','language'],
+   ['language','🏛','Communicate with institutions','Language adapts to institutional and professional situations.','language']
+  ]
+ },
+ my:{
+  eyebrow:'My GPSJ',title:'See your journey as a living path',lead:'Your learning, projects, qualifications and aspirations remain connected to the environments you have entered.',
+  portals:[
+   ['my','🧭','Continue where I left off','Return directly to the last active world and depth.','career'],
+   ['my','📚','My learning worlds','Re-enter subjects through their visual environments.','pharmacogenomics'],
+   ['my','🔬','My research & projects','Projects remain connected to methods, evidence and next actions.','research'],
+   ['my','🎓','My competencies','See what you can do now and what environment comes next.','career'],
+   ['my','🏢','My activities','Businesses, laboratories or other created activities remain operational worlds.','boutique'],
+   ['my','🚀','My future path','Goals, qualifications and professional destinations evolve together.','career']
+  ]
+ },
+ signin:{
+  eyebrow:'Sign in',title:'Save the worlds you create and the journey you build',lead:'Public exploration remains available. Signing in adds continuity, personalization and role-based access.',
+  portals:[
+   ['signin','👤','Personal profile','Save preferences, goals, progress and active environments.','generic'],
+   ['signin','🧭','Journey continuity','Return to the exact world and depth you were using.','career'],
+   ['signin','🏢','Activity ownership','Manage created projects or businesses under your account.','boutique']
+  ]
+ }
+};
+
+function buildNav(){
+ const n=document.getElementById('nav'); n.innerHTML='';
+ Object.entries(NAV).forEach(([k,v])=>{
+   const b=document.createElement('button'); b.textContent=v; b.dataset.area=k;
+   b.addEventListener('click',()=>{area=k;render();});
+   n.appendChild(b);
+ });
+}
+
+function svgFor(kind,icon,title){
+ if(sceneSVG[kind]) return sceneSVG[kind]();
+ return genericScene(icon,title,'AI-adapted environment');
+}
+
+function render(){
+ const d=DATA[area]||DATA.home;
+ document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.area===area));
+ document.getElementById('eyebrow').textContent=d.eyebrow;
+ document.getElementById('screenTitle').textContent=d.title;
+ document.getElementById('screenLead').textContent=d.lead;
+ document.getElementById('stage').classList.remove('show');
+ const host=document.getElementById('portals'); host.innerHTML='';
+ d.portals.forEach((p,i)=>{
+   const [route,icon,name,hint,kind]=p;
+   const b=document.createElement('button'); b.className='portal'; b.type='button';
+   b.innerHTML=`<span class="portal-tag">${i===0?'★ AI suggests':'Explore'}</span><div class="scene">${svgFor(kind,icon,name)}</div><div class="portal-copy"><div class="name">${icon} ${name}</div><div class="hint">${hint}</div></div>`;
+   b.addEventListener('click',()=>openWorld(p));
+   host.appendChild(b);
+ });
+}
+
+function openWorld(p){
+ const [route,icon,name,hint,kind]=p;
+ document.getElementById('stagePath').textContent=(NAV[area]||'GPSJ').replace(/^[^A-Za-z]+/,'')+' → '+name;
+ document.getElementById('stageTitle').textContent=name;
+ document.getElementById('worldScene').innerHTML=svgFor(kind,icon,name);
+ document.getElementById('worldHeadline').textContent='You are now inside this environment.';
+ document.getElementById('worldText').textContent=hint+' The next choices deepen this same scene instead of returning to a generic workspace.';
+ const actions=document.getElementById('worldActions'); actions.innerHTML='';
+ const next = kind==='boutique'
+   ? [['Enter the storefront','See the street-facing business become operational.'],['Open the interior','Merchandising, inventory, checkout and customers appear.'],['Manage the activity','Sales, costs, suppliers, permits and growth become contextual tools.']]
+   : kind==='pharmacogenomics'
+   ? [['Follow the DNA','See the relevant genetic variation in context.'],['See biological function','Connect genotype to enzyme, protein or pathway activity.'],['Connect to treatment','See exposure, response, testing, evidence and appropriate intervention.']]
+   : kind==='institution'
+   ? [['Enter the place','Move from exterior identity into programs and facilities.'],['Explore facilities','Laboratories, classrooms, teams and services become visible.'],['Connect to your goal','Programs and opportunities reorganize around the user’s journey.']]
+   : kind==='lab'
+   ? [['Enter the installation','See instruments and workflow in context.'],['Choose an instrument','Observation and simulation appear before control.'],['Practice in the environment','Tasks adapt to competency and authorization.']]
+   : [['Observe the world','Start with the phenomenon, place, object or process.'],['Ask what is happening','Explanation appears around what is already visible.'],['Go deeper','Mechanisms, practice, evidence and professional context unfold.']];
+ next.forEach((x,i)=>{
+   const b=document.createElement('button'); b.innerHTML=`${i+1}. ${x[0]}<small>${x[1]}</small>`;
+   b.addEventListener('click',()=>deepenWorld(kind,name,i,x[0]));
+   actions.appendChild(b);
+ });
+ document.getElementById('adaptBanner').innerHTML='<b>AI continuity:</b> '+(kind==='boutique'?'because this is an activity, GPSJ can progressively become the storefront, interior and management environment.':'the visible world grows richer and more specific at every selection.');
+ document.getElementById('stage').classList.add('show');
+ document.getElementById('stage').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function deepenWorld(kind,name,level,label){
+ const scene=document.getElementById('worldScene');
+ if(kind==='boutique' && level>=1){
+   scene.innerHTML=`<svg viewBox="0 0 900 520"><rect width="900" height="520" fill="#f4eee8"/><rect y="390" width="900" height="130" fill="#d3c7ba"/><rect x="55" y="60" width="790" height="330" rx="18" fill="#fff" stroke="#c6b9aa" stroke-width="5"/><rect x="95" y="100" width="300" height="230" fill="#e8f2f7"/><text x="245" y="210" text-anchor="middle" font-size="78">👗</text><rect x="500" y="95" width="280" height="80" rx="14" fill="#edf2fa"/><text x="640" y="145" text-anchor="middle" font-size="24" font-weight="900" fill="#25324b">Inventory & display</text><rect x="500" y="210" width="280" height="80" rx="14" fill="#edf2fa"/><text x="640" y="260" text-anchor="middle" font-size="24" font-weight="900" fill="#25324b">Checkout & customers</text><rect x="500" y="325" width="280" height="80" rx="14" fill="#edf2fa"/><text x="640" y="375" text-anchor="middle" font-size="24" font-weight="900" fill="#25324b">Sales • costs • growth</text><text x="245" y="370" text-anchor="middle" font-size="24" font-weight="900" fill="#4b3942">Inside your boutique</text></svg>`;
+ } else {
+   scene.style.filter = level===0?'saturate(1.05)':level===1?'saturate(1.12) contrast(1.03)':'saturate(1.2) contrast(1.07)';
+ }
+ document.getElementById('worldHeadline').textContent=label;
+ document.getElementById('worldText').textContent=`${name} has progressed one level deeper. The interface keeps the active environment and adds only the objects, explanations, tools and decisions that belong at this depth.`;
+ document.getElementById('adaptBanner').innerHTML='<b>Environment evolved:</b> no reset, no “focused workspace,” no architecture explanation taking over the screen.';
+}
+
+function classify(q){
+ const x=q.toLowerCase();
+ if(/boutique|store|shop|commerce|business/.test(x)) return ['create','🏪','Create & manage a boutique','Your commerce becomes a storefront, then an interior and operational management environment.','boutique'];
+ if(/pharmacogen|gene|dna|genomic/.test(x)) return ['learn','🧬','Pharmacogenomics','See DNA variation become biological function, drug exposure and response.','pharmacogenomics'];
+ if(/plant|leaf|flower|tree|species/.test(x)) return ['visual','🌿','Plant in nature','Observe morphology and context before moving into candidate identification and evidence.','plant'];
+ if(/university|college|institution|school|laboratory|institute/.test(x)) return ['institutions','🏛','Institution environment','Enter programs, facilities, people and opportunities as a place.','institution'];
+ if(/research|study|evidence|paper|hypothesis/.test(x)) return ['research','🔎','Research question','Question, evidence, uncertainty and interpretation unfold together.','research'];
+ return ['learn','✨',q||'Your requested world','GPSJ creates a visual entry around the user’s stated interest and progressively deepens it.','generic'];
+}
+
+document.getElementById('stageBack').addEventListener('click',()=>{document.getElementById('stage').classList.remove('show');document.getElementById('portals').scrollIntoView({behavior:'smooth'});});
+document.getElementById('aiMode').addEventListener('click',()=>document.getElementById('aiDock').classList.toggle('show'));
+document.getElementById('aiClose').addEventListener('click',()=>document.getElementById('aiDock').classList.remove('show'));
+document.querySelectorAll('[data-q]').forEach(b=>b.addEventListener('click',()=>{document.getElementById('aiPrompt').value=b.dataset.q;}));
+document.getElementById('aiGo').addEventListener('click',()=>{
+ const q=(document.getElementById('aiPrompt').value||'').trim();
+ const p=classify(q);
+ area=p[0]; render(); openWorld(p); document.getElementById('aiDock').classList.remove('show');
+});
+buildNav();render();
+</script>
+</body>
+</html>
