@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<title>GPSJ v4.62 — Fixed Living AI Journey</title>
+<style>
+:root{
+  --bg:#050b18; --panel:#09142a; --panel2:#0d1d37; --line:#24385b;
+  --text:#f5f8ff; --muted:#9eb0ca; --cyan:#52e4ff; --mint:#65f0c0;
+  --violet:#7b5cff; --purple:#b256ff; --danger:#ffba54;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:radial-gradient(circle at 80% 10%,#15134c 0,#071128 34%,#040915 70%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+button,input{font:inherit}
+.app{height:100dvh;display:grid;grid-template-rows:auto 1fr;background:
+linear-gradient(120deg,rgba(31,225,255,.04),transparent 26%),
+radial-gradient(circle at 75% 45%,rgba(123,92,255,.12),transparent 27%)}
+.top{
+  padding:14px 18px 10px;border-bottom:1px solid #13274a;background:linear-gradient(180deg,rgba(7,17,39,.98),rgba(7,16,34,.94));
+  box-shadow:0 10px 30px rgba(0,0,0,.2);z-index:4
+}
+.brandrow{display:flex;align-items:center;gap:12px;min-height:50px}
+.logo{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;font-weight:900;background:linear-gradient(145deg,#2e72ff,#8e3cff);box-shadow:0 0 35px rgba(116,86,255,.35)}
+.brand h1{font-size:clamp(18px,2.4vw,32px);margin:0;line-height:1.05}
+.brand p{margin:5px 0 0;color:var(--muted);font-size:12px}
+.aiBadge{margin-left:auto;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-weight:900;background:radial-gradient(circle,#8667ff 0,#5b35df 48%,#1a174c 70%);border:1px solid #7b65ff;box-shadow:0 0 24px rgba(125,90,255,.55)}
+.nav{margin-top:11px;display:flex;gap:8px;flex-wrap:wrap}
+.nav button{border:1px solid #243556;color:#eaf0ff;background:#0d1a31;border-radius:12px;padding:10px 14px;cursor:pointer}
+.nav button.active{background:#f7f9ff;color:#0d1a31;border-color:white;font-weight:800}
+.nav .signin{margin-left:auto}
+.shell{position:relative;min-height:0;overflow:hidden;padding:12px}
+.frame{height:100%;border:1px solid #21385f;border-radius:22px;overflow:hidden;background:
+linear-gradient(180deg,rgba(9,22,47,.98),rgba(6,13,27,.98));
+box-shadow:0 25px 70px rgba(0,0,0,.28),inset 0 0 70px rgba(45,99,181,.05)}
+.view{height:100%;display:none}.view.active{display:grid}
+.home{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:10px;padding:12px}
+.banner{display:grid;grid-template-columns:1.08fr .92fr;gap:16px;border:1px solid #2c4c7c;border-radius:18px;min-height:138px;background:
+linear-gradient(110deg,rgba(18,42,76,.95),rgba(10,28,55,.9));overflow:hidden}
+.heroCopy{padding:18px 18px 14px}
+.kicker{color:var(--mint);font-size:11px;font-weight:800;letter-spacing:.12em}
+.heroCopy h2{font-size:clamp(24px,4vw,42px);margin:6px 0 6px}
+.heroCopy p{margin:0;color:#c8d6eb;max-width:700px}
+.heroStage{position:relative;min-height:120px;background:
+radial-gradient(circle at 70% 50%,rgba(88,232,255,.25),transparent 20%),
+linear-gradient(135deg,#0b1934,#0c3151 55%,#0b1934)}
+.heroStage:before{content:"";position:absolute;inset:12px;border:1px solid rgba(99,214,255,.18);border-radius:16px;background:
+linear-gradient(90deg,transparent 48%,rgba(74,225,255,.08) 50%,transparent 52%),
+linear-gradient(transparent 48%,rgba(74,225,255,.08) 50%,transparent 52%)}
+.heroRig{position:absolute;right:12%;bottom:12%;width:165px;height:86px;border-radius:16px;border:1px solid #2b87a3;background:linear-gradient(180deg,#0b3146,#0d1f3f);box-shadow:0 0 35px rgba(67,220,255,.18)}
+.heroRig:before{content:"⚙️";font-size:56px;position:absolute;left:14px;top:12px;filter:drop-shadow(0 0 12px #4ce7ff)}
+.heroRig:after{content:"AI SCIENCE WORLD";position:absolute;right:10px;bottom:10px;font-size:10px;color:var(--mint);font-weight:800}
+.portals{min-height:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.portal{border:1px solid #274268;border-radius:16px;overflow:hidden;background:linear-gradient(180deg,#0c1d37,#09162a);cursor:pointer;display:grid;grid-template-rows:1fr auto;min-width:0}
+.portalVisual{position:relative;min-height:0;background:linear-gradient(150deg,#13345c,#0b162b 54%,#12305a)}
+.portalVisual::after{content:"↻";position:absolute;right:10px;top:8px;width:28px;height:28px;border:1px solid #4ca4cc;border-radius:50%;display:grid;place-items:center;color:#bff6ff}
+.portalObj{position:absolute;inset:0;display:grid;place-items:center;font-size:56px;filter:drop-shadow(0 0 14px rgba(90,228,255,.35))}
+.portalCopy{padding:10px 12px 12px}
+.portalCopy h3{margin:0 0 5px;font-size:15px}.portalCopy p{margin:0;color:var(--muted);font-size:11px;line-height:1.35}.portalCopy b{display:block;margin-top:8px;color:var(--mint);font-size:11px}
+.workspace{grid-template-columns:220px minmax(0,1fr) 250px;gap:10px;padding:10px}
+.side,.right{border:1px solid #1f3557;border-radius:16px;background:#081426;overflow:hidden}
+.side{padding:12px}.right{padding:12px}
+.side h4,.right h4{margin:0 0 10px;color:var(--mint);font-size:11px;letter-spacing:.08em}
+.pathbtn{width:100%;text-align:left;background:#0b1930;border:1px solid #213655;color:#dce9ff;border-radius:10px;padding:10px;margin-bottom:7px;cursor:pointer}
+.pathbtn.active{border-color:#704cff;background:linear-gradient(90deg,rgba(104,70,255,.18),rgba(29,39,71,.45));box-shadow:0 0 22px rgba(105,70,255,.14)}
+.stage{min-width:0;border:1px solid #1d375c;border-radius:16px;overflow:hidden;background:#071120;display:grid;grid-template-rows:auto auto 1fr auto}
+.crumb{padding:10px 12px;color:#9eb0ca;font-size:11px;border-bottom:1px solid #142847}
+.stageHead{padding:12px 14px;display:flex;align-items:center;gap:12px}
+.stageHead h2{margin:0;font-size:24px}.stageHead p{margin:4px 0 0;color:var(--muted);font-size:12px}
+.stageBody{min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:10px;padding:0 12px 10px}
+.labScene{position:relative;border:1px solid #1d456b;border-radius:14px;overflow:hidden;background:
+radial-gradient(circle at 65% 30%,rgba(65,220,255,.18),transparent 20%),
+linear-gradient(155deg,#0c2b44,#091627 60%,#0b1222)}
+.gridline{position:absolute;inset:0;background-image:linear-gradient(rgba(97,207,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(97,207,255,.06) 1px,transparent 1px);background-size:32px 32px}
+.machine{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:260px;height:260px}
+.module{position:absolute;left:50%;transform:translateX(-50%);width:160px;height:48px;border:1px solid #59739f;border-radius:7px;background:linear-gradient(180deg,#28364d,#111b2d);box-shadow:0 0 14px rgba(92,193,255,.09)}
+.module.m1{top:20px}.module.m2{top:73px}.module.m3{top:126px}.module.m4{top:179px}
+.module:before{content:"";position:absolute;left:15px;top:12px;width:44px;height:22px;border-radius:3px;background:#05101c;box-shadow:inset 0 0 12px rgba(42,200,255,.3)}
+.module:after{content:"";position:absolute;right:18px;top:14px;width:58px;height:18px;background:linear-gradient(90deg,#0a1830,#183a66);border-radius:3px}
+.bottles{position:absolute;left:55px;top:0;display:flex;gap:10px}.bottle{width:28px;height:60px;border:2px solid #8bc8ff;border-radius:4px 4px 8px 8px;background:linear-gradient(180deg,rgba(160,220,255,.22),rgba(47,92,255,.16));position:relative}.bottle:before{content:"";position:absolute;left:7px;top:-10px;width:12px;height:10px;background:#2f5bc4;border-radius:2px}
+.hotspot{position:absolute;width:30px;height:30px;border-radius:50%;border:1px solid #70e9ff;background:rgba(14,52,79,.72);display:grid;place-items:center;font-weight:900;box-shadow:0 0 18px rgba(83,224,255,.24);cursor:pointer}
+.hs1{left:31%;top:35%}.hs2{right:26%;top:29%}.hs3{left:26%;bottom:24%}.hs4{right:20%;bottom:26%}
+.infoCard{position:absolute;left:14px;bottom:14px;width:min(360px,65%);border:1px solid #244f72;background:rgba(5,15,31,.88);backdrop-filter:blur(8px);border-radius:12px;padding:12px}
+.infoCard h3{margin:0 0 6px;font-size:16px}.infoCard p{margin:0;color:#b5c5dc;font-size:11px}
+.topicGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-content:start}
+.topic{border:1px solid #253c5e;background:#0b1930;border-radius:12px;padding:10px;cursor:pointer;min-height:86px}.topic strong{display:block;font-size:13px}.topic span{display:block;margin-top:5px;color:#9eb0ca;font-size:10px}.topic.active{border-color:#7b5cff;box-shadow:0 0 20px rgba(119,85,255,.14)}
+.quick{padding:10px 12px;border-top:1px solid #17304f;display:flex;gap:8px;flex-wrap:wrap}
+.quick button,.right button{background:#0b1c34;border:1px solid #2b446b;color:#eaf3ff;border-radius:10px;padding:9px 10px;cursor:pointer}
+.quick button.primary{background:linear-gradient(90deg,#2dd5ff,#7453ff);border:0;color:white;font-weight:800}
+.right .card{border:1px solid #1f395c;border-radius:12px;background:#0a1830;padding:10px;margin-bottom:10px}
+.right .card p{color:#aebdd1;font-size:11px;line-height:1.4}
+.mode{display:flex;gap:6px;flex-wrap:wrap}.mode button{font-size:11px;padding:7px 8px}
+.mode button.on{border-color:#66f0c4;color:#86ffd9}
+.lesson{grid-template-columns:220px minmax(0,1fr) 250px;gap:10px;padding:10px}
+.lessonMain{border:1px solid #1f3759;border-radius:16px;background:linear-gradient(180deg,#0a1730,#071120);display:grid;grid-template-rows:auto 1fr auto;overflow:hidden}
+.lessonHero{padding:18px;background:linear-gradient(120deg,rgba(72,58,155,.24),rgba(0,197,255,.05));border-bottom:1px solid #203a60}
+.lessonHero h2{margin:0 0 5px;font-size:28px}.lessonHero p{margin:0;color:#aebed2}
+.lessonContent{padding:18px;overflow:auto}
+.lessonContent h3{color:#75efff;margin-top:0}.lessonContent p,.lessonContent li{color:#d2def0;line-height:1.6;font-size:14px}
+.lessonContent .callout{border-left:3px solid var(--mint);background:#0b1b31;padding:12px;border-radius:8px;margin:14px 0}
+.lessonFooter{padding:12px 18px;border-top:1px solid #17304f;display:flex;justify-content:space-between;gap:8px}
+.lessonFooter button{background:#0b1c34;border:1px solid #2b446b;color:white;border-radius:10px;padding:10px 14px}
+.lessonFooter .primary{background:linear-gradient(90deg,#2dd5ff,#7453ff);border:0;font-weight:800}
+.small{font-size:11px;color:#96a9c3}
+@media(max-width:1100px){
+ .workspace,.lesson{grid-template-columns:170px minmax(0,1fr) 210px}
+ .stageBody{grid-template-columns:minmax(0,1fr) 250px}
+}
+@media(max-width:820px){
+ .top{padding:10px}.brand p{display:none}.nav{gap:6px}.nav button{padding:8px 10px;font-size:12px}
+ .frame{border-radius:16px}.shell{padding:7px}
+ .banner{grid-template-columns:1fr}.heroStage{display:none}
+ .portals{grid-template-columns:repeat(2,minmax(0,1fr));overflow:hidden}
+ .portalVisual{min-height:90px}
+ .workspace,.lesson{grid-template-columns:1fr}
+ .side,.right{display:none}
+ .stageBody{grid-template-columns:1fr 210px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brandrow">
+      <div class="logo">GPSJ</div>
+      <div class="brand">
+        <h1>Global Pharma Scientist Journey</h1>
+        <p>Adaptive Science Engine v4.62 · Approved public architecture preserved · Every capability opens into its own living AI environment</p>
+      </div>
+      <div class="aiBadge">AI</div>
+    </div>
+    <nav class="nav">
+      <button class="active" data-top="home">🏠 Home</button>
+      <button data-top="mygpsj">🧭 My GPSJ</button>
+      <button data-top="learn">📚 Learn</button>
+      <button data-top="visual">👁 Visual</button>
+      <button data-top="research">🔬 Research</button>
+      <button data-top="screenlab">🧪 Screen Lab</button>
+      <button data-top="advancement">🚀 Advancement</button>
+      <button data-top="create">🎨 Create</button>
+      <button data-top="marketplace">🛍 Marketplace</button>
+      <button data-top="institutions">🏛 Institutions</button>
+      <button data-top="language">🌐 Language</button>
+      <button class="signin">👤 Sign in</button>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section class="frame">
+
+      <!-- HOME -->
+      <div class="view home active" id="home">
+        <div class="banner">
+          <div class="heroCopy">
+            <div class="kicker">LIVING PUBLIC SCIENCE ENTRANCE</div>
+            <h2>Explore science immediately.</h2>
+            <p>Every field appears as a living preview of the real-world environment. Select a field and GPSJ progressively enters it without resetting the screen.</p>
+          </div>
+          <div class="heroStage"><div class="heroRig"></div></div>
+        </div>
+        <div class="portals">
+          <div class="portal" data-field="pharma"><div class="portalVisual"><div class="portalObj">🧪</div></div><div class="portalCopy"><h3>Pharmaceutical & Chemical Sciences</h3><p>Formulation, analytical systems, chemistry and medicines.</p><b>Explore →</b></div></div>
+          <div class="portal" data-field="engineering"><div class="portalVisual"><div class="portalObj">⚙️</div></div><div class="portalCopy"><h3>Engineering & Machines</h3><p>Robotics, automation, motors, control and instrumentation.</p><b>Explore →</b></div></div>
+          <div class="portal" data-field="medical"><div class="portalVisual"><div class="portalObj">🧠</div></div><div class="portalCopy"><h3>Life & Medical Sciences</h3><p>Anatomy, cells, imaging, physiology and disease systems.</p><b>Explore →</b></div></div>
+          <div class="portal" data-field="lab"><div class="portalVisual"><div class="portalObj">🔬</div></div><div class="portalCopy"><h3>Laboratory & Instruments</h3><p>Scientific instruments, digital twins and supervised workflows.</p><b>Explore →</b></div></div>
+          <div class="portal" data-field="earth"><div class="portalVisual"><div class="portalObj">🌍</div></div><div class="portalCopy"><h3>Earth, Environment & Field Science</h3><p>Field sensors, ecology, climate and remote observation.</p><b>Explore →</b></div></div>
+          <div class="portal" data-field="institutions"><div class="portalVisual"><div class="portalObj">🏛️</div></div><div class="portalCopy"><h3>Institutions & Facilities</h3><p>Universities, hospitals, research centers and capability maps.</p><b>Explore →</b></div></div>
+          <div class="portal" data-field="research"><div class="portalVisual"><div class="portalObj">📈</div></div><div class="portalCopy"><h3>Research & Discovery</h3><p>Question, evidence, design, analysis and reproducibility.</p><b>Explore →</b></div></div>
+          <div class="portal" data-field="advancement"><div class="portalVisual"><div class="portalObj">🎓</div></div><div class="portalCopy"><h3>Advancement & Pathway</h3><p>Competency, qualification, professional and research growth.</p><b>Explore →</b></div></div>
+          <div class="portal" data-field="marketplace"><div class="portalVisual"><div class="portalObj">🛒</div></div><div class="portalCopy"><h3>Marketplace & Resources</h3><p>Equipment, services, publications and scientific resources.</p><b>Explore →</b></div></div>
+          <div class="portal" data-field="language"><div class="portalVisual"><div class="portalObj">🌐</div></div><div class="portalCopy"><h3>Language & Communication</h3><p>Scientific translation, terminology and global communication.</p><b>Explore →</b></div></div>
+        </div>
+      </div>
+
+      <!-- LEARN / LIVING FIELD -->
+      <div class="view workspace" id="learn">
+        <aside class="side">
+          <h4>LEARN PATH</h4>
+          <button class="pathbtn active" data-step="field">🔭 Explore science</button>
+          <button class="pathbtn" data-step="domain">⚙️ Engineering & Machines</button>
+          <button class="pathbtn" data-step="topic">🤖 Robotics & Automation</button>
+          <button class="pathbtn" data-step="lesson">📘 Lesson</button>
+          <h4 style="margin-top:14px">ACTIVE CONTEXT</h4>
+          <div class="small">Field<br><b style="color:white">Engineering & Machines</b><br><br>Domain<br><b style="color:white">Robotics & Automation</b><br><br>Level<br><b style="color:white">Foundation</b></div>
+        </aside>
+        <section class="stage">
+          <div class="crumb">Learn › Explore science › Engineering & Machines › Robotics & Automation</div>
+          <div class="stageHead">
+            <div>
+              <h2>Robotics & Automation</h2>
+              <p>Living engineering environment · components, systems, control and practice</p>
+            </div>
+          </div>
+          <div class="stageBody">
+            <div class="labScene">
+              <div class="gridline"></div>
+              <div class="machine">
+                <div class="bottles"><div class="bottle"></div><div class="bottle"></div><div class="bottle"></div></div>
+                <div class="module m1"></div><div class="module m2"></div><div class="module m3"></div><div class="module m4"></div>
+              </div>
+              <button class="hotspot hs1" title="Controller">+</button>
+              <button class="hotspot hs2" title="Sensor">+</button>
+              <button class="hotspot hs3" title="Actuator">+</button>
+              <button class="hotspot hs4" title="Safety system">+</button>
+              <div class="infoCard">
+                <h3>Industrial automation station</h3>
+                <p>Select a topic, inspect a component, or open a lesson without leaving the environment.</p>
+              </div>
+            </div>
+            <div class="topicGrid">
+              <div class="topic active" data-topic="robot"><strong>Industrial robot anatomy</strong><span>Joints, links, end effectors and work envelope.</span></div>
+              <div class="topic"><strong>Sensors & feedback</strong><span>Position, force, proximity and closed-loop control.</span></div>
+              <div class="topic"><strong>Actuators & drives</strong><span>Motors, drives, torque and controlled motion.</span></div>
+              <div class="topic"><strong>PLC fundamentals</strong><span>Programmable logic, I/O and sequence control.</span></div>
+              <div class="topic"><strong>Machine safety</strong><span>Interlocks, guarding, supervised operation and risk controls.</span></div>
+              <div class="topic"><strong>Digital twin practice</strong><span>Simulate before real-world execution.</span></div>
+            </div>
+          </div>
+          <div class="quick">
+            <button id="openLesson">📖 Start lesson</button>
+            <button>🎯 Practice now</button>
+            <button>▶ Simulate</button>
+            <button>◈ Inspect 3D object</button>
+            <button class="primary">✨ Go deeper with AI</button>
+          </div>
+        </section>
+        <aside class="right">
+          <h4>AI GUIDE</h4>
+          <div class="card"><b>Living context</b><p>GPSJ keeps the selected field, task, level, evidence and jurisdiction attached as the user goes deeper.</p></div>
+          <h4>LEARNING MODE</h4>
+          <div class="mode"><button class="on">Learn</button><button>Simulate</button><button>Practice</button><button>Mastery</button></div>
+          <h4 style="margin-top:14px">TRUSTED & SAFE</h4>
+          <div class="card"><p>Field-first · intent-aware · jurisdiction-aware · evidence-connected · reproducible.</p></div>
+        </aside>
+      </div>
+
+      <!-- GENERIC FIXED LIVING WORLDS -->
+      <div class="view workspace" id="generic">
+        <aside class="side">
+          <h4 id="genericPathTitle">PATH</h4>
+          <button class="pathbtn active">Overview</button>
+          <button class="pathbtn">Explore</button>
+          <button class="pathbtn">Evidence</button>
+          <button class="pathbtn">Pathway</button>
+        </aside>
+        <section class="stage">
+          <div class="crumb" id="genericCrumb">GPSJ › Living environment</div>
+          <div class="stageHead"><div><h2 id="genericTitle">Living environment</h2><p id="genericSubtitle">Capability-specific AI world</p></div></div>
+          <div class="stageBody">
+            <div class="labScene">
+              <div class="gridline"></div>
+              <div class="portalObj" id="genericObj" style="font-size:120px">🧭</div>
+              <button class="hotspot hs1">+</button><button class="hotspot hs2">+</button><button class="hotspot hs3">+</button>
+              <div class="infoCard"><h3 id="genericCardTitle">Explore this capability</h3><p id="genericCardText">The content shown here is specific to this capability. The fixed screen remains in place while the interior changes.</p></div>
+            </div>
+            <div class="topicGrid" id="genericTopics"></div>
+          </div>
+          <div class="quick"><button>Overview</button><button>Inspect</button><button>Evidence</button><button>Pathway</button><button class="primary">✨ Go deeper with AI</button></div>
+        </section>
+        <aside class="right"><h4>AI ASSISTANT</h4><div class="card"><p>Ask about the selected capability. GPSJ keeps context attached while moving deeper.</p></div><h4>MODE</h4><div class="mode"><button class="on">Explore</button><button>Analyze</button><button>Practice</button></div></aside>
+      </div>
+
+      <!-- LESSON -->
+      <div class="view lesson" id="lesson">
+        <aside class="side">
+          <h4>LESSON PATH</h4>
+          <button class="pathbtn">Engineering & Machines ✓</button>
+          <button class="pathbtn">Robotics & Automation ✓</button>
+          <button class="pathbtn active">Industrial robot anatomy</button>
+          <button class="pathbtn">Practice</button>
+        </aside>
+        <section class="lessonMain">
+          <div class="lessonHero">
+            <div class="kicker">FOUNDATION LESSON · ENGINEERING</div>
+            <h2>Industrial Robot Anatomy</h2>
+            <p>Understand how the major parts of an industrial robot work together before simulation or supervised real-world interaction.</p>
+          </div>
+          <article class="lessonContent">
+            <h3>1. What is an industrial robot?</h3>
+            <p>An industrial robot is a programmable mechanical system designed to position and move tools or materials through a defined workspace. Most systems are built from a chain of rigid links connected by joints.</p>
+            <div class="callout"><b>Core idea:</b> the controller decides what motion is required; drives provide controlled power; joints and links create movement; sensors report what actually happened.</div>
+            <h3>2. Major components</h3>
+            <ul>
+              <li><b>Base:</b> anchors the robot and supports the structure.</li>
+              <li><b>Links and joints:</b> form the mechanical arm and determine the robot's degrees of freedom.</li>
+              <li><b>Actuators/drives:</b> generate motion at each axis.</li>
+              <li><b>Sensors:</b> measure position, motion, force or proximity and feed information back to the control system.</li>
+              <li><b>End effector:</b> the tool attached to the robot wrist, such as a gripper or task-specific instrument.</li>
+              <li><b>Controller:</b> executes the programmed motion logic and coordinates the system.</li>
+            </ul>
+            <h3>3. Why feedback matters</h3>
+            <p>Without feedback, the controller only knows what it commanded. Feedback allows it to compare the target with the measured state and correct motion. This is the basis of closed-loop control.</p>
+            <div class="callout"><b>Safety principle:</b> simulation and read-only observation come before supervised testing. Real-world control is only available when the user's role, authorization, equipment state and local requirements allow it.</div>
+          </article>
+          <div class="lessonFooter">
+            <button id="backToWorld">← Back to living world</button>
+            <button class="primary">Practice this lesson →</button>
+          </div>
+        </section>
+        <aside class="right">
+          <h4>AI LESSON GUIDE</h4>
+          <div class="card"><p>Ask for a simpler explanation, a deeper technical explanation, or a visual walkthrough of any component.</p></div>
+          <h4>OBJECT</h4>
+          <div class="card"><div style="font-size:64px;text-align:center">🤖</div><p>Industrial robot arm · manipulable 3D object entry point.</p></div>
+        </aside>
+      </div>
+
+    </section>
+  </main>
+</div>
+
+<script>
+const views=[...document.querySelectorAll('.view')];
+const nav=[...document.querySelectorAll('.nav button[data-top]')];
+function show(id){
+  views.forEach(v=>v.classList.remove('active'));
+  const el=document.getElementById(id) || document.getElementById('generic');
+  el.classList.add('active');
+}
+function navActive(key){
+  nav.forEach(b=>b.classList.toggle('active',b.dataset.top===key));
+}
+const genericData={
+  mygpsj:{title:'My GPSJ',sub:'Your scientific journey, continuity and opportunities',obj:'🧭',topics:['Active scientific context','Scientific opportunities','Credentials & verification','Journey continuity']},
+  visual:{title:'Visual Intelligence',sub:'Scientific observation, comparison and analysis',obj:'🧠',topics:['Scientific observation canvas','Identify candidates','3D anatomy','Image / specimen analysis','Compare evidence','Visual notebook']},
+  research:{title:'Research',sub:'Question → evidence → study design → analysis → interpretation',obj:'📈',topics:['Question builder','Evidence intelligence','Study design studio','Analysis & interpretation','Reproducibility','Active notebook']},
+  screenlab:{title:'Screen Lab',sub:'Instrument-aware observation, simulation and supervised testing',obj:'🔬',topics:['Build My Environment','Observe / analyze','Simulation studio','Measurement workspace','Supervised testing','Evidence log']},
+  advancement:{title:'Advancement',sub:'Competency, qualification and lawful next-step pathways',obj:'🚀',topics:['Current qualification','Gap to target','Training pathway','Authorized next level','Portfolio','Professional route']},
+  create:{title:'Create',sub:'Create scientifically from the active context',obj:'🎨',topics:['Scientific project','Report & presentation','Map & model','Prototype concept','Scientific communication','Project environment']},
+  marketplace:{title:'Marketplace',sub:'Scientific resources, equipment and services',obj:'🛍️',topics:['Educational','Laboratory','Professional','Institutions & expertise','Scientific resources','Verified services']},
+  institutions:{title:'Institutions',sub:'Facilities, capabilities, roles and collaboration pathways',obj:'🏛️',topics:['Institution explorer','Scientific capability map','Collaboration gateway','Organization intelligence','Training relationships','GPSJ Studio Kit']},
+  language:{title:'Language & Communication',sub:'Scientific translation, terminology and global communication',obj:'🌐',topics:['Translate science','Terminology mode','Explain for audience','Scientific writing','Multilingual glossary','Communication pathway']}
+};
+function openGeneric(key){
+  const d=genericData[key]||genericData.mygpsj;
+  document.getElementById('genericPathTitle').textContent=d.title.toUpperCase()+' PATH';
+  document.getElementById('genericCrumb').textContent='GPSJ › '+d.title;
+  document.getElementById('genericTitle').textContent=d.title;
+  document.getElementById('genericSubtitle').textContent=d.sub;
+  document.getElementById('genericObj').textContent=d.obj;
+  document.getElementById('genericCardTitle').textContent=d.title+' living environment';
+  document.getElementById('genericCardText').textContent='This interior is specific to '+d.title+'. The screen stays fixed while GPSJ progressively replaces only the active interior.';
+  const box=document.getElementById('genericTopics');box.innerHTML='';
+  d.topics.forEach((t,i)=>{const div=document.createElement('div');div.className='topic'+(i===0?' active':'');div.innerHTML='<strong>'+t+'</strong><span>Open inside this same living environment.</span>';box.appendChild(div);});
+  show('generic');
+}
+nav.forEach(b=>b.addEventListener('click',()=>{
+  const key=b.dataset.top;navActive(key);
+  if(key==='home') show('home');
+  else if(key==='learn') show('learn');
+  else openGeneric(key);
+}));
+document.querySelectorAll('.portal').forEach(p=>p.addEventListener('click',()=>{
+  navActive('learn'); show('learn');
+}));
+document.getElementById('openLesson').addEventListener('click',()=>show('lesson'));
+document.getElementById('backToWorld').addEventListener('click',()=>show('learn'));
+document.querySelectorAll('.hotspot').forEach(h=>h.addEventListener('click',()=>{h.textContent=h.textContent==='+'?'✓':'+'}));
+</script>
+</body>
+</html>
