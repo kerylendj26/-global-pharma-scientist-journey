@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>GPSJ v4.56.8 — Approved Displays + Living Worlds</title>
+<style>
+:root{
+  --navy:#0d2557; --navy2:#07152f; --ink:#eaf3ff; --muted:#a8b9d8;
+  --line:rgba(255,255,255,.14); --glass:rgba(10,28,65,.62); --accent:#6e5bff;
+  --cyan:#27d8ff; --green:#74f3b6; --panel:rgba(7,18,42,.72); --card:#f8fbff;
+  --cardInk:#142446; --cardMuted:#6a7897; --blue:#2459b8;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#020817;color:var(--ink)}
+body{overflow-x:hidden}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+#app{min-height:100vh;position:relative;isolation:isolate;background:
+radial-gradient(circle at 18% 20%,rgba(39,216,255,.13),transparent 34%),
+radial-gradient(circle at 82% 12%,rgba(110,91,255,.16),transparent 32%),
+linear-gradient(180deg,#091a3d 0%,#031126 58%,#010812 100%)}
+#app:before{content:"";position:fixed;inset:0;z-index:-3;opacity:.25;pointer-events:none;
+background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+background-size:42px 42px;transform:perspective(900px) rotateX(66deg) scale(1.4);transform-origin:50% 85%}
+.glow{position:fixed;border-radius:50%;filter:blur(70px);opacity:.18;z-index:-2;pointer-events:none}
+.g1{width:360px;height:360px;background:#19cfff;left:-100px;top:25vh}
+.g2{width:420px;height:420px;background:#6b46ff;right:-150px;top:8vh}
+
+header{position:sticky;top:0;z-index:30;padding:20px 24px 18px;
+background:linear-gradient(180deg,rgba(6,18,44,.97),rgba(6,18,44,.88));
+backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.09)}
+.brandrow{display:flex;align-items:center;gap:16px;max-width:1240px;margin:auto}
+.logo{width:62px;height:62px;border-radius:18px;display:grid;place-items:center;font-weight:900;
+background:linear-gradient(145deg,#4d74ff,#7d3cff);box-shadow:0 12px 35px rgba(85,92,255,.28)}
+.brand h1{margin:0;font-size:clamp(24px,4vw,40px);letter-spacing:-.03em}
+.brand p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.ai-pill{margin-left:auto;padding:12px 16px;border-radius:999px;background:linear-gradient(135deg,#5d58ff,#8b45ff);
+font-weight:800;box-shadow:0 8px 28px rgba(100,70,255,.3)}
+nav{max-width:1240px;margin:16px auto 0;display:flex;flex-wrap:wrap;gap:10px}
+nav button{border:1px solid transparent;color:#eef5ff;background:rgba(255,255,255,.08);padding:12px 15px;border-radius:14px;font-weight:700}
+nav button.active,nav button:hover{background:#fff;color:#12234d}
+.publicbar{max-width:1240px;margin:14px auto 0;padding:12px 16px;border:1px solid rgba(255,255,255,.12);
+background:rgba(232,241,255,.96);color:#214a94;font-weight:800}
+
+main{max-width:1280px;margin:0 auto;padding:24px}
+.workspace{background:rgba(245,249,255,.97);color:var(--cardInk);border:1px solid rgba(186,203,231,.8);border-radius:30px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.18)}
+.ws-head{padding:26px;border-bottom:1px solid #dce6f3;display:flex;align-items:flex-start;gap:18px}
+.ws-head .title-wrap{flex:1}.ws-kicker{display:inline-block;color:#2c7a5c;background:#e8f6ef;border-radius:999px;padding:7px 11px;font-weight:900;font-size:13px}
+.ws-head h2{margin:8px 0 4px;font-size:34px;letter-spacing:-.03em}.ws-head p{margin:0;color:#71809e}
+.ws-actions{display:flex;gap:10px}.ws-actions button{padding:12px 16px;border-radius:12px;border:1px solid #d7e1ef;background:#eef4fb;color:#244b89;font-weight:800}
+.ws-body{padding:26px;position:relative}
+.context{border:1px solid #d8e2f1;border-radius:18px;background:linear-gradient(90deg,#f1f6ff,#f5f1ff);padding:18px;margin-bottom:18px}
+.context strong{color:#2b559c}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.chip{padding:7px 10px;border:1px solid #d5e0ef;border-radius:999px;background:#fff;font-size:13px;font-weight:700;color:#2e4f88}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{border:1px solid #d8e2f0;background:#fff;border-radius:20px;padding:22px;min-height:190px;position:relative;overflow:hidden;transition:.2s transform,.2s box-shadow}
+.card:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(34,67,125,.1)}
+.card.featured{outline:2px solid #7e9cff}.card .relevant{display:inline-block;font-size:11px;font-weight:900;color:#315899;background:#edf3ff;padding:6px 9px;border-radius:999px;margin-bottom:12px}
+.card-icon{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;font-size:34px;margin-bottom:16px;background:linear-gradient(145deg,#edf5ff,#f3efff);border:1px solid #d6e3f3;box-shadow:0 10px 24px rgba(42,83,151,.10)}
+.card h3{font-size:24px;margin:0 0 8px;letter-spacing:-.02em}.card p{margin:0;color:var(--cardMuted);font-size:17px;line-height:1.45}
+.card button{margin-top:18px;padding:10px 14px;border-radius:12px;border:1px solid #d6e0ee;background:#eef4fb;color:#21519a;font-weight:850}
+.card .scene-preview{position:absolute;right:-28px;bottom:-30px;width:160px;height:120px;border-radius:36px;opacity:.14;background:
+radial-gradient(circle at 50% 50%,#35dfff,transparent 44%),linear-gradient(135deg,#5f64ff,#1fe0bf)}
+.note{margin-top:18px;border-left:4px solid #4266ff;padding:16px 18px;background:#eef3fb;border-radius:14px;color:#20345c}
+.level-strip{margin-top:18px;border:1px solid #d9e3f0;border-radius:18px;background:#f9fbff;padding:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.level-strip strong{color:#2e58a2;margin-right:auto}
+.level{padding:7px 10px;border-radius:999px;border:1px solid #d7e1ed;background:#fff;font-weight:700;font-size:13px}.level.active{border-color:#6c86ff;color:#3156ad;background:#f0f4ff}
+
+.hero{position:relative;min-height:62vh;border:1px solid var(--line);border-radius:34px;overflow:hidden;background:
+linear-gradient(90deg,rgba(3,13,32,.9) 0%,rgba(3,13,32,.44) 45%,rgba(3,13,32,.18) 100%),
+radial-gradient(circle at 72% 40%,rgba(38,196,255,.22),transparent 26%),
+linear-gradient(140deg,#102b61,#09152d 55%,#030912);box-shadow:0 35px 80px rgba(0,0,0,.32)}
+.hero:before{content:"";position:absolute;inset:0;opacity:.8;background:
+radial-gradient(circle at 76% 40%,rgba(255,255,255,.1) 0 1px,transparent 2px) 0 0/26px 26px,
+linear-gradient(115deg,transparent 47%,rgba(37,215,255,.18) 49%,transparent 51%);animation:scan 8s linear infinite}
+@keyframes scan{0%{transform:translateX(-3%)}50%{transform:translateX(3%)}100%{transform:translateX(-3%)}}
+.hero-copy{position:relative;z-index:2;max-width:650px;padding:56px}
+.kicker{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border:1px solid rgba(124,241,255,.28);border-radius:999px;background:rgba(16,58,95,.5);font-size:13px;font-weight:800;color:#9deeff}
+.hero h2{font-size:clamp(40px,7vw,78px);line-height:.96;margin:18px 0 16px;letter-spacing:-.055em}.hero p{font-size:19px;line-height:1.55;color:#c6d6ef;max-width:580px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.cta button{padding:14px 18px;border-radius:14px;border:0;font-weight:850}.primary{background:linear-gradient(135deg,#48d8ff,#735cff);color:#fff}.secondary{background:rgba(255,255,255,.09);color:#fff;border:1px solid var(--line)!important}
+.avatar-stage{position:absolute;right:3%;bottom:0;width:min(48%,560px);height:95%;z-index:1}.person{position:absolute;left:28%;bottom:8%;width:35%;aspect-ratio:.62;border-radius:45% 45% 26% 26%/28% 28% 12% 12%;background:linear-gradient(180deg,#87e8ff 0 22%,#26396b 22% 100%);filter:drop-shadow(0 22px 24px rgba(0,0,0,.38))}
+.person:before{content:"";position:absolute;width:48%;aspect-ratio:1;border-radius:50%;left:26%;top:-18%;background:linear-gradient(145deg,#f5c9a7,#9e684e)}.person:after{content:"";position:absolute;width:92%;height:17%;left:4%;top:30%;border:2px solid rgba(78,233,255,.55);border-radius:18px;box-shadow:0 0 22px rgba(60,221,255,.28)}
+.holo{position:absolute;right:0;top:18%;width:66%;height:46%;border:1px solid rgba(101,227,255,.4);border-radius:26px;background:linear-gradient(145deg,rgba(22,147,224,.14),rgba(93,82,255,.16));box-shadow:inset 0 0 42px rgba(31,196,255,.09),0 0 35px rgba(31,196,255,.08);transform:perspective(800px) rotateY(-12deg)}
+.holo:before,.holo:after{content:"";position:absolute;border:1px solid rgba(63,222,255,.35);border-radius:50%}.holo:before{width:34%;aspect-ratio:1;left:10%;top:18%;box-shadow:0 0 30px rgba(69,218,255,.18)}.holo:after{width:52%;aspect-ratio:1;right:8%;bottom:5%;border-style:dashed;animation:spin 12s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+
+.page{display:none}.page.active{display:block}
+.world{display:none;min-height:calc(100vh - 170px);padding:0 0 40px}.world.active{display:block}
+.world-shell{position:relative;min-height:78vh;border:1px solid var(--line);border-radius:32px;overflow:hidden;background:#06142e}
+.world-bg{position:absolute;inset:0;background:radial-gradient(circle at 70% 32%,rgba(44,221,255,.22),transparent 24%),linear-gradient(135deg,#0c2d58,#06142e 55%,#020814)}
+.world-grid{position:absolute;inset:0;opacity:.3;background:linear-gradient(rgba(105,220,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(105,220,255,.12) 1px,transparent 1px);background-size:52px 52px;transform:perspective(900px) rotateX(64deg) scale(1.35);transform-origin:50% 85%}
+.world-top{position:relative;z-index:3;display:flex;align-items:center;gap:12px;padding:22px}.world-top button{border:1px solid var(--line);background:rgba(255,255,255,.08);color:white;border-radius:12px;padding:10px 14px;font-weight:800}.world-top .spacer{flex:1}.world-title{font-size:clamp(28px,5vw,52px);font-weight:900;letter-spacing:-.04em}
+.labscene{position:relative;z-index:2;min-height:620px;margin:12px 22px 22px;border-radius:28px;overflow:hidden;border:1px solid rgba(117,226,255,.18);background:linear-gradient(180deg,rgba(2,10,26,.2),rgba(2,10,26,.86)),radial-gradient(circle at 54% 37%,rgba(45,227,255,.18),transparent 20%),linear-gradient(135deg,#173267,#08152d 62%,#040915)}
+.bench{position:absolute;left:8%;right:8%;bottom:10%;height:18%;background:linear-gradient(#203c68,#0b1d3c);transform:perspective(700px) rotateX(48deg);border:1px solid rgba(255,255,255,.12)}
+.screen3d{position:absolute;right:9%;top:14%;width:38%;height:40%;border-radius:26px;border:1px solid rgba(89,230,255,.4);background:rgba(19,100,166,.16);box-shadow:0 0 50px rgba(39,216,255,.12),inset 0 0 60px rgba(39,216,255,.08)}
+.screen3d:before{content:"";position:absolute;inset:12%;border:2px solid rgba(107,237,255,.35);border-radius:50%;box-shadow:0 0 28px rgba(83,222,255,.18)}
+.flask,.scope,.tablet{position:absolute;bottom:18%;filter:drop-shadow(0 12px 16px rgba(0,0,0,.35))}.flask{left:19%;width:70px;height:92px;border:5px solid #72e9ff;border-top:0;border-radius:12px 12px 34px 34px;background:linear-gradient(transparent 45%,rgba(126,89,255,.65) 46%)}.scope{left:40%;width:100px;height:120px;border-left:14px solid #a5bad9;border-bottom:18px solid #7085aa;border-radius:50px 8px 12px 14px;transform:rotate(-8deg)}.tablet{right:23%;width:150px;height:90px;border:6px solid #7d93b8;border-radius:14px;background:linear-gradient(135deg,#0a2e54,#176aa0)}
+.hotspot{position:absolute;z-index:5;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.6);background:rgba(67,222,255,.2);box-shadow:0 0 0 10px rgba(67,222,255,.07),0 0 32px rgba(67,222,255,.35);animation:pulse 2s ease-in-out infinite;color:white;font-weight:900}@keyframes pulse{50%{transform:scale(1.08);box-shadow:0 0 0 16px rgba(67,222,255,.02),0 0 44px rgba(67,222,255,.45)}}.h1{left:22%;bottom:37%}.h2{left:43%;bottom:39%}.h3{right:26%;bottom:34%}.h4{right:18%;top:28%}
+.hud{position:absolute;left:24px;bottom:24px;z-index:7;width:min(540px,calc(100% - 48px));padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(4,17,39,.8);backdrop-filter:blur(14px)}.hud small{color:#83eaff;font-weight:800}.hud h3{margin:7px 0 6px;font-size:23px}.hud p{margin:0;color:#c5d3e8;line-height:1.45}.hud-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.hud-actions button{padding:9px 11px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.08);color:white}
+.overlay{position:fixed;inset:0;z-index:80;background:rgba(0,6,18,.7);display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(10px)}.overlay.show{display:flex}.modal{width:min(560px,96vw);border:1px solid var(--line);border-radius:24px;background:#081a3b;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.45)}.modal h3{margin:0 0 8px}.modal p{color:#c6d5eb;line-height:1.5}.modal button{margin-top:12px;padding:10px 14px;border:0;border-radius:12px;background:#fff;color:#10234d;font-weight:800}
+footer{max-width:1240px;margin:30px auto 0;padding:20px 0 40px;color:#7f94b7;font-size:13px}
+
+@media(max-width:900px){.cards{grid-template-columns:1fr 1fr}.avatar-stage{opacity:.45;width:62%}.hero-copy{padding:38px 28px}}
+@media(max-width:640px){
+  header{padding:16px 14px}.brand p{display:none}.logo{width:50px;height:50px}.ai-pill{padding:10px 12px}
+  main{padding:14px}.cards{grid-template-columns:1fr}.ws-head{padding:20px;flex-direction:column}.ws-actions{width:100%}.ws-head h2{font-size:30px}
+  .hero{min-height:68vh}.hero h2{font-size:46px}.hero-copy{padding:34px 22px}.avatar-stage{width:92%;right:-26%;opacity:.4}
+  .world-top{padding:16px;flex-wrap:wrap}.world-title{font-size:30px}.labscene{margin:8px 12px 12px;min-height:650px}.screen3d{width:56%;right:4%}.hud{left:12px;bottom:12px;width:calc(100% - 24px)}
+}
+</style>
+</head>
+<body>
+<div id="app">
+<div class="glow g1"></div><div class="glow g2"></div>
+
+<header>
+  <div class="brandrow">
+    <div class="logo">GPSJ</div>
+    <div class="brand">
+      <h1>Global Pharma Scientist Journey</h1>
+      <p>Adaptive Science Engine v4.56.7 · Approved public architecture preserved · Living AI environments beneath each capability</p>
+    </div>
+    <div class="ai-pill">AI</div>
+  </div>
+  <nav id="nav">
+    <button class="active" data-page="home">Home</button>
+    <button data-page="journey">🧭 My GPSJ</button>
+    <button data-page="learn">📚 Learn</button>
+    <button data-page="visual">👁 Visual</button>
+    <button data-page="research">🔬 Research</button>
+    <button data-page="lab">🧪 Screen Lab</button>
+    <button data-page="advancement">🚀 Advancement</button>
+    <button data-page="create">🎨 Create</button>
+    <button data-page="market">🛍 Marketplace</button>
+    <button data-page="institution">🏛 Institutions</button>
+    <button data-page="language">🌐 Language</button>
+    <button data-page="signin">👤 Sign in</button>
+  </nav>
+  <div class="publicbar">🌍 Public GPSJ access remains visible · sign in only to save, personalize and use role-based tools</div>
+</header>
+
+<main>
+  <section id="page-home" class="page active">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="kicker">✦ SCIENCE THAT GROWS WITH YOU</span>
+        <h2>Enter the science.<br/>Don’t just read it.</h2>
+        <p>GPSJ preserves the approved public menu. Each approved designation now opens its approved first-level display, and only then unfolds into the living AI environment behind it.</p>
+        <div class="cta">
+          <button class="primary" onclick="goPage('learn')">Start with Learn</button>
+          <button class="secondary" onclick="goPage('journey')">Open My GPSJ</button>
+        </div>
+      </div>
+      <div class="avatar-stage" aria-hidden="true"><div class="holo"></div><div class="person"></div></div>
+    </section>
+  </section>
+
+  <section id="page-journey" class="page"></section>
+  <section id="page-learn" class="page"></section>
+  <section id="page-visual" class="page"></section>
+  <section id="page-research" class="page"></section>
+  <section id="page-lab" class="page"></section>
+  <section id="page-advancement" class="page"></section>
+  <section id="page-create" class="page"></section>
+  <section id="page-market" class="page"></section>
+  <section id="page-institution" class="page"></section>
+  <section id="page-language" class="page"></section>
+  <section id="page-signin" class="page"></section>
+
+  <section class="world" id="worldView">
+    <div class="world-shell">
+      <div class="world-bg"></div><div class="world-grid"></div>
+      <div class="world-top">
+        <button onclick="closeWorld()">← Back to approved display</button>
+        <div class="world-title" id="worldTitle">Scientific World</div>
+        <div class="spacer"></div>
+        <button onclick="showInfo('Evidence & safety','Observation, simulation and authorized real-world activity remain separated. Evidence, uncertainty and jurisdiction remain visible.')">Evidence</button>
+        <button onclick="showInfo('Pathway','GPSJ adapts the next learning, certification, institutional or professional step to the user’s current level and jurisdiction.')">Pathway</button>
+      </div>
+      <div class="labscene">
+        <div class="screen3d"></div><div class="flask"></div><div class="scope"></div><div class="tablet"></div>
+        <button class="hotspot h1" onclick="showInfo('Active station','This station changes according to the selected approved capability and the user’s current task.')">+</button>
+        <button class="hotspot h2" onclick="showInfo('Practice object','Manipulate a simulated object, instrument or process when the selected pathway allows it.')">+</button>
+        <button class="hotspot h3" onclick="showInfo('Evidence console','Connect the current task to evidence, standards, uncertainty and provenance.')">+</button>
+        <button class="hotspot h4" onclick="showInfo('AI spatial tutor','The AI changes the scene around the exact lesson, quiz, project, research question or professional task.')">+</button>
+        <div class="hud">
+          <small id="stageLabel">FOUNDATION · ACTIVE ENVIRONMENT</small>
+          <h3 id="hudTitle">Living scientific environment</h3>
+          <p id="hudText">The approved display remains the entrance. This deeper environment opens only after the user chooses a capability.</p>
+          <div class="hud-actions">
+            <button onclick="setStage('Foundation')">Foundation</button><button onclick="setStage('Practice')">Practice</button><button onclick="setStage('Qualification')">Qualification</button><button onclick="setStage('Professional')">Professional</button><button onclick="setStage('Research')">Research</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>GPSJ v4.56.8 — approved designation icons + first-level displays restored; immersive AI worlds remain behind the selected capability.</footer>
+</main>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)hideInfo()">
+  <div class="modal"><h3 id="modalTitle"></h3><p id="modalText"></p><button onclick="hideInfo()">Return</button></div>
+</div>
+</div>
+
+<script>
+const data = {
+journey:{
+  title:'My GPSJ', subtitle:'Your scientific journey, continuity and opportunities.',
+  context:'Adaptive scientific context: Pharmacy & Pharmaceutical Sciences',
+  cards:[
+    ['Active scientific context','Resume the last topic, observation, research notebook or Screen Lab session.','★ MOST RELEVANT TO YOUR CONTEXT'],
+    ['Scientific opportunities','Surface high-value learning, research, collaboration and commercial opportunities.',''],
+    ['Authorization Center','See what you may learn, observe, simulate, test or lawfully operate.',''],
+    ['Decision inbox','Review actions, verification needs, approvals and next lawful pathways.',''],
+    ['Journey dashboard','Learning, projects, competencies, aspirations and professional continuity.',''],
+    ['Global field map','View authorized global distribution of education, qualifications, facilities and opportunities.','']
+  ]
+},
+learn:{
+  title:'Learn', subtitle:'Choose how GPSJ should organize your learning.',
+  context:'Active learning context: Pharmacy & Pharmaceutical Sciences',
+  cards:[
+    ['Explore science','Open fields → domains → topics → adaptive depth → lessons → practice → mastery.','★ MOST RELEVANT TO YOUR CONTEXT'],
+    ['Quick topic','Generate an adaptive lesson from a subject, system, question or skill.',''],
+    ['Practice & mastery','Adaptive recall, quizzes, competency checks and targeted remediation.',''],
+    ['My field','Your primary field remains the organizing scientific context.',''],
+    ['What I want to learn','Describe any subject in ordinary language and let GPSJ organize the route.',''],
+    ['Continue recent topic','Resume the recent lesson inside the same field/goal context.','']
+  ]
+},
+visual:{
+  title:'Visual Intelligence', subtitle:'Scientific observation, comparison and analysis.',
+  context:'Visual context inherits the active scientific field and evidence standards.',
+  cards:[
+    ['Scientific observation canvas','Separate direct visual evidence from inference; preserve scale, confidence and annotation.','★ MOST RELEVANT TO YOUR CONTEXT'],
+    ['Identify candidates','Generate candidate identifications with confidence and uncertainty.',''],
+    ['Compare','Compare specimens, structures, equipment, images or time points.',''],
+    ['Measure','Measurement, scale, calibration and geometry-aware visual analysis.',''],
+    ['Annotate','Layer observations without losing original evidence.',''],
+    ['Calibrate','Check scale, reference objects, device characteristics and uncertainty.','']
+  ]
+},
+research:{
+  title:'Research', subtitle:'Question → evidence → study design → analysis → interpretation.',
+  context:'Research context: evidence-connected, reproducible and field-aware.',
+  cards:[
+    ['Question builder','Build an evidence-ready research question.','★ MOST RELEVANT TO YOUR CONTEXT'],
+    ['Evidence intelligence','Claims, sources, confidence, uncertainty and reproducibility.',''],
+    ['Study design studio','Experimental, observational and computational research architecture.',''],
+    ['Analysis & interpretation','Variables, statistics, models, limitations and scientific inference.',''],
+    ['Reproducibility','Controls, replication, calibration, deviations and analysis provenance.',''],
+    ['Active notebook','Keep questions, claims, sources, observations and interpretations together.','']
+  ]
+},
+lab:{
+  title:'Screen Lab', subtitle:'Instrument-aware observation, simulation and supervised testing.',
+  context:'Nearby equipment, digital twins and simulation appear according to competency and authorization.',
+  cards:[
+    ['Build My Environment','Declare nearby instruments, sensors, tools, robots and prototypes.','★ MOST RELEVANT TO YOUR CONTEXT'],
+    ['Observe / analyze','Read-only observation, capture, measurement and annotation.',''],
+    ['Simulation studio','Digital twin / simulation before real-world execution.',''],
+    ['Measurement workspace','Organize calibration, measurements and scientific observations.',''],
+    ['Supervised testing','Controlled, authorized testing with continuous risk classification.',''],
+    ['Evidence log','Preserve measurements, protocol versions, deviations and scientific provenance.','']
+  ]
+},
+advancement:{
+  title:'Advancement', subtitle:'Qualification, certification and professional pathway.',
+  context:'Country-aware education, licensing, recognition and professional routes.',
+  cards:[
+    ['Country / jurisdiction','Country-aware education, licensing, recognition and professional routes.','★ MOST RELEVANT TO YOUR CONTEXT'],
+    ['Current qualification','Map existing education, credentials and demonstrated competencies.',''],
+    ['Target role','Define the scientific or professional destination.',''],
+    ['Gap analysis','Identify missing knowledge, training, credentials and experience.',''],
+    ['Training pathway','Build the next learning and credentialing sequence.',''],
+    ['Professional portfolio','Competencies, publications, projects, certifications and achievements.','']
+  ]
+},
+create:{
+  title:'Create', subtitle:'Create scientifically from the active context.',
+  context:'Creation inherits the active field, evidence and jurisdiction.',
+  cards:[
+    ['Scientific project','Turn an idea into a structured scientific project environment.','★ MOST RELEVANT TO YOUR CONTEXT'],
+    ['Report & presentation','Evidence-grounded reports, presentations and scientific communication.',''],
+    ['Map & model','Build scientific maps, models and explanatory environments.',''],
+    ['Prototype concept','Develop safe, research-oriented prototype concepts and simulations.',''],
+    ['Training artifact','Create lessons, demonstrations and competency materials.',''],
+    ['Operational world','When a real project is defined, the environment transforms into that project’s operational world.','']
+  ]
+},
+market:{
+  title:'Scientific marketplace', subtitle:'Resources appear after scientific need and fit are established.',
+  context:'Marketplace context follows the user’s active scientific field and lawful pathway.',
+  cards:[
+    ['Educational','Courses, books and learning resources.','★ MOST RELEVANT TO YOUR CONTEXT'],
+    ['Laboratory','Equipment, analytical services, facilities, maintenance and calibration.',''],
+    ['Professional','Training, credentialing, consulting and verified expertise.',''],
+    ['Institutions & expertise','Relevant laboratories, universities, facilities and specialists.',''],
+    ['Emergency & specialized mobility','Specialized transport or field-support resources when lawful and relevant.',''],
+    ['Scientific resources','Datasets, standards, publishers and verified reference resources.','']
+  ]
+},
+institution:{
+  title:'Institutions', subtitle:'Scientific organizations, facilities, museums and official pathways.',
+  context:'Institution context unfolds inside the selected institution rather than as a generic directory.',
+  cards:[
+    ['Institution explorer','Universities, hospitals, laboratories, research centers, museums and training facilities.','★ MOST RELEVANT TO YOUR CONTEXT'],
+    ['Scientific capability map','See what an institution can actually do scientifically.',''],
+    ['Collaboration gateway','Route authorized partnership, training, research and service inquiries.',''],
+    ['Organization intelligence','Understand scientific hierarchy, roles, reporting lines and authorized decision paths.',''],
+    ['Training relationships','Explore institution-linked education and competency pathways.',''],
+    ['GPSJ Studio Kit','Configure compatible institutional equipment, software and procurement pathways.','']
+  ]
+},
+language:{
+  title:'Language', subtitle:'Scientific language, translation and communication.',
+  context:'Scientific meaning, source traceability and official/non-official distinctions remain visible.',
+  cards:[
+    ['Interface language','Translate the interface while preserving scientific nomenclature.','★ MOST RELEVANT TO YOUR CONTEXT'],
+    ['Scientific pronunciation','Hear and practice technical terminology.',''],
+    ['Adaptive voice','Use region-appropriate pronunciation and communication style without stereotyping.',''],
+    ['Multilingual scientific writing','Translate explanations while preserving scientific meaning and source traceability.',''],
+    ['Scientific listening','Adapt spoken scientific explanations while preserving terminology.',''],
+    ['Regional communication','Adapt language and communication style without lowering scientific meaning.','']
+  ]
+},
+signin:{
+  title:'Sign in / profile', subtitle:'Save, personalize and access role-based tools.',
+  context:'Public access remains visible; sign-in adds continuity, verification and permissions.',
+  cards:[
+    ['Public profile','Basic identity, language and public preferences.','★ MOST RELEVANT TO YOUR CONTEXT'],
+    ['Scientific profile','Field, education, competencies, interests and goals.',''],
+    ['Credentials & verification','Store verified qualifications and authorization status.',''],
+    ['Institution roles','Connect authorized school, university, laboratory or organization roles.',''],
+    ['Privacy & permissions','Control what GPSJ may remember, connect and use.',''],
+    ['Journey continuity','Resume saved learning, projects, research and environments.','']
+  ]
+}
+};
+
+const cardIcons = {
+journey:['🧭','✨','🛡️','📥','📊','🌍'],
+learn:['🔬','⚡','🎯','🧬','💡','↩️'],
+visual:['👁️','🔎','⚖️','📐','✏️','🎛️'],
+research:['❓','📚','🧪','📈','🔁','📓'],
+lab:['🧰','🔭','🖥️','📏','🧑‍🔬','🧾'],
+advancement:['🌐','🎓','🎯','🧩','🛤️','💼'],
+create:['🎨','📄','🗺️','🧱','🧑‍🏫','🏗️'],
+market:['📚','⚗️','🎓','🏛️','🚑','🧰'],
+institution:['🏛️','🗺️','🤝','🏢','🎓','🧳'],
+language:['🌐','🔊','🎙️','✍️','🎧','💬'],
+signin:['👤','🧑‍🔬','✅','🏛️','🔐','🧭']
+};
+
+const worldCopy = {
+'Active scientific context':['My GPSJ — Living Journey','Your learning, projects, qualifications, evidence, professional goals and scientific environment grow together as one continuous world.'],
+'Scientific opportunities':['Opportunity World','GPSJ unfolds relevant learning, research, collaboration and lawful commercial opportunities inside the active field.'],
+'Authorization Center':['Authorization World','See the exact boundary between learning, observation, simulation, supervised testing and authorized real-world operation.'],
+'Explore science':['Pharmaceutical Sciences — Learning World','The chosen field unfolds into domains, topics, adaptive lessons, practice and mastery while the environment changes with the content.'],
+'Quick topic':['Adaptive Topic World','The AI builds a focused scientific scene around the user’s exact topic or question.'],
+'Practice & mastery':['Practice World','Quizzes and competency checks change the visible objects, apparatus, diagrams and tasks around the learner.'],
+'Scientific observation canvas':['AI Visual Science','Images, specimens, structures and processes become manipulable scientific scenes with evidence and uncertainty.'],
+'Question builder':['Research Environment','A research question unfolds into claims, evidence, study design, analysis and reproducibility.'],
+'Build My Environment':['Screen Lab — Instrument World','Nearby instruments, sensors, analytical systems and prototypes become compatible observation, simulation or supervised-testing stations.'],
+'Country / jurisdiction':['Advancement World','GPSJ maps the user’s current qualifications, local rules and recognized next steps.'],
+'Scientific project':['Creation Studio','The active scientific context transforms into a project-specific creation environment.'],
+'Educational':['Scientific Ecosystem','Resources appear only after need, fit, evidence and pathway are understood.'],
+'Institution explorer':['Institution & Museum World','Enter a university, laboratory, museum or scientific organization as an explorable environment.'],
+'Interface language':['Scientific Language World','Translation and communication preserve scientific terminology, source meaning and official/non-official distinctions.'],
+'Public profile':['Profile & Continuity World','Sign-in adds continuity and role-based capability without hiding public scientific access.']
+};
+
+let lastPage='home';
+function renderPage(key){
+  const d=data[key]; if(!d) return;
+  const el=document.getElementById('page-'+key);
+  const cards=d.cards.map((c,i)=>`
+    <article class="card ${i===0?'featured':''}">
+      ${c[2]?`<span class="relevant">${c[2]}</span>`:''}
+      <div class="card-icon" aria-hidden="true">${(cardIcons[key]||[])[i]||'✦'}</div>
+      <h3>${c[0]}</h3>
+      <p>${c[1]}</p>
+      <button onclick="openWorld('${key}', ${i})">Open</button>
+      <div class="scene-preview"></div>
+    </article>`).join('');
+  el.innerHTML=`
+    <div class="workspace">
+      <div class="ws-head">
+        <div class="title-wrap">
+          <span class="ws-kicker">FOCUSED WORKSPACE</span>
+          <h2>${d.title}</h2><p>${d.subtitle}</p>
+        </div>
+        <div class="ws-actions"><button onclick="goPage('home')">← Back</button><button onclick="goPage('home')">Workspace home</button></div>
+      </div>
+      <div class="ws-body">
+        <div class="context"><strong>${d.context}</strong>
+          <div class="chips"><span class="chip">Field-first</span><span class="chip">Intent-aware</span><span class="chip">Jurisdiction-aware</span><span class="chip">Scientific standards unchanged</span></div>
+        </div>
+        <div class="cards">${cards}</div>
+        <div class="note"><strong>Context follows you.</strong> Opening a capability preserves the active field, learning goal, evidence and lawful pathway instead of rebuilding the same context in another workspace.</div>
+        <div class="level-strip"><strong>${key==='institution'?'Institution environment':key==='lab'?'Instrument environment':key==='learn'?'Adaptive learning environment':'Scientific journey'}</strong>
+          <span class="level">Curiosity</span><span class="level active">Foundation</span><span class="level">Practice</span><span class="level">Qualification</span><span class="level">Professional</span><span class="level">Research</span>
+        </div>
+      </div>
+    </div>`;
+}
+Object.keys(data).forEach(renderPage);
+
+function goPage(key){
+  lastPage=key;
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('worldView').classList.remove('active');
+  document.getElementById('page-'+key).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===key));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function openWorld(key,index){
+  lastPage=key;
+  const c=data[key].cards[index];
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('worldView').classList.add('active');
+  document.getElementById('worldTitle').textContent=c[0];
+  const wc=worldCopy[c[0]] || [c[0]+' — Living World',c[1]+' The environment now unfolds visually around the selected capability.'];
+  document.getElementById('hudTitle').textContent=wc[0];
+  document.getElementById('hudText').textContent=wc[1];
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===key));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function closeWorld(){goPage(lastPage)}
+function setStage(stage){
+  document.getElementById('stageLabel').textContent=stage.toUpperCase()+' · ACTIVE ENVIRONMENT';
+  const m={
+    Foundation:'Guided learning: concepts, visible objects and safe manipulation are emphasized.',
+    Practice:'The scene adds simulated instruments, procedural rehearsal and formative feedback.',
+    Qualification:'The scene aligns competencies with recognized training and certification pathways.',
+    Professional:'The scene becomes a realistic professional installation with role and jurisdiction boundaries.',
+    Research:'The environment expands into advanced instruments, evidence streams, uncertainty and reproducibility.'
+  };
+  document.getElementById('hudText').textContent=m[stage];
+}
+function showInfo(t,x){document.getElementById('modalTitle').textContent=t;document.getElementById('modalText').textContent=x;document.getElementById('overlay').classList.add('show')}
+function hideInfo(){document.getElementById('overlay').classList.remove('show')}
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>goPage(b.dataset.page)));
+</script>
+</body>
+</html>
