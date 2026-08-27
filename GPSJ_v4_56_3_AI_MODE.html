@@ -1,0 +1,163 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GPSJ v4.56.3 — AI Mode</title>
+<style>:root{--n:#112957;--i:#12203d;--m:#6d7b99;--b:#f3f6fb;--l:#d8e1ef;--s:#eef3fb;--x:#3158f5;--p:#7c35ee}*{box-sizing:border-box}body{margin:0;background:var(--b);color:var(--i);font-family:Inter,system-ui,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}header{background:var(--n);color:white;padding:18px 24px;position:sticky;top:0}.brand{display:flex;gap:14px;align-items:center}.logo{width:58px;height:58px;border-radius:17px;background:linear-gradient(135deg,var(--x),var(--p));display:grid;place-items:center;font-weight:900}.brand h1{margin:0;font-size:27px}.sub{opacity:.78}.nav{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.nav button{border:0;border-radius:13px;padding:12px 15px;background:#ffffff17;color:white;font-weight:800}.nav button.active{background:white;color:var(--i)}main{max-width:1180px;margin:auto;padding:20px}.shell{background:white;border:1px solid var(--l);border-radius:22px;overflow:hidden;min-height:680px}.top{padding:18px 20px;border-bottom:1px solid var(--l);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.k{font-size:12px;font-weight:900;color:#0d7b59;background:#e9f7f1;padding:6px 9px;border-radius:999px}.title{font-size:27px;font-weight:900;margin-top:7px}.muted{color:var(--m)}.btn{border:1px solid var(--l);background:var(--s);color:#204d94;border-radius:12px;padding:10px 13px;font-weight:800}.primary{background:linear-gradient(135deg,var(--x),var(--p));color:white;border:0}.content{padding:20px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.card,.work{border:1px solid var(--l);border-radius:17px;padding:17px;background:white}.card p{color:var(--m);line-height:1.45}.input{width:100%;border:1px solid var(--l);border-radius:12px;padding:12px;margin:7px 0}.out{border-left:4px solid var(--x);background:var(--s);border-radius:11px;padding:13px;margin-top:12px;line-height:1.5}.media{min-height:220px;border-radius:15px;background:#0e2856;color:white;display:grid;place-items:center;text-align:center;padding:20px}.crumbs{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.crumb{border:1px solid var(--l);border-radius:999px;padding:5px 8px;font-size:12px}.notice{background:#e9f0fb;color:#204d94;padding:10px 14px;font-weight:800;margin-top:12px}@media(max-width:700px){.grid{grid-template-columns:1fr}.nav button{flex:1 1 40%}main{padding:11px}.brand h1{font-size:21px}}</style></head>
+<body><header><div class="brand"><div class="logo">GPSJ</div><div><h1>Global Pharma Scientist Journey</h1><div class="sub">Adaptive Science Engine v4.56.3 · v4.55 public architecture preserved · AI-guided scientific journey · evidence-aware · touch-first</div></div><div style="margin-left:auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span style="border:1px solid #ffffff30;background:#ffffff12;border-radius:999px;padding:9px 13px;font-weight:800">🌐 GPSJ United States</span><button id="aiMode" aria-label="Open GPSJ AI Mode" title="GPSJ AI Mode" style="width:48px;height:48px;border:0;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#4e67f8,#8c3eed);color:white;font-weight:900;cursor:pointer">AI</button></div></div><div class="nav" id="nav"></div><div class="notice">🌍 Public GPSJ access remains visible · sign in only to save, personalize and use role-based tools</div></header>
+<main><section class="shell"><div class="top"><div><span class="k">FOCUSED WORKSPACE</span><div class="title" id="title">Home</div><div class="muted">Open → enter capability → interact inside it.</div><div class="crumbs" id="crumbs"></div></div><div><button class="btn" id="back">← Back</button> <button class="btn" id="root">Workspace home</button></div></div><div class="content" id="content"></div></section></main>
+<script>
+const A={home:'Home',my:'🧭 My GPSJ',learn:'📚 Learn',visual:'👁 Visual',research:'🔬 Research',lab:'🧪 Screen Lab',advance:'🚀 Advancement',create:'🎨 Create',market:'🛍 Marketplace',institutions:'🏛 Institutions',language:'🌐 Language',signin:'👤 Sign in'};let area='home',stack=[];const C=document.querySelector('#content'),T=document.querySelector('#title'),Cr=document.querySelector('#crumbs'),N=document.querySelector('#nav');
+Object.entries(A).forEach(([k,v])=>{let b=document.createElement('button');b.textContent=v;b.dataset.a=k;b.onclick=()=>{area=k;stack=[];render()};N.appendChild(b)});
+const D={home:[
+['Start learning','Open field → domain → topic → adaptive lesson.','homelearn'],
+['Observe scientifically','Microscopy, medication, botany, equipment, molecular and biomedical visual intelligence.','homevisual'],
+['Investigate evidence','Question → evidence → study design → analysis → interpretation.','homeresearch'],
+['Use Screen Lab','Instrument-aware observation, simulation and supervised testing.','homelab'],
+['Create scientifically','Reports, presentations, maps, visual explanations and training artifacts.','homecreate'],
+['Explore scientific ecosystem','Institutions, heritage evidence, advancement, resources and marketplace pathways.','homeecosystem']
+],learn:[['Explore science','Organized fields, domains and topics.','browse'],['Quick topic','Generate an adaptive lesson from any topic.','lesson'],['Practice & mastery','Adaptive recall and competency checkpoint.','quiz']],visual:[['Image / specimen analysis','Scientific observation, annotation and uncertainty.','visual'],['Visual lesson','Turn an observation into learning.','lesson']],research:[['Research question','Frame a question and evidence path.','research'],['Evidence intelligence','Separate science, uncertainty and regulatory evidence.','evidence']],lab:[['My environment','Declare instruments, sensors, devices or prototypes nearby.','lab'],['Observe / simulate','Read-only first; supervised testing separately gated.','lab']],advance:[['Career pathway','Skills → gaps → credentials → readiness.','career']],create:[['Scientific creation','Reports, explanations and teaching artifacts.','create']],market:[['Scientific marketplace','Resource workspace preserving broad science access.','generic']],institutions:[['Institution workspace','Tenant, role, policy and authorization-aware.','generic']],language:[['Scientific language','Terminology-preserving language workspace.','language']],signin:[['Sign in / profile','Save personalization and role-based tools.','generic']],my:[['Journey dashboard','Learning, research, projects and competency continuity.','generic']]};
+function card(t,d,w){let e=document.createElement('div');e.className='card';e.innerHTML='<h3>'+t+'</h3><p>'+d+'</p>';let b=document.createElement('button');b.className='btn';b.textContent='Open';b.onclick=()=>{if(/^home/.test(w))openHomeRoute(w);else openW(t,w)};e.appendChild(b);return e}
+function render(){
+document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.a===area));
+Cr.innerHTML='<span class="crumb">'+A[area]+'</span>'+stack.map(x=>'<span class="crumb">'+x.t+'</span>').join('');
+T.textContent=stack.length?stack.at(-1).t:A[area].replace(/^[^A-Za-z]+/,'');
+if(stack.length){C.innerHTML=stack.at(-1).h;return}
+if(area==='home'){
+ C.innerHTML=`<div style="border:1px solid var(--l);border-radius:17px;padding:14px 16px;background:linear-gradient(135deg,#f8fbff,#f7f5ff);margin-bottom:14px">
+ <b style="color:#244b9d">Adaptive scientific context: Pharmacy & Pharmaceutical Sciences</b>
+ <div class="muted" style="margin-top:4px">No explicit learning goal saved. GPSJ uses the primary field as the organizing context.</div>
+ <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:9px">
+ <span class="crumb">Field-first</span><span class="crumb">Intent-aware</span><span class="crumb">Jurisdiction-aware</span><span class="crumb">Scientific standards unchanged</span>
+ </div></div>`;
+ let g=document.createElement('div');g.className='grid';
+ D.home.forEach((x,i)=>{let e=card(...x);if(i===0){e.style.outline='3px solid rgba(47,91,234,.18)';e.style.borderColor='#6f8ff0';e.insertAdjacentHTML('afterbegin','<div style="display:inline-block;background:#eaf0ff;color:#244b9d;border-radius:999px;padding:5px 8px;font-size:11px;font-weight:900;margin-bottom:8px">★ MOST RELEVANT TO YOUR CONTEXT</div>')}g.appendChild(e)});
+ C.appendChild(g);
+ C.insertAdjacentHTML('beforeend','<div class="out" style="margin-top:14px"><b>Context follows you.</b> Opening a capability preserves the active field and learning goal across Learn, Visual, Research, Screen Lab, Advancement, Institutions and Marketplace.</div>');
+ return;
+}
+let g=document.createElement('div');g.className='grid';D[area].forEach(x=>g.appendChild(card(...x)));C.replaceChildren(g)
+}
+function openHomeRoute(w){
+ const map={homelearn:'learn',homevisual:'visual',homeresearch:'research',homelab:'lab',homecreate:'create',homeecosystem:'institutions'};
+ area=map[w]||'home';stack=[];render();
+}
+function openW(t,w){let h='<div class="work"><b>v4.56 INTERACTIVE WORKSPACE</b><h2>'+t+'</h2>';
+if(w==='browse')h+=`<p>Choose a scientific field. The next level opens inside Learn.</p><select class="input" id="q"><option>Pharmaceutical sciences</option><option>Biology</option><option>Chemistry</option><option>Medicine</option><option>Engineering</option><option>Environmental science</option><option>Natural sciences</option></select><button class="btn primary" onclick="run('browse')">Open field</button><div id="out" class="out">Field → domains → topics → adaptive depth → lesson → practice → mastery.</div>`;
+else if(w==='visual')h+=`<div class="media">AI-adapted scientific image / video area<br><small>camera · image · video · annotation · uncertainty</small></div><input type="file" class="input" accept="image/*,video/*"><textarea id="q" class="input" placeholder="What are you observing?"></textarea><button class="btn primary" onclick="run('visual')">Analyze observation</button><div id="out" class="out">Ready.</div>`;
+else if(w==='lab')h+=`<input id="q" class="input" placeholder="Microscope, HPLC, sensor, balance, prototype..."><select id="mode" class="input"><option>Observation — read only</option><option>Simulation — virtual</option><option>Supervised testing — human confirmation</option><option>Real-world control — restricted</option></select><textarea id="purpose" class="input" placeholder="What do you want to observe, measure or test?"></textarea><button class="btn primary" onclick="run('lab')">Assess workflow</button><div id="out" class="out">Declare equipment physically available nearby. Read-only is default.</div>`;
+else h+=`<textarea id="q" class="input" placeholder="Enter your topic, question, goal or request"></textarea><button class="btn primary" onclick="run('${w}')">Start</button><div id="out" class="out">This capability is now an interactive focused workspace rather than a blocked/static card.</div>`;
+h+='</div>';stack.push({t,h});render()}
+function run(w){let q=(document.querySelector('#q')||{}).value||'Current request',o=document.querySelector('#out');if(w==='browse')o.innerHTML='<b>'+q+'</b><br>Core domains → foundational topics → advanced topics → adaptive lesson → practice → mastery.';else if(w==='visual')o.innerHTML='<b>'+q+'</b><br>Visible features → candidate interpretation → uncertainty → comparison → scientific explanation → Learn / Research handoff.';else if(w==='lab'){let m=document.querySelector('#mode').value,p=document.querySelector('#purpose').value||'No goal entered';o.innerHTML='<b>'+q+'</b><br>Mode: '+m+'<br>Goal: '+p+'<br>Compatibility → identity/manual → permission → safety classification → observation/simulation. No physical command is transmitted by this prototype.'}else if(w==='research'||w==='evidence')o.innerHTML='<b>'+q+'</b><br>Question → claim decomposition → evidence class → provenance → uncertainty/conflict → reproducibility → jurisdiction/authorization when consequential.';else if(w==='lesson')o.innerHTML='<b>'+q+'</b><br>Core concept → mechanism → evidence → visual explanation → application → adaptive practice → mastery checkpoint.';else o.innerHTML='<b>'+q+'</b><br>Workspace activated with focused navigation and preserved context.'}
+document.querySelector('#back').onclick=()=>{stack.pop();render()};document.querySelector('#root').onclick=()=>{stack=[];render()};render();
+</script>
+<style id="gpsj-deep-journey-style">
+/* v4.56.2: non-destructive adaptive story layer. Existing public/menu/workspace display is preserved. */
+body{position:relative}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:var(--b);transition:background .8s ease}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.13;background:radial-gradient(circle at 82% 18%,rgba(49,88,245,.28),transparent 32%),radial-gradient(circle at 12% 78%,rgba(124,53,238,.18),transparent 30%);transition:.8s ease}
+body[data-journey="learn"]::after{background:radial-gradient(circle at 78% 22%,rgba(49,88,245,.34),transparent 31%),linear-gradient(135deg,rgba(232,242,255,.38),rgba(248,246,255,.2))}
+body[data-journey="visual"]::after{background:radial-gradient(circle at 80% 25%,rgba(24,102,166,.35),transparent 30%),radial-gradient(circle at 18% 75%,rgba(13,123,89,.2),transparent 30%)}
+body[data-journey="research"]::after{background:radial-gradient(circle at 80% 20%,rgba(54,78,150,.32),transparent 32%),radial-gradient(circle at 15% 80%,rgba(103,75,180,.18),transparent 30%)}
+body[data-journey="lab"]::after{background:radial-gradient(circle at 82% 20%,rgba(13,123,89,.28),transparent 32%),radial-gradient(circle at 15% 80%,rgba(49,88,245,.18),transparent 30%)}
+body[data-journey="advance"]::after{background:radial-gradient(circle at 80% 22%,rgba(124,53,238,.28),transparent 32%),radial-gradient(circle at 14% 78%,rgba(49,88,245,.18),transparent 30%)}
+.journey-strip{margin-top:14px;border:1px solid var(--l);border-radius:15px;background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(245,248,255,.94));padding:12px 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.journey-strip strong{color:#244b9d}.journey-stage{font-size:12px;font-weight:850;border:1px solid var(--l);background:white;border-radius:999px;padding:6px 9px}.journey-stage.on{border-color:#6f8ff0;background:#eaf0ff;color:#244b9d}.journey-note{color:var(--m);font-size:13px;line-height:1.4;flex:1 1 260px}
+.deep-panel{margin-top:14px;border:1px solid var(--l);border-radius:16px;background:white;padding:14px}.deep-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}.deep-tabs button{border:1px solid var(--l);background:var(--s);border-radius:999px;padding:7px 10px;font-weight:800;color:#204d94}.deep-tabs button.on{background:#244b9d;color:white}.deep-scene{min-height:135px;border-radius:14px;background:linear-gradient(135deg,#102a58,#233f78);color:white;padding:16px;display:grid;align-content:center;gap:5px}.deep-scene small{opacity:.8}.deep-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.deep-actions button{border:1px solid var(--l);background:#fff;border-radius:10px;padding:8px 10px;font-weight:800;color:#204d94}
+</style>
+<script id="gpsj-deep-journey-engine">
+(function(){
+ const stages=['Curiosity','Foundation','Practice','Qualification','Professional','Research'];
+ const story={
+  home:['Scientific journey','Your environment grows with your learning while the public GPSJ architecture remains unchanged.'],
+  learn:['Adaptive learning environment','Topic, quiz and competency progressively change the scientific scene and instruments.'],
+  visual:['Visual scientific environment','Observation becomes an evidence-aware visual scene with scale, uncertainty and context.'],
+  research:['Research environment','Question, evidence, methods and interpretation mature into a professional research setting.'],
+  lab:['Instrument environment','Nearby equipment, digital twins and simulation appear according to competency and authorization.'],
+  advance:['Professional pathway','Credentials, regulation, gaps and authorized next steps shape the professional environment.'],
+  create:['Creation environment','Scientific reports, models, presentations and project artifacts inherit active context.'],
+  market:['Scientific ecosystem','Relevant resources appear after scientific need is established; broad science access remains visible.'],
+  institutions:['Institution environment','School, university, museum, laboratory or organization context unfolds inside its workspace.'],
+  language:['Scientific language environment','Terminology, translation and communication adapt without losing scientific meaning.'],
+  my:['Personal journey','Progress, competencies, projects and aspirations evolve together.'],
+  signin:['Profile gateway','Sign in only to save, personalize and use permission-scoped tools.']
+ };
+ function currentStage(a){return ({home:0,learn:1,visual:2,research:4,lab:2,advance:3,create:4,market:4,institutions:3,language:1,my:2,signin:0})[a]||0}
+ function strip(a){const d=story[a]||story.home,ix=currentStage(a);return `<div class="journey-strip" data-deep-layer><strong>${d[0]}</strong><span class="journey-note">${d[1]}</span>${stages.map((x,i)=>`<span class="journey-stage ${i===ix?'on':''}">${x}</span>`).join('')}</div>`}
+ function panel(a){
+  const field='Pharmacy & Pharmaceutical Sciences';
+  const names={learn:'Learning installation',visual:'Observation installation',research:'Research installation',lab:'Laboratory & simulation installation',advance:'Qualification & professional installation',institutions:'Institution installation',language:'Scientific communication installation',market:'Scientific resource installation',create:'Creation studio',my:'Journey environment'};
+  if(!names[a]) return '';
+  return `<div class="deep-panel" data-deep-layer><div class="deep-tabs"><button class="on">Current stage</button><button>Installation</button><button>Practice</button><button>Evidence</button><button>Pathway</button></div><div class="deep-scene"><strong>${names[a]}</strong><span>${field} · context-aware scene</span><small>Environment → instruments → task → evidence → competency → lawful next step</small></div><div class="deep-actions"><button>Adapt to task</button><button>Show instruments</button><button>Practice virtually</button><button>View pathway</button></div></div>`
+ }
+ function decorate(){
+  const a=(typeof area!=='undefined'?area:'home');document.body.dataset.journey=a;
+  document.querySelectorAll('[data-deep-layer]').forEach(x=>x.remove());
+  const c=document.querySelector('#content'); if(!c)return;
+  c.insertAdjacentHTML('beforeend',strip(a)+panel(a));
+ }
+ const oldRender=window.render; if(typeof oldRender==='function'){window.render=function(){oldRender();setTimeout(decorate,0)}}
+ document.addEventListener('click',()=>setTimeout(decorate,10));
+ setTimeout(decorate,30);
+})();
+</script>
+
+<style id="gpsj-ai-mode-style">
+.ai-halo{position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:0;transition:.45s ease;background:radial-gradient(circle at 86% 10%,rgba(124,53,238,.14),transparent 28%),radial-gradient(circle at 12% 78%,rgba(49,88,245,.10),transparent 34%)}
+body.ai-active .ai-halo{opacity:1}
+#aiMode.ai-on{box-shadow:0 0 0 4px rgba(255,255,255,.22),0 0 26px rgba(124,53,238,.55)}
+.ai-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}.ai-card{border:1px solid var(--l);border-radius:16px;padding:15px;background:white}.ai-card h3{margin-top:0}.ai-hero{background:linear-gradient(135deg,#102a58,#263f79);color:white;border:0}.ai-hero p{color:#dfe8ff}.ai-pills{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.ai-pill{padding:6px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.28);font-size:12px;font-weight:800}.ai-flow{display:grid;gap:9px}.ai-step{border:1px solid var(--l);border-radius:12px;padding:11px;background:#fbfdff}.ai-step b{color:#244b9d}.ai-scope{display:flex;gap:7px;flex-wrap:wrap}.ai-scope button{border:1px solid var(--l);background:var(--s);color:#204d94;border-radius:999px;padding:8px 10px;font-weight:800}.ai-scope button.on{background:#244b9d;color:white}.ai-result{border-left:4px solid #7c35ee;background:#f4f0ff;border-radius:11px;padding:13px;margin-top:12px;line-height:1.5}.ai-mini{font-size:12px;color:var(--m)}
+@media(max-width:760px){.ai-grid{grid-template-columns:1fr}}
+</style>
+<div class="ai-halo" aria-hidden="true"></div>
+<script id="gpsj-ai-mode-engine">
+(function(){
+ const ai=document.getElementById('aiMode'); if(!ai)return;
+ function aiHTML(){return `
+ <div class="ai-grid">
+  <section class="ai-card ai-hero">
+   <div class="k" style="display:inline-block;background:#ffffff18;color:white">GPSJ AI MODE</div>
+   <h2 style="margin-bottom:7px">Scientific copilot across your journey</h2>
+   <p>AI Mode does not replace the GPSJ workspaces. It coordinates them. It reads the active scientific context, your goal, competency stage, available environment and applicable permissions, then opens the most useful next capability inside the existing architecture.</p>
+   <div class="ai-pills"><span class="ai-pill">Context-aware</span><span class="ai-pill">Evidence-aware</span><span class="ai-pill">Jurisdiction-aware</span><span class="ai-pill">Offline-aware</span><span class="ai-pill">Role-aware</span></div>
+   <textarea id="aiPrompt" class="input" placeholder="Tell GPSJ what you are trying to learn, understand, build, observe, research or accomplish"></textarea>
+   <div class="ai-scope" id="aiScope"><button class="on" data-scope="guide">Guide me</button><button data-scope="learn">Learn</button><button data-scope="research">Research</button><button data-scope="visual">Visual</button><button data-scope="lab">Screen Lab</button><button data-scope="advance">Advancement</button></div>
+   <button class="btn primary" id="aiStart">Start with AI</button>
+   <div id="aiResult" class="ai-result"><b>Ready.</b><br>AI Mode will preserve the public GPSJ menu and unfold the next step inside the appropriate workspace.</div>
+  </section>
+  <section class="ai-card">
+   <h3>How AI Mode works</h3>
+   <div class="ai-flow">
+    <div class="ai-step"><b>1. Understand intent</b><br><span class="ai-mini">Learning, observation, research, creation, qualification, institution or resource need.</span></div>
+    <div class="ai-step"><b>2. Read scientific context</b><br><span class="ai-mini">Field, topic, current competency, evidence state and recent activity.</span></div>
+    <div class="ai-step"><b>3. Check environment</b><br><span class="ai-mini">Available devices, instruments, data, bandwidth and offline capability.</span></div>
+    <div class="ai-step"><b>4. Apply boundaries</b><br><span class="ai-mini">Read-only, simulation, supervised testing, authorization and jurisdiction where relevant.</span></div>
+    <div class="ai-step"><b>5. Unfold the next scene</b><br><span class="ai-mini">The visible workspace stays familiar while the scientific story, tools and practice deepen behind it.</span></div>
+   </div>
+  </section>
+ </div>`}
+ function openAI(){
+  document.body.classList.add('ai-active'); ai.classList.add('ai-on');
+  stack=[];
+  T.textContent='AI Mode';
+  Cr.innerHTML='<span class="crumb">AI</span><span class="crumb">Scientific copilot</span>';
+  C.innerHTML=aiHTML();
+  document.querySelectorAll('#nav button').forEach(b=>b.classList.remove('active'));
+  bindAI();
+ }
+ function bindAI(){
+  let scope='guide';
+  document.querySelectorAll('#aiScope button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#aiScope button').forEach(x=>x.classList.remove('on'));b.classList.add('on');scope=b.dataset.scope});
+  const start=document.getElementById('aiStart'); if(!start)return;
+  start.onclick=()=>{
+    const q=(document.getElementById('aiPrompt').value||'Continue my scientific journey').trim();
+    const out=document.getElementById('aiResult');
+    const routes={guide:'Best-fit pathway',learn:'Learn',research:'Research',visual:'Visual',lab:'Screen Lab',advance:'Advancement'};
+    out.innerHTML=`<b>${routes[scope]}</b><br>${q}<br><br><b>AI interpretation:</b> identify intent → map field and competency → select evidence level → check available environment → apply jurisdiction/authorization where needed → open the most relevant GPSJ workspace.<br><br><b>Next action:</b> ${scope==='guide'?'GPSJ recommends the appropriate workspace before changing context.':'Open '+routes[scope]+' with this request preserved.'}`;
+  }
+ }
+ ai.onclick=openAI;
+ const oldRender2=window.render;
+ if(typeof oldRender2==='function'){
+  window.render=function(){document.body.classList.remove('ai-active');ai.classList.remove('ai-on');oldRender2()}
+ }
+})();
+</script>
+
+</body></html>
