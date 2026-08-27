@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>GPSJ v4.56.6 — Living Scientific Worlds</title>
+<style>
+:root{
+  --navy:#0d2557;
+  --navy2:#07152f;
+  --ink:#eaf3ff;
+  --muted:#a8b9d8;
+  --line:rgba(255,255,255,.14);
+  --glass:rgba(10,28,65,.62);
+  --accent:#6e5bff;
+  --cyan:#27d8ff;
+  --green:#74f3b6;
+  --panel:rgba(7,18,42,.72);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#020817;color:var(--ink)}
+body{overflow-x:hidden}
+button,input,select{font:inherit}
+button{cursor:pointer}
+#app{min-height:100vh;position:relative;isolation:isolate;background:
+radial-gradient(circle at 18% 20%,rgba(39,216,255,.13),transparent 34%),
+radial-gradient(circle at 82% 12%,rgba(110,91,255,.16),transparent 32%),
+linear-gradient(180deg,#091a3d 0%,#031126 58%,#010812 100%)}
+#app:before{
+content:"";position:fixed;inset:0;z-index:-3;opacity:.26;pointer-events:none;
+background-image:
+linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+background-size:42px 42px;transform:perspective(900px) rotateX(66deg) scale(1.4);transform-origin:50% 85%
+}
+.glow{position:fixed;border-radius:50%;filter:blur(70px);opacity:.18;z-index:-2;pointer-events:none}
+.g1{width:360px;height:360px;background:#19cfff;left:-100px;top:25vh}
+.g2{width:420px;height:420px;background:#6b46ff;right:-150px;top:8vh}
+
+header{
+position:sticky;top:0;z-index:30;padding:20px 24px 18px;
+background:linear-gradient(180deg,rgba(6,18,44,.96),rgba(6,18,44,.84));
+backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.09)
+}
+.brandrow{display:flex;align-items:center;gap:16px;max-width:1240px;margin:auto}
+.logo{width:62px;height:62px;border-radius:18px;display:grid;place-items:center;font-weight:900;
+background:linear-gradient(145deg,#4d74ff,#7d3cff);box-shadow:0 12px 35px rgba(85,92,255,.28)}
+.brand h1{margin:0;font-size:clamp(24px,4vw,40px);letter-spacing:-.03em}
+.brand p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.ai-pill{margin-left:auto;padding:12px 16px;border-radius:999px;background:linear-gradient(135deg,#5d58ff,#8b45ff);
+font-weight:800;box-shadow:0 8px 28px rgba(100,70,255,.3)}
+nav{max-width:1240px;margin:16px auto 0;display:flex;flex-wrap:wrap;gap:10px}
+nav button{border:1px solid transparent;color:#eef5ff;background:rgba(255,255,255,.08);padding:12px 15px;border-radius:14px;font-weight:700}
+nav button.active,nav button:hover{background:#fff;color:#12234d}
+.publicbar{max-width:1240px;margin:14px auto 0;padding:12px 16px;border:1px solid rgba(255,255,255,.12);
+background:rgba(232,241,255,.96);color:#214a94;font-weight:800}
+
+main{max-width:1280px;margin:0 auto;padding:24px}
+.hero{
+position:relative;min-height:62vh;border:1px solid var(--line);border-radius:34px;overflow:hidden;
+background:
+linear-gradient(90deg,rgba(3,13,32,.9) 0%,rgba(3,13,32,.44) 45%,rgba(3,13,32,.18) 100%),
+radial-gradient(circle at 72% 40%,rgba(38,196,255,.22),transparent 26%),
+linear-gradient(140deg,#102b61,#09152d 55%,#030912);
+box-shadow:0 35px 80px rgba(0,0,0,.32)
+}
+.hero:before{
+content:"";position:absolute;inset:0;opacity:.8;
+background:
+radial-gradient(circle at 76% 40%,rgba(255,255,255,.1) 0 1px,transparent 2px) 0 0/26px 26px,
+linear-gradient(115deg,transparent 47%,rgba(37,215,255,.18) 49%,transparent 51%);
+animation:scan 8s linear infinite
+}
+@keyframes scan{0%{transform:translateX(-3%)}50%{transform:translateX(3%)}100%{transform:translateX(-3%)}}
+.hero-copy{position:relative;z-index:2;max-width:650px;padding:56px}
+.kicker{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border:1px solid rgba(124,241,255,.28);border-radius:999px;background:rgba(16,58,95,.5);font-size:13px;font-weight:800;color:#9deeff}
+.hero h2{font-size:clamp(40px,7vw,78px);line-height:.96;margin:18px 0 16px;letter-spacing:-.055em}
+.hero p{font-size:19px;line-height:1.55;color:#c6d6ef;max-width:580px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.cta button{padding:14px 18px;border-radius:14px;border:0;font-weight:850}
+.primary{background:linear-gradient(135deg,#48d8ff,#735cff);color:#fff}
+.secondary{background:rgba(255,255,255,.09);color:#fff;border:1px solid var(--line)!important}
+
+.avatar-stage{position:absolute;right:3%;bottom:0;width:min(48%,560px);height:95%;z-index:1}
+.person{
+position:absolute;left:28%;bottom:8%;width:35%;aspect-ratio:.62;border-radius:45% 45% 26% 26%/28% 28% 12% 12%;
+background:linear-gradient(180deg,#87e8ff 0 22%,#26396b 22% 100%);
+filter:drop-shadow(0 22px 24px rgba(0,0,0,.38));
+}
+.person:before{content:"";position:absolute;width:48%;aspect-ratio:1;border-radius:50%;left:26%;top:-18%;background:linear-gradient(145deg,#f5c9a7,#9e684e)}
+.person:after{content:"";position:absolute;width:92%;height:17%;left:4%;top:30%;border:2px solid rgba(78,233,255,.55);border-radius:18px;box-shadow:0 0 22px rgba(60,221,255,.28)}
+.holo{position:absolute;right:0;top:18%;width:66%;height:46%;border:1px solid rgba(101,227,255,.4);border-radius:26px;
+background:linear-gradient(145deg,rgba(22,147,224,.14),rgba(93,82,255,.16));box-shadow:inset 0 0 42px rgba(31,196,255,.09),0 0 35px rgba(31,196,255,.08);
+transform:perspective(800px) rotateY(-12deg)}
+.holo:before,.holo:after{content:"";position:absolute;border:1px solid rgba(63,222,255,.35);border-radius:50%}
+.holo:before{width:34%;aspect-ratio:1;left:10%;top:18%;box-shadow:0 0 30px rgba(69,218,255,.18)}
+.holo:after{width:52%;aspect-ratio:1;right:8%;bottom:5%;border-style:dashed;animation:spin 12s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.section-title{margin:34px 0 14px;display:flex;justify-content:space-between;align-items:end;gap:20px}
+.section-title h3{margin:0;font-size:28px}
+.section-title p{margin:0;color:var(--muted)}
+.portals{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.portal{position:relative;min-height:250px;border-radius:26px;overflow:hidden;border:1px solid var(--line);padding:22px;
+background:linear-gradient(145deg,#102a5e,#07162f);transition:.3s transform,.3s box-shadow}
+.portal:hover{transform:translateY(-4px);box-shadow:0 22px 50px rgba(0,0,0,.28)}
+.portal:before{content:"";position:absolute;inset:0;background:var(--scene);opacity:.92}
+.portal:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(2,8,20,.86) 100%)}
+.portal .content{position:absolute;z-index:2;left:20px;right:20px;bottom:18px}
+.portal h4{margin:0 0 6px;font-size:24px}
+.portal p{margin:0;color:#c2d1e7}
+.portal button{margin-top:14px;padding:10px 13px;border:1px solid rgba(255,255,255,.18);border-radius:12px;background:rgba(255,255,255,.12);color:white;font-weight:800}
+.learn{--scene:radial-gradient(circle at 72% 24%,rgba(81,246,255,.5),transparent 24%),linear-gradient(135deg,rgba(77,71,255,.34),transparent 58%),repeating-linear-gradient(90deg,transparent 0 50px,rgba(93,227,255,.06) 51px 52px)}
+.visual{--scene:radial-gradient(circle at 50% 34%,rgba(255,105,214,.48),transparent 20%),radial-gradient(circle at 66% 46%,rgba(60,220,255,.42),transparent 26%),linear-gradient(145deg,#1b0a38,#061830)}
+.research{--scene:linear-gradient(25deg,transparent 40%,rgba(48,231,186,.12) 41% 43%,transparent 44%),radial-gradient(circle at 70% 28%,rgba(74,255,189,.35),transparent 24%),linear-gradient(145deg,#0c2d44,#071126)}
+.lab{--scene:repeating-linear-gradient(120deg,transparent 0 52px,rgba(44,223,255,.08) 53px 54px),radial-gradient(circle at 68% 34%,rgba(64,202,255,.38),transparent 22%),linear-gradient(145deg,#10244d,#08152d)}
+.institution{--scene:linear-gradient(145deg,rgba(45,110,255,.3),transparent 50%),radial-gradient(circle at 72% 30%,rgba(255,213,96,.25),transparent 22%),linear-gradient(145deg,#19254a,#09152d)}
+.market{--scene:radial-gradient(circle at 65% 30%,rgba(192,107,255,.34),transparent 26%),linear-gradient(145deg,#31225c,#09142b)}
+
+.world{display:none;min-height:calc(100vh - 170px);padding:0 0 40px}
+.world.active{display:block}
+.world-shell{position:relative;min-height:78vh;border:1px solid var(--line);border-radius:32px;overflow:hidden;background:#06142e}
+.world-bg{position:absolute;inset:0;background:
+radial-gradient(circle at 70% 32%,rgba(44,221,255,.22),transparent 24%),
+linear-gradient(135deg,#0c2d58,#06142e 55%,#020814)}
+.world-grid{position:absolute;inset:0;opacity:.3;background:
+linear-gradient(rgba(105,220,255,.12) 1px,transparent 1px),
+linear-gradient(90deg,rgba(105,220,255,.12) 1px,transparent 1px);background-size:52px 52px;transform:perspective(900px) rotateX(64deg) scale(1.35);transform-origin:50% 85%}
+.world-top{position:relative;z-index:3;display:flex;align-items:center;gap:12px;padding:22px}
+.world-top button{border:1px solid var(--line);background:rgba(255,255,255,.08);color:white;border-radius:12px;padding:10px 14px;font-weight:800}
+.world-top .spacer{flex:1}
+.world-title{font-size:clamp(28px,5vw,52px);font-weight:900;letter-spacing:-.04em}
+.labscene{position:relative;z-index:2;min-height:600px;margin:12px 22px 22px;border-radius:28px;overflow:hidden;border:1px solid rgba(117,226,255,.18);
+background:linear-gradient(180deg,rgba(2,10,26,.2),rgba(2,10,26,.86)),
+radial-gradient(circle at 54% 37%,rgba(45,227,255,.18),transparent 20%),
+linear-gradient(135deg,#173267,#08152d 62%,#040915)}
+.bench{position:absolute;left:8%;right:8%;bottom:10%;height:18%;background:linear-gradient(#203c68,#0b1d3c);transform:perspective(700px) rotateX(48deg);border:1px solid rgba(255,255,255,.12)}
+.screen3d{position:absolute;right:9%;top:14%;width:38%;height:40%;border-radius:26px;border:1px solid rgba(89,230,255,.4);background:rgba(19,100,166,.16);box-shadow:0 0 50px rgba(39,216,255,.12),inset 0 0 60px rgba(39,216,255,.08)}
+.screen3d:before{content:"";position:absolute;inset:12%;border:2px solid rgba(107,237,255,.35);border-radius:50%;box-shadow:0 0 28px rgba(83,222,255,.18)}
+.flask,.scope,.tablet{position:absolute;bottom:18%;filter:drop-shadow(0 12px 16px rgba(0,0,0,.35))}
+.flask{left:19%;width:70px;height:92px;border:5px solid #72e9ff;border-top:0;border-radius:12px 12px 34px 34px;background:linear-gradient(transparent 45%,rgba(126,89,255,.65) 46%)}
+.scope{left:40%;width:100px;height:120px;border-left:14px solid #a5bad9;border-bottom:18px solid #7085aa;border-radius:50px 8px 12px 14px;transform:rotate(-8deg)}
+.tablet{right:23%;width:150px;height:90px;border:6px solid #7d93b8;border-radius:14px;background:linear-gradient(135deg,#0a2e54,#176aa0)}
+.hotspot{position:absolute;z-index:5;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.6);
+background:rgba(67,222,255,.2);box-shadow:0 0 0 10px rgba(67,222,255,.07),0 0 32px rgba(67,222,255,.35);animation:pulse 2s ease-in-out infinite;color:white;font-weight:900}
+@keyframes pulse{50%{transform:scale(1.08);box-shadow:0 0 0 16px rgba(67,222,255,.02),0 0 44px rgba(67,222,255,.45)}}
+.h1{left:22%;bottom:37%}.h2{left:43%;bottom:39%}.h3{right:26%;bottom:34%}.h4{right:18%;top:28%}
+.hud{position:absolute;left:24px;bottom:24px;z-index:7;width:min(520px,calc(100% - 48px));padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(4,17,39,.78);backdrop-filter:blur(14px)}
+.hud small{color:#83eaff;font-weight:800}.hud h3{margin:7px 0 6px;font-size:23px}.hud p{margin:0;color:#c5d3e8;line-height:1.45}
+.hud-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.hud-actions button{padding:9px 11px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.08);color:white}
+.overlay{position:fixed;inset:0;z-index:80;background:rgba(0,6,18,.7);display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(10px)}
+.overlay.show{display:flex}
+.modal{width:min(560px,96vw);border:1px solid var(--line);border-radius:24px;background:#081a3b;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.modal h3{margin:0 0 8px}.modal p{color:#c6d5eb;line-height:1.5}.modal button{margin-top:12px;padding:10px 14px;border:0;border-radius:12px;background:#fff;color:#10234d;font-weight:800}
+footer{max-width:1240px;margin:30px auto 0;padding:20px 0 40px;color:#7f94b7;font-size:13px}
+
+@media(max-width:900px){
+  .portals{grid-template-columns:1fr 1fr}
+  .avatar-stage{opacity:.45;width:62%}
+  .hero-copy{padding:38px 28px}
+}
+@media(max-width:640px){
+  header{padding:16px 14px}.brand p{display:none}.logo{width:50px;height:50px}.ai-pill{padding:10px 12px}
+  main{padding:14px}.hero{min-height:68vh}.hero h2{font-size:46px}.hero-copy{padding:34px 22px}
+  .portals{grid-template-columns:1fr}.portal{min-height:220px}
+  .avatar-stage{width:92%;right:-26%;opacity:.4}
+  .world-top{padding:16px}.world-title{font-size:30px}.labscene{margin:8px 12px 12px;min-height:650px}
+  .screen3d{width:56%;right:4%}.hud{left:12px;bottom:12px;width:calc(100% - 24px)}
+}
+</style>
+</head>
+<body>
+<div id="app">
+<div class="glow g1"></div><div class="glow g2"></div>
+
+<header>
+  <div class="brandrow">
+    <div class="logo">GPSJ</div>
+    <div class="brand">
+      <h1>Global Pharma Scientist Journey</h1>
+      <p>Adaptive Science Engine v4.56.6 · Living scientific worlds · Evidence-aware · Jurisdiction-aware</p>
+    </div>
+    <div class="ai-pill">AI</div>
+  </div>
+  <nav id="nav">
+    <button class="active" data-home>Home</button>
+    <button data-portal="journey">🧭 My GPSJ</button>
+    <button data-portal="learn">📚 Learn</button>
+    <button data-portal="visual">👁 Visual</button>
+    <button data-portal="research">🔬 Research</button>
+    <button data-portal="lab">🧪 Screen Lab</button>
+    <button data-portal="advancement">🚀 Advancement</button>
+    <button data-portal="create">🎨 Create</button>
+    <button data-portal="market">🛍 Marketplace</button>
+    <button data-portal="institution">🏛 Institutions</button>
+    <button data-portal="language">🌐 Language</button>
+    <button data-portal="signin">👤 Sign in</button>
+  </nav>
+  <div class="publicbar">🌍 Public GPSJ access remains visible · sign in only to save, personalize and use role-based tools</div>
+</header>
+
+<main id="homeView">
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="kicker">✦ SCIENCE THAT GROWS WITH YOU</span>
+      <h2>Enter the science.<br/>Don’t just read it.</h2>
+      <p>GPSJ turns each field into a living environment. Learn, observe, practice and progress inside the world of the profession—adapted to the user’s level, task, location and lawful access.</p>
+      <div class="cta">
+        <button class="primary" onclick="openWorld('learn')">Enter my scientific world</button>
+        <button class="secondary" onclick="openWorld('visual')">See AI visual mode</button>
+      </div>
+    </div>
+    <div class="avatar-stage" aria-hidden="true">
+      <div class="holo"></div>
+      <div class="person"></div>
+    </div>
+  </section>
+
+  <div class="section-title">
+    <div><h3>Living portals</h3><p>Each section previews the world you are about to enter.</p></div>
+  </div>
+
+  <section class="portals">
+    <article class="portal learn"><div class="content"><h4>📚 Learn</h4><p>School → university → qualified practice → research.</p><button onclick="openWorld('learn')">Enter environment</button></div></article>
+    <article class="portal visual"><div class="content"><h4>👁 Visual</h4><p>See specimens, systems, processes and evidence spatially.</p><button onclick="openWorld('visual')">Enter environment</button></div></article>
+    <article class="portal research"><div class="content"><h4>🔬 Research</h4><p>Questions, evidence, methods, analysis and reproducibility.</p><button onclick="openWorld('research')">Enter environment</button></div></article>
+    <article class="portal lab"><div class="content"><h4>🧪 Screen Lab</h4><p>Nearby instruments, simulation and supervised testing.</p><button onclick="openWorld('lab')">Enter environment</button></div></article>
+    <article class="portal institution"><div class="content"><h4>🏛 Institutions</h4><p>Universities, laboratories, museums and scientific organizations.</p><button onclick="openWorld('institution')">Enter environment</button></div></article>
+    <article class="portal market"><div class="content"><h4>🛍 Marketplace</h4><p>Scientific resources after need, fit and authorization are clear.</p><button onclick="openWorld('market')">Enter environment</button></div></article>
+  </section>
+
+  <footer>GPSJ v4.56.6 prototype — public architecture preserved; deeper interaction now occurs as visual scientific environments rather than dashboard-only pages.</footer>
+</main>
+
+<section class="world" id="worldView">
+  <main>
+    <div class="world-shell">
+      <div class="world-bg"></div>
+      <div class="world-grid"></div>
+      <div class="world-top">
+        <button onclick="closeWorld()">← Home</button>
+        <div class="world-title" id="worldTitle">Pharmaceutical Sciences</div>
+        <div class="spacer"></div>
+        <button onclick="showInfo('Evidence & safety','This environment separates observation, simulation and authorized real-world activity. Evidence, uncertainty and jurisdiction remain visible as the user advances.')">Evidence</button>
+        <button onclick="showInfo('Pathway','GPSJ adapts the next learning, certification, institutional or professional step to the user’s current level and jurisdiction.')">Pathway</button>
+      </div>
+
+      <div class="labscene" id="labscene">
+        <div class="screen3d"></div>
+        <div class="flask"></div>
+        <div class="scope"></div>
+        <div class="tablet"></div>
+
+        <button class="hotspot h1" onclick="showInfo('Formulation bench','Explore dosage forms, excipients, measurements and formulation concepts. At higher verified levels, the scene unfolds into advanced training and supervised workflows.')">+</button>
+        <button class="hotspot h2" onclick="showInfo('Microscopy station','Open a visual specimen, compare structures, annotate observations and preserve provenance.')">+</button>
+        <button class="hotspot h3" onclick="showInfo('Evidence console','Connect the current task to literature, standards, uncertainty and reproducibility notes.')">+</button>
+        <button class="hotspot h4" onclick="showInfo('AI spatial tutor','The AI tutor changes the visible environment around the exact lesson, quiz, research question or professional task instead of sending the user to another generic page.')">+</button>
+
+        <div class="hud">
+          <small id="stageLabel">FOUNDATION · ACTIVE ENVIRONMENT</small>
+          <h3 id="hudTitle">Pharmaceutical laboratory learning world</h3>
+          <p id="hudText">The scene changes with the topic. Chemistry can expose molecular geometry and apparatus; pharmacology can surface receptors and physiologic systems; formulation can move the user to the bench.</p>
+          <div class="hud-actions">
+            <button onclick="setStage('Foundation')">Foundation</button>
+            <button onclick="setStage('Practice')">Practice</button>
+            <button onclick="setStage('Qualification')">Qualification</button>
+            <button onclick="setStage('Professional')">Professional</button>
+            <button onclick="setStage('Research')">Research</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</section>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)hideInfo()">
+  <div class="modal">
+    <h3 id="modalTitle"></h3>
+    <p id="modalText"></p>
+    <button onclick="hideInfo()">Return to environment</button>
+  </div>
+</div>
+</div>
+
+<script>
+const titles={
+  learn:'Pharmaceutical Sciences — Learning World',
+  visual:'AI Visual Science',
+  research:'Research Environment',
+  lab:'Screen Lab — Instrument World',
+  institution:'Institution & Museum World',
+  market:'Scientific Ecosystem',
+  journey:'My GPSJ — Living Journey',
+  advancement:'Advancement Pathway',
+  create:'Scientific Creation Studio',
+  language:'Scientific Language World',
+  signin:'Profile & Continuity'
+};
+const copy={
+  learn:['Pharmaceutical laboratory learning world','The scene changes with the topic. Chemistry can expose molecular geometry and apparatus; pharmacology can surface receptors and physiologic systems; formulation can move the user to the bench.'],
+  visual:['AI visual observation world','Images, video, specimens, structures and processes become manipulable scientific scenes with annotation, confidence and uncertainty.'],
+  research:['Evidence-connected research world','Questions unfold into claims, sources, study design, analysis, limitations and reproducibility—inside the research setting rather than on a static form.'],
+  lab:['Instrument-aware laboratory world','Nearby instruments, sensors, microscopes, analytical systems and user prototypes appear as compatible read-only, simulation or supervised-testing stations.'],
+  institution:['Institution & museum environment','Enter a university, laboratory, museum or research institution as an explorable scientific environment with evidence, collections, pathways and authorized contacts.'],
+  market:['Scientific resource environment','Products, services, instruments, expertise and training appear only after the scientific need, fit, verification and jurisdiction are understood.'],
+  journey:['Your evolving scientific journey','Your learning, projects, qualifications, evidence, professional goals and scientific environment grow together as one continuous world.'],
+  advancement:['Qualification & advancement world','See the current level, missing competencies, recognized pathways, certifications and lawful next steps as an unfolding professional environment.'],
+  create:['Scientific creation world','Reports, models, maps, prototypes, visual explanations and project environments emerge from the active scientific context.'],
+  language:['Scientific language world','Translation, pronunciation and historical or technical language support preserve scientific meaning, provenance and official/non-official distinctions.'],
+  signin:['Profile & continuity world','Sign in stores the user’s journey, permissions, institutional roles and adaptive environments while keeping public scientific access visible.']
+};
+function openWorld(type){
+  document.getElementById('homeView').style.display='none';
+  const w=document.getElementById('worldView'); w.classList.add('active');
+  document.getElementById('worldTitle').textContent=titles[type]||'GPSJ Scientific World';
+  document.getElementById('hudTitle').textContent=(copy[type]||copy.learn)[0];
+  document.getElementById('hudText').textContent=(copy[type]||copy.learn)[1];
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.portal===type));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function closeWorld(){
+  document.getElementById('worldView').classList.remove('active');
+  document.getElementById('homeView').style.display='block';
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.hasAttribute('data-home')));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function setStage(stage){
+  document.getElementById('stageLabel').textContent=stage.toUpperCase()+' · ACTIVE ENVIRONMENT';
+  const m={
+    Foundation:'Guided learning: concepts, visible objects and safe manipulation are emphasized.',
+    Practice:'The scene adds simulated instruments, procedural rehearsal and formative feedback.',
+    Qualification:'The scene aligns competencies with recognized training and certification pathways.',
+    Professional:'The scene becomes a realistic professional installation with role and jurisdiction boundaries.',
+    Research:'The environment expands into advanced instruments, evidence streams, uncertainty and reproducibility.'
+  };
+  document.getElementById('hudText').textContent=m[stage];
+}
+function showInfo(t,x){document.getElementById('modalTitle').textContent=t;document.getElementById('modalText').textContent=x;document.getElementById('overlay').classList.add('show')}
+function hideInfo(){document.getElementById('overlay').classList.remove('show')}
+document.querySelectorAll('[data-portal]').forEach(b=>b.addEventListener('click',()=>openWorld(b.dataset.portal)));
+document.querySelectorAll('[data-home]').forEach(b=>b.addEventListener('click',closeWorld));
+</script>
+</body>
+</html>
